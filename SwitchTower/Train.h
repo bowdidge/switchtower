@@ -1,0 +1,117 @@
+//
+//  Train.h
+//  SwitchTower
+//
+//  Created by Robert Bowdidge on 12/22/12.
+// Copyright (c) 2013, Robert Bowdidge
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+//
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+//
+
+#import <Foundation/Foundation.h>
+
+#import "Signal.h"
+
+@class NamedPoint;
+@class LayoutView;
+@class Train;
+
+// Generic manipulation of a train.
+@interface TrainScript : NSObject {
+}
+// returns true if train should continue operating, or false to remove.
+- (BOOL) execute: (Train*) t context: (NSDictionary*) context;
+@property(nonatomic, retain) NSString *message;
+@end
+
+// TrainScript for changing the train's destination after it arrives at an endpoint.  Used
+// for reversing the train.
+@interface ChangeEndpoint : TrainScript {
+}
++ (ChangeEndpoint*) changeEndpointTo: (NamedPoint*) ep direction: (enum TimetableDirection) direction
+                             newName: (NSString*) name
+                       departureTime: (NSDate*) departureTime minimumWaitTime: (int) minimumWaitTimeSecs
+                        expectedTime: (NSDate*) expectedTime message:( NSString*) msg;
+@property(nonatomic, retain) NSString* name;
+@property(nonatomic, retain) NamedPoint *expectedEndPoint;
+// Departure time is absolute earliest time to leave.
+@property(nonatomic, retain) NSDate* departureTime;
+// Minimum wait time if train late // in minutes.
+@property(nonatomic) int minimumWaitTime;
+// Next expected time.
+@property(nonatomic, retain) NSDate* expectedTime;
+@property(nonatomic) enum TimetableDirection direction;
+@end
+
+@interface SplitTrain : TrainScript {
+}
+// TODO(bowdidge): Fill in.
+// Should be like ChangeEndpoint: break train into two parts, each with its own direction, name, departure time,
+// and expected time. Could either have bothtrains occupy the same cell (and rely on one's motion to get rid of the
+// duplication) or place the trains on different cells.
+@end
+
+// TODO(bowdidge): Also need scripts for splitting a train into two (engine, cars), and another
+// for allowing something to sit for a very long time.
+enum TrainState {
+    Inactive, // waiting to run
+    Waiting, // visible, not moving.
+    Running, // moving
+    Complete // done, off layout.
+};
+
+// TODO(bowdidge):
+// Need scripts for starting after a short delay.
+// Need scripts for splitting train and leaving cars on the tracks.
+@interface Train : NSObject
+
++ (id) train;
++ (id) trainWithName: (NSString*) name description: (NSString*) description direction: (enum TimetableDirection) dir
+               start: (NamedPoint*) start end: (NamedPoint*) end;
+- (void) setAppearanceTime: (NSDate*) appearanceTime departureTime: (NSDate*) departureTime arrivalTime: (NSDate*) arrivalTime;
+
+// Returns YES if train is at its starting location, which means the train hasn't moved.
+- (BOOL) isAtStartPosition;
+
+@property(nonatomic, retain) NSString *trainName;
+@property(nonatomic, retain) NSString *trainDescription;
+// Not retained.
+@property(nonatomic,assign) LayoutView *currentLayout;
+@property(nonatomic) int xPosition;
+@property(nonatomic) int yPosition;
+@property(nonatomic, retain) NamedPoint *startPoint;
+// TODO(bowdidge): Could also have separate "not great, but OK exits".
+// Or could have a "if I'm here, then dock me points and change dest to this / remove me.
+@property(nonatomic, retain) NamedPoint *expectedEndPoint;
+@property(nonatomic) enum TimetableDirection direction;
+@property(nonatomic) enum TrainState currentState;
+@property(nonatomic, retain) NSDate* appearanceTime;
+@property(nonatomic, retain) NSDate* departureTime;
+// Expected time to arrive.  Used to decide if late.
+@property(nonatomic, retain) NSDate* arrivalTime;
+
+// Next steps.
+@property(nonatomic, retain) TrainScript *script;
+
+@end
+

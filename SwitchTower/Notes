@@ -1,0 +1,16 @@
+Notes about development
+
+Is this a tower game, or a CTC game?  What'l be more fun?
+
+
+TO DO:
+Don't allow invalid / n
+
+[ ] Points and scoring.
+[ ] Figure out timing.  
+  [ ] For Diridon, grab a real schedule from late '30's and see how that works.
+  [ ] For timing, set lengths of tracks along x axis, calculate speed, do everything based on distance from LHS.
+[ ] Semi-autonomous switchers for handling cars, forcing back and forth movements.
+[ ] More game-like scenarios.
+[ ] Other scenarios.  Can handle crossings?  Maybe Redwood Junction or Santa Clara tower?
+[ ] Different speeds.

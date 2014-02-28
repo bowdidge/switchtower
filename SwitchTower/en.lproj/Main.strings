@@ -1,0 +1,30 @@
+
+/* Class = "IBUIButton"; normalTitle = "Timetable"; ObjectID = "0sA-qY-n10"; */
+"0sA-qY-n10.normalTitle" = "Timetable";
+
+/* Class = "IBUIButton"; normalTitle = "Gear"; ObjectID = "9iD-dM-2kc"; */
+"9iD-dM-2kc.normalTitle" = "Gear";
+
+/* Class = "IBUIButton"; normalTitle = "San Jose Fourth Street Scenario"; ObjectID = "OK9-ih-JyS"; */
+"OK9-ih-JyS.normalTitle" = "San Jose Fourth Street Scenario";
+
+/* Class = "IBUIButton"; normalTitle = "San Jose Diridon Scenario"; ObjectID = "QIB-Uh-jDq"; */
+"QIB-Uh-jDq.normalTitle" = "San Jose Diridon Scenario";
+
+/* Class = "IBUITextView"; text = "Trains"; ObjectID = "duJ-1a-HcB"; */
+"duJ-1a-HcB.text" = "Trains";
+
+/* Class = "IBUITextField"; text = "Timetable goes here"; ObjectID = "mWw-v0-Wtb"; */
+"mWw-v0-Wtb.text" = "Timetable goes here";
+
+/* Class = "IBUILabel"; text = "SwitchTower"; ObjectID = "n00-ap-2ko"; */
+"n00-ap-2ko.text" = "SwitchTower";
+
+/* Class = "IBUITextView"; text = "Status updates"; ObjectID = "wpZ-eA-hzN"; */
+"wpZ-eA-hzN.text" = "Status updates";
+
+/* Class = "IBUIButton"; normalTitle = "Penzance Scenario"; ObjectID = "yb0-8f-WoQ"; */
+"yb0-8f-WoQ.normalTitle" = "Penzance Scenario";
+
+/* Class = "IBUIViewController"; title = "Game View Controller"; ObjectID = "zYU-ZB-2Na"; */
+"zYU-ZB-2Na.title" = "Game View Controller";
