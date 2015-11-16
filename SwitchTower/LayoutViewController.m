@@ -149,7 +149,7 @@
                 train.currentState = Waiting;
                 train.xPosition = train.startPoint.xPosition;
                 train.yPosition = train.startPoint.yPosition;
-                [self.layoutModel addTrain: train];
+                [self.layoutModel addActiveTrain: train];
                 // TODO(bowdidge): Text should be "approaching" for endpoints beyond railroad,
                 // "waiting" for intermediate endpoints.
                 NSString* message = [NSString stringWithFormat: @"Train %@ approaching %@.\n", train.trainName, train.startPoint.name];
@@ -316,12 +316,7 @@
 // within the specified portion of a cell.
 // Returns the view controller for the popover.
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if (self.myPopoverController) {
-        [self.myPopoverController dismissPopoverAnimated:YES];
-        return NO;
-    } else {
-        return YES;
-    }
+    return YES;
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

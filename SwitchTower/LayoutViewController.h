@@ -53,9 +53,6 @@
 - (BOOL) signalTouched: (Signal*) signal;
 - (BOOL) switchTouchedX: (int) cellX Y: (int) cellY;
 
-- (id) doRaisePopoverWithStoryboardIdentifier: (NSString*) storyboardIdentifier
-                                     fromRect: (CGRect) cellRect;
-
 @property(nonatomic, retain) Train *train31;
 @property(nonatomic, retain) Train *train98;
 @property(nonatomic, retain) NSMutableArray *activeTrains;
@@ -71,6 +68,4 @@
 @property(nonatomic, retain) IBOutlet UITextView *statusField;
 @property(nonatomic, retain) IBOutlet UILabel *timeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *scoreLabel;
-// For popovers showing data on top.
-@property(nonatomic, retain) IBOutlet PopoverController *myPopoverController;
 @end
