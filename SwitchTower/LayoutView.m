@@ -179,12 +179,16 @@ float CellYPosOffset(TrackDirection dir) {
     [self drawLine: context X: cellX Y: cellY startDir: pointsDirection endDir: normalDirection];
 }
 
-// Draw a label at the specified position.
-- (void)drawLabelInContext:(CGContextRef)context color:(UIColor*) color posY:(int)posY posX:(int)posX message:(NSString *)message {
+// Draw a train label at the specified position.
+- (void)drawTrainLabelInContext:(CGContextRef)context color:(UIColor*) color posY:(int)posY posX:(int)posX message:(NSString *)message {
     CGContextSetFillColorWithColor(context, color.CGColor);
-    [message drawInRect: CGRectMake(posX, posY - 5.0, TILE_WIDTH, 10.0)
-                      withFont: [UIFont boldSystemFontOfSize: 12.0]
-                 lineBreakMode: NSLineBreakByClipping alignment: NSTextAlignmentCenter];
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 12.0],
+                                NSParagraphStyleAttributeName: paragraphStyle,
+                                NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [message drawInRect: CGRectMake(posX, posY - 5.0, TILE_WIDTH, 15.0)
+         withAttributes: fontAttrs];
 }
 
 - (void)drawTileAtY:(int)y X:(int)x withContext:(CGContextRef)context
@@ -301,9 +305,15 @@ float CellYPosOffset(TrackDirection dir) {
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     
     // TODO(bowdidge): Better label.
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 12.0],
+                                NSParagraphStyleAttributeName: paragraphStyle,
+                                NSForegroundColorAttributeName: [UIColor whiteColor],
+                                };
+
     [entryName drawInRect: CGRectMake(posX-75+TILE_WIDTH/2, posY, 150.0, 20.0)
-               withFont: [UIFont boldSystemFontOfSize: 12.0]
-          lineBreakMode: NSLineBreakByClipping alignment: NSTextAlignmentCenter];
+                                      withAttributes: fontAttrs];
 }
 
 const float TARGET_DIAMETER = 12;
@@ -364,9 +374,14 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
         int labelPosX = 40.0 + label.xCenter * TILE_WIDTH + TILE_WIDTH/2;
         // -10 to raise up.
         int labelPosY = 100.0  + label.yCenter * TILE_HEIGHT - 10.0;
+        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 14],
+                                    NSParagraphStyleAttributeName: paragraphStyle,
+                                    NSForegroundColorAttributeName: [UIColor whiteColor]};
         [label.labelString drawInRect: CGRectMake(labelPosX-100.0, labelPosY-10.0, 200.0, 20.0)
-                     withFont: [UIFont boldSystemFontOfSize: 14.0]
-                lineBreakMode: NSLineBreakByClipping alignment: NSTextAlignmentCenter];
+             withAttributes: fontAttrs];
+
         
     }
     
@@ -385,7 +400,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
             Train *occupyingTrain = [self.layoutModel occupyingTrainAtX: x Y: y];
             if (occupyingTrain != nil) {
                 UIColor *labelColor = [UIColor whiteColor];
-                [self drawLabelInContext:context color:labelColor posY:posY posX:posX
+                [self drawTrainLabelInContext:context color:labelColor posY:posY posX:posX
                                  message: occupyingTrain.trainName];
             }
         }
