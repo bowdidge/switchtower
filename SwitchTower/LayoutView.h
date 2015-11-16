@@ -42,8 +42,31 @@
 #define TILE_DRAW_WIDTH (TILE_WIDTH - 1.0)
 #define TILE_DRAW_HEIGHT (TILE_HEIGHT - 1.0)
 
+#define TRAIN_LABEL_OFFSET_Y 5.0
+#define TRAIN_LABEL_HEIGHT 18.0
+
+// Large labels for captions.
+#define LABEL_HEIGHT 20.0
+#define LABEL_WIDTH 200.0
+
+// Labels for marking entry point tiles.
+#define ENTRY_POINT_LABEL_WIDTH 150.0
+#define ENTRY_POINT_LABEL_HEIGHT 20.0
+
+#define SIGNAL_OFFSET_WIDTH (TILE_WIDTH / 4)
+#define SIGNAL_OFFSET_HEIGHT (TILE_HEIGHT / 4)
+
+#define DASH_WIDTH 10.0
+
+#define LEFT_MARGIN 0.0  // was 40
+#define TOP_MARGIN 40.0  // was 100
+
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
+
+#define SIGNAL_TARGET_DIAMETER 12.0
+#define SIGNAL_DIAMETER 8.0
+#define SIGNAL_OFFSET ((SIGNAL_TARGET_DIAMETER - SIGNAL_DIAMETER) / 2)
 
 // Draws the layout schematic.
 // TODO(bowdidge): Consider using SpriteKit.
@@ -62,5 +85,18 @@
 @property(nonatomic, assign) IBOutlet UIScrollView *containingScrollView;
 @property(nonatomic, assign) CGSize viewSize;
 @property(nonatomic, assign) int score;
+// Color for the target surrounding the signal.
+@property(nonatomic, retain) UIColor* targetColor;
+@property(nonatomic, retain) UIColor* redSignalColor;
+@property(nonatomic, retain) UIColor* greenSignalColor;
 
+@property(nonatomic, retain) UIColor* labelColor;
+@property(nonatomic, retain) UIColor* trainLabelColor;
+@property(nonatomic, retain) UIColor* entryLabelColor;
+
+@property(nonatomic, retain) UIColor* approachingColor;
+@property(nonatomic, retain) UIColor* occupiedColor;
+@property(nonatomic, retain) UIColor* activeTrackColor;
+@property(nonatomic, retain) UIColor* inactiveTrackColor;
+@property(nonatomic, retain) UIColor* platformColor;
 @end

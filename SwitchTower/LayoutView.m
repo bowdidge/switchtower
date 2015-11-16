@@ -47,19 +47,31 @@
     self.routeColors = [NSArray arrayWithObjects: [UIColor blueColor], [UIColor purpleColor],
                         [UIColor greenColor], [UIColor orangeColor], nil];
     self.score = 0;
+    self.targetColor = [UIColor colorWithWhite: 0.5 alpha: 1.0];
+    self.greenSignalColor = [UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1.0];
+    self.redSignalColor = [UIColor colorWithRed: 1.0 green: 0.0 blue: 0.0 alpha: 1.0];
+    self.labelColor = [UIColor whiteColor];
+    self.trainLabelColor = [UIColor whiteColor];
+    self.entryLabelColor = [UIColor whiteColor];
+    
+    self.approachingColor = [UIColor orangeColor];
+    self.occupiedColor = [UIColor yellowColor];
+    self.activeTrackColor = [UIColor lightGrayColor];
+    self.inactiveTrackColor = [UIColor darkGrayColor];
+    self.platformColor = [UIColor greenColor];
+    
     return self;
 }
 
+// Set the size of the game view to match the scenario.
 - (void) setSizeInTilesX: (int) x Y: (int) y {
-    self.viewSize = CGSizeMake(TILE_WIDTH * x + 160.0, 768.0);
+    self.viewSize = CGSizeMake(TILE_WIDTH * x + 160.0, SCREEN_HEIGHT);
     self.frame = CGRectMake(0, 0, self.viewSize.width, self.viewSize.height);
 }
 
 // Work to be done on instantiating the nib.  Note that the view is pre-generated, so
 // initialization needs to be here.
 - (void) viewDidLoad {
-
-    // TODO(bowdidge): Not working.  Figure out how to do programmatically - currently set in nib.
     self.containingScrollView.contentSize = self.viewSize;
     
     self.routeColors = [NSArray arrayWithObjects: [UIColor blueColor], [UIColor purpleColor],
@@ -126,8 +138,8 @@ float CellYPosOffset(TrackDirection dir) {
         startDir: (TrackDirection) startDir
           endDir: (TrackDirection) endDir
 {
-    int posX = 40.0 + cellX * TILE_WIDTH;
-    int posY = 100.0  + cellY * TILE_HEIGHT;
+    int posX = LEFT_MARGIN + cellX * TILE_WIDTH;
+    int posY = TOP_MARGIN  + cellY * TILE_HEIGHT;
 
     CGContextMoveToPoint(context, posX + CellXPosOffset(startDir), posY + CellYPosOffset(startDir));
     CGContextAddLineToPoint(context, posX + TILE_HALF_WIDTH, posY + TILE_HALF_HEIGHT);
@@ -144,18 +156,17 @@ float CellYPosOffset(TrackDirection dir) {
     BOOL isPath = isActive && [self.layoutModel routeForCellX: cellX Y: cellY] != 0;
 
     if (isActive && occupyingTrain && occupyingTrain.currentState == Waiting) {
-        // TODO(bowdidge): Choose better color.
-        CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
+        [self.approachingColor setStroke];
     } else if (isActive && occupyingTrain) {
-        CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
+        [self.occupiedColor setStroke];
     } else if (isPath) {
         int routeNumber = ([self.layoutModel routeForCellX: cellX Y: cellY]);
         UIColor *routeColor = [self.routeColors objectAtIndex: (routeNumber-1) % [self.routeColors count]];
-        CGContextSetStrokeColorWithColor(context, routeColor.CGColor);
+        [routeColor setStroke];
     } else if (isActive) {
-        CGContextSetStrokeColorWithColor(context, [UIColor lightGrayColor].CGColor);
+        [self.activeTrackColor setStroke];
     } else {
-        CGContextSetStrokeColorWithColor(context, [UIColor darkGrayColor].CGColor);
+        [self.inactiveTrackColor setStroke];
     }
 }
 
@@ -180,26 +191,25 @@ float CellYPosOffset(TrackDirection dir) {
 }
 
 // Draw a train label at the specified position.
-- (void)drawTrainLabelInContext:(CGContextRef)context color:(UIColor*) color posY:(int)posY posX:(int)posX message:(NSString *)message {
-    CGContextSetFillColorWithColor(context, color.CGColor);
+- (void)drawTrainLabelInContext:(CGContextRef)context posY:(int)posY posX:(int)posX message:(NSString *)message {
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 12.0],
                                 NSParagraphStyleAttributeName: paragraphStyle,
-                                NSForegroundColorAttributeName: [UIColor whiteColor]};
-    [message drawInRect: CGRectMake(posX, posY - 5.0, TILE_WIDTH, 15.0)
+                                NSForegroundColorAttributeName: self.trainLabelColor};
+    [message drawInRect: CGRectMake(posX, posY - TRAIN_LABEL_OFFSET_Y, TILE_WIDTH, TRAIN_LABEL_HEIGHT)
          withAttributes: fontAttrs];
 }
 
 - (void)drawTileAtY:(int)y X:(int)x withContext:(CGContextRef)context
 {
-    int posX = 40.0 + x * TILE_WIDTH;
-    int posY = 100.0  + y * TILE_HEIGHT;
+    int posX = LEFT_MARGIN + x * TILE_WIDTH;
+    int posY = TOP_MARGIN  + y * TILE_HEIGHT;
     
     
     char cell = [self.layoutModel.scenario cellAtTileX: x Y: y];
     [self setTrackColorForCellX: x Y: y isActive: YES withContext: context];
-    float dashes[2] = {10.0, 10.0};
+    float dashes[2] = {DASH_WIDTH, DASH_WIDTH};
     switch (cell) {
         case ' ':
             // do nothing.
@@ -217,7 +227,7 @@ float CellYPosOffset(TrackDirection dir) {
             // Platform.
         case '=':
             [self drawLine: context X: x Y: y startDir: West endDir: East];
-            CGContextSetStrokeColorWithColor(context, [UIColor greenColor].CGColor);
+            [self.platformColor setStroke];
             [self drawLine: context startX: posX startY: posY + 3
                       endX: posX + TILE_DRAW_WIDTH endY: posY + 3];
             break;
@@ -286,70 +296,68 @@ float CellYPosOffset(TrackDirection dir) {
 }
 
 - (CGRect) cellRectForX: (int) cellX Y: (int) cellY {
-    int posX = 40.0 + cellX * TILE_WIDTH;
-    int posY = 100.0  + cellY * TILE_HEIGHT;
+    int posX = LEFT_MARGIN + cellX * TILE_WIDTH;
+    int posY = TOP_MARGIN  + cellY * TILE_HEIGHT;
     return CGRectMake(posX, posY, TILE_WIDTH, TILE_HEIGHT);
 }
 
 // Highlight the point where trains can enter the simulation.
 - (void) drawEntryPoint: (NSString*) entryName X: (int) cellX Y: (int) cellY context: (CGContextRef) context {
-    int posX = 40.0 + cellX * TILE_WIDTH;
-    int posY = 100.0  + cellY * TILE_HEIGHT;
+    int posX = LEFT_MARGIN + cellX * TILE_WIDTH;
+    int posY = TOP_MARGIN  + cellY * TILE_HEIGHT;
     //CGContextSetShadow(context, CGSizeMake(5.0, 5.0), 3.0);
-    CGContextSetRGBFillColor(context, 0.6, 0.6, 0.6, 1.0);
+    [self.inactiveTrackColor setFill];
     CGContextFillRect(context, CGRectMake(posX, posY + TILE_HALF_HEIGHT- 7,
                                           TILE_WIDTH, 14));
 
     // Turn down shadow for text.
     CGContextSetShadow(context, CGSizeMake(2.0, 2.0), 2.0);
-    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     
     // TODO(bowdidge): Better label.
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 12.0],
                                 NSParagraphStyleAttributeName: paragraphStyle,
-                                NSForegroundColorAttributeName: [UIColor whiteColor],
+                                NSForegroundColorAttributeName: self.entryLabelColor,
                                 };
 
-    [entryName drawInRect: CGRectMake(posX-75+TILE_WIDTH/2, posY, 150.0, 20.0)
+    [entryName drawInRect: CGRectMake(posX-ENTRY_POINT_LABEL_WIDTH/2+TILE_WIDTH/2, posY,
+                                      ENTRY_POINT_LABEL_WIDTH, ENTRY_POINT_LABEL_HEIGHT)
                                       withAttributes: fontAttrs];
 }
 
-const float TARGET_DIAMETER = 12;
-const float SIGNAL_DIAMETER = 8;
-const float SIGNAL_OFFSET = (TARGET_DIAMETER - SIGNAL_DIAMETER) / 2;
-
 CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
-    int posX = 40.0 + signal.x * TILE_WIDTH;
-    int posY = 100.0  + signal.y * TILE_HEIGHT;
+    int posX = LEFT_MARGIN + signal.x * TILE_WIDTH;
+    int posY = TOP_MARGIN  + signal.y * TILE_HEIGHT;
     float signalCenterX = 0;
     float signalCenterY = 0;
     if (signal.trafficDirection == EastDirection) {
-        signalCenterX = posX + TILE_WIDTH * 0.75;
-        signalCenterY = posY + TILE_HEIGHT * 0.75;
+        signalCenterX = posX + TILE_WIDTH / 2 + SIGNAL_OFFSET_WIDTH,
+        signalCenterY = posY + TILE_HEIGHT / 2 + SIGNAL_OFFSET_HEIGHT;
     } else {
-        signalCenterX = posX + TILE_WIDTH * 0.25;
-        signalCenterY = posY + TILE_HEIGHT * 0.25;
+        signalCenterX = posX + TILE_WIDTH / 2 - SIGNAL_OFFSET_WIDTH;
+        signalCenterY = posY + TILE_HEIGHT / 2 - SIGNAL_OFFSET_HEIGHT;
     }
     if (isTarget) {
-        return CGRectMake(signalCenterX - TARGET_DIAMETER / 2, signalCenterY - TARGET_DIAMETER/2,
-                          TARGET_DIAMETER, TARGET_DIAMETER);
+        return CGRectMake(signalCenterX - SIGNAL_TARGET_DIAMETER / 2,
+                          signalCenterY - SIGNAL_TARGET_DIAMETER/2,
+                          SIGNAL_TARGET_DIAMETER, SIGNAL_TARGET_DIAMETER);
     }
-    return CGRectMake(signalCenterX - SIGNAL_DIAMETER / 2, signalCenterY - SIGNAL_DIAMETER/2,
+    return CGRectMake(signalCenterX - SIGNAL_DIAMETER / 2,
+                      signalCenterY - SIGNAL_DIAMETER/2,
                       SIGNAL_DIAMETER, SIGNAL_DIAMETER);
 }
 
 // Highlight the point where trains can enter the simulation.
 - (void) drawSignal: (Signal*) signal context: (CGContextRef) context {
     CGContextSetShadow(context, CGSizeMake(5.0, 5.0), 3.0);
-    CGContextSetRGBFillColor(context, 0.75, 0.75, 0.75, 1.0);
+    [self.targetColor setFill];
     CGContextFillEllipseInRect(context, GetSignalRect(signal, TRUE));
 
     if (signal.isGreen) {
-        CGContextSetRGBFillColor(context, 0.0, 1.0, 0.0, 1.0);
+        [self.greenSignalColor setFill];
     } else {
-        CGContextSetRGBFillColor(context, 1.0, 0.0, 0.0, 1.0);
+        [self.redSignalColor setFill];
     }
     CGContextFillEllipseInRect(context, GetSignalRect(signal, FALSE));
 }
@@ -367,22 +375,19 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
         [self drawEntryPoint: ep.name X: ep.xPosition Y: ep.yPosition context: context];
     }
     
-    // Draw labels.
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     for (Label *label in self.scenario.all_labels) {
         // TILE_WIDTH/2 to center.
-        int labelPosX = 40.0 + label.xCenter * TILE_WIDTH + TILE_WIDTH/2;
-        // -10 to raise up.
-        int labelPosY = 100.0  + label.yCenter * TILE_HEIGHT - 10.0;
+        int labelPosX = LEFT_MARGIN + label.xCenter * TILE_WIDTH + TILE_WIDTH/2;
+        int labelPosY = TOP_MARGIN  + label.yCenter * TILE_HEIGHT;
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentCenter;
         NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 14],
                                     NSParagraphStyleAttributeName: paragraphStyle,
-                                    NSForegroundColorAttributeName: [UIColor whiteColor]};
-        [label.labelString drawInRect: CGRectMake(labelPosX-100.0, labelPosY-10.0, 200.0, 20.0)
+                                    NSForegroundColorAttributeName: self.labelColor};
+        [label.labelString drawInRect: CGRectMake(labelPosX-LABEL_WIDTH/2,
+                                                  labelPosY-LABEL_HEIGHT /2 ,
+                                                  LABEL_WIDTH, LABEL_HEIGHT)
              withAttributes: fontAttrs];
-
-        
     }
     
     for (Signal *signal in self.scenario.all_signals) {
@@ -393,14 +398,14 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 
     for (int y = 0; y < [self.scenario tileRows]; y++) {
         for (int x = 0; x < [self.scenario tileColumns]; x++) {
-            int posX = 40.0 + x * TILE_WIDTH;
-            int posY = 100.0  + y * TILE_HEIGHT;
+            int posX = LEFT_MARGIN + x * TILE_WIDTH;
+            int posY = TOP_MARGIN  + y * TILE_HEIGHT;
             
             [self drawTileAtY:y X:x withContext:context];
             Train *occupyingTrain = [self.layoutModel occupyingTrainAtX: x Y: y];
             if (occupyingTrain != nil) {
                 UIColor *labelColor = [UIColor whiteColor];
-                [self drawTrainLabelInContext:context color:labelColor posY:posY posX:posX
+                [self drawTrainLabelInContext:context posY:posY posX:posX
                                  message: occupyingTrain.trainName];
             }
         }
@@ -426,8 +431,8 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView: self];
-    int cellX = (location.x - 40) / TILE_WIDTH;
-    int cellY = (location.y - 100) / TILE_HEIGHT;
+    int cellX = (location.x - LEFT_MARGIN) / TILE_WIDTH;
+    int cellY = (location.y - TOP_MARGIN) / TILE_HEIGHT;
     
     for (Signal *signal in self.layoutModel.scenario.all_signals) {
         CGRect rect = GetSignalRect(signal, TRUE);
@@ -448,8 +453,6 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     if ((tr = [self.self.layoutModel occupyingTrainAtX: cellX Y: cellY]) != nil) {
         // TODO(bowdidge): Pop up.
         NSLog(@"%@", [tr description]);
-        [self.controller performSegueWithIdentifier: @"popover" sender:self];
-        //pc.label.text = [self popoverDescriptionForTrain: tr];
     }
 }
 

@@ -2,9 +2,12 @@ Polish
 [ ] Use table view for selecting initial game.
 [ ] Better sounds.
 [ ] Way to quit game.
+
+Bugs:
 [ ] Train reaching end isn't disappearing.
-[ ] don't arrange new train at entry til old one goes.'
+[ ] don't arrange new train at entry til old one goes.
 [ ] don't allow changing switch along route.'
+[ ] Reversing signal back to red clears all routes.
 
 Game play
 [ ] Handle multiple step switching moves better.
@@ -52,3 +55,4 @@ Don't allow invalid / n
 [ ] More game-like scenarios.
 [ ] Other scenarios.  Can handle crossings?  Maybe Redwood Junction or Santa Clara tower?
 [ ] Different speeds.
+
