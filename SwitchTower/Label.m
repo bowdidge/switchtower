@@ -36,7 +36,7 @@
 @synthesize yCenter;
 
 + (id) labelWithString: (NSString*) label X: (int) xCell Y: (int) yCell {
-    Label *myself = [[Label alloc] init];
+    Label *myself = [[[Label alloc] init] autorelease];
     myself.labelString = label;
     myself.xCenter = xCell;
     myself.yCenter = yCell;
