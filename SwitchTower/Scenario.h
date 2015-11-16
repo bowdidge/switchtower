@@ -33,7 +33,7 @@
 @class NamedPoint;
 @class Signal;
 
-// Base class describing a particular switching game: track arrangement, signals, and trains.
+// Scenario hides all the details related to a particular switching game: track arrangement, signals, and trains.
 @interface Scenario : NSObject
 - (int) tileRows;
 - (int) tileColumns;
@@ -48,10 +48,23 @@
 // Returns an NSDate for the time provided in HH:mm:ss form.
 - (NSDate*) scenarioTime: (NSString*) timeString;
 
+// Returns true if the named locations are identical.
 - (BOOL) isNamedPoint: (NamedPoint*) a sameAs: (NamedPoint*) b;
+
+- (NSString*) timetableHTML;
+
+// Processes tileStrings. Returns false if raw tile string is invalid.
+// Exposed only for testing.
+- (BOOL) validateTileString;
 
 @property (nonatomic, retain) NSArray *all_endpoints;
 @property (nonatomic, retain) NSArray *all_signals;
 @property (nonatomic, retain) NSArray *all_labels;
 @property (nonatomic, retain) NSArray *all_trains;
+@property (nonatomic) int tileColumns;
+@property (nonatomic) int tileRows;
+// TODO(bowdidge): Make safer.
+@property (nonatomic, retain) NSArray *tileStrings;
 @end
+
+NSString* formattedDate(NSDate* date);

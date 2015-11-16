@@ -91,18 +91,17 @@
 #define TILE_COLUMNS 29
 
 // Current track layout to draw.  See above for key of what the letters mean.
-static char* cells[TILE_ROWS] = {
+static char* cells =
     //  "01234567890123456789012345"
-    "=----z                       ",
-    "      \\       Z-z    Z-.     ",
-    "=------p-q-Q-P---p--P--.  Z-.",
-    "=------qPQ--p------------P--.",
-    "      / Z-p-=                ",
-    "=----v /                     ",
-    "    R-w                      ",
-    ".--v                         ",
-    "--w                          "
-};
+    "-----z                       \n"
+    "      \\       Z-z    Z-.     \n"
+    "-------p-q-Q-P---p--P--.  Z-.\n"
+    "-------qPQ--p------------P--.\n"
+    "      / Z-p--                \n"
+    "-----v /                     \n"
+    "    R-w                      \n"
+    ".--v                         \n"
+    "--w                          \n";
 
 - (id) init {
     self = [super init];
@@ -132,11 +131,8 @@ static char* cells[TILE_ROWS] = {
     return TILE_COLUMNS;
 }
 
-- (char) cellAtTileX: (int) x Y: (int) y {
-    if ((y >= TILE_ROWS) || (x >= TILE_COLUMNS) || (y < 0) || (x < 0)) {
-        return ' ';
-    }
-    return cells[y][x];
+- (const char*) rawTileString {
+    return cells;
 }
 
 - (Train*) createOutgoingHSRWithName:(NSString*) name withDeparture: (NSDate*) departure {
@@ -233,15 +229,7 @@ static char* cells[TILE_ROWS] = {
                        [NamedPoint namedPointWithName: @"Coach Yard" X: 23 Y: 1],
                        [NamedPoint namedPointWithName: @"Down" X: 28 Y: 3], nil];
     
-    self.all_labels = [NSMutableArray arrayWithObjects:
-                              [Label labelWithString: @"Pass-1" X: 0 Y: 0],
-                              [Label labelWithString: @"Pass-2" X: 0 Y: 2],
-                              [Label labelWithString: @"Pass-3" X: 0 Y: 3],
-                              [Label labelWithString: @"Pass-4" X: 0 Y: 5],
-                              [Label labelWithString: @"Freight" X: 0 Y: 7],
-                              [Label labelWithString: @"Up" X: 28 Y: 2],
-                              [Label labelWithString: @"Down" X: 28 Y: 3],
-                              nil];
+    self.all_labels = [NSMutableArray array];
 }
 
 - (void) initSignals {

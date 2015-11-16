@@ -30,6 +30,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LayoutViewController.h"
+
 @interface MainWindowViewController : UIViewController
-- (IBAction) runScenario: (id) sender;
 @end

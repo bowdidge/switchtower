@@ -14,4 +14,6 @@
 @interface TimetableViewController : UIViewController
 @property(nonatomic, retain) IBOutlet UIWebView *timetableView;
 @property(nonatomic, retain) IBOutlet UIButton *cancelButton;
+// Current scenario description, set when timetable was raised.
+@property(nonatomic, assign) Scenario *scenario;
 @end

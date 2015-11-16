@@ -112,6 +112,7 @@ enum TrainState {
 
 // Next steps.
 @property(nonatomic, retain) TrainScript *script;
-
+// True if train should appear in timetables.
+@property(nonatomic) BOOL onTimetable;
 @end
 

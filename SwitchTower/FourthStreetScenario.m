@@ -88,18 +88,17 @@
 
 
 #define TILE_ROWS 6
-#define TILE_COLUMNS 24
+#define TILE_COLUMNS 23
 
 // Current track layout to draw.  See above for key of what the letters mean.
-static char* cells[TILE_ROWS] = {
+static char* cells =
 //  "0123456789012345678901234"
-    "   --z                ",
-    "  --z \\           Z---",
-    "-Q--qp-p-Q----=--Y    ",
-    "--pPQ-----pQ--=---r   ",
-    "     \\      W-=----r  ",
-    "      W--           W-"
-};
+    "   --z                 \n"
+    "  --z \\           Z--- \n"
+    "-Q--qp-p-Q----=--Y     \n"
+    "--pPQ-----pQ--=---r    \n"
+    "     \\      W-=----r   \n"
+    "      W--           W- ";
 
 - (id) init {
     [super init];
@@ -115,9 +114,10 @@ static char* cells[TILE_ROWS] = {
     return TILE_COLUMNS;
 }
 
-- (char) cellAtTileX: (int) x Y: (int) y {
-    return cells[y][x];
+- (const char*) rawTileString {
+    return cells;
 }
+
 
 // Should just reverse some trains.
 - (Train *) createCommuteTrainWithName: (NSString*) name direction: (enum TimetableDirection) direction

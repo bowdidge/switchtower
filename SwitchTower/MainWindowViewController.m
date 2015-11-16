@@ -43,11 +43,19 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (IBAction) runScenario: (id) sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    LayoutViewController *gameViewController = [storyboard instantiateViewControllerWithIdentifier:@"gameView"];
-    [gameViewController setGame: [sender tag]];
-    [UIApplication sharedApplication].keyWindow.rootViewController = gameViewController;
+- (id) initWithCoder:(NSCoder *)aDecoder  {
+    return [super initWithCoder: aDecoder];
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get reference to the destination view controller
+    LayoutViewController *vc = [segue destinationViewController];
+   
+    // Pass any objects to the view controller here, like...
+    NSLog(@"Tag is %d", [sender tag]);
+    [vc setGame: [sender tag]];
 }
 
 - (void)didReceiveMemoryWarning

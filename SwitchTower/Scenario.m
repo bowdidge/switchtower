@@ -89,15 +89,8 @@
 #define TILE_ROWS 1
 #define TILE_COLUMNS 1
 // Current track layout to draw.  See above for key of what the letters mean.
-static char* cells[TILE_ROWS] = {
-    " ",
-};
+static char* cells = "";
 
-
-- (id) init {
-    self = [super init];
-    return self;
-}
 
 - (int) tileRows {
     return TILE_ROWS;
@@ -107,8 +100,53 @@ static char* cells[TILE_ROWS] = {
     return TILE_COLUMNS;
 }
 
+- (const char*) rawTileString {
+    return cells;
+}
+
+
+- (id) init {
+    self = [super init];
+    self.tileStrings = [[NSString stringWithUTF8String: [self rawTileString]] componentsSeparatedByString: @"\n"];
+    [self validateTileString];
+    return self;
+}
+
+// Processes rawTileString, and sets self.tileStrings.  Returns false if raw tile string is invalid. 
+- (BOOL) validateTileString {
+    // TODO(bowdidge): Read from text file, or
+    BOOL ok = true;
+    NSMutableCharacterSet *invalidChars = [NSMutableCharacterSet characterSetWithCharactersInString: @"PpQqRrVvYyQqZzWwTt/\\.-= "];
+    [invalidChars invert];
+    if ([self.tileStrings count] != self.tileRows) {
+        NSLog(@"Wrong number of tile strings, expected %d, got %d", self.tileRows, [self.tileStrings count]);
+        ok = false;
+    }
+    for (NSString* str in self.tileStrings) {
+        if ([str length] != self.tileColumns) {
+            NSLog(@"Wrong number of characters in tile string '%@'.  Expected %d, got %d", str, self.tileColumns, [str length]);
+            ok = false;
+        }
+        if ([str rangeOfCharacterFromSet: invalidChars options: 0].location != NSNotFound) {
+            NSLog(@"Invalid characters in portion of tile string '%@'.", str);
+            ok = false;
+        }
+        
+    }
+
+    return ok;
+}
 - (char) cellAtTileX: (int) x Y: (int) y {
-    return cells[y][x];
+    char ch;
+    if ((y >= self.tileRows) || (x >= self.tileColumns) || (y < 0) || (x < 0)) {
+        return ' ';
+    }
+    @try {
+        ch = [[self.tileStrings objectAtIndex: y] characterAtIndex: x];
+    } @catch(NSException* e){
+        NSLog(@"Eeek!");
+    }
+    return ch;
 }
 
 - (NamedPoint*) endpointWithName: (NSString*) name {
@@ -117,6 +155,7 @@ static char* cells[TILE_ROWS] = {
             return ep;
         }
     }
+    NSLog(@"Unknown end point '%@'!", name);
     return nil;
     
 }
@@ -161,6 +200,68 @@ static char* cells[TILE_ROWS] = {
 
 - (BOOL) isNamedPoint: (NamedPoint*) a sameAs: (NamedPoint*) b {
     return (a == b);
+}
+
+NSString* formattedDate(NSDate* date) {
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"HH:mm"];
+    NSString *dateString = [format stringFromDate:date];
+    return dateString;
+}
+
+// timetableHTML creates the timetable display for the current scenario.
+- (NSString*) timetableHTML {
+    NSMutableString *result = [NSMutableString string];
+    [result appendString: @"<html>\n<head>\n<style>\n td {\n  padding: 5px;\n }\n .trainno {\n weight: bold;\n font-size: 16pt;\n }\n  .trainname {\n weight: normal;\n font-size: 9pt;\n}\n .stationname {\n font-weight: bold;\n text-transform: uppercase;\n text-align:center;\n font-family: @'Helvetica';\n }\n .rules {\n  width: 80%;\n border: solid 1px;\n padding: 5px;\n }\
+     </style>\n</head>\n<body>\n<div style='width: 60%;'>\n<center>Timetable No. 1, April 26, 1964</center>\n<center>WESTERN DIVISION</center>\n<table border='1'>\n"];
+    [result appendString: @"<tr>\n"];
+    NSMutableArray *eastTrains = [NSMutableArray array];
+    NSMutableArray *westTrains = [NSMutableArray array];
+    for (Train *tr in self.all_trains) {
+        if (tr.onTimetable && tr.direction == EastDirection) {
+            [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainName, tr.trainDescription];
+            [eastTrains addObject: tr];
+        }
+    }
+    [result appendFormat: @"<td class='stationname'></td>" ];
+    for (Train *tr in self.all_trains) {
+        if (tr.onTimetable && tr.direction == WestDirection) {
+            [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainName, tr.trainDescription];
+            [westTrains addObject: tr];
+        }
+    }
+    [result appendString: @"</tr>"];
+    [result appendString: @"<tr>"];
+    for (Train *tr in eastTrains) {
+        [result appendFormat: @"<td>%@</td>", formattedDate([tr departureTime])];
+    }
+    [result appendString: @"<td class='stationname'>Oakland Pier</td>"];
+    for (Train *tr in westTrains) {
+        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 5 * 60])];
+    }
+    [result appendString: @"</tr>\n"];
+    
+    [result appendString: @"<tr bgcolor='LightYellow'>"];
+    for (Train *tr in eastTrains) {
+        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 3 * 60] )];
+    }
+    [result appendString: @"<td class='stationname'>Oakland 16th St. </td>"];
+    for (Train *tr in westTrains) {
+        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 3 * 60])];
+    }
+    [result appendString: @"</tr>\n"];
+    
+    [result appendString: @"<tr>"];
+    for (Train *tr in eastTrains) {
+        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 5 * 60])];
+    }
+    [result appendString: @"<td class='stationname'>Shellmound</td>"];
+    for (Train *tr in westTrains) {
+        [result appendFormat: @"<td>%@</td>", formattedDate([tr departureTime])];
+    }
+    [result appendString: @"</tr>\n"];
+    [result appendString: @"</table>\n </div>\n <br>\n <div class='rules'>\n<b>RULE 5.</b> Time applies at the location of station sign at stations between San Francisco and San Jose and on Santa Clara-Newark line will apply at junction switch, Santa Clara.\n<br>\n<B>RULE S-72.</b> Exception: No. 98 is superior to Nos. 371, 373, 75, and 141.\n </div> </body>\n"];
+    return result;
 }
 
 

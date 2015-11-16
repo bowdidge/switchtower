@@ -35,23 +35,24 @@
 
 @implementation LayoutModel
 
-- (id) init {
+- (id) initWithScenario: (Scenario*) s{
     [super init];
-    self.trains = [NSMutableArray array];
+    self.activeTrains = [NSMutableArray array];
     self.switchPositionDictionary = [NSMutableDictionary dictionary];
     routeCount = 0;
+    self.scenario = s;
     return self;
 }
 
 // Register a new train to display.
 - (void) addTrain: (Train*) train {
-    [self.trains addObject: train];
+    [self.activeTrains addObject: train];
 }
 
 - (void) clearRoute {
     routeCount = 0;
-    int rows = [self.currentSpecification tileRows];
-    int columns = [self.currentSpecification tileColumns];
+    int rows = [self.scenario tileRows];
+    int columns = [self.scenario tileColumns];
     for (int x=0; x<columns; x++) {
         for (int y = 0; y < rows; y++) {
             routeSelection[x][y] = 0;
@@ -77,12 +78,12 @@
 
         int newX = x, newY = y;
         if (direction == EastDirection) {
-            if (![self nextCellEastX: x Y:y returnsX:&newX Y: &newY]) return NO;
+            if (![self nextCellEastX: x Y:y returnsX:&newX Y: &newY]) break;
         } else {
-            if (![self nextCellWestX: x Y:y returnsX:&newX Y: &newY]) return NO;
+            if (![self nextCellWestX: x Y:y returnsX:&newX Y: &newY]) break;
         }
         if (newX == x && newY == y) break;
-        // Don'tset route yet.
+        // Don't set route yet.
         x = newX;
         y = newY;
     }
@@ -111,7 +112,7 @@
 }
 
 - (Signal*) signalAtX: (int) x Y: (int) y direction: (enum TimetableDirection) dir{
-    for (Signal* signal in self.currentSpecification.all_signals) {
+    for (Signal* signal in self.scenario.all_signals) {
         if (signal.x == x && signal.y == y && signal.trafficDirection == dir) {
             return signal;
         }
@@ -120,7 +121,7 @@
 }
 
 - (TrackDirection) pointsDirectionForCellX: (int) cellX Y: (int) cellY {
-    char cell = [self.currentSpecification cellAtTileX: cellX Y: cellY];
+    char cell = [self.scenario cellAtTileX: cellX Y: cellY];
     switch (cell) {
         case 'P':
             return West;
@@ -148,13 +149,13 @@
 
 - (BOOL) isEndPointX: (int) x Y: (int) y {
     // Consider T to be stopping but not endpoint.
-    return [self.currentSpecification cellAtTileX: x Y: y] == '.';
+    return [self.scenario cellAtTileX: x Y: y] == '.';
 }
 
 
 // Returns true if the cell is a known starting or ending space for trains.
 - (NamedPoint*) isNamedPointX: (int) x Y: (int) y {
-    for (NamedPoint *ep in [self.currentSpecification all_endpoints]) {
+    for (NamedPoint *ep in [self.scenario all_endpoints]) {
         if ([ep xPosition] == x && [ep yPosition] == y) {
             return ep;
         }
@@ -176,7 +177,7 @@
 }
 
 - (TrackDirection) normalDirectionForCellX: (int) cellX Y: (int) cellY {
-    char cell = [self.currentSpecification cellAtTileX: cellX Y: cellY];
+    char cell = [self.scenario cellAtTileX: cellX Y: cellY];
     switch (cell) {
         case 'P':
             return East;
@@ -204,7 +205,7 @@
 
 // Returns the train currently occupying the named cell, or nil if none exists.
 - (Train*) occupyingTrainAtX: (int) cellX Y: (int) cellY {
-    for (Train *train in self.trains) {
+    for (Train *train in self.activeTrains) {
         int x = train.xPosition;
         int y = train.yPosition;
         if ((cellX ==x) && (cellY == y)) {
@@ -246,10 +247,10 @@
 // Returns true if the cell at (cellX, cellY) is a switch icon and routes the
 // train in multiple directions.
 - (BOOL) cellIsSwitchX: (int) cellX Y: (int) cellY {
-    if (cellX < 0 || cellX >= self.currentSpecification.tileColumns || cellY < 0 || cellY >= self.currentSpecification.tileRows) {
+    if (cellX < 0 || cellX >= self.scenario.tileColumns || cellY < 0 || cellY >= self.scenario.tileRows) {
         return NO;
     }
-    char cell = [self.currentSpecification cellAtTileX: cellX Y: cellY];
+    char cell = [self.scenario cellAtTileX: cellX Y: cellY];
     switch (cell) {
         case 'P':
         case 'p':
@@ -304,8 +305,7 @@
     Signal *theSignal = [self signalAtX: cellX Y: cellY direction: WestDirection];
     if (theSignal && theSignal.trafficDirection == WestDirection && !theSignal.isGreen) return NO;
     
-    
-    switch ([self.currentSpecification cellAtTileX: cellX Y: cellY]) {
+    switch ([self.scenario cellAtTileX: cellX Y: cellY]) {
         case 'q':
             if ([self isSwitchNormalX:cellX Y: cellY]) {
                 cellX--;
@@ -391,6 +391,11 @@
         // Something's there.
         return NO;
     }
+    
+    // Validate the new cell is in the game board.
+    if ((cellX < 0 || cellX >= self.scenario.tileColumns) || (cellY < 0 || cellY >= self.scenario.tileRows)) {
+        return NO;
+    }
 
     *newCellX = cellX;
     *newCellY = cellY;
@@ -439,7 +444,7 @@
     if (theSignal && !theSignal.isGreen) return NO;
     
 
-    switch ([self.currentSpecification cellAtTileX: cellX Y: cellY]) {
+    switch ([self.scenario cellAtTileX: cellX Y: cellY]) {
         case 'Q':
             if ([self isSwitchNormalX:cellX Y: cellY]) {
                 cellX++;
@@ -526,6 +531,10 @@
         return NO;
     }
     
+    // Validate the new cell is in the game board.
+    if ((cellX < 0 || cellX >= self.scenario.tileColumns) || (cellY < 0 || cellY >= self.scenario.tileRows)) {
+        return NO;
+    }
     *newCellX = cellX;
     *newCellY = cellY;
     return YES;
@@ -549,7 +558,7 @@
     return YES;
 }
 
-@synthesize trains;
+@synthesize activeTrains;
 @synthesize switchPositionDictionary;
 
 @end

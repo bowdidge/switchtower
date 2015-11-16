@@ -82,7 +82,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat: @"<Train: %@ %@ state=%d>", self.trainName, self.trainDescription, self.currentState];
+    return [NSString stringWithFormat: @"<Train: %@ %@ end=%@ state=%d>", self.trainName, self.trainDescription, [self.expectedEndPoint name], self.currentState];
 }
 
 
@@ -92,6 +92,7 @@
 @synthesize yPosition;
 @synthesize direction;
 @synthesize expectedEndPoint;
+@synthesize onTimetable;
 @end
 
 

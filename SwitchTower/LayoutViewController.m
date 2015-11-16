@@ -36,6 +36,9 @@
 #import "Scenario.h"
 #import "LayoutView.h"
 #import "PenzanceScenario.h"
+#import "ShellmoundScenario.h"
+#import "SantaCruzScenario.h"
+#import "TimetableViewController.h"
 #import "Train.h"
 
 @implementation LayoutViewController
@@ -45,6 +48,7 @@
     AudioServicesDisposeSystemSoundID(blockedSound);
     [super dealloc]; // only in manual retain/release, delete for ARC
 }
+ 
 
 // Initializes the scheduled timer.
 - (IBAction)startTickTimer:sender {
@@ -121,7 +125,7 @@
             NSDictionary *contextDict = [NSDictionary dictionaryWithObjectsAndKeys: currentTime, @"currentTime", nil];
             
             if (![train.script execute: train context: contextDict]) {
-                [self.layoutModel.trains removeObject: train];
+                [self.layoutModel.activeTrains removeObject: train];
                 train.currentState = Complete;
             } else {
                 [self.statusMessages addObject: message];
@@ -130,7 +134,7 @@
             train.script = nil;
         } else {
             train.currentState = Complete;
-            [self.layoutModel.trains removeObject: train];
+            [self.layoutModel.activeTrains removeObject: train];
         }
     }
     
@@ -236,14 +240,8 @@
 - (void) setGame: (int) gameId {
     NSLog(@"Game %d", gameId);
     gameId_ = gameId;
-}
-
-// TODO(bowdidge): Rewrite.  Note that this can be called multiple times. 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSLog(@"loaded");
-    self.statusMessages = [NSMutableArray array];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Do any additional setup after loading the view, typically from a nib.
     self.scenario = nil;
     switch (gameId_) {
         case 0:
@@ -256,30 +254,45 @@
             self.scenario = [[[FourthStreetScenario alloc] init] autorelease];
             break;
         case 3:
-        default:
             self.scenario = [[[DiridonScenario alloc] init] autorelease];
+            break;
+        case 4:
+            self.scenario = [[[ShellmoundScenario alloc] init] autorelease];
+            break;
+        case 5:
+            self.scenario = [[[SantaCruzScenario alloc] init] autorelease];
+            break;
     }
+}
 
+// TODO(bowdidge): Rewrite.  Note that this can be called multiple times.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSLog(@"loaded");
+
+    self.statusMessages = [NSMutableArray array];
+ 
+    // Going to timetable and back would cause viewToAppear to be called without LayoutView existing.
     if (!self.layoutView) {
         LayoutView *lv = [[[LayoutView alloc] init] autorelease];
         self.layoutView = lv;
         self.layoutView.containingScrollView = self.scrollView;
         self.layoutView.controller = self;
         [self.scrollView addSubview: lv];
-        // TODO(bowdidge): Do calculations here to size correctly.
-        self.scrollView.contentSize = CGSizeMake(1440, 768);
-        [self.layoutView setSizeInTilesX: [self.scenario tileColumns]
-                                       Y: [self.scenario tileRows]];
     }
     
+    // TODO(bowdidge): Do calculations here to size correctly.
+    self.scrollView.contentSize = CGSizeMake(1440, 768);
+    [self.layoutView setSizeInTilesX: [self.scenario tileColumns]
+                                   Y: [self.scenario tileRows]];
     if (!self.layoutModel) {
-        LayoutModel *myLayoutModel = [[LayoutModel alloc] init];
+        LayoutModel *myLayoutModel = [[LayoutModel alloc] initWithScenario: scenario];
         self.layoutModel = myLayoutModel;
-        self.layoutModel.currentSpecification = self.scenario;
         self.activeTrains = [NSMutableArray array];
-   
+        
         self.layoutView.layoutModel = self.layoutModel;
-        self.layoutView.currentSpecification = self.scenario;
+        self.layoutView.scenario = self.scenario;
+        [self startTickTimer: self];
     }
 
     NSURL *startingChimeURL = [[NSBundle mainBundle] URLForResource:@"startingChime" withExtension:@"wav"];
@@ -291,8 +304,6 @@
     NSURL *blockedSoundURL = [[NSBundle mainBundle] URLForResource:@"blocked" withExtension:@"wav"];
     AudioServicesCreateSystemSoundID((CFURLRef) blockedSoundURL, &blockedSound);
 
-    //[self.layoutView viewDidLoad];
-    [self startTickTimer: self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -300,6 +311,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+// Raises the requested popover (either an Edit popover or something else), with the popover's arrow rooted
+// within the specified portion of a cell.
+// Returns the view controller for the popover.
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if (self.myPopoverController) {
+        [self.myPopoverController dismissPopoverAnimated:YES];
+        return NO;
+    } else {
+        return YES;
+    }
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString: @"timetable"]) {
+      TimetableViewController *tvc = segue.destinationViewController;
+      tvc.scenario = self.scenario;
+    }
+}
+
+
 
 @synthesize activeTrains;
 @synthesize scenario;

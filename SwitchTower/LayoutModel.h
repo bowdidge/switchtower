@@ -60,11 +60,13 @@ typedef enum {
     int routeCount;
 }
 // Only used for occupying.
-@property(nonatomic, retain) NSMutableArray *trains;
+@property(nonatomic, retain) NSMutableArray *activeTrains;
 
 // Doesn't need to be public.
 @property(nonatomic, retain) NSMutableDictionary *switchPositionDictionary;
-@property(nonatomic, retain) Scenario *currentSpecification;
+@property(nonatomic, retain) Scenario *scenario;
+
+- (id) initWithScenario: (Scenario*) s;
 
 // Register a new train to display.
 - (void) addTrain: (Train*) train;
@@ -85,6 +87,7 @@ typedef enum {
 
 // Returns the direction for one end of the track at the specified cell.
 // For switches, returns the points-end (not the diverging end.
+// TODO(bowdidge): Why do signal objects have state, but switches have state stored here?
 - (BOOL)isSwitchNormalX: (int)cellX Y: (int)cellY;
 - (TrackDirection)pointsDirectionForCellX: (int)cellX Y: (int)cellY;
 - (TrackDirection)normalDirectionForCellX: (int)cellX Y: (int)cellY;

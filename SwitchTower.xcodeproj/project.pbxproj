@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2A73381BF6D70400E3A886 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73371BF6D70400E3A886 /* PopoverController.m */; };
+		3E2A733B1BF7DC7D00E3A886 /* ShellmoundScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */; };
+		3E2A733F1BF90E1500E3A886 /* SantaCruzScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A733E1BF90E1400E3A886 /* SantaCruzScenario.m */; };
+		3E2A73411BF99A7D00E3A886 /* LayoutModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */; };
+		3E2A73441BF99ACE00E3A886 /* ScenarioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73431BF99ACE00E3A886 /* ScenarioTest.m */; };
+		3E2A73471BF99F9600E3A886 /* TestScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73461BF99F9600E3A886 /* TestScenario.m */; };
 		3E41F4E618BC8BB30059B96B /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E41F4E518BC8BB30059B96B /* TimetableViewController.m */; };
 		3E41F4E818BC9AAC0059B96B /* timetable.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E41F4E718BC9AAC0059B96B /* timetable.html */; };
 		3E81D49C18BA8429001989A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E81D49B18BA8429001989A3 /* Foundation.framework */; };
@@ -21,7 +27,6 @@
 		3E81D4BC18BA8429001989A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E81D49B18BA8429001989A3 /* Foundation.framework */; };
 		3E81D4BD18BA8429001989A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E81D49F18BA8429001989A3 /* UIKit.framework */; };
 		3E81D4C518BA8429001989A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4C318BA8429001989A3 /* InfoPlist.strings */; };
-		3E81D4C718BA8429001989A3 /* SwitchTowerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4C618BA8429001989A3 /* SwitchTowerTests.m */; };
 		3E81D4D818BA84F9001989A3 /* blocked.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4D018BA84F9001989A3 /* blocked.wav */; };
 		3E81D4D918BA84F9001989A3 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4D118BA84F9001989A3 /* click.wav */; };
 		3E81D4DA18BA84F9001989A3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4D218BA84F9001989A3 /* Default-568h@2x.png */; };
@@ -58,6 +63,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E2A73361BF6D70400E3A886 /* PopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverController.h; sourceTree = "<group>"; };
+		3E2A73371BF6D70400E3A886 /* PopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverController.m; sourceTree = "<group>"; };
+		3E2A73391BF70B7B00E3A886 /* To Do */ = {isa = PBXFileReference; lastKnownFileType = text; path = "To Do"; sourceTree = "<group>"; };
+		3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellmoundScenario.m; path = ../ShellmoundScenario.m; sourceTree = "<group>"; };
+		3E2A733C1BF7DC9B00E3A886 /* ShellmoundScenario.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShellmoundScenario.h; sourceTree = "<group>"; };
+		3E2A733D1BF90E1400E3A886 /* SantaCruzScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaCruzScenario.h; sourceTree = "<group>"; };
+		3E2A733E1BF90E1400E3A886 /* SantaCruzScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaCruzScenario.m; sourceTree = "<group>"; };
+		3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutModelTest.m; sourceTree = "<group>"; };
+		3E2A73431BF99ACE00E3A886 /* ScenarioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTest.m; sourceTree = "<group>"; };
+		3E2A73451BF99F9500E3A886 /* TestScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScenario.h; sourceTree = "<group>"; };
+		3E2A73461BF99F9600E3A886 /* TestScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestScenario.m; sourceTree = "<group>"; };
+		3E2A73481BF9C1B400E3A886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3E2A73491BF9C1E200E3A886 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3E41F4E418BC8BB30059B96B /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableViewController.h; sourceTree = "<group>"; };
 		3E41F4E518BC8BB30059B96B /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableViewController.m; sourceTree = "<group>"; };
 		3E41F4E718BC9AAC0059B96B /* timetable.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = timetable.html; sourceTree = "<group>"; };
@@ -78,7 +96,6 @@
 		3E81D4BA18BA8429001989A3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3E81D4C218BA8429001989A3 /* SwitchTowerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SwitchTowerTests-Info.plist"; sourceTree = "<group>"; };
 		3E81D4C418BA8429001989A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3E81D4C618BA8429001989A3 /* SwitchTowerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchTowerTests.m; sourceTree = "<group>"; };
 		3E81D4D018BA84F9001989A3 /* blocked.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blocked.wav; sourceTree = "<group>"; };
 		3E81D4D118BA84F9001989A3 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		3E81D4D218BA84F9001989A3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -113,7 +130,6 @@
 		3E81D50218BA8560001989A3 /* Train.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Train.m; sourceTree = "<group>"; };
 		3E81D50418BA8567001989A3 /* wikipedia-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wikipedia-tower.png"; sourceTree = "<group>"; };
 		3E81D50518BA8567001989A3 /* wikipedia-tower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wikipedia-tower.jpg"; sourceTree = "<group>"; };
-		3E9383B018BC75F6003354AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,9 +156,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E2A73421BF99A8700E3A886 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */,
+				3E2A73431BF99ACE00E3A886 /* ScenarioTest.m */,
+				3E2A73451BF99F9500E3A886 /* TestScenario.h */,
+				3E2A73461BF99F9600E3A886 /* TestScenario.m */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
 		3E81D48F18BA8429001989A3 = {
 			isa = PBXGroup;
 			children = (
+				3E2A73391BF70B7B00E3A886 /* To Do */,
 				3E81D50818BA8A2C001989A3 /* Scenarios */,
 				3E81D4A118BA8429001989A3 /* SwitchTower */,
 				3E81D4C018BA8429001989A3 /* SwitchTowerTests */,
@@ -176,20 +204,20 @@
 			children = (
 				3E81D4AA18BA8429001989A3 /* AppDelegate.h */,
 				3E81D4AB18BA8429001989A3 /* AppDelegate.m */,
+				3E81D4E218BA8544001989A3 /* Label.h */,
+				3E81D4E318BA8544001989A3 /* Label.m */,
 				3E81D4E618BA8544001989A3 /* LayoutView.h */,
 				3E81D4E718BA8544001989A3 /* LayoutView.m */,
 				3E81D4E818BA8544001989A3 /* LayoutViewController.h */,
 				3E81D4E918BA8544001989A3 /* LayoutViewController.m */,
 				3E81D4EE18BA854B001989A3 /* MainWindowViewController.h */,
 				3E81D4EF18BA854B001989A3 /* MainWindowViewController.m */,
-				3E81D4B018BA8429001989A3 /* ViewController.h */,
-				3E81D4B118BA8429001989A3 /* ViewController.m */,
-				3E81D4E218BA8544001989A3 /* Label.h */,
-				3E81D4E318BA8544001989A3 /* Label.m */,
 				3E81D4E418BA8544001989A3 /* LayoutModel.h */,
 				3E81D4E518BA8544001989A3 /* LayoutModel.m */,
 				3E81D4F018BA854B001989A3 /* NamedPoint.h */,
 				3E81D4F118BA854B001989A3 /* NamedPoint.m */,
+				3E2A73361BF6D70400E3A886 /* PopoverController.h */,
+				3E2A73371BF6D70400E3A886 /* PopoverController.m */,
 				3E81D4F818BA855A001989A3 /* Scenario.h */,
 				3E81D4F918BA855A001989A3 /* Scenario.m */,
 				3E81D4FA18BA855A001989A3 /* Signal.h */,
@@ -198,7 +226,10 @@
 				3E41F4E518BC8BB30059B96B /* TimetableViewController.m */,
 				3E81D50118BA8560001989A3 /* Train.h */,
 				3E81D50218BA8560001989A3 /* Train.m */,
+				3E81D4B018BA8429001989A3 /* ViewController.h */,
+				3E81D4B118BA8429001989A3 /* ViewController.m */,
 				3E81D4F418BA8552001989A3 /* Notes */,
+				3E2A73421BF99A8700E3A886 /* Test */,
 				3E81D4A218BA8429001989A3 /* Supporting Files */,
 			);
 			path = SwitchTower;
@@ -230,7 +261,6 @@
 		3E81D4C018BA8429001989A3 /* SwitchTowerTests */ = {
 			isa = PBXGroup;
 			children = (
-				3E81D4C618BA8429001989A3 /* SwitchTowerTests.m */,
 				3E81D4C118BA8429001989A3 /* Supporting Files */,
 			);
 			path = SwitchTowerTests;
@@ -254,6 +284,10 @@
 				3E81D4E018BA853B001989A3 /* FourthStreetScenario.m */,
 				3E81D4F618BA855A001989A3 /* PenzanceScenario.h */,
 				3E81D4F718BA855A001989A3 /* PenzanceScenario.m */,
+				3E2A733C1BF7DC9B00E3A886 /* ShellmoundScenario.h */,
+				3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */,
+				3E2A733D1BF90E1400E3A886 /* SantaCruzScenario.h */,
+				3E2A733E1BF90E1400E3A886 /* SantaCruzScenario.m */,
 			);
 			name = Scenarios;
 			path = SwitchTower;
@@ -306,6 +340,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = bowdidge;
 				TargetAttributes = {
+					3E81D49718BA8429001989A3 = {
+						DevelopmentTeam = PRKJWD6X23;
+					};
 					3E81D4B818BA8429001989A3 = {
 						TestTargetID = 3E81D49718BA8429001989A3;
 					};
@@ -369,10 +406,13 @@
 			files = (
 				3E81D4EC18BA8544001989A3 /* LayoutView.m in Sources */,
 				3E81D4EA18BA8544001989A3 /* Label.m in Sources */,
+				3E2A733B1BF7DC7D00E3A886 /* ShellmoundScenario.m in Sources */,
+				3E2A73381BF6D70400E3A886 /* PopoverController.m in Sources */,
 				3E81D4B218BA8429001989A3 /* ViewController.m in Sources */,
 				3E81D50318BA8560001989A3 /* Train.m in Sources */,
 				3E81D4DE18BA84F9001989A3 /* DiridonScenario.m in Sources */,
 				3E81D4E118BA853B001989A3 /* FourthStreetScenario.m in Sources */,
+				3E2A733F1BF90E1500E3A886 /* SantaCruzScenario.m in Sources */,
 				3E81D4FF18BA855A001989A3 /* Signal.m in Sources */,
 				3E81D4FE18BA855A001989A3 /* Scenario.m in Sources */,
 				3E81D4F318BA854B001989A3 /* NamedPoint.m in Sources */,
@@ -390,7 +430,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E81D4C718BA8429001989A3 /* SwitchTowerTests.m in Sources */,
+				3E2A73441BF99ACE00E3A886 /* ScenarioTest.m in Sources */,
+				3E2A73471BF99F9600E3A886 /* TestScenario.m in Sources */,
+				3E2A73411BF99A7D00E3A886 /* LayoutModelTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +458,8 @@
 		3E81D4AD18BA8429001989A3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3E9383B018BC75F6003354AE /* en */,
+				3E2A73481BF9C1B400E3A886 /* Base */,
+				3E2A73491BF9C1E200E3A886 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -512,10 +555,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SwitchTower/SwitchTower-Prefix.pch";
 				INFOPLIST_FILE = "SwitchTower/SwitchTower-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -526,10 +572,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SwitchTower/SwitchTower-Prefix.pch";
 				INFOPLIST_FILE = "SwitchTower/SwitchTower-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

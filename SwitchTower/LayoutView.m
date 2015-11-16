@@ -193,7 +193,7 @@ float CellYPosOffset(TrackDirection dir) {
     int posY = 100.0  + y * TILE_HEIGHT;
     
     
-    char cell = [self.layoutModel.currentSpecification cellAtTileX: x Y: y];
+    char cell = [self.layoutModel.scenario cellAtTileX: x Y: y];
     [self setTrackColorForCellX: x Y: y isActive: YES withContext: context];
     float dashes[2] = {10.0, 10.0};
     switch (cell) {
@@ -281,6 +281,12 @@ float CellYPosOffset(TrackDirection dir) {
     }
 }
 
+- (CGRect) cellRectForX: (int) cellX Y: (int) cellY {
+    int posX = 40.0 + cellX * TILE_WIDTH;
+    int posY = 100.0  + cellY * TILE_HEIGHT;
+    return CGRectMake(posX, posY, TILE_WIDTH, TILE_HEIGHT);
+}
+
 // Highlight the point where trains can enter the simulation.
 - (void) drawEntryPoint: (NSString*) entryName X: (int) cellX Y: (int) cellY context: (CGContextRef) context {
     int posX = 40.0 + cellX * TILE_WIDTH;
@@ -347,13 +353,13 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     CGContextFillRect(context, rect);
 
     // Draw entry points.
-    for (NamedPoint *ep in [self.currentSpecification all_endpoints]) {
+    for (NamedPoint *ep in [self.scenario all_endpoints]) {
         [self drawEntryPoint: ep.name X: ep.xPosition Y: ep.yPosition context: context];
     }
     
     // Draw labels.
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    for (Label *label in self.currentSpecification.all_labels) {
+    for (Label *label in self.scenario.all_labels) {
         // TILE_WIDTH/2 to center.
         int labelPosX = 40.0 + label.xCenter * TILE_WIDTH + TILE_WIDTH/2;
         // -10 to raise up.
@@ -364,14 +370,14 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
         
     }
     
-    for (Signal *signal in self.currentSpecification.all_signals) {
+    for (Signal *signal in self.scenario.all_signals) {
         [self drawSignal: signal context: context];
     }
 
     CGContextSetLineWidth(context, 10.0);
 
-    for (int y = 0; y < [self.currentSpecification tileRows]; y++) {
-        for (int x = 0; x < [self.currentSpecification tileColumns]; x++) {
+    for (int y = 0; y < [self.scenario tileRows]; y++) {
+        for (int x = 0; x < [self.scenario tileColumns]; x++) {
             int posX = 40.0 + x * TILE_WIDTH;
             int posY = 100.0  + y * TILE_HEIGHT;
             
@@ -388,9 +394,17 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     NSDateFormatter *format = [[[NSDateFormatter alloc] init] autorelease];
     [format setDateFormat:@"HH:mm:ss"];
 
-    NSString *timeString = [format stringFromDate: currentTime];
+    NSString *timeString = [format stringFromDate: self.currentTime];
     self.controller.timeLabel.text = timeString;
     self.controller.scoreLabel.text = [NSString stringWithFormat: @"Score: %d", self.score];
+}
+
+- (NSString*) popoverDescriptionForTrain: (Train*) tr{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat: @"%@ %@\n", tr.trainName, tr.trainDescription];
+    [str appendFormat: @"Leaving %@ at %@ for %@", tr.startPoint.name, formattedDate(tr.departureTime),
+     tr.expectedEndPoint.name];
+    return str;
 }
 
 // Dispatches touches back to the main view to change view to the witchlist of interest.
@@ -400,7 +414,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     int cellX = (location.x - 40) / TILE_WIDTH;
     int cellY = (location.y - 100) / TILE_HEIGHT;
     
-    for (Signal *signal in self.layoutModel.currentSpecification.all_signals) {
+    for (Signal *signal in self.layoutModel.scenario.all_signals) {
         CGRect rect = GetSignalRect(signal, TRUE);
         if (CGRectContainsPoint(rect, location)) {
             [self.controller signalTouched: signal];
@@ -412,6 +426,15 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     if ([self.layoutModel cellIsSwitchX: cellX Y: cellY]) {
         [self.controller switchTouchedX: cellX Y: cellY];
         [self setNeedsDisplay];
+    }
+    
+    // If there's a train there, describe the train.
+    Train* tr;
+    if ((tr = [self.self.layoutModel occupyingTrainAtX: cellX Y: cellY]) != nil) {
+        // TODO(bowdidge): Pop up.
+        NSLog(@"%@", [tr description]);
+        [self.controller performSegueWithIdentifier: @"popover" sender:self];
+        //pc.label.text = [self popoverDescriptionForTrain: tr];
     }
 }
 

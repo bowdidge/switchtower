@@ -134,7 +134,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JWv-81-y1V" kind="modal" id="FnD-X8-9lO"/>
+                                    <segue destination="JWv-81-y1V" kind="modal" identifier="timetable" id="FnD-X8-9lO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="02:35:11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6p2-lU-qOP">
@@ -174,7 +174,6 @@
                         <outlet property="timeLabel" destination="6p2-lU-qOP" id="bLr-u2-WUt"/>
                         <outlet property="trainField" destination="wpZ-eA-hzN" id="eqV-LI-LNh"/>
                         <outlet property="view" destination="MjW-st-QSo" id="e5u-sb-fZ4"/>
-                        <segue destination="qeV-oq-NEH" kind="modal" id="JBw-tN-Ue0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T3t-WC-iPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -246,41 +245,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSG-GU-ySS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="306" y="-1219"/>
-        </scene>
-        <!--popover-->
-        <scene sceneID="gE3-cK-Xin">
-            <objects>
-                <viewController storyboardIdentifier="popover" title="popover" id="qeV-oq-NEH" customClass="PopoverController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vuM-Lz-0WX"/>
-                        <viewControllerLayoutGuide type="bottom" id="HNh-69-oJA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Eib-A5-NX5">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yF7-Ao-4db">
-                                <rect key="frame" x="20" y="20" width="268" height="206"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="300" height="300"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="label" destination="yF7-Ao-4db" id="19d-Y9-1Yd"/>
-                        <outlet property="view" destination="Eib-A5-NX5" id="l5x-fd-Tn1"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sAZ-W6-oTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-638" y="1975"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

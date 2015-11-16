@@ -89,20 +89,19 @@
 
 
 #define TILE_ROWS 8
-#define TILE_COLUMNS 36
+#define TILE_COLUMNS 35
 
 // Current track layout to draw.  See above for key of what the letters mean.
-static char* cells[TILE_ROWS] = {
+static char* cells =
 //  "01234567890123456789012345"
-    "                  Z--.             ",
-    "          .z     R---z      \\      ",
-    ".z       T-z\\   R---z WQ-----pQ---.",
-    "  \\        ZppQP-----pQ-pqQ----p--.",
-    ".-qpQ---q-P----pQ-----qpPQQp------.",
-    ".w   W-w         W---w    \\\\          ",
-    "                           \\W.        ",
-    "                            W.          "
-};
+    "                  Z---             \n"
+    "          -z     R---z      \\      \n"
+    "-z       T-z\\   R---z WQ-----pQ----\n"
+    "  \\        ZppQP-----pQ-pqQ----p---\n"
+    "--qpQ---q-P----pQ-----qpPQQp-------\n"
+    "-w   W-w         W---w    \\\\       \n"
+    "                           \\W-     \n"
+    "                            W-     ";
 
 - (id) init {
     self = [super init];
@@ -124,7 +123,7 @@ static char* cells[TILE_ROWS] = {
  
     [eps addObject: [NamedPoint namedPointWithName: @"Mulford" X: 29 Y: 7]];
     [eps addObject: [NamedPoint namedPointWithName: @"Coach Yard" X: 21 Y: 0]];
-    [eps addObject: [NamedPoint namedPointWithName: @"Lead" X: 13 Y: 3]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Lead" X: 9 Y: 2]];
 
     self.all_endpoints = eps;
     [self initTrains];
@@ -140,11 +139,8 @@ static char* cells[TILE_ROWS] = {
     return TILE_COLUMNS;
 }
 
-- (char) cellAtTileX: (int) x Y: (int) y {
-    if ((y > TILE_ROWS) || (x > TILE_COLUMNS) || (y < 0) || (x < 0)) {
-        return ' ';
-    }
-    return cells[y][x];
+- (const char*) rawTileString {
+    return cells;
 }
 
 // Creates a commute train and the light engine movement before or after its arrival.
@@ -185,11 +181,11 @@ static char* cells[TILE_ROWS] = {
     } else {
         return nil;
     }
+    train.onTimetable = true;
     return train;
 }
 
 - (NSDate*) startingTime {
-    // Assume all scenarios start at 6:00 am.
     // TODO(bowdidge): Fix time zone.
     return [self scenarioTime: @"05:30"];
 }
@@ -198,6 +194,7 @@ static char* cells[TILE_ROWS] = {
     return 30;
 }
 
+// Creates all trains in the scenario.
 - (void) initTrains {
     NSMutableArray *array = [NSMutableArray array];
     [array addObject: [self createCommuteTrainWithName: @"129" direction: EastDirection departureTime: [self scenarioTime: @"06:04"]]];
@@ -219,6 +216,7 @@ static char* cells[TILE_ROWS] = {
                             start:[self endpointWithName: @"From LA"]
                               end: [self endpointWithName: @"Diridon-1"]];
     [passengerTrain setAppearanceTime: [self scenarioTime: @"08:10"] departureTime: [self scenarioTime: @"08:20"] arrivalTime: [self scenarioTime: @"08:38"]];
+    passengerTrain.onTimetable = true;
     [array addObject: passengerTrain];
     
     // Train goes to Diridon, then continues.
@@ -230,6 +228,7 @@ static char* cells[TILE_ROWS] = {
     passengerTrain = [Train trainWithName: @"98" description: @"Coast Daylight"
                                  direction: WestDirection
                                     start: [self endpointWithName: @"From SF"] end: [self endpointWithName: @"Diridon-1"]];
+    passengerTrain.onTimetable = true;
     [passengerTrain setAppearanceTime: [self scenarioTime: @"07:45"] departureTime: [self scenarioTime: @"07:53" ] arrivalTime: [self scenarioTime: @"08:16"]];
     [array addObject: passengerTrain];
     passengerTrain.script = [ChangeEndpoint changeEndpointTo:[self endpointWithName: @"To LA"] direction: WestDirection
@@ -241,6 +240,7 @@ static char* cells[TILE_ROWS] = {
                                 direction: EastDirection
                                     start:[self endpointWithName: @"From LA"]
                                       end: [self endpointWithName: @"Diridon-1"]];
+    passengerTrain.onTimetable = true;
     [passengerTrain setAppearanceTime: [self scenarioTime: @"05:35"] departureTime: [self scenarioTime: @"05:40"] arrivalTime: [self scenarioTime: @"05:55"]];
     [array addObject: passengerTrain];
     
@@ -292,6 +292,12 @@ static char* cells[TILE_ROWS] = {
     [train2 setAppearanceTime: [self scenarioTime: @"10:00"] departureTime: [self scenarioTime: @"10:10"] arrivalTime: [self scenarioTime: @"11:00"]];
     [array addObject: train2];
     
+    train2 = [Train trainWithName: @"X2659" description: @"Campbell switcher"
+                        direction: EastDirection
+                            start: [self endpointWithName: @"Vasona Branch"]
+                              end: [self endpointWithName: @"Mulford"]];
+    [train2 setAppearanceTime: [self scenarioTime: @"5:30"] departureTime: [self scenarioTime: @"5:31"] arrivalTime: [self scenarioTime: @"7:00"]];
+    [array addObject: train2];
 
     
     self.all_trains = array;
@@ -312,8 +318,8 @@ static char* cells[TILE_ROWS] = {
                             // Hillsdale
                         [Signal signalControlling: EastDirection X: 0 Y: 2],
 
-                               [Signal signalControlling: WestDirection X: 33 Y: 2],
-                               [Signal signalControlling: WestDirection X: 33 Y: 3],
+                               [Signal signalControlling: WestDirection X: 34 Y: 2],
+                               [Signal signalControlling: WestDirection X: 34 Y: 3],
 
                                [Signal signalControlling: WestDirection X: 11 Y: 3],
                                [Signal signalControlling: WestDirection X: 11 Y: 4],
@@ -338,6 +344,8 @@ static char* cells[TILE_ROWS] = {
                        nil];
 }
 
+// Override the testing for reaching a named point - a train destined for any of the Diridon
+// tracks is ok to go to any other station track.
 - (BOOL) isNamedPoint: (NamedPoint*) a sameAs: (NamedPoint*) b {
     // All Diridon tracks are equivalent.
     if (a == b) return YES;
