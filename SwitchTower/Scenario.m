@@ -109,6 +109,8 @@ static char* cells = "";
     self = [super init];
     self.tileStrings = [[NSString stringWithUTF8String: [self rawTileString]] componentsSeparatedByString: @"\n"];
     [self validateTileString];
+    self.scenarioName = @"Unset scenario name";
+    self.scenarioDescription = @"Unset scenario description";
     return self;
 }
 

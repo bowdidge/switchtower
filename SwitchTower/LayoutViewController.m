@@ -237,32 +237,9 @@
 
 // Set which scenario we're playing.
 // TODO(bowdidge): Find better scheme.
-- (void) setGame: (int) gameId {
-    NSLog(@"Game %d", gameId);
-    gameId_ = gameId;
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    self.scenario = nil;
-    switch (gameId_) {
-        case 0:
-            // Do nothing.
-            break;
-        case 1:
-            self.scenario = [[[PenzanceScenario alloc] init] autorelease];
-            break;
-        case 2:
-            self.scenario = [[[FourthStreetScenario alloc] init] autorelease];
-            break;
-        case 3:
-            self.scenario = [[[DiridonScenario alloc] init] autorelease];
-            break;
-        case 4:
-            self.scenario = [[[ShellmoundScenario alloc] init] autorelease];
-            break;
-        case 5:
-            self.scenario = [[[SantaCruzScenario alloc] init] autorelease];
-            break;
-    }
+- (void) setGame: (Scenario*) s {
+    NSLog(@"Game %@", s.scenarioName);
+    self.scenario = s;
 }
 
 // TODO(bowdidge): Rewrite.  Note that this can be called multiple times.

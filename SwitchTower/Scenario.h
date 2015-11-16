@@ -57,13 +57,17 @@
 // Exposed only for testing.
 - (BOOL) validateTileString;
 
+// Name and description to show in the UI.
+@property (nonatomic, retain) NSString *scenarioName;
+@property (nonatomic, retain) NSString *scenarioDescription;
+
 @property (nonatomic, retain) NSArray *all_endpoints;
 @property (nonatomic, retain) NSArray *all_signals;
 @property (nonatomic, retain) NSArray *all_labels;
 @property (nonatomic, retain) NSArray *all_trains;
 @property (nonatomic) int tileColumns;
 @property (nonatomic) int tileRows;
-// TODO(bowdidge): Make safer.
+// TODO(bowdidge): Make more structured and validated.
 @property (nonatomic, retain) NSArray *tileStrings;
 @end
 

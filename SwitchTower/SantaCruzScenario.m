@@ -87,6 +87,8 @@ static char* cells =
     self.all_endpoints = eps;
     [self initTrains];
     [self initLabels];
+    self.scenarioName = @"SP Santa Cruz branch";
+    self.scenarioDescription = @"Run trains across the Santa Cruz mountains.";
     return self;
 }
 

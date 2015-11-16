@@ -50,6 +50,7 @@
 		3E81D50618BA8567001989A3 /* wikipedia-tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D50418BA8567001989A3 /* wikipedia-tower.png */; };
 		3E81D50718BA8567001989A3 /* wikipedia-tower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D50518BA8567001989A3 /* wikipedia-tower.jpg */; };
 		3E9383B118BC7621003354AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4AD18BA8429001989A3 /* Main.storyboard */; };
+		3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		3E81D50218BA8560001989A3 /* Train.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Train.m; sourceTree = "<group>"; };
 		3E81D50418BA8567001989A3 /* wikipedia-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wikipedia-tower.png"; sourceTree = "<group>"; };
 		3E81D50518BA8567001989A3 /* wikipedia-tower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wikipedia-tower.jpg"; sourceTree = "<group>"; };
+		3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioTableCell.h; sourceTree = "<group>"; };
+		3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,8 @@
 				3E2A73371BF6D70400E3A886 /* PopoverController.m */,
 				3E81D4F818BA855A001989A3 /* Scenario.h */,
 				3E81D4F918BA855A001989A3 /* Scenario.m */,
+				3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */,
+				3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */,
 				3E81D4FA18BA855A001989A3 /* Signal.h */,
 				3E81D4FB18BA855A001989A3 /* Signal.m */,
 				3E41F4E418BC8BB30059B96B /* TimetableViewController.h */,
@@ -410,6 +415,7 @@
 				3E2A73381BF6D70400E3A886 /* PopoverController.m in Sources */,
 				3E81D4B218BA8429001989A3 /* ViewController.m in Sources */,
 				3E81D50318BA8560001989A3 /* Train.m in Sources */,
+				3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */,
 				3E81D4DE18BA84F9001989A3 /* DiridonScenario.m in Sources */,
 				3E81D4E118BA853B001989A3 /* FourthStreetScenario.m in Sources */,
 				3E2A733F1BF90E1500E3A886 /* SantaCruzScenario.m in Sources */,

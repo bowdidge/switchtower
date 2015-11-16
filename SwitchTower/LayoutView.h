@@ -58,7 +58,7 @@
 
 #define DASH_WIDTH 10.0
 
-#define LEFT_MARGIN 0.0  // was 40
+#define LEFT_MARGIN 40.0  // was 40
 #define TOP_MARGIN 40.0  // was 100
 
 #define SCREEN_WIDTH 1024

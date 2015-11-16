@@ -29,8 +29,17 @@
 //
 
 #import "MainWindowViewController.h"
-#import "LayoutViewController.h"
 
+#import "LayoutViewController.h"
+#import "ScenarioTableCell.h"
+
+#import "DiridonScenario.h"
+#import "ShellmoundScenario.h"
+#import "SantaCruzScenario.h"
+#import "FourthStreetScenario.h"
+#import "PenzanceScenario.h"
+
+#
 @interface MainWindowViewController ()
 
 @end
@@ -41,6 +50,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.scenarios = [NSMutableArray array];
+    [self.scenarios addObject: [[[DiridonScenario alloc] init] autorelease]];
+    [self.scenarios addObject: [[[ShellmoundScenario alloc] init] autorelease]];
+    [self.scenarios addObject: [[[FourthStreetScenario alloc] init] autorelease]];
+    [self.scenarios addObject: [[[SantaCruzScenario alloc] init] autorelease]];
+    [self.scenarios addObject: [[[PenzanceScenario alloc] init] autorelease]];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder  {
@@ -52,16 +67,51 @@
 {
     // Get reference to the destination view controller
     LayoutViewController *vc = [segue destinationViewController];
-   
-    // Pass any objects to the view controller here, like...
-    NSLog(@"Tag is %d", [sender tag]);
-    [vc setGame: [sender tag]];
+
+    NSIndexPath *selectedScenarioRow = self.scenarioTable.indexPathForSelectedRow;
+    if ([selectedScenarioRow indexAtPosition: 0] != 0) return;
+    
+    Scenario *s = [self.scenarios objectAtIndex: [selectedScenarioRow indexAtPosition: 1]];
+    [vc setGame: s];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// How many rows in the scenario selection table?
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return [self.scenarios count];
+    }
+    return 0;
+}
+
+// Create the scenario selection table cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *cellIdentifier = @"scenarioTableCell";
+    ScenarioTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[ScenarioTableCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:cellIdentifier];
+        [cell autorelease];
+    }
+
+    // Only one section.
+    if ([indexPath indexAtPosition: 0] != 0) return nil;
+    
+    Scenario *s = [self.scenarios objectAtIndex: [indexPath indexAtPosition: 1]];
+    cell.scenarioNameLabel.text = s.scenarioName;
+    cell.scenarioDescriptionLabel.text = s.scenarioDescription;
+    return cell;
+}
+
+// Scenario selected.  -[MainWindowViewController prepareForSegue:sender: will do the rest of the work.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier: @"runGame" sender: self];
 }
 
 @end

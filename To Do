@@ -27,6 +27,9 @@ Game play
 
 [ ] Need speedup to skip ahead to next action.
 
+[ ] Allow wraparound paths.
+[ ] Allow prompting for taking stretch of track for an interval (think yard switching)
+
 Scenarios:
 [ ] Make at least one new scenario.
 [ ] Oakland Pier.

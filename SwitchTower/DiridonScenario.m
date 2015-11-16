@@ -128,6 +128,10 @@ static char* cells =
     self.all_endpoints = eps;
     [self initTrains];
     [self initLabels];
+    
+    self.scenarioName = @"San Jose Cahill Street";
+    self.scenarioDescription = @"Handle the comings and goings of the Southern Pacific's San Francisco->San Jose commute fleet in the early 1950's.  In this simulation, you'll need to prepare trains for commute runs while leaving space to get long-distance passenger trains and freights through.";
+
     return self;
 }
 

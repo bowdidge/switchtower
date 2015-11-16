@@ -47,8 +47,8 @@
     int gameId_;
 }
 
-// Call before view loaded.
-- (void) setGame: (int) gameId;
+// Choose the game to play.  To be done when segue'ing to the view controller.
+- (void) setGame: (Scenario*) s;
 
 - (BOOL) signalTouched: (Signal*) signal;
 - (BOOL) switchTouchedX: (int) cellX Y: (int) cellY;

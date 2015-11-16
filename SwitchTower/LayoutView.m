@@ -404,7 +404,6 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
             [self drawTileAtY:y X:x withContext:context];
             Train *occupyingTrain = [self.layoutModel occupyingTrainAtX: x Y: y];
             if (occupyingTrain != nil) {
-                UIColor *labelColor = [UIColor whiteColor];
                 [self drawTrainLabelInContext:context posY:posY posX:posX
                                  message: occupyingTrain.trainName];
             }

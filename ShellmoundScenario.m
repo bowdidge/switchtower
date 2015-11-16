@@ -128,6 +128,10 @@ static char* cells =
     self.all_endpoints = eps;
     [self initTrains];
     [self initLabels];
+    
+    self.scenarioName = @"Oakland 16th Street Station";
+    self.scenarioDescription = @"Handle the trains coming and going from the Oakland Pier in the 1930's. The Oakland Pier was the center for SP passenger operations on the east shore of San Francisco Bay, but all trains needed to stop at Oakland's official 16th Street station.  Freight trains needed to pass around the station, then take a separate line down Cedar Street to access the freight yards.";
+
     return self;
 }
 

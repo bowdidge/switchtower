@@ -103,6 +103,10 @@ static char* cells =
 - (id) init {
     [super init];
     [self initTrains];
+    
+    self.scenarioName = @"San Jose Market St. Station";
+    self.scenarioDescription = @"Handle the comings and goings of the Southern Pacific's San Francisco->San Jose commute fleet in the early 1920's.  The setting here is SP's long-lost Market Street station, just north of downtown San Jose.  In this simulation, you'll need to thread long-distance trains past the two-track 1880's station.";
+
     return self;
 }
 

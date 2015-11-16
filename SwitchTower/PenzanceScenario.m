@@ -120,6 +120,10 @@ static char* cells =
     [self initLabels];
     [self initTrains];
     [self initSignals];
+    
+    self.scenarioName = @"Penzance, Cornwall";
+    self.scenarioDescription = @"Test scenario for comparing to known fun games.";
+
     return self;
 }
 
