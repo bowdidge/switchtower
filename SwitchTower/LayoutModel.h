@@ -68,8 +68,8 @@ typedef enum {
 
 - (id) initWithScenario: (Scenario*) s;
 
-// Register a new train to display.
-- (void) addTrain: (Train*) train;
+// Register a new train to display that will be active on the layout.
+- (void) addActiveTrain: (Train*) train;
 
 // Returns true if the cell is a known starting or ending space for trains.
 - (BOOL) isEndPointX: (int) x Y: (int) y;

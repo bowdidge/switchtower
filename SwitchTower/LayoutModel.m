@@ -45,7 +45,7 @@
 }
 
 // Register a new train to display.
-- (void) addTrain: (Train*) train {
+- (void) addActiveTrain: (Train*) train {
     [self.activeTrains addObject: train];
 }
 

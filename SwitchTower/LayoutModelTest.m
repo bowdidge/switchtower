@@ -38,7 +38,7 @@
                           direction: EastDirection
                               start: [s endpointWithName: @"LeftBottom"]
                                 end: [s endpointWithName: @"Right"]];
-    [m addTrain: t];
+    [m addActiveTrain: t];
     t.xPosition = 0;
     t.yPosition = 1;
 
@@ -82,7 +82,7 @@
                           direction: EastDirection
                               start: [s endpointWithName: @"Right"]
                                 end: [s endpointWithName: @"LeftBottom"]];
-    [m addTrain: t];
+    [m addActiveTrain: t];
     t.xPosition = 4;
     t.yPosition = 0;
     
@@ -114,7 +114,7 @@
                           direction: EastDirection
                               start: [s endpointWithName: @"Right"]
                                 end: [s endpointWithName: @"LeftBottom"]];
-    [m addTrain: t];
+    [m addActiveTrain: t];
     t.xPosition = 4;
     t.yPosition = 0;
     
@@ -148,7 +148,7 @@
                           direction: EastDirection
                               start: [s endpointWithName: @"Left"]
                                 end: [s endpointWithName: @"Right"]];
-    [m addTrain: t];
+    [m addActiveTrain: t];
     t.xPosition = 0;
     t.yPosition = 0;
     
@@ -180,7 +180,7 @@
                           direction: WestDirection
                               start: [s endpointWithName: @"Right"]
                                 end: [s endpointWithName: @"Left"]];
-    [m addTrain: t];
+    [m addActiveTrain: t];
     t.xPosition = 4;
     t.yPosition = 0;
     
@@ -207,7 +207,7 @@
                           direction: EastDirection
                               start: [s endpointWithName: @"Left"]
                                 end: [s endpointWithName: @"Right"]];
-    [m addTrain: t];
+    [m addActiveTrain: t];
     t.xPosition = 0;
     t.yPosition = 0;
     
@@ -234,7 +234,7 @@
                           direction: EastDirection
                               start: [s endpointWithName: @"Left"]
                                 end: [s endpointWithName: @"Right"]];
-    [m addTrain: t];
+    [m addActiveTrain: t];
     t.xPosition = 0;
     t.yPosition = 0;
     
