@@ -1,9 +1,7 @@
-Polish
-[ ] Use table view for selecting initial game.
+Polish / Bugs
 [ ] Better sounds.
-[ ] Way to quit game.
-
-Bugs:
+[x] Use table view for selecting initial game.
+[x] Way to quit game.
 [ ] Train reaching end isn't disappearing.
 [ ] don't arrange new train at entry til old one goes.
 [ ] don't allow changing switch along route.'
@@ -12,10 +10,9 @@ Bugs:
 Game play
 [ ] Handle multiple step switching moves better.
 [ ] Improve one game (Diridon) for playability.
-[ ] Generate timetable from schedule.
+[ ] Handle timetable for trains changing names.
 [ ] Detect illegal moves, and put up popover describing problem ("no freight trains on pass 2-4")
 [ ] Don't allow switch thrown under train.
-[ ] Drum beat only when scheduled train delayed.
 [ ] Warn about why signal can't be changed.
 [ ] Turning a signal back to red should clear route only to previous signal.
 [ ] Only allow changing signal in with multi-minute lock.
@@ -23,20 +20,24 @@ Game play
 [ ] Correctly time how long through blocks.
 [ ] How to make slow parts of game interesting?
 
-[ ] Make timetable part of model.
 
 [ ] Need speedup to skip ahead to next action.
 
 [ ] Allow wraparound paths.
 [ ] Allow prompting for taking stretch of track for an interval (think yard switching)
+[x] Drum beat only when scheduled train delayed.
+[x] Generate timetable from schedule.
+[x] Make timetable part of scenario.
+[ ] Draw timetable directly in Cocoa, add human touches like circling / crossing out trains, using highlighter to mark current station, etc.
 
 Scenarios:
 [ ] Make at least one new scenario.
+[ ] Oakland 16th Street
 [ ] Oakland Pier.
 [ ] Bakersfield tower.
 
 Timetable
-[ ] Timetable should be based on all trains in scenario, not active trains.
+[x] Timetable should be based on all trains in scenario, not active trains.
 
 Programming
 [ ] Improve testing.

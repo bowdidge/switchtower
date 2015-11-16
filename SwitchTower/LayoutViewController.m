@@ -81,13 +81,17 @@
         if (train.direction == WestDirection) {
             if (![self.layoutModel moveTrainWest: train]) {
                 //blocked.
-                someTrainIsBlocked = YES;
+                if (train.onTimetable) {
+                    someTrainIsBlocked = YES;
+                }
            }
             [self.layoutView setNeedsDisplay];
         } else if (train.direction == EastDirection) {
             if (![self.layoutModel moveTrainEast: train]) {
                 //blocked.
-                someTrainIsBlocked = YES;
+                if (train.onTimetable) {
+                    someTrainIsBlocked = YES;
+                }
             }
             [self.layoutView setNeedsDisplay];
         }
@@ -145,10 +149,12 @@
     for (Train *train in self.activeTrains) {
         if (train.currentState == Inactive) {
             // Start the train if it's after the appearance time,
-            // *and* if the route through the cell hasn't yet been claimed.
+            // *and* if the route through the cell hasn't yet been claimed
+            // *and* there's no train already there.
             if (([train.appearanceTime compare: currentTime] == NSOrderedAscending) &&
                 [self.layoutModel routeForCellX: train.startPoint.xPosition
-                                        Y: train.startPoint.yPosition] == 0) {
+                                        Y: train.startPoint.yPosition] == 0 &&
+                [self.layoutModel occupyingTrainAtX: train.startPoint.xPosition Y: train.startPoint.yPosition] == nil) {
 
                 train.currentState = Waiting;
                 train.xPosition = train.startPoint.xPosition;
