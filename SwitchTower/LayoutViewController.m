@@ -61,6 +61,10 @@
                                                     repeats:YES];
 }
 
+- (void) stopTickTimer: (id) sender {
+    [self.myTimer_ invalidate];
+}
+
 // Handles next clock tick.  Moves al trains that can be moved, removes all trains that reach an
 // exit, and starts new trains on their journey.
 // TODO(bowdidge): Some of the basic motion code here should really go to LayoutModel, with only the
@@ -177,17 +181,13 @@
             NSString *trainName = train.trainName;
             NamedPoint *ep = train.expectedEndPoint;
             NSString *endPointName = (ep ? ep.name : @"???");
-            
-            NSString *timeString = [format stringFromDate: train.arrivalTime];
-
-            [trainDestinations appendFormat: @"%@: next dest:%@  due: %@\n", trainName, endPointName, timeString];
+            [trainDestinations appendFormat: @"%@: bound for:%@  due: %@\n", trainName, endPointName, formattedDate(train.arrivalTime)];
         } else if (train.currentState == Waiting) {
             NSString *trainName = train.trainName;
             NamedPoint *ep = train.expectedEndPoint;
             NSString *endPointName = (ep ? ep.name : @"???");
-            NSString *timeString = [format stringFromDate: train.arrivalTime];
-           [trainDestinations appendFormat: @"%@: ready in %.2f minutes.  next dest:%@  due: %@\n",
-            trainName, ([train.departureTime timeIntervalSinceDate: currentTime] / 60), endPointName, timeString];
+           [trainDestinations appendFormat: @"%@: ready in %@.  bound for:%@  due: %@\n",
+            trainName, formattedTimeInterval([train.departureTime timeIntervalSinceDate: currentTime]), endPointName, formattedDate(train.arrivalTime)];
             
         }
     }
@@ -303,6 +303,10 @@
     }
 }
 
+- (IBAction) quitGame {
+    [self stopTickTimer: self];
+    [self dismissViewControllerAnimated: true completion: nil];
+}
 
 
 @synthesize activeTrains;

@@ -51,6 +51,7 @@
 		3E81D50718BA8567001989A3 /* wikipedia-tower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D50518BA8567001989A3 /* wikipedia-tower.jpg */; };
 		3E9383B118BC7621003354AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4AD18BA8429001989A3 /* Main.storyboard */; };
 		3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */; };
+		3E96C4CE1BFA833400AF795F /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E96C4CD1BFA833400AF795F /* HelpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		3E81D50518BA8567001989A3 /* wikipedia-tower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wikipedia-tower.jpg"; sourceTree = "<group>"; };
 		3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioTableCell.h; sourceTree = "<group>"; };
 		3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTableCell.m; sourceTree = "<group>"; };
+		3E96C4CC1BFA833400AF795F /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		3E96C4CD1BFA833400AF795F /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +210,8 @@
 			children = (
 				3E81D4AA18BA8429001989A3 /* AppDelegate.h */,
 				3E81D4AB18BA8429001989A3 /* AppDelegate.m */,
+				3E96C4CC1BFA833400AF795F /* HelpViewController.h */,
+				3E96C4CD1BFA833400AF795F /* HelpViewController.m */,
 				3E81D4E218BA8544001989A3 /* Label.h */,
 				3E81D4E318BA8544001989A3 /* Label.m */,
 				3E81D4E618BA8544001989A3 /* LayoutView.h */,
@@ -413,6 +418,7 @@
 				3E81D4EA18BA8544001989A3 /* Label.m in Sources */,
 				3E2A733B1BF7DC7D00E3A886 /* ShellmoundScenario.m in Sources */,
 				3E2A73381BF6D70400E3A886 /* PopoverController.m in Sources */,
+				3E96C4CE1BFA833400AF795F /* HelpViewController.m in Sources */,
 				3E81D4B218BA8429001989A3 /* ViewController.m in Sources */,
 				3E81D50318BA8560001989A3 /* Train.m in Sources */,
 				3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */,

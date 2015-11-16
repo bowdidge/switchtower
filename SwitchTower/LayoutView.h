@@ -62,7 +62,8 @@
 #define TOP_MARGIN 40.0  // was 100
 
 #define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 768
+// From Interface Builder.
+#define SCREEN_HEIGHT 550
 
 #define SIGNAL_TARGET_DIAMETER 12.0
 #define SIGNAL_DIAMETER 8.0
@@ -99,4 +100,6 @@
 @property(nonatomic, retain) UIColor* activeTrackColor;
 @property(nonatomic, retain) UIColor* inactiveTrackColor;
 @property(nonatomic, retain) UIColor* platformColor;
+
+@property(nonatomic, retain) UIColor* backgroundColor;
 @end

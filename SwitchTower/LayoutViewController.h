@@ -53,6 +53,8 @@
 - (BOOL) signalTouched: (Signal*) signal;
 - (BOOL) switchTouchedX: (int) cellX Y: (int) cellY;
 
+- (IBAction) quitGame;
+
 @property(nonatomic, retain) Train *train31;
 @property(nonatomic, retain) Train *train98;
 @property(nonatomic, retain) NSMutableArray *activeTrains;

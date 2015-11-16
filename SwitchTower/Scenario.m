@@ -204,6 +204,15 @@ static char* cells = "";
     return (a == b);
 }
 
+
+NSString* formattedTimeInterval(NSTimeInterval interval) {
+    if (interval < 60) {
+        return [NSString stringWithFormat: @"%d seconds", (int)interval];
+    }
+    return [NSString stringWithFormat: @"%d minutes", (int) interval / 60];
+}
+
+
 NSString* formattedDate(NSDate* date) {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"HH:mm"];

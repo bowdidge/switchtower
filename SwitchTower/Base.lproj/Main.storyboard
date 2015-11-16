@@ -93,24 +93,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-hD-qvV">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="648"/>
+                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-hD-qvV">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="550"/>
                                 <color key="backgroundColor" red="0.84591697079999995" green="0.83576642339999996" blue="0.69325958030000001" alpha="1" colorSpace="deviceRGB"/>
                             </scrollView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" text="Trains" translatesAutoresizingMaskIntoConstraints="NO" id="duJ-1a-HcB">
-                                <rect key="frame" x="162" y="656" width="376" height="112"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="162" y="558" width="394" height="210"/>
+                                <color key="backgroundColor" red="0.99190762156439571" green="1" blue="0.81743812029132767" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" text="Status updates" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-eA-hzN">
-                                <rect key="frame" x="564" y="656" width="460" height="112"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="564" y="558" width="460" height="210"/>
+                                <color key="backgroundColor" red="0.99190762160000001" green="1" blue="0.81743812029999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeI-CD-Nni">
-                                <rect key="frame" x="0.0" y="738" width="79" height="30"/>
+                                <rect key="frame" x="42" y="659" width="79" height="30"/>
                                 <state key="normal" title="Timetable">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -118,27 +118,39 @@
                                     <segue destination="JWv-81-y1V" kind="modal" identifier="timetable" id="FnD-X8-9lO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0n-qC-lNP">
+                                <rect key="frame" x="42" y="723" width="79" height="30"/>
+                                <state key="normal" title="Quit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="quitGame" destination="zYU-ZB-2Na" eventType="touchUpInside" id="zZn-qC-F7W"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="02:35:11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6p2-lU-qOP">
-                                <rect key="frame" x="9" y="656" width="145" height="57"/>
+                                <rect key="frame" x="9" y="550" width="145" height="57"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqK-0e-1AA">
-                                <rect key="frame" x="9" y="721" width="145" height="19"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqK-0e-1AA">
+                                <rect key="frame" x="9" y="606" width="145" height="19"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6MU-zU-urv">
+                                <rect key="frame" x="42" y="697" width="79" height="30"/>
+                                <state key="normal" title="Help">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dme-9w-CBK" kind="modal" id="T6G-Wt-A7r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="cc3-hD-qvV" firstAttribute="leading" secondItem="MjW-st-QSo" secondAttribute="leading" id="Uya-lQ-yTN"/>
-                            <constraint firstAttribute="bottom" secondItem="cc3-hD-qvV" secondAttribute="bottom" constant="120" id="ilh-Uy-e3b"/>
-                            <constraint firstAttribute="trailing" secondItem="cc3-hD-qvV" secondAttribute="trailing" id="kVj-d5-lzv"/>
-                            <constraint firstItem="cc3-hD-qvV" firstAttribute="top" secondItem="MjW-st-QSo" secondAttribute="top" id="vOM-VX-n7l"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qmM-jf-4CX"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -154,6 +166,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T3t-WC-iPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1011" y="-199"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="GqB-mC-jAh">
+            <objects>
+                <viewController id="dme-9w-CBK" customClass="HelpViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uvL-bA-pgo"/>
+                        <viewControllerLayoutGuide type="bottom" id="eNT-za-dmG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kks-Zr-wbh">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bbb-y0-0PQ">
+                                <rect key="frame" x="20" y="28" width="957" height="675"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0N2-pk-rXY">
+                                <rect key="frame" x="20" y="738" width="61" height="30"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didCancel:" destination="dme-9w-CBK" eventType="touchUpInside" id="jJp-WK-0CD"/>
+                                    <action selector="didCancel:" destination="JWv-81-y1V" eventType="touchUpInside" id="lcm-c3-wTC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="helpTextView" destination="Bbb-y0-0PQ" id="Q9e-eF-5iz"/>
+                        <outlet property="view" destination="Kks-Zr-wbh" id="feB-39-r9z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uhi-R1-0yV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2233" y="-45"/>
         </scene>
         <!--Timetable View Controller-->
         <scene sceneID="M6J-3v-ZbH">
@@ -173,7 +223,7 @@
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eiX-hZ-ggN">
                                 <rect key="frame" x="11" y="738" width="61" height="30"/>
-                                <state key="normal" title="Cancel">
+                                <state key="normal" title="Return">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

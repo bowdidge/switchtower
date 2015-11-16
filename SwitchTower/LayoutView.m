@@ -59,6 +59,9 @@
     self.activeTrackColor = [UIColor lightGrayColor];
     self.inactiveTrackColor = [UIColor darkGrayColor];
     self.platformColor = [UIColor greenColor];
+
+    // Aim for CTC green.
+    self.backgroundColor = [UIColor colorWithRed:32.0/256 green: 48.0/256 blue: 30.0/256 alpha: 1.0];
     
     return self;
 }
@@ -367,7 +370,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     self.containingScrollView.contentSize = self.viewSize;
 
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    [self.backgroundColor setFill];
     CGContextFillRect(context, rect);
 
     // Draw entry points.
