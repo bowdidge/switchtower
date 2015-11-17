@@ -71,4 +71,6 @@
 @property (nonatomic, retain) NSArray *tileStrings;
 @end
 
+// Helper routines for formatting times in our preferred format.
+NSString* formattedTimeInterval(NSTimeInterval interval);
 NSString* formattedDate(NSDate* date);
