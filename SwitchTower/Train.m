@@ -93,6 +93,7 @@
 @synthesize direction;
 @synthesize expectedEndPoint;
 @synthesize onTimetable;
+@synthesize startPoint;
 @end
 
 
