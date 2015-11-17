@@ -242,7 +242,40 @@ static char* cells =
                                                     desc: @"El Dorado"
                                                direction: WestDirection
                                            departureTime: [self scenarioTime: @"09:23"]]];
-    
+    [array addObject: [self createPassengerTrainWithName: @"56"
+                                                    desc: @"Passenger"
+                                               direction: EastDirection
+                                           departureTime: [self scenarioTime: @"10:35"]]];
+    [array addObject: [self createPassengerTrainWithName: @"28"
+                                                    desc: @"Overland Limited"
+                                               direction: EastDirection
+                                           departureTime: [self scenarioTime: @"12:01"]]];
+    [array addObject: [self createPassengerTrainWithName: @"246"
+                                                    desc: @"Statesman"
+                                               direction: EastDirection
+                                           departureTime: [self scenarioTime: @"14:00"]]];
+    [array addObject: [self createPassengerTrainWithName: @"11"
+                                                    desc: @"Cascade"
+                                               direction: WestDirection
+                                           departureTime: [self scenarioTime: @"10:50"]]];
+    [array addObject: [self createPassengerTrainWithName: @"13"
+                                                    desc: @"Beaver"
+                                               direction: WestDirection
+                                           departureTime: [self scenarioTime: @"11:10"]]];
+    [array addObject: [self createPassengerTrainWithName: @"27"
+                                                    desc: @"Overland Limited"
+                                               direction: WestDirection
+                                           departureTime: [self scenarioTime: @"14:20"]]];
+    [array addObject: [self createPassengerTrainWithName: @"465"
+                                                    desc: @"Freight"
+                                               direction: WestDirection
+                                           departureTime: [self scenarioTime: @"14:00"]]];
+    [array addObject: [self createPassengerTrainWithName: @"465"
+                                                    desc: @"Freight"
+                                               direction: WestDirection
+                                           departureTime: [self scenarioTime: @"14:00"]]];
+
+   
     Train *sf = [Train trainWithName: @"SF 1" description: @"Super Chief"
                            direction: WestDirection
                                start: [self endpointWithName: @"Santa Fe"]
@@ -257,7 +290,7 @@ static char* cells =
                             direction: WestDirection
                                 start: [self endpointWithName: @"Port Costa WB"]
                                   end: [self endpointWithName: @"Cedar Frt"]];
-    [frt setAppearanceTime: [self scenarioTime: @"07:05"] departureTime: [self scenarioTime: @"07:10"] arrivalTime: [self scenarioTime: @"08:00"]];
+    [frt setAppearanceTime: [self scenarioTime: @"7:35"] departureTime: [self scenarioTime: @"07:40"] arrivalTime: [self scenarioTime: @"08:20"]];
     [array addObject: frt];
     
     frt = [Train trainWithName: @"464" description: @"Freight"
@@ -282,10 +315,17 @@ static char* cells =
     [array addObject: frt];
 
     frt = [Train trainWithName: @"X3225" description: @"Santa Fe interchange"
-                            direction: EastDirection
+                            direction: WestDirection
                                 start: [self endpointWithName: @"Port Costa WB"]
                                   end: [self endpointWithName: @"Cedar Frt"]];
     [frt setAppearanceTime: [self scenarioTime: @"09:20"] departureTime: [self scenarioTime: @"09:30"] arrivalTime: [self scenarioTime: @"10:00"]];
+    [array addObject: frt];
+
+    frt = [Train trainWithName: @"X3221" description: @"Vallejo turn"
+                     direction: EastDirection
+                         start: [self endpointWithName: @"Port Costa WB"]
+                           end: [self endpointWithName: @"Cedar Frt"]];
+    [frt setAppearanceTime: [self scenarioTime: @"09:40"] departureTime: [self scenarioTime: @"09:50"] arrivalTime: [self scenarioTime: @"10:30"]];
     [array addObject: frt];
 
     self.all_trains = array;
