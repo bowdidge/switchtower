@@ -110,14 +110,6 @@ static char* cells =
     return self;
 }
 
-- (int) tileRows {
-    return TILE_ROWS;
-}
-
-- (int) tileColumns {
-    return TILE_COLUMNS;
-}
-
 - (const char*) rawTileString {
     return cells;
 }

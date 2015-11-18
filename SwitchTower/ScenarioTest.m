@@ -24,8 +24,8 @@
     TestScenario *s = [[TestScenario alloc] init];
     
     XCTAssertTrue([s validateTileString], @"");
-    XCTAssertEqual(2, [s tileRows], @"Wrong number for rows.");
-    XCTAssertEqual(5, [s tileColumns] , @"Wrong number for columns.");
+    XCTAssertEqual(2, s.tileRows, @"Wrong number for rows.");
+    XCTAssertEqual(5, s.tileColumns , @"Wrong number for columns.");
     XCTAssertEqualObjects(nil, [s endpointWithName: @"Foo"], @"wrong answer for non-existent name.");
     XCTAssertEqualObjects(@"LeftTop", [s endpointWithName: @"LeftTop"].name, @"Wrong name");
     XCTAssertEqual('-', [s cellAtTileX:0 Y:0], @"Wrong");

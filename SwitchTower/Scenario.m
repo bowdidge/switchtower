@@ -93,15 +93,6 @@
 static char* cells = "";
 
 
-- (int) tileRows {
-    return [self.tileStrings count];
-}
-
-- (int) tileColumns {
-    NSString *firstLine = [self.tileStrings objectAtIndex: 0];
-    return firstLine.length;
-}
-
 - (const char*) rawTileString {
     return cells;
 }
@@ -138,7 +129,11 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
 + (Scenario*) scenarioFromDict: (NSDictionary*) dict {
     Scenario *s = [[[Scenario alloc] init] autorelease];
     s.tileStrings = [dict objectForKey: @"Schematic"];
+    s.tileRows = [s.tileStrings count];
+    NSString *firstRow = [s.tileStrings objectAtIndex: 0];
+    s.tileColumns = [firstRow length];
     [s validateTileString];
+    
     s.scenarioName = [dict objectForKey: @"Name"];
     s.scenarioDescription = [dict objectForKey: @"Description"];
     NSDate *startingTime = [dict objectForKey: @"StartTime"];

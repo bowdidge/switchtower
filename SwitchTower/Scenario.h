@@ -37,8 +37,6 @@
 @interface Scenario : NSObject
 // Load scenario from plist.
 + (Scenario*) scenarioFromDict: (NSDictionary*) dict;
-- (int) tileRows;
-- (int) tileColumns;
 - (char) cellAtTileX: (int) x Y: (int) y;
 - (NamedPoint*) endpointWithName: (NSString*) name;
 - (NamedPoint*) endpointAtTileX: (int) x Y: (int) y;

@@ -256,8 +256,8 @@
     
     // TODO(bowdidge): Do calculations here to size correctly.
     self.scrollView.contentSize = CGSizeMake(1440, 768);
-    [self.layoutView setSizeInTilesX: [self.scenario tileColumns]
-                                   Y: [self.scenario tileRows]];
+    [self.layoutView setSizeInTilesX: self.scenario.tileColumns
+                                   Y: self.scenario.tileRows];
     if (!self.layoutModel) {
         LayoutModel *myLayoutModel = [[LayoutModel alloc] initWithScenario: scenario];
         self.layoutModel = myLayoutModel;

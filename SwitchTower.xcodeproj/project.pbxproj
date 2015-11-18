@@ -212,6 +212,7 @@
 			children = (
 				3E81D4AA18BA8429001989A3 /* AppDelegate.h */,
 				3E81D4AB18BA8429001989A3 /* AppDelegate.m */,
+				3E89F50F1BFC1DA900A27B64 /* Cell.h */,
 				3E96C4CC1BFA833400AF795F /* HelpViewController.h */,
 				3E96C4CD1BFA833400AF795F /* HelpViewController.m */,
 				3E81D4E218BA8544001989A3 /* Label.h */,
@@ -233,7 +234,6 @@
 				3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */,
 				3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */,
 				3E81D4FA18BA855A001989A3 /* Signal.h */,
-				3E89F50F1BFC1DA900A27B64 /* Cell.h */,
 				3E81D4FB18BA855A001989A3 /* Signal.m */,
 				3E41F4E418BC8BB30059B96B /* TimetableViewController.h */,
 				3E41F4E518BC8BB30059B96B /* TimetableViewController.m */,

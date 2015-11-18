@@ -399,8 +399,8 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 
     CGContextSetLineWidth(context, 10.0);
 
-    for (int y = 0; y < [self.scenario tileRows]; y++) {
-        for (int x = 0; x < [self.scenario tileColumns]; x++) {
+    for (int y = 0; y < self.scenario.tileRows; y++) {
+        for (int x = 0; x < self.scenario.tileColumns; x++) {
             int posX = LEFT_MARGIN + x * TILE_WIDTH;
             int posY = TOP_MARGIN  + y * TILE_HEIGHT;
             

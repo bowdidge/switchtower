@@ -39,7 +39,6 @@
 #import "FourthStreetScenario.h"
 #import "PenzanceScenario.h"
 
-#
 @interface MainWindowViewController ()
 
 @end
@@ -47,12 +46,11 @@
 @implementation MainWindowViewController
 
 // Look for all files that may be scenarios installed in the application.
-(NSArray*) FindScenarioFiles {
-    NSString *bundleRoot = [[NSBundle mainBundle] resourcePath];
+NSArray* FindScenarioFiles(NSString* bundleRoot) {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *dirContents = [fm contentsOfDirectoryAtPath:bundleRoot error:nil];
     NSPredicate *switchlistFilter = [NSPredicate predicateWithFormat:@"self ENDSWITH '.plist'"];
-    NSArray *scenarios = [dirContents filteredArrayUsingPredicate:switchlistFilter];
+    return [dirContents filteredArrayUsingPredicate:switchlistFilter];
 }
 
 - (void)viewDidLoad
@@ -62,8 +60,9 @@
 
     // Find what scenarios are installed.
     self.availableScenarios = [NSMutableArray array];
-    for (NSString *scenarioFile in FindScenarioFiles()) {
-        NSString *fullFilePath = [bundleRoot stringByAppendingPathComponent: scenarioFile]
+    NSString *bundleRoot = [[NSBundle mainBundle] resourcePath];
+    for (NSString *scenarioFile in FindScenarioFiles(bundleRoot)) {
+        NSString *fullFilePath = [bundleRoot stringByAppendingPathComponent: scenarioFile];
         NSMutableDictionary *scenarioDict = [NSMutableDictionary dictionaryWithContentsOfFile: fullFilePath];
         NSString *scenarioName = [scenarioDict objectForKey: @"Name"];
         NSString *scenarioDescription = [scenarioDict objectForKey: @"Description"];
