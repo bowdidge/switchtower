@@ -48,6 +48,7 @@
 		3E89F5111BFC4EF900A27B64 /* Diridon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E89F5101BFC4EF900A27B64 /* Diridon.plist */; };
 		3E89F5131BFC564800A27B64 /* SantaCruz.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E89F5121BFC564800A27B64 /* SantaCruz.plist */; };
 		3E89F5151BFC5F4800A27B64 /* FourthStreet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E89F5141BFC5F4800A27B64 /* FourthStreet.plist */; };
+		3E89F5181BFD32F600A27B64 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E89F5171BFD32F600A27B64 /* AlertView.m */; };
 		3E9383B118BC7621003354AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4AD18BA8429001989A3 /* Main.storyboard */; };
 		3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */; };
 		3E96C4CE1BFA833400AF795F /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E96C4CD1BFA833400AF795F /* HelpViewController.m */; };
@@ -134,6 +135,8 @@
 		3E89F5101BFC4EF900A27B64 /* Diridon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Diridon.plist; sourceTree = "<group>"; };
 		3E89F5121BFC564800A27B64 /* SantaCruz.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SantaCruz.plist; sourceTree = "<group>"; };
 		3E89F5141BFC5F4800A27B64 /* FourthStreet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FourthStreet.plist; sourceTree = "<group>"; };
+		3E89F5161BFD32F600A27B64 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		3E89F5171BFD32F600A27B64 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioTableCell.h; sourceTree = "<group>"; };
 		3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTableCell.m; sourceTree = "<group>"; };
 		3E96C4CC1BFA833400AF795F /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 		3E81D4A118BA8429001989A3 /* SwitchTower */ = {
 			isa = PBXGroup;
 			children = (
+				3E89F5161BFD32F600A27B64 /* AlertView.h */,
+				3E89F5171BFD32F600A27B64 /* AlertView.m */,
 				3E81D4AA18BA8429001989A3 /* AppDelegate.h */,
 				3E81D4AB18BA8429001989A3 /* AppDelegate.m */,
 				3E89F50F1BFC1DA900A27B64 /* Cell.h */,
@@ -432,6 +437,7 @@
 				3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */,
 				3E81D4FF18BA855A001989A3 /* Signal.m in Sources */,
 				3E81D4FE18BA855A001989A3 /* Scenario.m in Sources */,
+				3E89F5181BFD32F600A27B64 /* AlertView.m in Sources */,
 				3E81D4F318BA854B001989A3 /* NamedPoint.m in Sources */,
 				3E81D4AC18BA8429001989A3 /* AppDelegate.m in Sources */,
 				3E41F4E618BC8BB30059B96B /* TimetableViewController.m in Sources */,

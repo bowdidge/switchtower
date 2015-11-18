@@ -1,14 +1,13 @@
 Do today:
-[ ] Implement becomes.
-[ ] Convert remaining scenarios to plists.
-[ ] Allow use of comment in plist <key>comment</key><string>blah</key>
+[x] Implement becomes.
+[x] Convert remaining scenarios to plists.
 
 Polish / Bugs
 [ ] Better sounds.
 [ ] don't allow changing switch along route.'
 [ ] Reversing signal back to red clears all routes.
 [ ] Reverse X,y
-[ ] Reverse Diridon for correct west/east.w
+[X] Reverse Diridon for correct west/east.
 [x] Way to quit game.
 [x] Train reaching end isn't disappearing.
 [x] don't arrange new train at entry til old one goes.

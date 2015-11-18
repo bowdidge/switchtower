@@ -94,7 +94,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cc3-hD-qvV">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="550"/>
+                                <rect key="frame" x="0.0" y="28" width="1024" height="522"/>
                                 <color key="backgroundColor" red="0.84591697079999995" green="0.83576642339999996" blue="0.69325958030000001" alpha="1" colorSpace="deviceRGB"/>
                             </scrollView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" text="Trains" translatesAutoresizingMaskIntoConstraints="NO" id="duJ-1a-HcB">
@@ -148,6 +148,10 @@
                                     <segue destination="dme-9w-CBK" kind="modal" id="T6G-Wt-A7r"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4m-zJ-VIA" customClass="AlertView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
