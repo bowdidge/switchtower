@@ -194,6 +194,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         NSString *departureTimeStr = [trainDict objectForKey: @"DepartureTime"];
         NSString *arrivalTimeStr = [trainDict objectForKey: @"ArrivalTime"];
         NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];
+        NSArray *becomes = [trainDict objectForKey: @"Becomes"];
         enum TimetableDirection dir;
         if (ParseDirection(directionStr, &dir)) {
             // bad.
@@ -204,6 +205,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         tr.arrivalTime = [s scenarioTime: arrivalTimeStr];
         tr.onTimetable = [onTimetable boolValue];
         tr.currentState = Inactive;
+        tr.becomesTrains = becomes;
         [allTrains addObject: tr];
     }
     s.all_trains = allTrains;

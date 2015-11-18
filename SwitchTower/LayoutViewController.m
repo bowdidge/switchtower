@@ -128,8 +128,20 @@
     }
 
     for (Train *train in completedTrains) {
-        if (train.becomesTrains) {
+        if (train.becomesTrains && train.becomesTrains.count > 0) {
             // TODO(bowdidge): Look up each new train, place in simulation.
+            for (Train* newTrain in self.activeTrains) {
+                if ([newTrain.trainName isEqualToString: [train.becomesTrains objectAtIndex: 0]]) {
+                    newTrain.currentState = Waiting;
+                    newTrain.xPosition = train.xPosition;
+                    newTrain.yPosition = train.yPosition;
+                    [self.layoutModel addActiveTrain: newTrain];
+                    train.currentState = Complete;
+                    [self.layoutModel.activeTrains removeObject: train];
+                    [self.statusMessages addObject: [NSString stringWithFormat: @"Train %@ becomes %@", train.trainName, newTrain.trainName]];
+                    break;
+                }
+            }
         } else {
             train.currentState = Complete;
             [self.layoutModel.activeTrains removeObject: train];
