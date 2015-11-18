@@ -72,7 +72,7 @@
 - (void) nextTick: (id) sender {
     BOOL someTrainIsBlocked = NO;
     LayoutView *myLayoutView = (LayoutView*) self.layoutView;
-     myLayoutView.currentTime = [myLayoutView.currentTime dateByAddingTimeInterval: [scenario tickLengthInSeconds]];
+     myLayoutView.currentTime = [myLayoutView.currentTime dateByAddingTimeInterval: scenario.tickIntervalInSeconds];
     NSDate *currentTime = myLayoutView.currentTime;
     NSMutableArray *completedTrains = [NSMutableArray array];
     
@@ -128,18 +128,8 @@
     }
 
     for (Train *train in completedTrains) {
-        if (train.script) {
-            NSString *message = train.script.message;
-            NSDictionary *contextDict = [NSDictionary dictionaryWithObjectsAndKeys: currentTime, @"currentTime", nil];
-            
-            if (![train.script execute: train context: contextDict]) {
-                [self.layoutModel.activeTrains removeObject: train];
-                train.currentState = Complete;
-            } else {
-                [self.statusMessages addObject: message];
-                train.currentState = Waiting;
-            }
-            train.script = nil;
+        if (train.becomesTrains) {
+            // TODO(bowdidge): Look up each new train, place in simulation.
         } else {
             train.currentState = Complete;
             [self.layoutModel.activeTrains removeObject: train];
@@ -151,7 +141,7 @@
             // Start the train if it's after the appearance time,
             // *and* if the route through the cell hasn't yet been claimed
             // *and* there's no train already there.
-            if (([train.appearanceTime compare: currentTime] == NSOrderedAscending) &&
+            if (([[train.departureTime dateByAddingTimeInterval: -5 * 60] compare: currentTime] == NSOrderedAscending) &&
                 [self.layoutModel routeForCellX: train.startPoint.xPosition
                                         Y: train.startPoint.yPosition] == 0 &&
                 [self.layoutModel occupyingTrainAtX: train.startPoint.xPosition Y: train.startPoint.yPosition] == nil) {
@@ -176,7 +166,7 @@
         }
     }
     
-    currentTime = [currentTime dateByAddingTimeInterval: [self.scenario tickLengthInSeconds]];
+    currentTime = [currentTime dateByAddingTimeInterval: self.scenario.tickIntervalInSeconds];
 
     NSMutableString* trainDestinations = [NSMutableString string];
     NSDateFormatter *format = [[[NSDateFormatter alloc] init] autorelease];

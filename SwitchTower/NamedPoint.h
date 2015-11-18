@@ -30,10 +30,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Cell.h"
+
 // Place where a train starts or ends.
 @interface NamedPoint : NSObject
-- (id) initWithName: (NSString*) name X: (int) x Y: (int) y;
-+ (id) namedPointWithName: (NSString*) name X: (int) x Y: (int) y;
+- (id) initWithName: (NSString*) name position: (struct CellPosition) pos;
++ (id) namedPointWithName: (NSString*) name position: (struct CellPosition) pos;
 
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic) int xPosition;

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>San Jose Market Street Station</string>
+	<key>StartTime</key>
+	<date>1921-05-12T07:20:00Z</date>
+	<key>TickIntervalSecs</key>
+	<integer>30</integer>
+	<key>Description</key>
+	<string>Handle the comings and goings of the Southern Pacific's San Francisco->San Jose commute fleet in the early 1920's.  The setting here is SP's long-lost Market Street station, just north of downtown San Jose.  In this simulation, you'll need to thread long-distance trains past the two-track 1880's station.</string>
+	<key>Schematic</key>
+	<array>
+		<string>   --z                 </string>
+		<string>  --z \           Z--. </string>
+		<string>.Q--qp-p-Q-------Y     </string>
+		<string>.-pPQ-----pQ------r    </string>
+		<string>     \      W------r   </string>
+		<string>      W--           W. </string>
+		<string>                       </string>
+        </array>
+	<key>Endpoints</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>To SF</string>
+			<key>Location</key>
+			<string>0,2</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>From SF</string>
+			<key>Location</key>
+			<string>0,3</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Oakland</string>
+			<key>Location</key>
+			<string>21,1</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>LA</string>
+			<key>Location</key>
+			<string>21,5</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Coach Yard</string>
+			<key>Location</key>
+			<string>2,1</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Freight Yard</string>
+			<key>Location</key>
+			<string>3,0</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Santa Cruz</string>
+			<key>Location</key>
+			<string>8,5</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Market St. #1</string>
+			<key>Location</key>
+			<string>15,2</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Market St. #2</string>
+			<key>Location</key>
+			<string>15,3</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Market St. #3</string>
+			<key>Location</key>
+			<string>15,4</string>
+		</dict>
+	</array>
+	<key>Signals</key>
+	<array>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>21,5</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>21,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>15,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>15,3</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>15,4</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>15,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>15,3</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>15,4</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0,3</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>8,5</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>2,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>3,0</string>
+		</dict>
+	</array>
+	<key>Trains</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>75</string>
+			<key>Name</key>
+			<string>Lark</string>
+			<key>Description</key>
+			<string>Night train from Los Angeles.</string>
+			<key>Direction</key>
+			<string>West</string>
+			<key>DepartureEndpoint</key>
+			<string>LA</string>
+			<key>DepartureTime</key>
+			<string>07:20</string>
+			<key>ArrivalEndpoint</key>
+			<string>To SF</string>
+			<key>ArrivalTime</key>
+			<string>07:50</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Timetable</key>
+<dict><key>San Jose</key><string>7:35</string><key>San Francisco</key><string>8:32</string><key>Los Angeles</key><string>8:10</string></dict>
+			<key>Becomes</key>
+			<array/>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>98</string>
+			<key>Name</key>
+			<string>Morning Daylight</string>
+			<key>Description</key>
+			<string>First class train to Los Angeles</string>
+			<key>Direction</key>
+			<string>East</string>
+			<key>DepartureEndpoint</key>
+			<string>From SF</string>
+			<key>DepartureTime</key>
+			<string>09:00</string>
+			<key>ArrivalEndpoint</key>
+			<string>LA</string>
+			<key>ArrivalTime</key>
+			<string>9:20</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Becomes</key>
+			<array>
+			</array>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>111</string>
+			<key>Name</key>
+			<string>Commute</string>
+			<key>Description</key>
+			<string>Commute train to San Francisco</string>
+			<key>Direction</key>
+			<string>West</string>
+			<key>DepartureEndpoint</key>
+			<string>Market St. #2</string>
+			<key>DepartureTime</key>
+			<string>07:20</string>
+			<key>ArrivalEndpoint</key>
+			<string>To SF</string>
+			<key>ArrivalTime</key>
+			<string>7:40</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Becomes</key>
+			<array>
+			</array>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>430</string>
+			<key>Name</key>
+			<string>Freight</string>
+			<key>Description</key>
+			<string>Freight to Watsonville</string>
+			<key>Direction</key>
+			<string>East</string>
+			<key>DepartureEndpoint</key>
+			<string>From SF</string>
+			<key>DepartureTime</key>
+			<string>07:10</string>
+			<key>ArrivalEndpoint</key>
+			<string>LA</string>
+			<key>ArrivalTime</key>
+			<string>9:00</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Becomes</key>
+			<array>
+			</array>
+		</dict>
+	</array>
+    <key>Labels</key>
+    <dict>
+        <key>Market Street Station</key><string>15,6</string>
+        <key>College Park Yard</key><string>6,6</string>
+    </dict>
+</dict>
+</plist>

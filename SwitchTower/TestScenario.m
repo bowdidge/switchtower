@@ -8,30 +8,24 @@
 
 #import "TestScenario.h"
 
+#import "Cell.h"
 #import "NamedPoint.h"
 
 @implementation TestScenario
 - (id) init {
     self = [super init];
+    self.tileStrings = [NSArray arrayWithObjects: @"--q--", @"-/   ", nil];
+    self.tileRows = 2;
+    self.tileColumns = 5;
     NSMutableArray *eps = [NSMutableArray array];
-    [eps addObject: [NamedPoint namedPointWithName: @"LeftTop" X: 0 Y: 0]];
-    [eps addObject: [NamedPoint namedPointWithName: @"LeftBottom" X: 1 Y: 0]];
-    [eps addObject: [NamedPoint namedPointWithName: @"Right" X: 4 Y: 0]];
+    struct CellPosition left = {0,0};
+    struct CellPosition right = {4,0};
+    struct CellPosition left_bot = {1,0};
+    [eps addObject: [NamedPoint namedPointWithName: @"LeftTop" position: left]];
+    [eps addObject: [NamedPoint namedPointWithName: @"LeftBottom" position: left_bot]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Right" position: right]];
     self.all_endpoints = eps;
     return self;
-}
-
-- (int) tileRows {
-    return 2;
-}
-
-- (int) tileColumns {
-    return 5;
-}
-
-- (const char*) rawTileString {
-    return "--q--\n"
-    "-/   ";
 }
 
 @end
@@ -39,47 +33,31 @@
 @implementation InvalidScenario
 - (id) init {
     self = [super init];
-    NSMutableArray *eps = [NSMutableArray array];
-    [eps addObject: [NamedPoint namedPointWithName: @"Left" X: 0 Y: 0]];
-    [eps addObject: [NamedPoint namedPointWithName: @"Right" X: 4 Y: 0]];
+    self.tileStrings = [NSArray arrayWithObject: @"--//-"];
+    self.tileRows = 1;
+    self.tileColumns = 5;
+    struct CellPosition left = {0,0};
+    struct CellPosition right = {4,0};
+   NSMutableArray *eps = [NSMutableArray array];
+    [eps addObject: [NamedPoint namedPointWithName: @"Left" position: left]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Right" position: right]];
     self.all_endpoints = eps;
     return self;
 }
-
-- (int) tileRows {
-    return 1;
-}
-
-- (int) tileColumns {
-    return 5;
-}
-
-- (const char*) rawTileString {
-    return "--//-";
-}
-
 @end
 
 @implementation StraightScenario
 - (id) init {
     self = [super init];
+    self.tileStrings = [NSArray arrayWithObject: @"-----"];
+    self.tileRows = 1;
+    self.tileColumns = 5;
+    struct CellPosition left = {0,0};
+    struct CellPosition right = {4,0};
     NSMutableArray *eps = [NSMutableArray array];
-    [eps addObject: [NamedPoint namedPointWithName: @"Left" X: 0 Y: 0]];
-    [eps addObject: [NamedPoint namedPointWithName: @"Right" X: 4 Y: 0]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Left" position: left]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Right" position: right]];
     self.all_endpoints = eps;
     return self;
 }
-
-- (int) tileRows {
-    return 1;
-}
-
-- (int) tileColumns {
-    return 5;
-}
-
-- (const char*) rawTileString {
-    return "-----";
-}
-
 @end

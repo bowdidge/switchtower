@@ -168,15 +168,9 @@ static char* cells =
         // 7 minutes after departure time.  Should be at Shellmound within 15 min of leaving.
         train = [Train trainWithName: name description: desc
                            direction: direction
-                               start: [self endpointWithName: @"Oak Pier EB"] end: [self endpointWithName: @"Oak 16th 1"]];
-        [train setAppearanceTime: departureTime departureTime: [departureTime dateByAddingTimeInterval: 3 * 60] arrivalTime: [departureTime dateByAddingTimeInterval: 7 * 60]];
+                               start: [self endpointWithName: @"Oak Pier EB"] end: [self endpointWithName: @"Port Costa EB"]];
+        [train setDepartureTime: [departureTime dateByAddingTimeInterval: 3 * 60] arrivalTime: [departureTime dateByAddingTimeInterval: 7 * 60]];
         
-        train.script = [ChangeEndpoint changeEndpointTo: [self endpointWithName: @"Port Costa EB"]
-                                              direction: EastDirection
-                                                newName: name
-                                          departureTime: [departureTime dateByAddingTimeInterval: 7 * 60] minimumWaitTime: 2 expectedTime: [departureTime dateByAddingTimeInterval: 15 * 60]
-                                                message:
-                        [NSString stringWithFormat: @"Train %@ departing 16th St.", name]];
     } else if (direction == WestDirection) {
         // For an westbound train, the train should be called at time leaving Oakland Pier - 15,
         // arrive on the simulation within 5 min, and stop at 16th St. Oakland for 2 minutes
@@ -184,16 +178,8 @@ static char* cells =
         train = [Train trainWithName: name description: desc
                            direction: direction
                                start: [self endpointWithName: @"Port Costa WB"] end: [self endpointWithName: @"Oak 16th 2" ]];
-        [train setAppearanceTime: [departureTime dateByAddingTimeInterval: -15 * 60]
-                   departureTime: [departureTime dateByAddingTimeInterval: -12 * 60]
+        [train setDepartureTime: [departureTime dateByAddingTimeInterval: -12 * 60]
                      arrivalTime: [departureTime dateByAddingTimeInterval: -10 * 60]];
-        
-        train.script = [ChangeEndpoint changeEndpointTo: [self endpointWithName: @"Oak Pier WB"]
-                                              direction: WestDirection
-                                                newName: name
-                                          departureTime: [departureTime dateByAddingTimeInterval: -5 * 60] minimumWaitTime: 2 expectedTime: [departureTime dateByAddingTimeInterval: -2 * 60]
-                                                message:
-                        [NSString stringWithFormat: @"Train %@ departing 16th St.", name]];
     } else {
         return nil;
     }
@@ -280,8 +266,7 @@ static char* cells =
                            direction: WestDirection
                                start: [self endpointWithName: @"Santa Fe"]
                                  end: [self endpointWithName: @"Oak Pier WB"]];
-    [sf setAppearanceTime: [self scenarioTime: @"08:40" ]
-            departureTime: [self scenarioTime: @"08:45"]
+    [sf setDepartureTime: [self scenarioTime: @"08:45"]
               arrivalTime: [self scenarioTime: @"09:00"]];
     sf.onTimetable = true;
     [array addObject: sf];
@@ -290,42 +275,42 @@ static char* cells =
                             direction: WestDirection
                                 start: [self endpointWithName: @"Port Costa WB"]
                                   end: [self endpointWithName: @"Cedar Frt"]];
-    [frt setAppearanceTime: [self scenarioTime: @"7:35"] departureTime: [self scenarioTime: @"07:40"] arrivalTime: [self scenarioTime: @"08:20"]];
+    [frt setDepartureTime: [self scenarioTime: @"07:40"] arrivalTime: [self scenarioTime: @"08:20"]];
     [array addObject: frt];
     
     frt = [Train trainWithName: @"464" description: @"Freight"
                             direction: EastDirection
                                 start: [self endpointWithName: @"Cedar Frt"]
                                   end: [self endpointWithName: @"Port Costa EB"]];
-    [frt setAppearanceTime: [self scenarioTime: @"08:05"] departureTime: [self scenarioTime: @"08:10"] arrivalTime: [self scenarioTime: @"09:00"]];
+    [frt setDepartureTime: [self scenarioTime: @"08:10"] arrivalTime: [self scenarioTime: @"09:00"]];
     [array addObject: frt];
 
     frt = [Train trainWithName: @"X3921" description: @"Freight"
                      direction: EastDirection
                          start: [self endpointWithName: @"Cedar Frt"]
                            end: [self endpointWithName: @"Port Costa EB"]];
-    [frt setAppearanceTime: [self scenarioTime: @"8:45"] departureTime: [self scenarioTime: @"08:55"] arrivalTime: [self scenarioTime: @"09:30"]];
+    [frt setDepartureTime: [self scenarioTime: @"08:55"] arrivalTime: [self scenarioTime: @"09:30"]];
     [array addObject: frt];
     
     frt = [Train trainWithName: @"X2765" description: @"Richmond Switcher"
                             direction: WestDirection
                                 start: [self endpointWithName: @"Port Costa WB"]
                                   end: [self endpointWithName: @"Cedar Frt"]];
-    [frt setAppearanceTime: [self scenarioTime: @"09:10"] departureTime: [self scenarioTime: @"09:15"] arrivalTime: [self scenarioTime: @"10:00"]];
+    [frt setDepartureTime: [self scenarioTime: @"09:15"] arrivalTime: [self scenarioTime: @"10:00"]];
     [array addObject: frt];
 
     frt = [Train trainWithName: @"X3225" description: @"Santa Fe interchange"
                             direction: WestDirection
                                 start: [self endpointWithName: @"Port Costa WB"]
                                   end: [self endpointWithName: @"Cedar Frt"]];
-    [frt setAppearanceTime: [self scenarioTime: @"09:20"] departureTime: [self scenarioTime: @"09:30"] arrivalTime: [self scenarioTime: @"10:00"]];
+    [frt setDepartureTime: [self scenarioTime: @"09:30"] arrivalTime: [self scenarioTime: @"10:00"]];
     [array addObject: frt];
 
     frt = [Train trainWithName: @"X3221" description: @"Vallejo turn"
                      direction: EastDirection
                          start: [self endpointWithName: @"Port Costa WB"]
                            end: [self endpointWithName: @"Cedar Frt"]];
-    [frt setAppearanceTime: [self scenarioTime: @"09:40"] departureTime: [self scenarioTime: @"09:50"] arrivalTime: [self scenarioTime: @"10:30"]];
+    [frt setDepartureTime: [self scenarioTime: @"09:50"] arrivalTime: [self scenarioTime: @"10:30"]];
     [array addObject: frt];
 
     self.all_trains = array;

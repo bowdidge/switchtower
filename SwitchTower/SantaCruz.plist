@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>SP Santa Cruz branch</string>
+	<key>StartTime</key>
+	<date>1935-05-12T07:20:00Z</date>
+	<key>TickIntervalSecs</key>
+	<integer>30</integer>
+	<key>Description</key>
+	<string>Run trains across the Santa Cruz Mountains.</string>
+	<key>Schematic</key>
+	<array>
+		<string>                                               </string>
+		<string> --q-Q---q-Q-----q-Q---q-Q---q-Q---q--Q---q--- </string>
+		<string> -w   W-w   W- -w   W-w   W-w   W-w    W-w     </string>
+	</array>
+	<key>Endpoints</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>San Jose WB</string>
+			<key>Location</key>
+			<string>1,1</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>San Jose EB</string>
+			<key>Location</key>
+			<string>1,2</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Santa Cruz</string>
+			<key>Location</key>
+			<string>45,1</string>
+		</dict>
+	</array>
+	<key>Signals</key>
+	<array>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>45,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>1,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>7,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>7,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>7,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>7,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>13,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>13,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>13,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>13,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>21,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>21,1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>21,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>21,2</string>
+		</dict>
+	</array>
+	<key>Trains</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>31</string>
+			<key>Name</key>
+			<string>Santa Cruz Passenger</string>
+			<key>Description</key>
+			<string>Twice-daily run across t he mountain.</string>
+			<key>Direction</key>
+			<string>East</string>
+			<key>DepartureEndpoint</key>
+			<string>San Jose EB</string>
+			<key>DepartureTime</key>
+			<string>07:20</string>
+			<key>ArrivalEndpoint</key>
+			<string>Santa Cruz</string>
+			<key>ArrivalTime</key>
+			<string>09:10</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Timetable</key>
+			<dict>
+				<key>Campbell</key>
+				<string>7:40</string>
+				<key>Los Gatos</key>
+				<string>7:50</string>
+				<key>Alma</key>
+				<string>8:10</string>
+				<key>Glenwood</key>
+				<string>8:45</string>
+				<key>Santa Cruz</key>
+				<string>9:10</string>
+			</dict>
+			<key>Becomes</key>
+			<array/>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>X2765</string>
+			<key>Name</key>
+			<string>Santa Cruz Turn</string>
+			<key>Description</key>
+			<string>Freight across mountain</string>
+			<key>Direction</key>
+			<string>East</string>
+			<key>DepartureEndpoint</key>
+			<string>San Jose EB</string>
+			<key>DepartureTime</key>
+			<string>07:10</string>
+			<key>ArrivalEndpoint</key>
+			<string>Santa Cruz</string>
+			<key>ArrivalTime</key>
+			<string>15:00</string>
+			<key>OnTimetable</key>
+			<integer>0</integer>
+			<key>Becomes</key>
+			<array/>
+		</dict>
+	</array>
+	<key>Labels</key>
+	<dict>
+		<key>Campbell</key>
+		<string>4,3</string>
+		<key>Vasona Junction</key>
+		<string>14,4</string>
+		<key>Los Gatos</key>
+		<string>21,3</string>
+		<key>Alma</key>
+		<string>27,3</string>
+		<key>Glenwood</key>
+		<string>33,3</string>
+		<key>Felton</key>
+		<string>40,3</string>
+	</dict>
+</dict>
+</plist>

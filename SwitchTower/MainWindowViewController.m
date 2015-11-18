@@ -46,16 +46,31 @@
 
 @implementation MainWindowViewController
 
+// Look for all files that may be scenarios installed in the application.
+(NSArray*) FindScenarioFiles {
+    NSString *bundleRoot = [[NSBundle mainBundle] resourcePath];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *dirContents = [fm contentsOfDirectoryAtPath:bundleRoot error:nil];
+    NSPredicate *switchlistFilter = [NSPredicate predicateWithFormat:@"self ENDSWITH '.plist'"];
+    NSArray *scenarios = [dirContents filteredArrayUsingPredicate:switchlistFilter];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.scenarios = [NSMutableArray array];
-    [self.scenarios addObject: [[[DiridonScenario alloc] init] autorelease]];
-    [self.scenarios addObject: [[[ShellmoundScenario alloc] init] autorelease]];
-    [self.scenarios addObject: [[[FourthStreetScenario alloc] init] autorelease]];
-    [self.scenarios addObject: [[[SantaCruzScenario alloc] init] autorelease]];
-    [self.scenarios addObject: [[[PenzanceScenario alloc] init] autorelease]];
+
+    // Find what scenarios are installed.
+    self.availableScenarios = [NSMutableArray array];
+    for (NSString *scenarioFile in FindScenarioFiles()) {
+        NSString *fullFilePath = [bundleRoot stringByAppendingPathComponent: scenarioFile]
+        NSMutableDictionary *scenarioDict = [NSMutableDictionary dictionaryWithContentsOfFile: fullFilePath];
+        NSString *scenarioName = [scenarioDict objectForKey: @"Name"];
+        NSString *scenarioDescription = [scenarioDict objectForKey: @"Description"];
+        // Was it a scenario?
+        if (scenarioName == nil || scenarioDescription == nil) continue;
+        [self.availableScenarios addObject: [NSDictionary dictionaryWithObjectsAndKeys: scenarioName, @"Name", scenarioDescription, @"Description", fullFilePath, @"Filename", nil]];
+    }
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder  {
@@ -69,9 +84,11 @@
     LayoutViewController *vc = [segue destinationViewController];
 
     NSIndexPath *selectedScenarioRow = self.scenarioTable.indexPathForSelectedRow;
+    // Sanity: bail if any section other than 0.
     if ([selectedScenarioRow indexAtPosition: 0] != 0) return;
-    
-    Scenario *s = [self.scenarios objectAtIndex: [selectedScenarioRow indexAtPosition: 1]];
+    NSDictionary *scenario = [self.availableScenarios objectAtIndex: [selectedScenarioRow indexAtPosition: 1]];
+    NSDictionary *scenarioDict = [NSDictionary dictionaryWithContentsOfFile: [scenario objectForKey: @"Filename"]];
+    Scenario *s = [Scenario scenarioFromDict: scenarioDict];
     [vc setGame: s];
 }
 
@@ -84,7 +101,7 @@
 // How many rows in the scenario selection table?
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return [self.scenarios count];
+        return [self.availableScenarios count];
     }
     return 0;
 }
@@ -103,9 +120,9 @@
     // Only one section.
     if ([indexPath indexAtPosition: 0] != 0) return nil;
     
-    Scenario *s = [self.scenarios objectAtIndex: [indexPath indexAtPosition: 1]];
-    cell.scenarioNameLabel.text = s.scenarioName;
-    cell.scenarioDescriptionLabel.text = s.scenarioDescription;
+    NSDictionary *s = [self.availableScenarios objectAtIndex: [indexPath indexAtPosition: 1]];
+    cell.scenarioNameLabel.text = [s objectForKey: @"Name"];
+    cell.scenarioDescriptionLabel.text = [s objectForKey: @"Description"];;
     return cell;
 }
 

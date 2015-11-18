@@ -36,41 +36,6 @@
 @class LayoutView;
 @class Train;
 
-// Generic manipulation of a train.
-@interface TrainScript : NSObject {
-}
-// returns true if train should continue operating, or false to remove.
-- (BOOL) execute: (Train*) t context: (NSDictionary*) context;
-@property(nonatomic, retain) NSString *message;
-@end
-
-// TrainScript for changing the train's destination after it arrives at an endpoint.  Used
-// for reversing the train.
-@interface ChangeEndpoint : TrainScript {
-}
-+ (ChangeEndpoint*) changeEndpointTo: (NamedPoint*) ep direction: (enum TimetableDirection) direction
-                             newName: (NSString*) name
-                       departureTime: (NSDate*) departureTime minimumWaitTime: (int) minimumWaitTimeSecs
-                        expectedTime: (NSDate*) expectedTime message:( NSString*) msg;
-@property(nonatomic, retain) NSString* name;
-@property(nonatomic, retain) NamedPoint *expectedEndPoint;
-// Departure time is absolute earliest time to leave.
-@property(nonatomic, retain) NSDate* departureTime;
-// Minimum wait time if train late // in minutes.
-@property(nonatomic) int minimumWaitTime;
-// Next expected time.
-@property(nonatomic, retain) NSDate* expectedTime;
-@property(nonatomic) enum TimetableDirection direction;
-@end
-
-@interface SplitTrain : TrainScript {
-}
-// TODO(bowdidge): Fill in.
-// Should be like ChangeEndpoint: break train into two parts, each with its own direction, name, departure time,
-// and expected time. Could either have bothtrains occupy the same cell (and rely on one's motion to get rid of the
-// duplication) or place the trains on different cells.
-@end
-
 // TODO(bowdidge): Also need scripts for splitting a train into two (engine, cars), and another
 // for allowing something to sit for a very long time.
 enum TrainState {
@@ -88,7 +53,7 @@ enum TrainState {
 + (id) train;
 + (id) trainWithName: (NSString*) name description: (NSString*) description direction: (enum TimetableDirection) dir
                start: (NamedPoint*) start end: (NamedPoint*) end;
-- (void) setAppearanceTime: (NSDate*) appearanceTime departureTime: (NSDate*) departureTime arrivalTime: (NSDate*) arrivalTime;
+- (void) setDepartureTime: (NSDate*) departureTime arrivalTime: (NSDate*) arrivalTime;
 
 // Returns YES if train is at its starting location, which means the train hasn't moved.
 - (BOOL) isAtStartPosition;
@@ -105,13 +70,16 @@ enum TrainState {
 @property(nonatomic, retain) NamedPoint *expectedEndPoint;
 @property(nonatomic) enum TimetableDirection direction;
 @property(nonatomic) enum TrainState currentState;
-@property(nonatomic, retain) NSDate* appearanceTime;
+// Empty if train is started by another.
 @property(nonatomic, retain) NSDate* departureTime;
 // Expected time to arrive.  Used to decide if late.
 @property(nonatomic, retain) NSDate* arrivalTime;
 
 // Next steps.
-@property(nonatomic, retain) TrainScript *script;
+// List of trains that this should become when complete.
+@property(nonatomic, retain) NSArray *becomesTrains;
+@property(nonatomic, retain) NSArray *timetable;
+// TODO(bowdidge): Add schedule for passing particular stations.
 // True if train should appear in timetables.
 @property(nonatomic) BOOL onTimetable;
 @end

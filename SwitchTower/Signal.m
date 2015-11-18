@@ -33,11 +33,11 @@
 @implementation Signal
 
 // Creates a signal facing trafficDirection at cell (x,y).
-+ (id) signalControlling: (enum TimetableDirection) trafficDirection X: (int) x Y: (int) y {
++ (id) signalControlling: (enum TimetableDirection) trafficDirection position: (struct CellPosition) pos {
     Signal *theSignal = [[Signal alloc] init];
     theSignal.trafficDirection = trafficDirection;
-    theSignal.x = x;
-    theSignal.y = y;
+    theSignal.x = pos.x;
+    theSignal.y = pos.y;
     theSignal.isGreen = FALSE; 
     return [theSignal autorelease];
 }

@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Name</key>
+    <string>Oakland 16th Street Station</string>
+    <key>StartTime</key><date>1935-05-12T07:00:00Z</date>
+    <key>TickIntervalSecs</key><integer>30</integer>
+    <key>Description</key>
+    <string>Handle the trains coming and going from the Oakland Pier in the 1930's. The Oakland Pier was the center for SP passenger operations on the east shore of San Francisco Bay, but all trains needed to stop at Oakland's official 16th Street station.  Freight trains needed to pass around the station, then take a separate line down Cedar Street to access the freight yards.</string>
+    <key>Schematic</key>
+    <array>
+        <string>    Z----q-----Q-------Q----z   </string>
+        <string> .-P-qQ-Pq------pQ------pqQ--pq.</string>
+        <string> .-qP-QpPQ--z   Z-pQ---qP--pqP-.</string>
+        <string> .w    W--pz W-w Z--pQP----w    </string>
+        <string>            W---w     \         </string>
+        <string>                       W-.      </string>
+        <string>                                </string>
+    </array>
+    <key>Endpoints</key>
+      <array>
+          <dict>
+              <key>Name</key> <string>Port Costa EB</string>
+              <key>Location</key> <string>31,2</string>
+          </dict>
+          <dict>
+              <key>Name</key> <string>Port Costa WB</string>
+              <key>Location</key> <string>31, 1</string>
+          </dict>
+          <dict>
+              <key>Name</key> <string>Oak Pier EB</string>
+              <key>Location</key> <string>1,2</string>
+          </dict>
+          <dict>
+              <key>Name</key> <string>Oak Pier WB</string>
+              <key>Location</key> <string>1, 1</string>
+          </dict>
+          <dict>
+              <key>Name</key> <string>Cedar Frt</string>
+              <key>Location</key> <string>1,3</string>
+          </dict>
+          <dict>
+              <key>Name</key> <string>Oak 16th #1</string>
+              <key>Location</key> <string>14, 4</string>
+          </dict>
+          <dict>
+              <key>Name</key> <string>Oak 16th #2</string>
+              <key>Location</key> <string>14, 3</string>
+          </dict>
+          <dict>
+              <key>Name</key> <string>Santa Fe</string>
+              <key>Location</key> <string>25, 5</string>
+          </dict>
+       </array>
+    <key>Signals</key>
+      <array>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>31, 1</string>
+            </dict>
+          <dict>
+              <key>Direction</key><string>East</string>
+              <key>Location</key><string>1, 2</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>East</string>
+              <key>Location</key><string>1, 3</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>14, 3</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>East</string>
+              <key>Location</key><string>14, 3</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>14, 4</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>East</string>
+              <key>Location</key><string>14, 4</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>25, 5</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>11, 0</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>11, 1</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>11, 2</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>11, 3</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>West</string>
+              <key>Location</key><string>8, 3</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>East</string>
+              <key>Location</key><string>14, 0-</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>East</string>
+              <key>Location</key><string>15, 1</string>
+          </dict>
+          <dict>
+              <key>Direction</key><string>East</string>
+              <key>Location</key><string>15, 1</string>
+          </dict>
+       </array>
+    <key>Trains</key>
+	<array>
+		<dict>
+			<key>Identifier</key> <string>224</string>
+			<key>Name</key>	<string>Senator</string>
+			<key>Description</key>	<string>To Sacramento</string>
+			<key>Direction</key> <string>East</string>
+			<key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+			<key>DepartureTime</key> <string>07:56</string>
+			<key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+			<key>ArrivalTime</key> <string>08:08</string>
+			<key>Timetable</key>
+			<dict>
+				<key>Oak 16th</key>
+				<string>08:02</string>
+			</dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+           <key>Becomes</key>
+            <array></array>
+		</dict>
+        <dict>
+            <key>Identifier</key> <string>21</string>
+            <key>Name</key> <string>Pacific Limited</string>
+            <key>Description</key> <string>From Chicago</string>
+            <key>Direction</key> <string>West</string>
+            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>DepartureTime</key> <string>07:30</string>
+            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>ArrivalTime</key> <string>07:45</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>07:35</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+            <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>52</string>
+            <key>Name</key>	<string>San Joaquin Daylight</string>
+            <key>Description</key>	<string>To Bakersfield</string>
+            <key>Direction</key> <string>East</string>
+            <key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+            <key>DepartureTime</key> <string>08:25</string>
+            <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+            <key>ArrivalTime</key> <string>08:40</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>08:32</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+            <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>56</string>
+            <key>Name</key>	<string>Passenger</string>
+            <key>Description</key>	<string>To Tracy</string>
+            <key>Direction</key> <string>East</string>
+            <key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+            <key>DepartureTime</key> <string>08:25</string>
+            <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+            <key>ArrivalTime</key> <string>08:40</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>08:35</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+           <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>23</string>
+            <key>Name</key>	<string>Challenger</string>
+            <key>Description</key>	<string>From Chicago</string>
+            <key>Direction</key> <string>West</string>
+            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>DepartureTime</key> <string>07:35</string>
+            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>ArrivalTime</key> <string>07:48</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>07:46</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+            <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>19</string>
+            <key>Name</key>	<string>Klamath</string>
+            <key>Description</key>	<string>From Portland</string>
+            <key>Direction</key> <string>West</string>
+            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>DepartureTime</key> <string>07:40</string>
+            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>ArrivalTime</key> <string>07:55</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>07:46</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+           <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>57</string>
+            <key>Name</key>	<string>Owl</string>
+            <key>Description</key>	<string>Night train from Los Angeles</string>
+            <key>Direction</key> <string>West</string>
+            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>DepartureTime</key> <string>08:15</string>
+            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>ArrivalTime</key> <string>08:35</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>08:25</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+            <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>101</string>
+            <key>Name</key>	<string>City of San Francisco</string>
+            <key>Description</key>	<string>Streamliner from Chicago</string>
+            <key>Direction</key> <string>West</string>
+            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>DepartureTime</key> <string>08:40</string>
+            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>ArrivalTime</key> <string>09:00</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>08:50</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+            <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>247</string>
+            <key>Name</key>	<string>El Dorado</string>
+            <key>Description</key>	<string>Cheaper train from Chicago</string>
+            <key>Direction</key> <string>West</string>
+            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>DepartureTime</key> <string>09:23</string>
+            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>ArrivalTime</key> <string>09:38</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>09:30</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+            <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>28</string>
+            <key>Name</key>	<string>Overland Limited</string>
+            <key>Description</key>	<string>Streamliner from Chicago</string>
+            <key>Direction</key> <string>East</string>
+            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>DepartureTime</key> <string>11:45</string>
+            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>ArrivalTime</key> <string>12:01</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>11:52</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+           <key>Becomes</key>
+            <array></array>
+        </dict>
+        <dict>
+            <key>Identifier</key> <string>246</string>
+            <key>Name</key>	<string>Statesman</string>
+            <key>Description</key>	<string>To Sacramento</string>
+            <key>Direction</key> <string>East</string>
+            <key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+            <key>DepartureTime</key> <string>13:40</string>
+            <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+            <key>ArrivalTime</key> <string>14:00</string>
+            <key>Timetable</key>
+            <dict>
+                <key>Oak 16th</key>
+                <string>13:50</string>
+            </dict>
+            <key>OnTimetable</key><integer>1</integer>
+            <key>TimetableClass</key><integer>1</integer>
+            <key>Becomes</key>
+            <array></array>
+        </dict>
+            <dict>
+                <key>Identifier</key> <string>11</string>
+                <key>Name</key>	<string>Cascade</string>
+                <key>Description</key>	<string>Streamliner from Portland</string>
+                <key>Direction</key> <string>West</string>
+                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>DepartureTime</key> <string>10:30</string>
+                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>ArrivalTime</key> <string>10:50</string>
+                <key>Timetable</key>
+                <dict>
+                    <key>Oak 16th</key>
+                    <string>10:40</string>
+                </dict>
+                <key>OnTimetable</key><integer>1</integer>
+                <key>TimetableClass</key><integer>1</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>13</string>
+                <key>Name</key>	<string>Beaver</string>
+                <key>Description</key>	<string>Economy train from Portland</string>
+                <key>Direction</key> <string>West</string>
+                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>DepartureTime</key> <string>10:50</string>
+                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>ArrivalTime</key> <string>11:10</string>
+                <key>Timetable</key>
+                <dict>
+                    <key>Oak 16th</key>
+                    <string>11:00</string>
+                </dict>
+                <key>TimetableClass</key><integer>1</integer>
+                <key>OnTimetable</key><integer>1</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>27</string>
+                <key>Name</key>	<string>Overland Limited</string>
+                <key>Description</key>	<string>Streamliner from Chicago</string>
+                <key>Direction</key> <string>West</string>
+                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>DepartureTime</key> <string>14:00</string>
+                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>ArrivalTime</key> <string>14:20</string>
+                <key>Timetable</key>
+                <dict>
+                    <key>Oak 16th</key>
+                    <string>14:10</string>
+                </dict>
+                <key>OnTimetable</key><integer>1</integer>
+                <key>TimetableClass</key><integer>1</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>SF 1</string>
+                <key>Name</key>	<string>Super Chief</string>
+                <key>Description</key>	<string>Santa Fe's train to Chicago'</string>
+                <key>Direction</key> <string>West</string>
+                <key>DepartureEndpoint</key> <string>Santa Fe</string>
+                <key>DepartureTime</key> <string>08:45</string>
+                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>ArrivalTime</key> <string>09:00</string>
+                <key>OnTimetable</key><integer>1</integer>
+                <key>TimetableClass</key><integer>1</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>465</string>
+                <key>Name</key>	<string>Freight</string>
+                <key>Description</key>	<string>Freight from Port Costa</string>
+                <key>Direction</key> <string>West</string>
+                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>DepartureTime</key> <string>13:40</string>
+                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>ArrivalTime</key> <string>14:00</string>
+                <key>OnTimetable</key><integer>1</integer>
+                <key>TimetableClass</key><integer>3</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>464</string>
+                <key>Name</key>	<string>Freight</string>
+                <key>Description</key>	<string>Freight to Port Costa</string>
+                <key>Direction</key> <string>East</string>
+                <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                <key>DepartureTime</key> <string>09:00</string>
+                <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+                <key>ArrivalTime</key> <string>11:00</string>
+                <key>OnTimetable</key><integer>1</integer>
+                <key>TimetableClass</key><integer>3</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>X2765</string>
+                <key>Name</key>	<string>Freight</string>
+                <key>Description</key>	<string>Berkeley Switcher</string>
+                <key>Direction</key> <string>West</string>
+                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>DepartureTime</key> <string>07:40</string>
+                <key>ArrivalEndpoint</key> <string>Cedar Frt</string>
+                <key>ArrivalTime</key> <string>10:00</string>
+                <key>OnTimetable</key><integer>0</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>X3921</string>
+                <key>Name</key>	<string>Freight</string>
+                <key>Description</key>	<string>Freight</string>
+                <key>Direction</key> <string>East</string>
+                <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                <key>DepartureTime</key> <string>08:55</string>
+                <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+                <key>ArrivalTime</key> <string>09:50</string>
+                <key>OnTimetable</key><integer>0</integer>
+                <key>Becomes</key>
+                <array></array>
+            </dict>
+            <dict>
+                <key>Identifier</key> <string>X2722</string>
+                <key>Name</key>	<string>Freight</string>
+                <key>Description</key>	<string>Richmond Freight</string>
+                <key>Direction</key> <string>East</string>
+                <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                <key>DepartureTime</key> <string>09:15</string>
+                <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+                <key>ArrivalTime</key> <string>10:15</string>
+                <key>OnTimetable</key><integer>0</integer>
+                <key>Becomes</key>
+                <array></array>
+             </dict>
+                <dict>
+                    <key>Identifier</key> <string>X3225</string>
+                    <key>Name</key>	<string>Freight</string>
+                    <key>Description</key>	<string>Santa Fe Interchange</string>
+                    <key>Direction</key> <string>East</string>
+                    <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                    <key>DepartureTime</key> <string>09:30</string>
+                    <key>ArrivalEndpoint</key> <string>Santa Fe</string>
+                    <key>ArrivalTime</key> <string>10:50</string>
+                    <key>OnTimetable</key><integer>0</integer>
+                    <key>Becomes</key>
+                    <array></array>
+                </dict>
+                <dict>
+                    <key>Identifier</key> <string>X3221</string>
+                    <key>Name</key>	<string>Freight</string>
+                    <key>Description</key>	<string>Martinez turn</string>
+                    <key>Direction</key> <string>West</string>
+                    <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                    <key>DepartureTime</key> <string>09:50</string>
+                    <key>ArrivalEndpoint</key> <string>Cedar Frt</string>
+                    <key>ArrivalTime</key> <string>11:30</string>
+                    <key>OnTimetable</key><integer>0</integer>
+                    <key>Becomes</key>
+                    <array></array>
+                </dict>
+	</array>
+    <key>Labels</key>
+    <dict>
+        <key>16th Street Station</key><string>15, 6</string>
+        <key>Oak Pier Tower</key><string>1,5</string>
+        <key>Shellmound Tower</key><string>27, 5</string>
+    </dict>
+</dict>
+</plist>

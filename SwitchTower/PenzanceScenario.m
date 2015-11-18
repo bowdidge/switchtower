@@ -147,22 +147,19 @@ static char* cells =
     Train *hsr = [Train trainWithName: @"HSR Coaches" description: @"Paddington HSR"
                         direction: WestDirection
                             start: [self endpointWithName: @"Coach Yard"] end: [self endpointWithName: @"Pass-2"]];
-    [hsr setAppearanceTime: [departure dateByAddingTimeInterval: -50 * 60] departureTime: [departure dateByAddingTimeInterval: -30 * 60] arrivalTime: [departure dateByAddingTimeInterval: -10 * 60]];
-    hsr.script = [ChangeEndpoint changeEndpointTo:[self endpointWithName: @"Up"] direction:EastDirection newName:name departureTime:departure minimumWaitTime:10 expectedTime:[departure dateByAddingTimeInterval: 10 * 60] message: @"HSR loading"];
+    [hsr setDepartureTime: [departure dateByAddingTimeInterval: -30 * 60] arrivalTime: [departure dateByAddingTimeInterval: -10 * 60]];
+    hsr.becomesTrains = [NSArray arrayWithObject: @"HSR"];
+    // Create that train.
     return hsr;
 
 }
 
-- (ChangeEndpoint*) createGoToCoachYard {
-    return [ChangeEndpoint changeEndpointTo: [self endpointWithName: @"Coach Yard"] direction: EastDirection
-                                    newName: @"Empty" departureTime: [self scenarioTime: @"08:00"] minimumWaitTime: 0 expectedTime: [self scenarioTime: @"23:59"] message:@"Remove empty coaches"];
-}
 - (void) initTrains {
     NSMutableArray *allTrains = [NSMutableArray array];
     Train *train2 = [Train trainWithName: @"Truro-u" description:@"Commute"
                                direction: EastDirection
                                    start: [self endpointWithName: @"Pass-1"] end: [self endpointWithName: @"Up"]];
-    [train2 setAppearanceTime: [self scenarioTime: @"05:30"] departureTime: [self scenarioTime: @"06:00"] arrivalTime: [self scenarioTime: @"06:15"]];
+    [train2 setDepartureTime: [self scenarioTime: @"06:00"] arrivalTime: [self scenarioTime: @"06:15"]];
     [train2 setXPosition: 1];
     [train2 setYPosition: 0];
     [allTrains addObject: train2];
@@ -173,26 +170,26 @@ static char* cells =
     
     hsr = [self createOutgoingHSRWithName: @"HSR Padd" withDeparture: [self scenarioTime: @"00:00"]];
     hsr.startPoint = [self endpointWithName: @"Pass-2"];
-    [hsr setAppearanceTime: [self scenarioTime: @"05:30"] departureTime: [self scenarioTime: @"06:16"] arrivalTime: [self scenarioTime: @"06:30"]];
+    [hsr setDepartureTime: [self scenarioTime: @"06:16"] arrivalTime: [self scenarioTime: @"06:30"]];
   [allTrains addObject: hsr];
     
     train2 = [Train trainWithName: @"StErth" description: @""
                         direction: EastDirection
                             start: [self endpointWithName: @"Down"] end: [self endpointWithName: @"Pass-1"]];
-    [train2 setAppearanceTime: [self scenarioTime: @"05:40"] departureTime: [self scenarioTime: @"05:45"] arrivalTime: [self scenarioTime: @"05:50"]];
+    [train2 setDepartureTime: [self scenarioTime: @"05:45"] arrivalTime: [self scenarioTime: @"05:50"]];
     [allTrains addObject: train2];
     
     train2 = [Train trainWithName: @"Paddington" description: @""
                         direction: WestDirection
                             start: [self endpointWithName: @"Down"] end: [self endpointWithName: @"Pass-1"]];
-    [train2 setAppearanceTime: [self scenarioTime: @"06:20"] departureTime: [self scenarioTime: @"06:26"] arrivalTime: [self scenarioTime: @"06:35"]];
+    [train2 setDepartureTime: [self scenarioTime: @"06:26"] arrivalTime: [self scenarioTime: @"06:35"]];
     [allTrains addObject: train2];
     
     
     train2 = [Train trainWithName: @"Paddington" description: @""
                         direction: WestDirection
                             start: [self endpointWithName: @"Down"] end: [self endpointWithName: @"Pass-1"]];
-    [train2 setAppearanceTime: [self scenarioTime: @"06:20"] departureTime: [self scenarioTime: @"06:26"] arrivalTime: [self scenarioTime: @"06:35"]];
+    [train2 setDepartureTime: [self scenarioTime: @"06:26"] arrivalTime: [self scenarioTime: @"06:35"]];
     [allTrains addObject: train2];
     
     [allTrains addObject: [self createOutgoingHSRWithName: @"HSR Padd" withDeparture: [self scenarioTime: @"10:20"]]];
@@ -201,8 +198,8 @@ static char* cells =
     train2 = [Train trainWithName: @"Paddington" description:@""
                         direction: WestDirection
                             start: [self endpointWithName: @"Down"] end: [self endpointWithName: @"Pass-1"]];
-    [train2 setAppearanceTime: [self scenarioTime: @"06:50"] departureTime: [self scenarioTime: @"06:54"] arrivalTime: [self scenarioTime: @"07:05"]];
-    train2.script = [self createGoToCoachYard];
+    [train2 setDepartureTime: [self scenarioTime: @"06:54"] arrivalTime: [self scenarioTime: @"07:05"]];
+    train2.becomesTrains = [NSArray arrayWithObject: @"empty coaches"];
     [allTrains addObject: train2];
     
     

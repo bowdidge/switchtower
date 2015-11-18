@@ -62,8 +62,7 @@
     return train;
 }
 
-- (void) setAppearanceTime: (NSDate*) appearanceTime departureTime: (NSDate*) departureTime arrivalTime: (NSDate*) arrivalTime {
-    self.appearanceTime = appearanceTime;
+- (void) setDepartureTime: (NSDate*) departureTime arrivalTime: (NSDate*) arrivalTime {
     self.departureTime = departureTime;
     self.arrivalTime = arrivalTime;
 }
@@ -97,54 +96,3 @@
 @end
 
 
-// Object representing a manipulation of a train.
-@implementation TrainScript
-- (BOOL) execute: (Train*) train context: (NSDictionary*) context {
-    NSLog(@"Execute not implemented.");
-    return NO;
-}
-@synthesize message;
-@end
-
-@implementation ChangeEndpoint
-
-+ (ChangeEndpoint*) changeEndpointTo: (NamedPoint*) ep direction: (enum TimetableDirection) direction
-                             newName: (NSString*) name
-                       departureTime: (NSDate*) departureTime minimumWaitTime: (int) minimumWaitTime
-                        expectedTime: (NSDate*) expectedTime message: (NSString*) message {
-    ChangeEndpoint *change = [[[ChangeEndpoint alloc] init] autorelease];
-    change.expectedEndPoint = ep;
-    change.name = name;
-    change.direction = direction;
-    change.departureTime = departureTime;
-    change.minimumWaitTime = minimumWaitTime;
-    change.expectedTime = expectedTime;
-    change.message = message;
-    return change;
-}
-
-
-- (BOOL) execute: (Train*) train context: (NSDictionary*) context {
-    train.trainName = self.name;
-    train.startPoint = train.expectedEndPoint;
-    train.expectedEndPoint = expectedEndPoint;
-    train.direction = self.direction;
-    train.currentState = Waiting;
-    NSDate* currentTime = [context objectForKey: @"currentTime"];
-    train.appearanceTime = currentTime;
-    train.arrivalTime = self.expectedTime;
-    train.currentState = Waiting;
-    if ([currentTime compare: [train.departureTime dateByAddingTimeInterval: -1 * self.minimumWaitTime]] == NSOrderedAscending) {
-        train.departureTime = [currentTime dateByAddingTimeInterval: self.minimumWaitTime];
-    } else {
-        train.departureTime = self.departureTime;
-    }
-    
-    return YES;
-}
-
-@synthesize name;
-@synthesize direction;
-@synthesize departureTime;
-@synthesize expectedEndPoint;
-@end

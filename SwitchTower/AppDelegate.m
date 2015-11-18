@@ -41,6 +41,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    // Use GMT for all time calculations in SwitchList.  This avoids having to set the time zone in every formatter and Calendar.
+    [NSTimeZone setDefaultTimeZone: [NSTimeZone timeZoneForSecondsFromGMT: 0]];
     return YES;
 }
 							

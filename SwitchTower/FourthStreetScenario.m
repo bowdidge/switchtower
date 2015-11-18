@@ -137,23 +137,21 @@ static char* cells =
         train = [Train trainWithName: name description: @"Commute"
                            direction: EastDirection
                                start: fromSF end: station];
-        [train setAppearanceTime: [departureTime dateByAddingTimeInterval: -20 * 60] departureTime: [departureTime dateByAddingTimeInterval: -15 * 60] arrivalTime: departureTime];
-        
-        train.script = [ChangeEndpoint changeEndpointTo: engineService direction: WestDirection
-                                                newName: @"empty"
-                                          departureTime: [departureTime dateByAddingTimeInterval: 10 * 60]  minimumWaitTime: 5 expectedTime: [self scenarioTime: @"23:59"]
-                                                message:
-                        [NSString stringWithFormat: @"Engine for %@ needs to be serviced.", name]];
+        [train setDepartureTime: [departureTime dateByAddingTimeInterval: -15 * 60] arrivalTime: departureTime];
+        train.becomesTrains = [NSArray arrayWithObjects:
+                               [NSString stringWithFormat: @"cars from %@", name],
+                               [NSString stringWithFormat: @"engine from %@", name],
+                               nil];
+        // Create those trains.
+
     } else {
         train = [Train trainWithName: @"empty" description: @"Commute"
                            direction: EastDirection
                                start: engineService end: station];
         // have train ready 20 counts before.
-        [train setAppearanceTime: [departureTime dateByAddingTimeInterval: -35 * 60] departureTime: [departureTime dateByAddingTimeInterval: -25 * 60] arrivalTime: [departureTime dateByAddingTimeInterval: -15 * 60]];
-        train.script = [ChangeEndpoint changeEndpointTo: toSF direction: WestDirection
-                                                newName: name
-                                          departureTime: departureTime  minimumWaitTime: 5 expectedTime: [departureTime dateByAddingTimeInterval: 15 * 60]
-                                                message: name];
+        [train setDepartureTime: [departureTime dateByAddingTimeInterval: -25 * 60] arrivalTime: [departureTime dateByAddingTimeInterval: -15 * 60]];
+        train.becomesTrains = [NSArray arrayWithObject: name];
+        // Create those trains.
     }
     return train;
 }
@@ -167,15 +165,9 @@ static char* cells =
     Train *throughTrain = [Train trainWithName: name description: description direction: direction
                                          start: start
                                            end: [self endpointWithName: @"Market-3"]];
-    [throughTrain setAppearanceTime: [arrivalTime dateByAddingTimeInterval: -15 * 60]
-                      departureTime: [arrivalTime dateByAddingTimeInterval: -10 * 60]
+    [throughTrain setDepartureTime: [arrivalTime dateByAddingTimeInterval: -10 * 60]
                        arrivalTime: arrivalTime];
-    throughTrain.script = [ChangeEndpoint changeEndpointTo: end direction: direction
-                                                   newName: name
-                                             departureTime: [arrivalTime dateByAddingTimeInterval: 5 * 60]
-                                           minimumWaitTime: 5
-                                              expectedTime: [arrivalTime dateByAddingTimeInterval: 10 * 60]
-                                                   message: [NSString stringWithFormat: @"%@ loading.", description]];
+// Need passenger schedule.
     return throughTrain;
 }
 

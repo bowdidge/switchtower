@@ -35,7 +35,7 @@
 // MainWindowViewController handles the UI for the starting screen, including the scenario chooser.
 @interface MainWindowViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 // List of scenarios known to the game.
-@property (nonatomic, retain) NSMutableArray *scenarios;
+@property (nonatomic, retain) NSMutableArray *availableScenarios;
 // Table showing list of available games.
 @property (nonatomic, retain) IBOutlet UITableView *scenarioTable;
 @end

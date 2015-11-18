@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3E2A73381BF6D70400E3A886 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73371BF6D70400E3A886 /* PopoverController.m */; };
-		3E2A733B1BF7DC7D00E3A886 /* ShellmoundScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */; };
-		3E2A733F1BF90E1500E3A886 /* SantaCruzScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A733E1BF90E1400E3A886 /* SantaCruzScenario.m */; };
 		3E2A73411BF99A7D00E3A886 /* LayoutModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */; };
 		3E2A73441BF99ACE00E3A886 /* ScenarioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73431BF99ACE00E3A886 /* ScenarioTest.m */; };
 		3E2A73471BF99F9600E3A886 /* TestScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73461BF99F9600E3A886 /* TestScenario.m */; };
@@ -33,8 +31,6 @@
 		3E81D4DB18BA84F9001989A3 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4D318BA84F9001989A3 /* Default-Landscape~ipad.png */; };
 		3E81D4DC18BA84F9001989A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4D418BA84F9001989A3 /* Default.png */; };
 		3E81D4DD18BA84F9001989A3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4D518BA84F9001989A3 /* Default@2x.png */; };
-		3E81D4DE18BA84F9001989A3 /* DiridonScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4D718BA84F9001989A3 /* DiridonScenario.m */; };
-		3E81D4E118BA853B001989A3 /* FourthStreetScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4E018BA853B001989A3 /* FourthStreetScenario.m */; };
 		3E81D4EA18BA8544001989A3 /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4E318BA8544001989A3 /* Label.m */; };
 		3E81D4EB18BA8544001989A3 /* LayoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4E518BA8544001989A3 /* LayoutModel.m */; };
 		3E81D4EC18BA8544001989A3 /* LayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4E718BA8544001989A3 /* LayoutView.m */; };
@@ -42,13 +38,16 @@
 		3E81D4F218BA854B001989A3 /* MainWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4EF18BA854B001989A3 /* MainWindowViewController.m */; };
 		3E81D4F318BA854B001989A3 /* NamedPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4F118BA854B001989A3 /* NamedPoint.m */; };
 		3E81D4F518BA8552001989A3 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4F418BA8552001989A3 /* Notes */; };
-		3E81D4FD18BA855A001989A3 /* PenzanceScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4F718BA855A001989A3 /* PenzanceScenario.m */; };
 		3E81D4FE18BA855A001989A3 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4F918BA855A001989A3 /* Scenario.m */; };
 		3E81D4FF18BA855A001989A3 /* Signal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4FB18BA855A001989A3 /* Signal.m */; };
 		3E81D50018BA855A001989A3 /* startingChime.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4FC18BA855A001989A3 /* startingChime.wav */; };
 		3E81D50318BA8560001989A3 /* Train.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D50218BA8560001989A3 /* Train.m */; };
 		3E81D50618BA8567001989A3 /* wikipedia-tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D50418BA8567001989A3 /* wikipedia-tower.png */; };
 		3E81D50718BA8567001989A3 /* wikipedia-tower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D50518BA8567001989A3 /* wikipedia-tower.jpg */; };
+		3E89F50E1BFC0F8D00A27B64 /* Shellmound.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E89F50D1BFC0F8D00A27B64 /* Shellmound.plist */; };
+		3E89F5111BFC4EF900A27B64 /* Diridon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E89F5101BFC4EF900A27B64 /* Diridon.plist */; };
+		3E89F5131BFC564800A27B64 /* SantaCruz.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E89F5121BFC564800A27B64 /* SantaCruz.plist */; };
+		3E89F5151BFC5F4800A27B64 /* FourthStreet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E89F5141BFC5F4800A27B64 /* FourthStreet.plist */; };
 		3E9383B118BC7621003354AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E81D4AD18BA8429001989A3 /* Main.storyboard */; };
 		3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */; };
 		3E96C4CE1BFA833400AF795F /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E96C4CD1BFA833400AF795F /* HelpViewController.m */; };
@@ -71,7 +70,6 @@
 		3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellmoundScenario.m; path = ../ShellmoundScenario.m; sourceTree = "<group>"; };
 		3E2A733C1BF7DC9B00E3A886 /* ShellmoundScenario.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShellmoundScenario.h; sourceTree = "<group>"; };
 		3E2A733D1BF90E1400E3A886 /* SantaCruzScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaCruzScenario.h; sourceTree = "<group>"; };
-		3E2A733E1BF90E1400E3A886 /* SantaCruzScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaCruzScenario.m; sourceTree = "<group>"; };
 		3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutModelTest.m; sourceTree = "<group>"; };
 		3E2A73431BF99ACE00E3A886 /* ScenarioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTest.m; sourceTree = "<group>"; };
 		3E2A73451BF99F9500E3A886 /* TestScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScenario.h; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 		3E81D4D418BA84F9001989A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3E81D4D518BA84F9001989A3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3E81D4D618BA84F9001989A3 /* DiridonScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiridonScenario.h; sourceTree = "<group>"; };
-		3E81D4D718BA84F9001989A3 /* DiridonScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiridonScenario.m; sourceTree = "<group>"; };
 		3E81D4DF18BA853B001989A3 /* FourthStreetScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthStreetScenario.h; sourceTree = "<group>"; };
 		3E81D4E018BA853B001989A3 /* FourthStreetScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthStreetScenario.m; sourceTree = "<group>"; };
 		3E81D4E218BA8544001989A3 /* Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
@@ -132,6 +129,11 @@
 		3E81D50218BA8560001989A3 /* Train.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Train.m; sourceTree = "<group>"; };
 		3E81D50418BA8567001989A3 /* wikipedia-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wikipedia-tower.png"; sourceTree = "<group>"; };
 		3E81D50518BA8567001989A3 /* wikipedia-tower.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wikipedia-tower.jpg"; sourceTree = "<group>"; };
+		3E89F50D1BFC0F8D00A27B64 /* Shellmound.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Shellmound.plist; sourceTree = "<group>"; };
+		3E89F50F1BFC1DA900A27B64 /* Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		3E89F5101BFC4EF900A27B64 /* Diridon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Diridon.plist; sourceTree = "<group>"; };
+		3E89F5121BFC564800A27B64 /* SantaCruz.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SantaCruz.plist; sourceTree = "<group>"; };
+		3E89F5141BFC5F4800A27B64 /* FourthStreet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FourthStreet.plist; sourceTree = "<group>"; };
 		3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioTableCell.h; sourceTree = "<group>"; };
 		3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTableCell.m; sourceTree = "<group>"; };
 		3E96C4CC1BFA833400AF795F /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */,
 				3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */,
 				3E81D4FA18BA855A001989A3 /* Signal.h */,
+				3E89F50F1BFC1DA900A27B64 /* Cell.h */,
 				3E81D4FB18BA855A001989A3 /* Signal.m */,
 				3E41F4E418BC8BB30059B96B /* TimetableViewController.h */,
 				3E41F4E518BC8BB30059B96B /* TimetableViewController.m */,
@@ -289,15 +292,17 @@
 			isa = PBXGroup;
 			children = (
 				3E81D4D618BA84F9001989A3 /* DiridonScenario.h */,
-				3E81D4D718BA84F9001989A3 /* DiridonScenario.m */,
+				3E89F5101BFC4EF900A27B64 /* Diridon.plist */,
 				3E81D4DF18BA853B001989A3 /* FourthStreetScenario.h */,
 				3E81D4E018BA853B001989A3 /* FourthStreetScenario.m */,
+				3E89F5141BFC5F4800A27B64 /* FourthStreet.plist */,
 				3E81D4F618BA855A001989A3 /* PenzanceScenario.h */,
 				3E81D4F718BA855A001989A3 /* PenzanceScenario.m */,
 				3E2A733C1BF7DC9B00E3A886 /* ShellmoundScenario.h */,
 				3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */,
+				3E89F50D1BFC0F8D00A27B64 /* Shellmound.plist */,
 				3E2A733D1BF90E1400E3A886 /* SantaCruzScenario.h */,
-				3E2A733E1BF90E1400E3A886 /* SantaCruzScenario.m */,
+				3E89F5121BFC564800A27B64 /* SantaCruz.plist */,
 			);
 			name = Scenarios;
 			path = SwitchTower;
@@ -382,10 +387,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E89F5111BFC4EF900A27B64 /* Diridon.plist in Resources */,
 				3E9383B118BC7621003354AE /* Main.storyboard in Resources */,
 				3E81D4DB18BA84F9001989A3 /* Default-Landscape~ipad.png in Resources */,
 				3E81D4B418BA8429001989A3 /* Images.xcassets in Resources */,
 				3E81D4A618BA8429001989A3 /* InfoPlist.strings in Resources */,
+				3E89F50E1BFC0F8D00A27B64 /* Shellmound.plist in Resources */,
+				3E89F5131BFC564800A27B64 /* SantaCruz.plist in Resources */,
 				3E81D50718BA8567001989A3 /* wikipedia-tower.jpg in Resources */,
 				3E81D50618BA8567001989A3 /* wikipedia-tower.png in Resources */,
 				3E41F4E818BC9AAC0059B96B /* timetable.html in Resources */,
@@ -394,6 +402,7 @@
 				3E81D4D918BA84F9001989A3 /* click.wav in Resources */,
 				3E81D4F518BA8552001989A3 /* Notes in Resources */,
 				3E81D4D818BA84F9001989A3 /* blocked.wav in Resources */,
+				3E89F5151BFC5F4800A27B64 /* FourthStreet.plist in Resources */,
 				3E81D4DA18BA84F9001989A3 /* Default-568h@2x.png in Resources */,
 				3E81D50018BA855A001989A3 /* startingChime.wav in Resources */,
 			);
@@ -416,15 +425,11 @@
 			files = (
 				3E81D4EC18BA8544001989A3 /* LayoutView.m in Sources */,
 				3E81D4EA18BA8544001989A3 /* Label.m in Sources */,
-				3E2A733B1BF7DC7D00E3A886 /* ShellmoundScenario.m in Sources */,
 				3E2A73381BF6D70400E3A886 /* PopoverController.m in Sources */,
 				3E96C4CE1BFA833400AF795F /* HelpViewController.m in Sources */,
 				3E81D4B218BA8429001989A3 /* ViewController.m in Sources */,
 				3E81D50318BA8560001989A3 /* Train.m in Sources */,
 				3E96C4CB1BFA6F5900AF795F /* ScenarioTableCell.m in Sources */,
-				3E81D4DE18BA84F9001989A3 /* DiridonScenario.m in Sources */,
-				3E81D4E118BA853B001989A3 /* FourthStreetScenario.m in Sources */,
-				3E2A733F1BF90E1500E3A886 /* SantaCruzScenario.m in Sources */,
 				3E81D4FF18BA855A001989A3 /* Signal.m in Sources */,
 				3E81D4FE18BA855A001989A3 /* Scenario.m in Sources */,
 				3E81D4F318BA854B001989A3 /* NamedPoint.m in Sources */,
@@ -432,7 +437,6 @@
 				3E41F4E618BC8BB30059B96B /* TimetableViewController.m in Sources */,
 				3E81D4A818BA8429001989A3 /* main.m in Sources */,
 				3E81D4EB18BA8544001989A3 /* LayoutModel.m in Sources */,
-				3E81D4FD18BA855A001989A3 /* PenzanceScenario.m in Sources */,
 				3E81D4ED18BA8544001989A3 /* LayoutViewController.m in Sources */,
 				3E81D4F218BA854B001989A3 /* MainWindowViewController.m in Sources */,
 			);

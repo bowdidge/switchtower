@@ -211,7 +211,8 @@
     t.xPosition = 0;
     t.yPosition = 0;
     
-    Signal *sig = [Signal signalControlling: EastDirection X: 2 Y: 0];
+    struct CellPosition p = {2,0};
+    Signal *sig = [Signal signalControlling: EastDirection position: p];
     NSArray *signals = [NSArray arrayWithObject: sig];
     s.all_signals = signals;
     XCTAssertEqual(0, t.xPosition, @"");
@@ -238,7 +239,8 @@
     t.xPosition = 0;
     t.yPosition = 0;
     
-    Signal *sig = [Signal signalControlling: WestDirection X: 2 Y: 0];
+    struct CellPosition p = {2, 0};
+    Signal *sig = [Signal signalControlling: WestDirection position: p];
     NSArray *signals = [NSArray arrayWithObject: sig];
     s.all_signals = signals;
     XCTAssertEqual(0, t.xPosition, @"");

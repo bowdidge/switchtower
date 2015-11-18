@@ -32,6 +32,8 @@
 // "execute" button, much like a code button on a CTC machine.
 #import <Foundation/Foundation.h>
 
+#include "Cell.h"
+
 enum TimetableDirection {
     WestDirection,
     NoDirection, // for non-moving things like empty cars.
@@ -40,7 +42,7 @@ enum TimetableDirection {
 
 
 @interface Signal : NSObject
-+ (id) signalControlling: (enum TimetableDirection) trafficDirection X: (int) x Y: (int) y;
++ (id) signalControlling: (enum TimetableDirection) trafficDirection position: (struct CellPosition) pos;
 @property (nonatomic) int trafficDirection;
 @property (nonatomic) int isGreen;
 @property (nonatomic) int x;

@@ -30,6 +30,7 @@
 
 #import "Scenario.h"
 
+#import "Label.h"
 #import "NamedPoint.h"
 #import "Signal.h"
 #import "Train.h"
@@ -93,11 +94,12 @@ static char* cells = "";
 
 
 - (int) tileRows {
-    return TILE_ROWS;
+    return [self.tileStrings count];
 }
 
 - (int) tileColumns {
-    return TILE_COLUMNS;
+    NSString *firstLine = [self.tileStrings objectAtIndex: 0];
+    return firstLine.length;
 }
 
 - (const char*) rawTileString {
@@ -107,12 +109,113 @@ static char* cells = "";
 
 - (id) init {
     self = [super init];
-    self.tileStrings = [[NSString stringWithUTF8String: [self rawTileString]] componentsSeparatedByString: @"\n"];
-    [self validateTileString];
     self.scenarioName = @"Unset scenario name";
     self.scenarioDescription = @"Unset scenario description";
     return self;
 }
+
+BOOL ParsePosition(NSString* posString, struct CellPosition* pos) {
+    NSArray *components = [posString componentsSeparatedByString: @","];
+    if ([components count] != 2) {
+        return FALSE;
+    }
+    pos->x = [[components objectAtIndex: 0] intValue];
+    pos->y = [[components objectAtIndex: 1] intValue];
+    return TRUE;
+}
+
+BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
+    if ([directionStr isEqualToString: @"West"]) {
+        *dir = WestDirection;
+    } else if ([directionStr isEqualToString: @"East"]) {
+        *dir = EastDirection;
+    } else {
+        return false;
+    }
+    return true;
+}
+
++ (Scenario*) scenarioFromDict: (NSDictionary*) dict {
+    Scenario *s = [[[Scenario alloc] init] autorelease];
+    s.tileStrings = [dict objectForKey: @"Schematic"];
+    [s validateTileString];
+    s.scenarioName = [dict objectForKey: @"Name"];
+    s.scenarioDescription = [dict objectForKey: @"Description"];
+    NSDate *startingTime = [dict objectForKey: @"StartTime"];
+    s.startingTime = startingTime;
+    NSNumber *tickInterval = [dict objectForKey: @"TickIntervalSecs"];
+    s.tickIntervalInSeconds = [tickInterval intValue];
+    NSMutableArray *allLabels = [NSMutableArray array];
+    NSDictionary *labelDict = [dict objectForKey: @"Labels"];
+    for (NSString* labelName in [labelDict allKeys]) {
+        NSString* posString = [labelDict objectForKey: labelName];
+        struct CellPosition pos;
+        if (!ParsePosition(posString, &pos)) {
+                // Parsing problem.
+        }
+        [allLabels addObject: [Label labelWithString: labelName X: pos.x Y: pos.y]];
+    }
+    s.all_labels = allLabels;
+    
+    NSMutableArray *allSignals = [NSMutableArray array];
+    NSArray *signals = [dict objectForKey: @"Signals"];
+    for (NSDictionary* signalDict in signals) {
+        NSString *dirString = [signalDict objectForKey: @"Direction"];
+        enum TimetableDirection dir;
+        if (ParseDirection(dirString, &dir)) {
+            // bad.
+        }
+        NSString *posString = [signalDict objectForKey: @"Location"];
+        struct CellPosition pos;
+        if (!ParsePosition(posString, &pos)) {
+        }
+        Signal *s = [Signal signalControlling:dir position: pos];
+        [allSignals addObject: s];
+    }
+    s.all_signals = allSignals;
+
+    NSMutableArray *allEndpoints = [NSMutableArray array];
+    NSArray *endpoints = [dict objectForKey: @"Endpoints"];
+    for (NSDictionary *endpoint in endpoints) {
+        NSString* endpointName = [endpoint objectForKey: @"Name"];
+        NSString *endpointLocationStr = [endpoint objectForKey: @"Location"];
+        struct CellPosition pos;
+        if (!ParsePosition(endpointLocationStr, &pos)) {
+            // Parsing problem.
+        }
+        [allEndpoints addObject: [NamedPoint namedPointWithName: endpointName position: pos]];
+    }
+    s.all_endpoints = allEndpoints;
+    
+    NSMutableArray *allTrains = [NSMutableArray array];
+    NSArray *trains = [dict objectForKey: @"Trains"];
+    for (NSDictionary *trainDict in trains) {
+        NSString* trainIdentifier = [trainDict objectForKey: @"Identifier"];
+        NSString *trainName = [trainDict objectForKey: @"Name"];
+        NSString *trainDescription = [trainDict objectForKey: @"Description"];
+        NSString *directionStr = [trainDict objectForKey: @"Direction"];
+        NSString *departureEndpoint = [trainDict objectForKey: @"DepartureEndpoint"];
+        NSString *arrivalEndpoint = [trainDict objectForKey: @"ArrivalEndpoint"];
+        NSString *departureTimeStr = [trainDict objectForKey: @"DepartureTime"];
+        NSString *arrivalTimeStr = [trainDict objectForKey: @"ArrivalTime"];
+        NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];
+        enum TimetableDirection dir;
+        if (ParseDirection(directionStr, &dir)) {
+            // bad.
+        }
+
+        Train *tr = [Train trainWithName: trainIdentifier description: trainName direction: dir start: [s endpointWithName: departureEndpoint] end: [s endpointWithName: arrivalEndpoint]];
+        tr.departureTime = [s scenarioTime: departureTimeStr];
+        tr.arrivalTime = [s scenarioTime: arrivalTimeStr];
+        tr.onTimetable = [onTimetable boolValue];
+        tr.currentState = Inactive;
+        [allTrains addObject: tr];
+    }
+    s.all_trains = allTrains;
+    return s;
+}
+
+
 
 // Processes rawTileString, and sets self.tileStrings.  Returns false if raw tile string is invalid. 
 - (BOOL) validateTileString {
@@ -178,25 +281,20 @@ static char* cells = "";
     return [dateFormatter dateFromString: @"00:00"];
 }
 
-- (NSDate*) startingTime {
-    // Assume all scenarios start at 6:00 am.
-    // TODO(bowdidge): Fix time zone.
-    return [self scenarioTime: @"05:30"];
-}
-
-- (int) tickLengthInSeconds {
-    return 60;
-}
-
+// Calculates the NSDate for the time listed that is after the starting time for the session.  May wrap to next day.
 - (NSDate*) scenarioTime: (NSString*) timeString {
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setDateFormat:@"HH:mm"];
-
+    [dateFormatter setDateFormat: @"HH:mm"];
     NSDate* zeroDate = [dateFormatter dateFromString: @"00:00"];
     NSDate* date = [dateFormatter dateFromString: timeString];
     NSTimeInterval offset = [date timeIntervalSinceDate: zeroDate];
-    NSDate *returnValue = [[self zeroDate] dateByAddingTimeInterval: offset];
-    return returnValue;
+    NSDate *startOfDay =[[NSCalendar currentCalendar] startOfDayForDate: self.startingTime];
+    NSDate *result = [startOfDay dateByAddingTimeInterval: offset];
+    if ([result earlierDate: self.startingTime]) {
+        return result;
+    }
+    // Add an extra day - things wrapped.
+    return [result dateByAddingTimeInterval: 24 * 60 * 60];
 }
 
 
@@ -277,4 +375,5 @@ NSString* formattedDate(NSDate* date) {
 
 
 @synthesize all_endpoints;
+@synthesize startingTime;
 @end

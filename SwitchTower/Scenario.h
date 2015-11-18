@@ -35,15 +35,13 @@
 
 // Scenario hides all the details related to a particular switching game: track arrangement, signals, and trains.
 @interface Scenario : NSObject
+// Load scenario from plist.
++ (Scenario*) scenarioFromDict: (NSDictionary*) dict;
 - (int) tileRows;
 - (int) tileColumns;
 - (char) cellAtTileX: (int) x Y: (int) y;
 - (NamedPoint*) endpointWithName: (NSString*) name;
 - (NamedPoint*) endpointAtTileX: (int) x Y: (int) y;
-- (NSDate*) startingTime;
-
-// Number of seconds real-time per "tick" of the simulator.
-- (int) tickLengthInSeconds;
 
 // Returns an NSDate for the time provided in HH:mm:ss form.
 - (NSDate*) scenarioTime: (NSString*) timeString;
@@ -60,6 +58,8 @@
 // Name and description to show in the UI.
 @property (nonatomic, retain) NSString *scenarioName;
 @property (nonatomic, retain) NSString *scenarioDescription;
+@property (nonatomic, retain) NSDate *startingTime;
+@property (nonatomic) int tickIntervalInSeconds;
 
 @property (nonatomic, retain) NSArray *all_endpoints;
 @property (nonatomic, retain) NSArray *all_signals;
