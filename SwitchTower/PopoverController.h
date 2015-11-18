@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PopoverController : UIPopoverController
-@property (nonatomic, retain) IBOutlet UITextView *label;
+// DetailPopoverController provides a popover window to show information about a location on the screen.
+@interface DetailPopoverController : UIViewController
+@property (nonatomic, retain) IBOutlet UITextView *textView;
+@property(nonatomic, retain) NSString* message;
 @end

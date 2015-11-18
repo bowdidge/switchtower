@@ -289,6 +289,20 @@
 
 }
 
+// Handles a request to show details about a particular location on the track grid.
+- (void) showDetailMessage: (NSString*) msg atLayoutViewX: (float) x Y: (float) y {
+    UIScrollView *layoutScrollView = self.scrollView;
+    CGPoint upperLeft = layoutScrollView.contentOffset;
+    DetailPopoverController *popover = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
+    x -= upperLeft.x;
+    y -= upperLeft.y;
+    UINavigationController *modalNavigationController = [[UINavigationController alloc] initWithRootViewController:popover];
+    UIPopoverController *popoverControllerTemp = [[UIPopoverController alloc] initWithContentViewController:modalNavigationController];
+    self.popoverController = popoverControllerTemp;
+    [self.popoverController presentPopoverFromRect:CGRectMake(x, y, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    popover.message = msg;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

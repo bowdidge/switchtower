@@ -52,6 +52,7 @@
 
 - (BOOL) signalTouched: (Signal*) signal;
 - (BOOL) switchTouchedX: (int) cellX Y: (int) cellY;
+- (void) showDetailMessage: (NSString*) msg atLayoutViewX: (float) x Y: (float) y;
 
 - (IBAction) quitGame;
 
@@ -70,4 +71,7 @@
 @property(nonatomic, retain) IBOutlet UITextView *statusField;
 @property(nonatomic, retain) IBOutlet UILabel *timeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *scoreLabel;
+
+@property(nonatomic, retain) IBOutlet UIPopoverController *popoverController;
+
 @end

@@ -2,14 +2,14 @@ Polish / Bugs
 [ ] Better sounds.
 [x] Use table view for selecting initial game.
 [x] Way to quit game.
-[ ] Train reaching end isn't disappearing.
-[ ] don't arrange new train at entry til old one goes.
+[x] Train reaching end isn't disappearing.
+[x] don't arrange new train at entry til old one goes.
 [ ] don't allow changing switch along route.'
 [ ] Reversing signal back to red clears all routes.
 
 Game play
 [ ] Handle multiple step switching moves better.
-[ ] Improve one game (Diridon) for playability.
+[ ] Improve one game (Diridon?  16th Street?) for playability.
 [ ] Handle timetable for trains changing names.
 [ ] Detect illegal moves, and put up popover describing problem ("no freight trains on pass 2-4")
 [ ] Don't allow switch thrown under train.

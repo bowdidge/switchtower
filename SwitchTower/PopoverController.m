@@ -8,6 +8,9 @@
 
 #import "PopoverController.h"
 
-@implementation PopoverController
+@implementation DetailPopoverController
 
+- (void) viewDidLoad {
+    self.textView.text = self.message;
+}
 @end

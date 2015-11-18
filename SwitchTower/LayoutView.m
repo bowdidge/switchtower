@@ -429,7 +429,17 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     return str;
 }
 
-// Dispatches touches back to the main view to change view to the witchlist of interest.
+// Generates the text string used when user selects a train.
+- (NSString*) detailForTrain: (Train*) tr {
+    NSMutableString *result = [NSMutableString string];
+    [result appendFormat: @"%@: %@\n", tr.trainName, tr.trainDescription];
+    [result appendFormat: @"From '%@' to '%@'\n", tr.startPoint.name, tr.expectedEndPoint.name];
+    [result appendFormat: @"Train should be at destination by %@\n", formattedDate(tr.arrivalTime)];
+    [result appendFormat: @"\nDeeper text here.\n"];
+    return result;
+}
+
+// Handle actions by the user.
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInView: self];
@@ -455,6 +465,10 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     if ((tr = [self.self.layoutModel occupyingTrainAtX: cellX Y: cellY]) != nil) {
         // TODO(bowdidge): Pop up.
         NSLog(@"%@", [tr description]);
+        NSString *msg = [self detailForTrain: tr];
+        float x = LEFT_MARGIN + cellX * TILE_WIDTH - TILE_WIDTH/2;
+        float y = TOP_MARGIN + cellY * TILE_HEIGHT - TILE_HEIGHT / 2;
+        [self.controller showDetailMessage: msg atLayoutViewX: x Y: y];
     }
 }
 
