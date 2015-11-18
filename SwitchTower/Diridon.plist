@@ -5,13 +5,14 @@
 	<key>Name</key>
 	<string>San Jose Cahill Street</string>
 	<key>StartTime</key>
-	<date>1935-05-12T07:00:00Z</date>
+    <date>1935-05-12T05:30:00Z</date>
 	<key>TickIntervalSecs</key>
 	<integer>30</integer>
 	<key>Description</key>
 	<string>Handle the comings and goings of the Southern Pacific&apos;s San Francisco-&gt;San Jose commute fleet in the early 1950&apos;s.  In this simulation, you&apos;ll need to prepare trains for commute runs while leaving space to get long-distance passenger trains and freights through.</string>
 	<key>Schematic</key>
 	<array>
+        <!--    01234567890123456789012345678901234
 		<string>                  Z---             </string>
 		<string>          -z     R---z      \      </string>
 		<string>-z       T-z\   R---z WQ-----pQ----</string>
@@ -20,155 +21,179 @@
 		<string>-w   W-w         W---w    \\      </string>
 		<string>                           \W-     </string>
 		<string>                            W-     </string>
+        <string>              --z                   </string>
+        <string>      /      Z---r     Z-           </string>
+        <string>.---qP-----qw Z---r   /Z-t        Z.</string>
+        <string>.--P----qQP-qP-----pqPP-z        /  </string>
+        <string>.------PqqpPQ-----qP-----p-Q---qPQ-.</string>
+        <string>       //    W---w          W-w   W.</string>
+        <string>     -w/                            </string>
+        <string>     -w                             </string>
+         -->
+
+        <string>     -z                             </string>
+        <string>     -z\                            </string>
+        <string>       \\    Z---z          Z-z   Z.</string>
+        <string>.------QppqQP-----pQ-----q-P---pQP-.</string>
+        <string>.--Q----pPQ-pQ-----qpQQ-w        \  </string>
+        <string>.---pQ-----pz W---v   \W-t        W.</string>
+        <string>      \      W---v     W-           </string>
+        <string>              --w                   </string>
 	</array>
 	<key>Endpoints</key>
 	<array>
 		<dict>
-			<key>Name</key>
-			<string>From SF</string>
-			<key>Location</key>
-			<string>34,3</string>
+			<key>Name</key>	<string>From SF</string>
+			<key>Location</key>	<string>0,4</string>
 		</dict>
 		<dict>
-			<key>Name</key>
-			<string>From SF Frt</string>
-			<key>Location</key>
-			<string>34,2</string>
+			<key>Name</key>	<string>From SF Frt</string>
+			<key>Location</key>	<string>0,5</string>
 		</dict>
 		<dict>
-			<key>Name</key>
-			<string>To SF</string>
-			<key>Location</key>
-			<string>34,4</string>
+			<key>Name</key> <string>To SF</string>
+			<key>Location</key> <string>0,3</string>
 		</dict>
 		<dict>
-			<key>Name</key>
-			<string>To LA</string>
-			<key>Location</key>
-			<string>0,4</string>
+			<key>Name</key> <string>To LA</string>
+			<key>Location</key> <string>35,3</string>
 		</dict>
 		<dict>
 			<key>Name</key>
 			<string>From LA</string>
 			<key>Location</key>
-			<string>0,5</string>
+			<string>35,2</string>
 		</dict>
 		<dict>
 			<key>Name</key>
 			<string>Vasona Branch</string>
 			<key>Location</key>
-			<string>10,1</string>
+			<string>24,6</string>
 		</dict>
 		<dict>
 			<key>Name</key>
 			<string>Hillsdale Branch</string>
 			<key>Location</key>
-			<string>0,2</string>
+			<string>35,5</string>
 		</dict>
 		<dict>
 			<key>Name</key>
 			<string>Eng Service</string>
 			<key>Location</key>
-			<string>29,6</string>
+			<string>5,1</string>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Diridon #4</string>
+			<string>Cahill #4</string>
 			<key>Location</key>
-			<string>19,2</string>
+			<string>15,5</string>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Diridon #3</string>
+			<string>Cahill #3</string>
 			<key>Location</key>
-			<string>19,3</string>
+			<string>15,4</string>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Diridon #2</string>
+			<string>Cahill #2</string>
 			<key>Location</key>
-			<string>19,4</string>
+			<string>15,3</string>
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Diridon #1</string>
+			<string>Cahill #1</string>
 			<key>Location</key>
-			<string>19,5</string>
+			<string>15,2</string>
 		</dict>
 		<dict>
 			<key>Name</key>
 			<string>Mulford</string>
 			<key>Location</key>
-			<string>29,7</string>
+			<string>5,0</string>
 		</dict>
 		<dict>
 			<key>Name</key>
 			<string>Coach Yard</string>
 			<key>Location</key>
-			<string>21,0</string>
+			<string>13,7</string>
 		</dict>
 		<dict>
 			<key>Name</key>
 			<string>Lead</string>
 			<key>Location</key>
-			<string>9,2</string>
+			<string>25,5</string>
 		</dict>
 	</array>
 	<key>Signals</key>
 	<array>
 		<dict>
 			<key>Direction</key>
-			<string>East</string>
+			<string>West</string>
 			<key>Location</key>
-			<string>19,2</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>East</string>
-			<key>Location</key>
-			<string>19,3</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>East</string>
-			<key>Location</key>
-			<string>19,4</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>East</string>
-			<key>Location</key>
-			<string>19,5</string>
+			<string>15,5</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>19,2</string>
+			<string>15,4</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>19,3</string>
+			<string>15,3</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>19,4</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>West</string>
-			<key>Location</key>
-			<string>19,5</string>
+			<string>15,2</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>10, 1</string>
+			<string>15,5</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>15,4</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>15,3</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>15,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>24, 6</string>
+            <key>comment</key><string>Vasona entry</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>35,2</string>
+            <key>comment</key><string>LA entry</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>35,5</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -180,67 +205,57 @@
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>0,2</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>West</string>
-			<key>Location</key>
-			<string>34,2</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>West</string>
-			<key>Location</key>
-			<string>34,3</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>West</string>
-			<key>Location</key>
-			<string>11,3</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>West</string>
-			<key>Location</key>
-			<string>11,4</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>West</string>
-			<key>Location</key>
-			<string>6,4</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>West</string>
-			<key>Location</key>
-			<string>6,5</string>
+			<string>0,4</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>6,4</string>
+			<string>23,4</string>
+            <key>comment</key><string>EB San Jose Station</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>6,5</string>
+			<string>23,3</string>
+            <key>comment</key><string>EB San Jose Station</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>29,3</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>29,2</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>24,2</string>
+			<string>29,3</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>29,6</string>
+			<string>29,2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>10,5</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>5,1</string>
 		</dict>
 	</array>
 	<key>Trains</key>
@@ -253,7 +268,7 @@
 			<key>Description</key>
 			<string>Campbell Switcher</string>
 			<key>Direction</key>
-			<string>East</string>
+			<string>West</string>
 			<key>DepartureEndpoint</key>
 			<string>Vasona Branch</string>
 			<key>DepartureTime</key>
@@ -269,28 +284,243 @@
 		</dict>
 		<dict>
 			<key>Identifier</key>
-			<string>Eng 108</string>
+			<string>Eng 129</string>
 			<key>Name</key>
 			<string>light engine</string>
 			<key>Description</key>
-			<string>engine for #108</string>
+			<string>engine for #129</string>
 			<key>Direction</key>
-			<string>West</string>
+			<string>East</string>
 			<key>DepartureEndpoint</key>
 			<string>Eng Service</string>
 			<key>DepartureTime</key>
-			<string>07:05</string>
+            <string>05:30</string>
 			<key>ArrivalEndpoint</key>
-			<string>Diridon #3</string>
+			<string>Cahill #3</string>
 			<key>ArrivalTime</key>
-			<string>7:20</string>
+            <string>05:54</string>
 			<key>OnTimetable</key>
 			<integer>0</integer>
 			<key>Becomes</key>
 			<array>
-				<string>108</string>
+				<string>129</string>
 			</array>
 		</dict>
+        <dict>
+            <key>Identifier</key>
+            <string>129</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>Description</key>
+            <string>Commute train #129</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>DepartureEndpoint</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:04</string>
+            <key>ArrivalEndpoint</key>
+            <string>To SF</string>
+            <key>ArrivalTime</key>
+            <string>06:14</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Becomes</key>
+            <array/>
+        </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>Eng 131</string>
+            <key>Name</key>
+            <string>light engine</string>
+            <key>Description</key>
+            <string>engine for #131</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>DepartureEndpoint</key>
+            <string>Eng Service</string>
+            <key>DepartureTime</key>
+            <string>05:50</string>
+            <key>ArrivalEndpoint</key>
+            <string>Cahill #3</string>
+            <key>ArrivalTime</key>
+            <string>06:05</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Becomes</key>
+            <array>
+                <string>131</string>
+            </array>
+        </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>131</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>Description</key>
+            <string>Commute train #131</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>DepartureEndpoint</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:25</string>
+            <key>ArrivalEndpoint</key>
+            <string>To SF</string>
+            <key>ArrivalTime</key>
+            <string>6:35</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Becomes</key>
+            <array/>
+        </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>Eng 133</string>
+            <key>Name</key>
+            <string>light engine</string>
+            <key>Description</key>
+            <string>engine for #133</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>DepartureEndpoint</key>
+            <string>Eng Service</string>
+            <key>DepartureTime</key>
+            <string>05:55</string>
+            <key>ArrivalEndpoint</key>
+            <string>Cahill #3</string>
+            <key>ArrivalTime</key>
+            <string>06:20</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Becomes</key>
+            <array>
+                <string>133</string>
+            </array>
+        </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>133</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>Description</key>
+            <string>Commute train #133</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>DepartureEndpoint</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:30</string>
+            <key>ArrivalEndpoint</key>
+            <string>To SF</string>
+            <key>ArrivalTime</key>
+            <string>6:40</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Becomes</key>
+            <array/>
+        </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>Eng 135</string>
+            <key>Name</key>
+            <string>light engine</string>
+            <key>Description</key>
+            <string>engine for #135</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>DepartureEndpoint</key>
+            <string>Eng Service</string>
+            <key>DepartureTime</key>
+            <string>06:00</string>
+            <key>ArrivalEndpoint</key>
+            <string>Cahill #3</string>
+            <key>ArrivalTime</key>
+            <string>06:25</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Becomes</key>
+            <array>
+                <string>135</string>
+            </array>
+        </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>135</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>Description</key>
+            <string>Commute train #135</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>DepartureEndpoint</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:35</string>
+            <key>ArrivalEndpoint</key>
+            <string>To SF</string>
+            <key>ArrivalTime</key>
+            <string>6:45</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Becomes</key>
+            <array/>
+        </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>108</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>Description</key>
+            <string>Commute train #108</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>DepartureEndpoint</key>
+            <string>From SF</string>
+            <key>DepartureTime</key>
+            <string>06:30</string>
+            <key>ArrivalEndpoint</key>
+            <string>Cahill</string>
+            <key>ArrivalTime</key>
+            <string>6:40</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Becomes</key>
+            <array/>
+        </dict>
+        
+        <dict>
+            <key>Identifier</key>
+            <string>Eng 108</string>
+            <key>Name</key>
+            <string>light engine</string>
+            <key>Description</key>
+            <string>engine for #108</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>DepartureEndpoint</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:50</string>
+            <key>ArrivalEndpoint</key>
+            <string>Eng Service</string>
+            <key>ArrivalTime</key>
+            <string>07:30</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Becomes</key>
+            <array>
+                <string>133</string>
+            </array>
+        </dict>
+
 	</array>
+    <key>Labels</key>
+    <dict>
+        <key>Cahill St. Station</key><string>15, 1</string>
+        <key>Valbrick</key><string>24,7</string>
+        <key>College Park Tower</key><string>1, 7</string>
+    </dict>
+
 </dict>
 </plist>
