@@ -189,8 +189,8 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         NSString *trainName = [trainDict objectForKey: @"Name"];
         NSString *trainDescription = [trainDict objectForKey: @"Description"];
         NSString *directionStr = [trainDict objectForKey: @"Direction"];
-        NSString *departureEndpoint = [trainDict objectForKey: @"DepartureEndpoint"];
-        NSString *arrivalEndpoint = [trainDict objectForKey: @"ArrivalEndpoint"];
+        NSString *departureEndpoint = [trainDict objectForKey: @"Departs"];
+        NSString *arrivalEndpoint = [trainDict objectForKey: @"Arrives"];
         NSString *departureTimeStr = [trainDict objectForKey: @"DepartureTime"];
         NSString *arrivalTimeStr = [trainDict objectForKey: @"ArrivalTime"];
         NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];

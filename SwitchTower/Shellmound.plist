@@ -127,9 +127,9 @@
 			<key>Name</key>	<string>Senator</string>
 			<key>Description</key>	<string>To Sacramento</string>
 			<key>Direction</key> <string>East</string>
-			<key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+			<key>Departs</key> <string>Oak Pier EB</string>
 			<key>DepartureTime</key> <string>07:56</string>
-			<key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+			<key>Arrives</key> <string>Port Costa EB</string>
 			<key>ArrivalTime</key> <string>08:08</string>
 			<key>Timetable</key>
 			<dict>
@@ -146,9 +146,9 @@
             <key>Name</key> <string>Pacific Limited</string>
             <key>Description</key> <string>From Chicago</string>
             <key>Direction</key> <string>West</string>
-            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>07:30</string>
-            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>Arrives</key> <string>Oak Pier WB</string>
             <key>ArrivalTime</key> <string>07:45</string>
             <key>Timetable</key>
             <dict>
@@ -165,9 +165,9 @@
             <key>Name</key>	<string>San Joaquin Daylight</string>
             <key>Description</key>	<string>To Bakersfield</string>
             <key>Direction</key> <string>East</string>
-            <key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+            <key>Departs</key> <string>Oak Pier EB</string>
             <key>DepartureTime</key> <string>08:25</string>
-            <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+            <key>Arrives</key> <string>Port Costa EB</string>
             <key>ArrivalTime</key> <string>08:40</string>
             <key>Timetable</key>
             <dict>
@@ -184,9 +184,9 @@
             <key>Name</key>	<string>Passenger</string>
             <key>Description</key>	<string>To Tracy</string>
             <key>Direction</key> <string>East</string>
-            <key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+            <key>Departs</key> <string>Oak Pier EB</string>
             <key>DepartureTime</key> <string>08:25</string>
-            <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+            <key>Arrives</key> <string>Port Costa EB</string>
             <key>ArrivalTime</key> <string>08:40</string>
             <key>Timetable</key>
             <dict>
@@ -203,9 +203,9 @@
             <key>Name</key>	<string>Challenger</string>
             <key>Description</key>	<string>From Chicago</string>
             <key>Direction</key> <string>West</string>
-            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>07:35</string>
-            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>Arrives</key> <string>Oak Pier WB</string>
             <key>ArrivalTime</key> <string>07:48</string>
             <key>Timetable</key>
             <dict>
@@ -222,9 +222,9 @@
             <key>Name</key>	<string>Klamath</string>
             <key>Description</key>	<string>From Portland</string>
             <key>Direction</key> <string>West</string>
-            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>07:40</string>
-            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>Arrives</key> <string>Oak Pier WB</string>
             <key>ArrivalTime</key> <string>07:55</string>
             <key>Timetable</key>
             <dict>
@@ -241,9 +241,9 @@
             <key>Name</key>	<string>Owl</string>
             <key>Description</key>	<string>Night train from Los Angeles</string>
             <key>Direction</key> <string>West</string>
-            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>08:15</string>
-            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>Arrives</key> <string>Oak Pier WB</string>
             <key>ArrivalTime</key> <string>08:35</string>
             <key>Timetable</key>
             <dict>
@@ -260,9 +260,9 @@
             <key>Name</key>	<string>City of San Francisco</string>
             <key>Description</key>	<string>Streamliner from Chicago</string>
             <key>Direction</key> <string>West</string>
-            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>08:40</string>
-            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>Arrives</key> <string>Oak Pier WB</string>
             <key>ArrivalTime</key> <string>09:00</string>
             <key>Timetable</key>
             <dict>
@@ -279,9 +279,9 @@
             <key>Name</key>	<string>El Dorado</string>
             <key>Description</key>	<string>Cheaper train from Chicago</string>
             <key>Direction</key> <string>West</string>
-            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>09:23</string>
-            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>Arrives</key> <string>Oak Pier WB</string>
             <key>ArrivalTime</key> <string>09:38</string>
             <key>Timetable</key>
             <dict>
@@ -298,9 +298,9 @@
             <key>Name</key>	<string>Overland Limited</string>
             <key>Description</key>	<string>Streamliner from Chicago</string>
             <key>Direction</key> <string>East</string>
-            <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+            <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>11:45</string>
-            <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+            <key>Arrives</key> <string>Oak Pier WB</string>
             <key>ArrivalTime</key> <string>12:01</string>
             <key>Timetable</key>
             <dict>
@@ -317,9 +317,9 @@
             <key>Name</key>	<string>Statesman</string>
             <key>Description</key>	<string>To Sacramento</string>
             <key>Direction</key> <string>East</string>
-            <key>DepartureEndpoint</key> <string>Oak Pier EB</string>
+            <key>Departs</key> <string>Oak Pier EB</string>
             <key>DepartureTime</key> <string>13:40</string>
-            <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+            <key>Arrives</key> <string>Port Costa EB</string>
             <key>ArrivalTime</key> <string>14:00</string>
             <key>Timetable</key>
             <dict>
@@ -336,9 +336,9 @@
                 <key>Name</key>	<string>Cascade</string>
                 <key>Description</key>	<string>Streamliner from Portland</string>
                 <key>Direction</key> <string>West</string>
-                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>10:30</string>
-                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>Arrives</key> <string>Oak Pier WB</string>
                 <key>ArrivalTime</key> <string>10:50</string>
                 <key>Timetable</key>
                 <dict>
@@ -355,9 +355,9 @@
                 <key>Name</key>	<string>Beaver</string>
                 <key>Description</key>	<string>Economy train from Portland</string>
                 <key>Direction</key> <string>West</string>
-                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>10:50</string>
-                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>Arrives</key> <string>Oak Pier WB</string>
                 <key>ArrivalTime</key> <string>11:10</string>
                 <key>Timetable</key>
                 <dict>
@@ -374,9 +374,9 @@
                 <key>Name</key>	<string>Overland Limited</string>
                 <key>Description</key>	<string>Streamliner from Chicago</string>
                 <key>Direction</key> <string>West</string>
-                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>14:00</string>
-                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>Arrives</key> <string>Oak Pier WB</string>
                 <key>ArrivalTime</key> <string>14:20</string>
                 <key>Timetable</key>
                 <dict>
@@ -393,9 +393,9 @@
                 <key>Name</key>	<string>Super Chief</string>
                 <key>Description</key>	<string>Santa Fe's train to Chicago'</string>
                 <key>Direction</key> <string>West</string>
-                <key>DepartureEndpoint</key> <string>Santa Fe</string>
+                <key>Departs</key> <string>Santa Fe</string>
                 <key>DepartureTime</key> <string>08:45</string>
-                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>Arrives</key> <string>Oak Pier WB</string>
                 <key>ArrivalTime</key> <string>09:00</string>
                 <key>OnTimetable</key><integer>1</integer>
                 <key>TimetableClass</key><integer>1</integer>
@@ -407,9 +407,9 @@
                 <key>Name</key>	<string>Freight</string>
                 <key>Description</key>	<string>Freight from Port Costa</string>
                 <key>Direction</key> <string>West</string>
-                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>13:40</string>
-                <key>ArrivalEndpoint</key> <string>Oak Pier WB</string>
+                <key>Arrives</key> <string>Oak Pier WB</string>
                 <key>ArrivalTime</key> <string>14:00</string>
                 <key>OnTimetable</key><integer>1</integer>
                 <key>TimetableClass</key><integer>3</integer>
@@ -421,9 +421,9 @@
                 <key>Name</key>	<string>Freight</string>
                 <key>Description</key>	<string>Freight to Port Costa</string>
                 <key>Direction</key> <string>East</string>
-                <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                <key>Departs</key> <string>Cedar Frt</string>
                 <key>DepartureTime</key> <string>09:00</string>
-                <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+                <key>Arrives</key> <string>Port Costa EB</string>
                 <key>ArrivalTime</key> <string>11:00</string>
                 <key>OnTimetable</key><integer>1</integer>
                 <key>TimetableClass</key><integer>3</integer>
@@ -435,9 +435,9 @@
                 <key>Name</key>	<string>Freight</string>
                 <key>Description</key>	<string>Berkeley Switcher</string>
                 <key>Direction</key> <string>West</string>
-                <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>07:40</string>
-                <key>ArrivalEndpoint</key> <string>Cedar Frt</string>
+                <key>Arrives</key> <string>Cedar Frt</string>
                 <key>ArrivalTime</key> <string>10:00</string>
                 <key>OnTimetable</key><integer>0</integer>
                 <key>Becomes</key>
@@ -448,9 +448,9 @@
                 <key>Name</key>	<string>Freight</string>
                 <key>Description</key>	<string>Freight</string>
                 <key>Direction</key> <string>East</string>
-                <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                <key>Departs</key> <string>Cedar Frt</string>
                 <key>DepartureTime</key> <string>08:55</string>
-                <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+                <key>Arrives</key> <string>Port Costa EB</string>
                 <key>ArrivalTime</key> <string>09:50</string>
                 <key>OnTimetable</key><integer>0</integer>
                 <key>Becomes</key>
@@ -461,9 +461,9 @@
                 <key>Name</key>	<string>Freight</string>
                 <key>Description</key>	<string>Richmond Freight</string>
                 <key>Direction</key> <string>East</string>
-                <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                <key>Departs</key> <string>Cedar Frt</string>
                 <key>DepartureTime</key> <string>09:15</string>
-                <key>ArrivalEndpoint</key> <string>Port Costa EB</string>
+                <key>Arrives</key> <string>Port Costa EB</string>
                 <key>ArrivalTime</key> <string>10:15</string>
                 <key>OnTimetable</key><integer>0</integer>
                 <key>Becomes</key>
@@ -474,9 +474,9 @@
                     <key>Name</key>	<string>Freight</string>
                     <key>Description</key>	<string>Santa Fe Interchange</string>
                     <key>Direction</key> <string>East</string>
-                    <key>DepartureEndpoint</key> <string>Cedar Frt</string>
+                    <key>Departs</key> <string>Cedar Frt</string>
                     <key>DepartureTime</key> <string>09:30</string>
-                    <key>ArrivalEndpoint</key> <string>Santa Fe</string>
+                    <key>Arrives</key> <string>Santa Fe</string>
                     <key>ArrivalTime</key> <string>10:50</string>
                     <key>OnTimetable</key><integer>0</integer>
                     <key>Becomes</key>
@@ -487,9 +487,9 @@
                     <key>Name</key>	<string>Freight</string>
                     <key>Description</key>	<string>Martinez turn</string>
                     <key>Direction</key> <string>West</string>
-                    <key>DepartureEndpoint</key> <string>Port Costa WB</string>
+                    <key>Departs</key> <string>Port Costa WB</string>
                     <key>DepartureTime</key> <string>09:50</string>
-                    <key>ArrivalEndpoint</key> <string>Cedar Frt</string>
+                    <key>Arrives</key> <string>Cedar Frt</string>
                     <key>ArrivalTime</key> <string>11:30</string>
                     <key>OnTimetable</key><integer>0</integer>
                     <key>Becomes</key>

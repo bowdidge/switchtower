@@ -135,11 +135,11 @@
 			<string>Twice-daily run across t he mountain.</string>
 			<key>Direction</key>
 			<string>East</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>San Jose EB</string>
 			<key>DepartureTime</key>
 			<string>07:20</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>Santa Cruz</string>
 			<key>ArrivalTime</key>
 			<string>09:10</string>
@@ -170,11 +170,11 @@
 			<string>Freight across mountain</string>
 			<key>Direction</key>
 			<string>East</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>San Jose EB</string>
 			<key>DepartureTime</key>
 			<string>07:10</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>Santa Cruz</string>
 			<key>ArrivalTime</key>
 			<string>15:00</string>

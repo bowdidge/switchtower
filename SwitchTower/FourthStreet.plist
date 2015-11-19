@@ -169,11 +169,11 @@
 			<string>Night train from Los Angeles.</string>
 			<key>Direction</key>
 			<string>West</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>LA</string>
 			<key>DepartureTime</key>
 			<string>07:20</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>To SF</string>
 			<key>ArrivalTime</key>
 			<string>07:50</string>
@@ -193,11 +193,11 @@
 			<string>First class train to Los Angeles</string>
 			<key>Direction</key>
 			<string>East</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>From SF</string>
 			<key>DepartureTime</key>
 			<string>09:00</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>LA</string>
 			<key>ArrivalTime</key>
 			<string>9:20</string>
@@ -216,11 +216,11 @@
 			<string>Commute train to San Francisco</string>
 			<key>Direction</key>
 			<string>West</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>Market St. #2</string>
 			<key>DepartureTime</key>
 			<string>07:20</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>To SF</string>
 			<key>ArrivalTime</key>
 			<string>7:40</string>
@@ -239,11 +239,11 @@
 			<string>Freight to Watsonville</string>
 			<key>Direction</key>
 			<string>East</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>From SF</string>
 			<key>DepartureTime</key>
 			<string>07:10</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>LA</string>
 			<key>ArrivalTime</key>
 			<string>9:00</string>

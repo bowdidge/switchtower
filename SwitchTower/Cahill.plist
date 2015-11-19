@@ -269,11 +269,11 @@
 			<string>Campbell Switcher</string>
 			<key>Direction</key>
 			<string>West</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>Vasona Branch</string>
 			<key>DepartureTime</key>
 			<string>07:05</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>Mulford</string>
 			<key>ArrivalTime</key>
 			<string>10:00</string>
@@ -291,11 +291,11 @@
 			<string>engine for #129</string>
 			<key>Direction</key>
 			<string>East</string>
-			<key>DepartureEndpoint</key>
+			<key>Departs</key>
 			<string>Eng Service</string>
 			<key>DepartureTime</key>
             <string>05:30</string>
-			<key>ArrivalEndpoint</key>
+			<key>Arrives</key>
 			<string>Cahill #3</string>
 			<key>ArrivalTime</key>
             <string>05:54</string>
@@ -315,11 +315,11 @@
             <string>Commute train #129</string>
             <key>Direction</key>
             <string>West</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string></string>
             <key>DepartureTime</key>
             <string>06:04</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>To SF</string>
             <key>ArrivalTime</key>
             <string>06:14</string>
@@ -337,11 +337,11 @@
             <string>engine for #131</string>
             <key>Direction</key>
             <string>East</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string>Eng Service</string>
             <key>DepartureTime</key>
             <string>05:50</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>Cahill #3</string>
             <key>ArrivalTime</key>
             <string>06:05</string>
@@ -361,11 +361,11 @@
             <string>Commute train #131</string>
             <key>Direction</key>
             <string>West</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string></string>
             <key>DepartureTime</key>
             <string>06:25</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>To SF</string>
             <key>ArrivalTime</key>
             <string>6:35</string>
@@ -383,11 +383,11 @@
             <string>engine for #133</string>
             <key>Direction</key>
             <string>East</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string>Eng Service</string>
             <key>DepartureTime</key>
             <string>05:55</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>Cahill #3</string>
             <key>ArrivalTime</key>
             <string>06:20</string>
@@ -407,11 +407,11 @@
             <string>Commute train #133</string>
             <key>Direction</key>
             <string>West</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string></string>
             <key>DepartureTime</key>
             <string>06:30</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>To SF</string>
             <key>ArrivalTime</key>
             <string>6:40</string>
@@ -429,11 +429,11 @@
             <string>engine for #135</string>
             <key>Direction</key>
             <string>East</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string>Eng Service</string>
             <key>DepartureTime</key>
             <string>06:00</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>Cahill #3</string>
             <key>ArrivalTime</key>
             <string>06:25</string>
@@ -453,11 +453,11 @@
             <string>Commute train #135</string>
             <key>Direction</key>
             <string>West</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string></string>
             <key>DepartureTime</key>
             <string>06:35</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>To SF</string>
             <key>ArrivalTime</key>
             <string>6:45</string>
@@ -475,11 +475,11 @@
             <string>Commute train #108</string>
             <key>Direction</key>
             <string>East</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string>From SF</string>
             <key>DepartureTime</key>
             <string>06:30</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>Cahill</string>
             <key>ArrivalTime</key>
             <string>6:40</string>
@@ -498,11 +498,11 @@
             <string>engine for #108</string>
             <key>Direction</key>
             <string>West</string>
-            <key>DepartureEndpoint</key>
+            <key>Departs</key>
             <string></string>
             <key>DepartureTime</key>
             <string>06:50</string>
-            <key>ArrivalEndpoint</key>
+            <key>Arrives</key>
             <string>Eng Service</string>
             <key>ArrivalTime</key>
             <string>07:30</string>
