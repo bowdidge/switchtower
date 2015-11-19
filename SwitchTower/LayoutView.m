@@ -403,7 +403,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
             Train *occupyingTrain = [self.layoutModel occupyingTrainAtCell: pos];
             if (occupyingTrain != nil) {
                 [self drawTrainLabelInContext:context center: CGPointMake(centerX, centerY)
-                                 message: occupyingTrain.trainName];
+                                 message: occupyingTrain.trainNumber];
             }
         }
     }
@@ -418,7 +418,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 
 - (NSString*) popoverDescriptionForTrain: (Train*) tr{
     NSMutableString *str = [NSMutableString string];
-    [str appendFormat: @"%@ %@\n", tr.trainName, tr.trainDescription];
+    [str appendFormat: @"%@ %@\n", tr.trainNumber, tr.trainDescription];
     [str appendFormat: @"Leaving %@ at %@ for %@", tr.startPoint.name, formattedDate(tr.departureTime), [tr endPointsAsText]];
     return str;
 }
@@ -426,10 +426,10 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 // Generates the text string used when user selects a train.
 - (NSString*) detailForTrain: (Train*) tr {
     NSMutableString *result = [NSMutableString string];
-    [result appendFormat: @"%@: %@\n", tr.trainName, tr.trainDescription];
+    [result appendFormat: @"%@: %@\n", tr.trainNumber, tr.trainDescription];
     [result appendFormat: @"From '%@' to '%@'\n", tr.startPoint.name, [tr endPointsAsText]];
     [result appendFormat: @"Train should be at destination by %@\n", formattedDate(tr.arrivalTime)];
-    [result appendFormat: @"\nDeeper text here.\n"];
+    [result appendString: [tr longDescription]];
     return result;
 }
 

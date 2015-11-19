@@ -216,8 +216,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
                 NSLog(@"Unknown start point %@ in train %@", departureEndpoint, trainName);
             }
         }
-        Train *tr = [Train trainWithName: trainIdentifier description: trainName direction: dir start: startPoint ends: endpoints];
+        Train *tr = [Train trainWithNumber: trainIdentifier description: trainName direction: dir start: startPoint ends: endpoints];
         tr.departureTime = [s scenarioTime: departureTimeStr];
+        tr.longDescription = trainDescription;
         tr.arrivalTime = [s scenarioTime: arrivalTimeStr];
         tr.onTimetable = [onTimetable boolValue];
         tr.currentState = Inactive;
@@ -341,14 +342,14 @@ NSString* formattedDate(NSDate* date) {
     NSMutableArray *westTrains = [NSMutableArray array];
     for (Train *tr in self.all_trains) {
         if (tr.onTimetable && tr.direction == EastDirection) {
-            [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainName, tr.trainDescription];
+            [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainNumber, tr.trainDescription];
             [eastTrains addObject: tr];
         }
     }
     [result appendFormat: @"<td class='stationname'></td>" ];
     for (Train *tr in self.all_trains) {
         if (tr.onTimetable && tr.direction == WestDirection) {
-            [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainName, tr.trainDescription];
+            [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainNumber, tr.trainDescription];
             [westTrains addObject: tr];
         }
     }

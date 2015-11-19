@@ -40,7 +40,7 @@
 
 - (id) init {
     self = [super init];
-    self.trainName = @"";
+    self.trainNumber = @"";
     self.trainDescription = @"";
     self.position = MakeCellPosition(-1, -1);
     self.currentLayout = nil;
@@ -50,11 +50,11 @@
     return self;
 }
 
-+ (id) trainWithName: (NSString*) name description: (NSString*) description
++ (id) trainWithNumber: (NSString*) trainNumber description: (NSString*) description
            direction: (enum TimetableDirection) dir
                start: (NamedPoint*) start ends: (NSArray*) ends {
     Train *train = [[[Train alloc] init] autorelease];
-    train.trainName = name;
+    train.trainNumber = trainNumber;
     train.trainDescription = description;
     train.direction = dir;
     train.startPoint = start;
@@ -91,11 +91,11 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat: @"<Train: %@ %@ first end=%@ state=%d>", self.trainName, self.trainDescription, [[self.expectedEndPoints objectAtIndex: 0] name], self.currentState];
+    return [NSString stringWithFormat: @"<Train: %@ %@ first end=%@ state=%d>", self.trainNumber, self.trainDescription, [[self.expectedEndPoints objectAtIndex: 0] name], self.currentState];
 }
 
 
-@synthesize trainName;
+@synthesize trainNumber;
 @synthesize trainDescription;
 @synthesize position;
 @synthesize direction;

@@ -103,11 +103,11 @@
         if (currentNamedPoint && [train isAtEndPosition]) {
             NSString* msg;
             if ([currentTime compare: train.arrivalTime] == NSOrderedAscending) {
-                msg = [NSString stringWithFormat: @"%@ arrived on time.\n", train.trainName];
+                msg = [NSString stringWithFormat: @"%@ arrived on time.\n", train.trainNumber];
                 self.layoutView.score += 2;
             } else {
                 NSTimeInterval delta = [currentTime timeIntervalSinceDate: train.arrivalTime];
-                msg = [NSString stringWithFormat: @"train %@ arrived %.2f minutes late\n", train.trainName, delta / 60];
+                msg = [NSString stringWithFormat: @"train %@ arrived %.2f minutes late\n", train.trainNumber, delta / 60];
                 self.layoutView.score -= 1;
             }
             [self.statusMessages addObject: msg];
@@ -115,7 +115,7 @@
         } else if ([self.layoutModel isEndPoint: train.position] &&
                    [train isAtEndPosition] == NO) {
             NSString* message = [NSString stringWithFormat: @"Train %@ exited at %@, not at %@\n",
-                                 train.trainName, currentNamedPoint.name,
+                                 train.trainNumber, currentNamedPoint.name,
                                  [[train.expectedEndPoints objectAtIndex: 0] name] ];
             self.layoutView.score -= 5;
             [self.statusMessages addObject: message];
@@ -131,13 +131,13 @@
         if (train.becomesTrains && train.becomesTrains.count > 0) {
             // TODO(bowdidge): Look up each new train, place in simulation.
             for (Train* newTrain in self.activeTrains) {
-                if ([newTrain.trainName isEqualToString: [train.becomesTrains objectAtIndex: 0]]) {
+                if ([newTrain.trainNumber isEqualToString: [train.becomesTrains objectAtIndex: 0]]) {
                     newTrain.currentState = Waiting;
                     newTrain.position = train.position;
                     [self.layoutModel addActiveTrain: newTrain];
                     train.currentState = Complete;
                     [self.layoutModel.activeTrains removeObject: train];
-                    [self.statusMessages addObject: [NSString stringWithFormat: @"Train %@ becomes %@", train.trainName, newTrain.trainName]];
+                    [self.statusMessages addObject: [NSString stringWithFormat: @"Train %@ becomes %@", train.trainNumber, newTrain.trainNumber]];
                     break;
                 }
             }
@@ -161,7 +161,7 @@
                 [self.layoutModel addActiveTrain: train];
                 // TODO(bowdidge): Text should be "approaching" for endpoints beyond railroad,
                 // "waiting" for intermediate endpoints.
-                NSString* message = [NSString stringWithFormat: @"Train %@ approaching %@.\n", train.trainName, train.startPoint.name];
+                NSString* message = [NSString stringWithFormat: @"Train %@ approaching %@.\n", train.trainNumber, train.startPoint.name];
                 [self.statusMessages addObject: message];
                 AudioServicesPlaySystemSound(chimeStartingSound);
 
@@ -169,7 +169,7 @@
         } else if (train.currentState == Waiting) {
             if ([train.departureTime compare: currentTime] == NSOrderedAscending) {
                 train.currentState = Running;
-                NSString *message = [NSString stringWithFormat: @"Train %@ is ready to leave %@.\n", train.trainName, train.startPoint.name];
+                NSString *message = [NSString stringWithFormat: @"Train %@ is ready to leave %@.\n", train.trainNumber, train.startPoint.name];
                 [self.statusMessages addObject: message];
             }
         }
@@ -183,10 +183,10 @@
 
     for (Train* train in self.activeTrains) {
         if (train.currentState == Running) {
-            NSString *trainName = train.trainName;
+            NSString *trainName = train.trainNumber;
             [trainDestinations appendFormat: @"%@: bound for:%@  due: %@\n", trainName, [train endPointsAsText], formattedDate(train.arrivalTime)];
         } else if (train.currentState == Waiting) {
-            NSString *trainName = train.trainName;
+            NSString *trainName = train.trainNumber;
            [trainDestinations appendFormat: @"%@: ready in %@.  bound for:%@  due: %@\n",
             trainName, formattedTimeInterval([train.departureTime timeIntervalSinceDate: currentTime]), [train endPointsAsText], formattedDate(train.arrivalTime)];
             
