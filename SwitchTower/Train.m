@@ -30,6 +30,7 @@
 
 #import "Train.h"
 
+#import "Cell.h"
 #import "NamedPoint.h"
 
 @implementation Train
@@ -41,8 +42,7 @@
     self = [super init];
     self.trainName = @"";
     self.trainDescription = @"";
-    self.xPosition = -1;
-    self.yPosition = -1;
+    self.position = MakeCellPosition(-1, -1);
     self.currentLayout = nil;
     self.direction = WestDirection;
     self.expectedEndPoint = nil;
@@ -68,16 +68,8 @@
 }
 
 
-- (void) setLocationX: (int) x Y: (int) y {
-    if ((self.xPosition == x) && (self.yPosition == y)) {
-        return;
-    }
-    self.xPosition = x;
-    self.yPosition = y;
-}
-
 - (BOOL) isAtStartPosition {
-    return self.xPosition == self.startPoint.xPosition && self.yPosition == self.startPoint.yPosition;
+    return self.position.x == self.startPoint.position.x && self.position.y == self.startPoint.position.y;
 }
 
 - (NSString*) description {
@@ -87,8 +79,7 @@
 
 @synthesize trainName;
 @synthesize trainDescription;
-@synthesize xPosition;
-@synthesize yPosition;
+@synthesize position;
 @synthesize direction;
 @synthesize expectedEndPoint;
 @synthesize onTimetable;

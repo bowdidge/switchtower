@@ -36,8 +36,7 @@
 + (id) signalControlling: (enum TimetableDirection) trafficDirection position: (struct CellPosition) pos {
     Signal *theSignal = [[Signal alloc] init];
     theSignal.trafficDirection = trafficDirection;
-    theSignal.x = pos.x;
-    theSignal.y = pos.y;
+    theSignal.position = pos;
     theSignal.isGreen = FALSE; 
     return [theSignal autorelease];
 }
@@ -49,7 +48,7 @@
 
 - (NSString*) description {
     return [NSString stringWithFormat: @"<Signal %d,%d color: %s>",
-            self.x, self.y, (self.isGreen ? "green" : "red")];
+            self.position.x, self.position.y, (self.isGreen ? "green" : "red")];
     
 }
 @end

@@ -32,22 +32,19 @@
 
 @implementation NamedPoint
 @synthesize name;
-@synthesize xPosition;
-@synthesize yPosition;
+@synthesize position;
 
-- (id) initWithName: (NSString*) theName position: (struct CellPosition) pos {
+- (id) initWithName: (NSString*) theName cell: (struct CellPosition) pos {
     self = [super init];
     self.name = theName;
-    self.xPosition = pos.x;
-    self.yPosition = pos.y;
+    self.position = pos;
     return self;
 }
 
-+ (id) namedPointWithName: (NSString*) name position: (struct CellPosition) pos {
++ (id) namedPointWithName: (NSString*) name cell: (struct CellPosition) pos {
     NamedPoint *other = [[NamedPoint alloc] init];
     other.name = name;
-    other.xPosition = pos.x;
-    other.yPosition = pos.y;
+    other.position = pos;
     return [other autorelease];
 }
 @end

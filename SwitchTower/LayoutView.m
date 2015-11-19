@@ -137,12 +137,12 @@ float CellYPosOffset(TrackDirection dir) {
 
 // Draws a single track line from startDir's edge of the tile through the middle, and out the endDir.
 // Use the stroke color already set.
-- (void)drawLine:(CGContextRef)context X: (int) cellX Y: (int) cellY
+- (void)drawLine:(CGContextRef)context cell: (struct CellPosition) pos
         startDir: (TrackDirection) startDir
           endDir: (TrackDirection) endDir
 {
-    int posX = LEFT_MARGIN + cellX * TILE_WIDTH;
-    int posY = TOP_MARGIN  + cellY * TILE_HEIGHT;
+    float posX = LEFT_MARGIN + pos.x * TILE_WIDTH;
+    float posY = TOP_MARGIN  + pos.y * TILE_HEIGHT;
 
     CGContextMoveToPoint(context, posX + CellXPosOffset(startDir), posY + CellYPosOffset(startDir));
     CGContextAddLineToPoint(context, posX + TILE_HALF_WIDTH, posY + TILE_HALF_HEIGHT);
@@ -152,18 +152,18 @@ float CellYPosOffset(TrackDirection dir) {
 
 // Sets the appropriate color for the track on the cell based on whether the track is active,
 // occupied, etc.
-- (void) setTrackColorForCellX: (int) cellX Y: (int) cellY isActive: (BOOL) isActive
+- (void) setTrackColorForCell: (struct CellPosition) pos isActive: (BOOL) isActive
                    withContext: (CGContextRef) context{
 
-    Train *occupyingTrain = [self.layoutModel occupyingTrainAtX: cellX Y: cellY];
-    BOOL isPath = isActive && [self.layoutModel routeForCellX: cellX Y: cellY] != 0;
+    Train *occupyingTrain = [self.layoutModel occupyingTrainAtCell: pos];
+    BOOL isPath = isActive && [self.layoutModel routeForCell: pos] != 0;
 
     if (isActive && occupyingTrain && occupyingTrain.currentState == Waiting) {
         [self.approachingColor setStroke];
     } else if (isActive && occupyingTrain) {
         [self.occupiedColor setStroke];
     } else if (isPath) {
-        int routeNumber = ([self.layoutModel routeForCellX: cellX Y: cellY]);
+        int routeNumber = ([self.layoutModel routeForCell: pos]);
         UIColor *routeColor = [self.routeColors objectAtIndex: (routeNumber-1) % [self.routeColors count]];
         [routeColor setStroke];
     } else if (isActive) {
@@ -175,43 +175,43 @@ float CellYPosOffset(TrackDirection dir) {
 
 // Draw a switch with multiple possible routings.
 - (void) drawSwitchWithContext: (CGContextRef) context
-                         cellX: (int) cellX cellY: (int) cellY
+                      cell: (struct CellPosition) pos
                      pointsDir: (TrackDirection) pointsDirection
                      normalDir: (TrackDirection) normalDirection
                     reverseDir: (TrackDirection) reverseDirection {
-    if (![self.layoutModel isSwitchNormalX: (int) cellX Y: (int) cellY]) {
+    if (![self.layoutModel isSwitchNormal: pos]) {
         TrackDirection temp = normalDirection;
         normalDirection = reverseDirection;
         reverseDirection = temp;
     }
     
     // Draw reversed first.
-    [self setTrackColorForCellX: cellX Y: cellY isActive: 0 withContext: context];
-    [self drawLine: context X: cellX Y: cellY startDir: reverseDirection endDir: Center];
+    [self setTrackColorForCell: pos isActive: 0 withContext: context];
+    [self drawLine: context cell: pos startDir: reverseDirection endDir: Center];
     
-    [self setTrackColorForCellX: cellX Y: cellY isActive: 1 withContext: context];
-    [self drawLine: context X: cellX Y: cellY startDir: pointsDirection endDir: normalDirection];
+    [self setTrackColorForCell: pos isActive: 1 withContext: context];
+    [self drawLine: context cell: pos startDir: pointsDirection endDir: normalDirection];
 }
 
 // Draw a train label at the specified position.
-- (void)drawTrainLabelInContext:(CGContextRef)context posY:(int)posY posX:(int)posX message:(NSString *)message {
+- (void)drawTrainLabelInContext:(CGContextRef)context center: (CGPoint) center  message:(NSString *)message {
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 12.0],
                                 NSParagraphStyleAttributeName: paragraphStyle,
                                 NSForegroundColorAttributeName: self.trainLabelColor};
-    [message drawInRect: CGRectMake(posX, posY - TRAIN_LABEL_OFFSET_Y, TILE_WIDTH, TRAIN_LABEL_HEIGHT)
+    [message drawInRect: CGRectMake(center.x, center.y - TRAIN_LABEL_OFFSET_Y, TILE_WIDTH, TRAIN_LABEL_HEIGHT)
          withAttributes: fontAttrs];
 }
 
-- (void)drawTileAtY:(int)y X:(int)x withContext:(CGContextRef)context
+- (void)drawTileAtCell: (struct CellPosition) pos withContext:(CGContextRef)context
 {
-    int posX = LEFT_MARGIN + x * TILE_WIDTH;
-    int posY = TOP_MARGIN  + y * TILE_HEIGHT;
+    int posX = LEFT_MARGIN + pos.x * TILE_WIDTH;
+    int posY = TOP_MARGIN  + pos.y * TILE_HEIGHT;
     
     
-    char cell = [self.layoutModel.scenario cellAtTileX: x Y: y];
-    [self setTrackColorForCellX: x Y: y isActive: YES withContext: context];
+    char cell = [self.layoutModel.scenario tileAtCell: pos];
+    [self setTrackColorForCell: pos isActive: YES withContext: context];
     float dashes[2] = {DASH_WIDTH, DASH_WIDTH};
     switch (cell) {
         case ' ':
@@ -221,66 +221,66 @@ float CellYPosOffset(TrackDirection dir) {
             // Dotted line for continuation of layout off.
             CGContextSaveGState(context);
             CGContextSetLineDash(context, 0.0, dashes, 2);
-            [self drawLine: context X: x Y: y startDir: West endDir: East];
+            [self drawLine: context cell: pos startDir: West endDir: East];
             CGContextRestoreGState(context);
             break;
         case '-':
-            [self drawLine: context X: x Y: y startDir: West endDir: East];
+            [self drawLine: context cell: pos startDir: West endDir: East];
             break;
             // Platform.
         case '=':
-            [self drawLine: context X: x Y: y startDir: West endDir: East];
+            [self drawLine: context cell: pos startDir: West endDir: East];
             [self.platformColor setStroke];
             [self drawLine: context startX: posX startY: posY + 3
                       endX: posX + TILE_DRAW_WIDTH endY: posY + 3];
             break;
         case 'Z': // lower left to right
-            [self drawLine: context X: x Y: y startDir: Southwest endDir: East];
+            [self drawLine: context cell: pos startDir: Southwest endDir: East];
             break;
         case 'z': // left to lower right
-            [self drawLine: context X: x Y: y startDir: West endDir: Southeast];
+            [self drawLine: context cell: pos startDir: West endDir: Southeast];
             break;
         case 'P': // left to right, switch to upper right
-            [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:West normalDir:East reverseDir:Northeast];
+            [self drawSwitchWithContext:context cell: pos pointsDir:West normalDir:East reverseDir:Northeast];
             break;
         case 'p': // left to right, switch to upper left
-            [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:East normalDir:West reverseDir:Northwest];
+            [self drawSwitchWithContext:context cell: pos pointsDir:East normalDir:West reverseDir:Northwest];
            break;
         case 'Q': // left to right, switch to lower right
-            [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:West normalDir:East reverseDir:Southeast];
+            [self drawSwitchWithContext:context cell: pos pointsDir:West normalDir:East reverseDir:Southeast];
             break;
         case 'q': // left to right, switch to lower left
-            [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:East normalDir:West reverseDir:Southwest];
+            [self drawSwitchWithContext:context cell: pos pointsDir:East normalDir:West reverseDir:Southwest];
             break;
         case 'R': // lower left to upper right, switch to right
-            [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:Southwest normalDir:Northeast reverseDir:East];
+            [self drawSwitchWithContext:context cell: pos pointsDir:Southwest normalDir:Northeast reverseDir:East];
             break;
         case 'r': // upper left to lower right, switch to left
-            [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:Southeast normalDir:Northwest reverseDir:West];
+            [self drawSwitchWithContext:context cell: pos pointsDir:Southeast normalDir:Northwest reverseDir:West];
             break;
         case 'W': // upper left to right
-            [self drawLine: context X: x Y: y startDir: Northwest endDir: East];
+            [self drawLine: context cell: pos  startDir: Northwest endDir: East];
             break;
         case 'w': // left to upper right
-            [self drawLine: context X: x Y: y startDir: West endDir: Northeast];
+            [self drawLine: context cell: pos startDir: West endDir: Northeast];
             break;
         case 'Y': // left to upper and lower right
-            [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:West normalDir:Northeast reverseDir:Southeast];
+            [self drawSwitchWithContext:context cell: pos pointsDir:West normalDir:Northeast reverseDir:Southeast];
            break;
         case 'y': // upper and lower left to right
-             [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:East normalDir:Northwest reverseDir:Southwest];
+             [self drawSwitchWithContext:context cell: pos pointsDir:East normalDir:Northwest reverseDir:Southwest];
             break;
         case 'V': // upper left to lower right, switch to right
-             [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:Northwest normalDir:Southeast reverseDir:East];
+             [self drawSwitchWithContext:context cell: pos pointsDir:Northwest normalDir:Southeast reverseDir:East];
             break;
         case 'v': // upper right to lower left, switch to left.
-             [self drawSwitchWithContext:context cellX:x cellY:y pointsDir:Northeast normalDir:Southwest reverseDir:West];
+             [self drawSwitchWithContext:context cell: pos pointsDir:Northeast normalDir:Southwest reverseDir:West];
             break;
         case '\\':
-            [self drawLine: context X: x Y: y startDir: Northwest endDir: Southeast];
+            [self drawLine: context cell: pos startDir: Northwest endDir: Southeast];
             break;
         case '/':
-            [self drawLine: context X: x Y: y startDir: Northeast endDir: Southwest];
+            [self drawLine: context cell: pos startDir: Northeast endDir: Southwest];
             break;
         case 'T': // spur open to right
             [self drawLine: context startX: posX + TILE_HALF_WIDTH startY: posY + TILE_HALF_HEIGHT
@@ -296,12 +296,6 @@ float CellYPosOffset(TrackDirection dir) {
         default:
             break;
     }
-}
-
-- (CGRect) cellRectForX: (int) cellX Y: (int) cellY {
-    int posX = LEFT_MARGIN + cellX * TILE_WIDTH;
-    int posY = TOP_MARGIN  + cellY * TILE_HEIGHT;
-    return CGRectMake(posX, posY, TILE_WIDTH, TILE_HEIGHT);
 }
 
 // Highlight the point where trains can enter the simulation.
@@ -330,8 +324,8 @@ float CellYPosOffset(TrackDirection dir) {
 }
 
 CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
-    int posX = LEFT_MARGIN + signal.x * TILE_WIDTH;
-    int posY = TOP_MARGIN  + signal.y * TILE_HEIGHT;
+    float posX = LEFT_MARGIN + signal.position.x * TILE_WIDTH;
+    float posY = TOP_MARGIN  + signal.position.y * TILE_HEIGHT;
     float signalCenterX = 0;
     float signalCenterY = 0;
     if (signal.trafficDirection == EastDirection) {
@@ -375,13 +369,13 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 
     // Draw entry points.
     for (NamedPoint *ep in [self.scenario all_endpoints]) {
-        [self drawEntryPoint: ep.name X: ep.xPosition Y: ep.yPosition context: context];
+        [self drawEntryPoint: ep.name X: ep.position.x Y: ep.position.y context: context];
     }
     
     for (Label *label in self.scenario.all_labels) {
         // TILE_WIDTH/2 to center.
-        int labelPosX = LEFT_MARGIN + label.xCenter * TILE_WIDTH + TILE_WIDTH/2;
-        int labelPosY = TOP_MARGIN  + label.yCenter * TILE_HEIGHT;
+        int labelPosX = LEFT_MARGIN + label.position.x * TILE_WIDTH + TILE_WIDTH/2;
+        int labelPosY = TOP_MARGIN  + label.position.y * TILE_HEIGHT;
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentCenter;
         NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 14],
@@ -401,13 +395,14 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 
     for (int y = 0; y < self.scenario.tileRows; y++) {
         for (int x = 0; x < self.scenario.tileColumns; x++) {
-            int posX = LEFT_MARGIN + x * TILE_WIDTH;
-            int posY = TOP_MARGIN  + y * TILE_HEIGHT;
+            float centerX = LEFT_MARGIN + x * TILE_WIDTH;
+            float centerY = TOP_MARGIN  + y * TILE_HEIGHT;
+            struct CellPosition pos = MakeCellPosition(x,y);
             
-            [self drawTileAtY:y X:x withContext:context];
-            Train *occupyingTrain = [self.layoutModel occupyingTrainAtX: x Y: y];
+            [self drawTileAtCell: pos withContext:context];
+            Train *occupyingTrain = [self.layoutModel occupyingTrainAtCell: pos];
             if (occupyingTrain != nil) {
-                [self drawTrainLabelInContext:context posY:posY posX:posX
+                [self drawTrainLabelInContext:context center: CGPointMake(centerX, centerY)
                                  message: occupyingTrain.trainName];
             }
         }
@@ -445,6 +440,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     CGPoint location = [touch locationInView: self];
     int cellX = (location.x - LEFT_MARGIN) / TILE_WIDTH;
     int cellY = (location.y - TOP_MARGIN) / TILE_HEIGHT;
+    struct CellPosition pos = MakeCellPosition(cellX, cellY);
     
     for (Signal *signal in self.layoutModel.scenario.all_signals) {
         CGRect rect = GetSignalRect(signal, TRUE);
@@ -455,14 +451,14 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
         }
     }
 
-    if ([self.layoutModel cellIsSwitchX: cellX Y: cellY]) {
-        [self.controller switchTouchedX: cellX Y: cellY];
+    if ([self.layoutModel cellIsSwitch: pos]) {
+        [self.controller switchTouchedAtCell: pos];
         [self setNeedsDisplay];
     }
     
     // If there's a train there, describe the train.
     Train* tr;
-    if ((tr = [self.self.layoutModel occupyingTrainAtX: cellX Y: cellY]) != nil) {
+    if ((tr = [self.self.layoutModel occupyingTrainAtCell: pos]) != nil) {
         // TODO(bowdidge): Pop up.
         NSLog(@"%@", [tr description]);
         NSString *msg = [self detailForTrain: tr];

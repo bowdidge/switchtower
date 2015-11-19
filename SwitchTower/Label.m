@@ -32,14 +32,12 @@
 
 @implementation Label
 @synthesize labelString;
-@synthesize xCenter;
-@synthesize yCenter;
+@synthesize position;
 
-+ (id) labelWithString: (NSString*) label X: (int) xCell Y: (int) yCell {
++ (id) labelWithString: (NSString*) label cell: (struct CellPosition) pos {
     Label *myself = [[[Label alloc] init] autorelease];
     myself.labelString = label;
-    myself.xCenter = xCell;
-    myself.yCenter = yCell;
+    myself.position = pos;
     return myself;
 }
 

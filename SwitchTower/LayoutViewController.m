@@ -97,7 +97,7 @@
         }
         
         // Check if train reached a named point where it's supposed to end.
-        NamedPoint *currentNamedPoint = [self.layoutModel isNamedPointX: [train xPosition] Y: [train yPosition]];
+        NamedPoint *currentNamedPoint = [self.layoutModel isNamedPoint: train.position];
         // If this is either the destination for the train, or if we're on an endpoint, then we stop.
         // Assume all ends have names.
         if (currentNamedPoint && [self.scenario isNamedPoint: currentNamedPoint sameAs: [train expectedEndPoint]]) {
@@ -112,7 +112,7 @@
             }
             [self.statusMessages addObject: msg];
             [completedTrains addObject: train];
-        } else if ([self.layoutModel isEndPointX: train.xPosition Y: train.yPosition] &&
+        } else if ([self.layoutModel isEndPoint: train.position] &&
                    [train isAtStartPosition] == NO) {
             NSString* message = [NSString stringWithFormat: @"Train %@ exited at %@, not at %@\n",
                                  train.trainName, currentNamedPoint.name,
@@ -133,8 +133,7 @@
             for (Train* newTrain in self.activeTrains) {
                 if ([newTrain.trainName isEqualToString: [train.becomesTrains objectAtIndex: 0]]) {
                     newTrain.currentState = Waiting;
-                    newTrain.xPosition = train.xPosition;
-                    newTrain.yPosition = train.yPosition;
+                    newTrain.position = train.position;
                     [self.layoutModel addActiveTrain: newTrain];
                     train.currentState = Complete;
                     [self.layoutModel.activeTrains removeObject: train];
@@ -154,13 +153,11 @@
             // *and* if the route through the cell hasn't yet been claimed
             // *and* there's no train already there.
             if (([[train.departureTime dateByAddingTimeInterval: -5 * 60] compare: currentTime] == NSOrderedAscending) &&
-                [self.layoutModel routeForCellX: train.startPoint.xPosition
-                                        Y: train.startPoint.yPosition] == 0 &&
-                [self.layoutModel occupyingTrainAtX: train.startPoint.xPosition Y: train.startPoint.yPosition] == nil) {
+                [self.layoutModel routeForCell: train.startPoint.position] == 0 &&
+                [self.layoutModel occupyingTrainAtCell: train.startPoint.position] == nil) {
 
                 train.currentState = Waiting;
-                train.xPosition = train.startPoint.xPosition;
-                train.yPosition = train.startPoint.yPosition;
+                train.position = train.startPoint.position;
                 [self.layoutModel addActiveTrain: train];
                 // TODO(bowdidge): Text should be "approaching" for endpoints beyond railroad,
                 // "waiting" for intermediate endpoints.
@@ -224,7 +221,7 @@
     } else {
         signal.isGreen = YES;
         // TODO(bowdidge): Should animate, and reverse the selection if the route is invalid.
-        if (![self.layoutModel selectRouteAtX: signal.x Y:signal.y direction: signal.trafficDirection]) {
+        if (![self.layoutModel selectRouteAtCell: signal.position direction: signal.trafficDirection]) {
             // Play sound to indicate faiure
             AudioServicesPlaySystemSound(blockedSound);
             signal.isGreen = NO;
@@ -234,12 +231,12 @@
 }
 
 // Handles press on a switch.
-- (BOOL) switchTouchedX: (int) cellX Y: (int) cellY {
+- (BOOL) switchTouchedAtCell: (struct CellPosition) pos {
     // Keyclick.
     AudioServicesPlaySystemSound(0x450);
     //AudioServicesPlaySystemSound(clickSound);
-    BOOL pos = [self.layoutModel isSwitchNormalX:cellX Y: cellY];
-    BOOL success = [self.layoutModel setSwitchPositionX:cellX Y:cellY isNormal: !pos];
+    BOOL switchPos = [self.layoutModel isSwitchNormal: pos];
+    BOOL success = [self.layoutModel setSwitchPosition: pos isNormal: !switchPos];
     return success;
 }
 

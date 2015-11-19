@@ -30,6 +30,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Cell.h"
+
 @class NamedPoint;
 @class Signal;
 
@@ -37,9 +39,9 @@
 @interface Scenario : NSObject
 // Load scenario from plist.
 + (Scenario*) scenarioFromDict: (NSDictionary*) dict;
-- (char) cellAtTileX: (int) x Y: (int) y;
+- (char) tileAtCell: (struct CellPosition) pos;
 - (NamedPoint*) endpointWithName: (NSString*) name;
-- (NamedPoint*) endpointAtTileX: (int) x Y: (int) y;
+- (NamedPoint*) endpointAtCell: (struct CellPosition) pos;
 
 // Returns an NSDate for the time provided in HH:mm:ss form.
 - (NSDate*) scenarioTime: (NSString*) timeString;

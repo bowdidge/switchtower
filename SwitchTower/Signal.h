@@ -45,6 +45,5 @@ enum TimetableDirection {
 + (id) signalControlling: (enum TimetableDirection) trafficDirection position: (struct CellPosition) pos;
 @property (nonatomic) int trafficDirection;
 @property (nonatomic) int isGreen;
-@property (nonatomic) int x;
-@property (nonatomic) int y;
+@property (nonatomic) struct CellPosition position;
 @end

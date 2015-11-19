@@ -338,9 +338,9 @@ nil];
 
 - (void) initLabels {
     self.all_labels = [NSMutableArray arrayWithObjects:
-                       [Label labelWithString: @"16th St Station" X: 15 Y: 6],
-                       [Label labelWithString: @"Oak Pier Tower" X: 1 Y: 5],
-                       [Label labelWithString: @"Shellmound Tower" X: 27 Y: 5],
+                       [Label labelWithString: @"16th St Station" cell: MakeCellPosition(15, 6)],
+                       [Label labelWithString: @"Oak Pier Tower" MakeCellPosition(1,5)],
+                       [Label labelWithString: @"Shellmound Tower" MakeCellPosition(27,5)],
                        nil];
 }
 

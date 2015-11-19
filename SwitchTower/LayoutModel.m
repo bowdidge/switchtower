@@ -29,6 +29,7 @@
 
 #import "LayoutModel.h"
 
+#import "NamedPoint.h"
 #import "Scenario.h"
 #import "Signal.h"
 #import "Train.h"
@@ -60,68 +61,64 @@
     }
 }
 
-- (int) routeForCellX: (int) x Y: (int) y {
-    return routeSelection[x][y];
+- (int) routeForCell: (struct CellPosition) pos {
+    return routeSelection[pos.x][pos.y];
 }
 
-- (BOOL) selectRouteAtX: (int) x Y:(int) y direction: (enum TimetableDirection) direction {
-    int currentRoute = routeSelection[x][y];
+- (BOOL) selectRouteAtCell: (struct CellPosition) pos direction: (enum TimetableDirection) direction {
+    int currentRoute = routeSelection[pos.x][pos.y];
     if (currentRoute == 0) {
         currentRoute = ++routeCount;
     }
-    int origX = x;
-    int origY = y;
+    struct CellPosition origPos = pos;
     
     while (1) {
-        Signal *theSignal = [self signalAtX: x Y: y direction: direction];
+        Signal *theSignal = [self signalAtCell: pos direction: direction];
         if (theSignal && theSignal.trafficDirection == direction && !theSignal.isGreen) break;
 
-        int newX = x, newY = y;
+        struct CellPosition newPos = pos;
         if (direction == EastDirection) {
-            if (![self nextCellEastX: x Y:y returnsX:&newX Y: &newY]) break;
+            if (![self nextCellEast: pos returns: &newPos]) break;
         } else {
-            if (![self nextCellWestX: x Y:y returnsX:&newX Y: &newY]) break;
+            if (![self nextCellWest: pos returns: &newPos]) break;
         }
-        if (newX == x && newY == y) break;
+        if (newPos.x == pos.x && newPos.y == pos.y) break;
         // Don't set route yet.
-        x = newX;
-        y = newY;
+        pos = newPos;
     }
     
     // Now, do again and set route.
-    x = origX;
-    y = origY;
+    pos = origPos;
 
     // TODO(bowdidge): Remove duplicated code.
     while (1) {
-        Signal *theSignal = [self signalAtX: x Y: y direction: direction];
+        Signal *theSignal = [self signalAtCell: pos direction: direction];
         if (theSignal && theSignal.trafficDirection == direction && !theSignal.isGreen) break;
         
-        int newX = x, newY = y;
+        struct CellPosition newPos = pos;
         if (direction == EastDirection) {
-            [self nextCellEastX: x Y:y returnsX:&newX Y: &newY];
+            [self nextCellEast: pos returns: &newPos];
         } else {
-            [self nextCellWestX: x Y:y returnsX:&newX Y: &newY];
+            [self nextCellWest: pos returns: &newPos];
         }
-        if (newX == x && newY == y) break;
-        routeSelection[newX][newY] = currentRoute;
-        x = newX;
-        y = newY;
+        if (newPos.x == pos.x && newPos.y == pos.y) break;
+        routeSelection[newPos.x][newPos.y] = currentRoute;
+        pos = newPos;
     }
     return YES;
 }
 
-- (Signal*) signalAtX: (int) x Y: (int) y direction: (enum TimetableDirection) dir{
+- (Signal*) signalAtCell: (struct CellPosition) pos direction: (enum TimetableDirection) dir{
     for (Signal* signal in self.scenario.all_signals) {
-        if (signal.x == x && signal.y == y && signal.trafficDirection == dir) {
+        if (signal.position.x == pos.x && signal.position.y == pos.y && signal.trafficDirection == dir) {
             return signal;
         }
     }
     return NULL;
 }
 
-- (TrackDirection) pointsDirectionForCellX: (int) cellX Y: (int) cellY {
-    char cell = [self.scenario cellAtTileX: cellX Y: cellY];
+- (TrackDirection) pointsDirectionForCell: (struct CellPosition) pos {
+    char cell = [self.scenario tileAtCell: pos];
     switch (cell) {
         case 'P':
             return West;
@@ -147,16 +144,16 @@
     return Center;
 }
 
-- (BOOL) isEndPointX: (int) x Y: (int) y {
+- (BOOL) isEndPoint: (struct CellPosition) pos {
     // Consider T to be stopping but not endpoint.
-    return [self.scenario cellAtTileX: x Y: y] == '.';
+    return [self.scenario tileAtCell: pos] == '.';
 }
 
 
 // Returns true if the cell is a known starting or ending space for trains.
-- (NamedPoint*) isNamedPointX: (int) x Y: (int) y {
+- (NamedPoint*) isNamedPoint: (struct CellPosition) pos {
     for (NamedPoint *ep in [self.scenario all_endpoints]) {
-        if ([ep xPosition] == x && [ep yPosition] == y) {
+        if (ep.position.x == pos.x && ep.position.y == pos.y) {
             return ep;
         }
     }
@@ -167,17 +164,17 @@
 // TODO(bowdidge): Need better data structure.
 // Currently, a dictionary is used to note the cells where switches are reversed.  Nonexistence of a
 // switch in the dictionary means it's normal, or it's not a switch.
-- (BOOL) isSwitchNormalX: (int) cellX Y: (int) cellY {
-    NSArray *pos = [NSArray arrayWithObjects: [NSNumber numberWithInt: cellX],
-                    [NSNumber numberWithInt: cellY], nil];
-    if ([self.switchPositionDictionary objectForKey: pos]) {
+- (BOOL) isSwitchNormal: (struct CellPosition) pos {
+    NSArray *posArray = [NSArray arrayWithObjects: [NSNumber numberWithInt: pos.x],
+                    [NSNumber numberWithInt: pos.y], nil];
+    if ([self.switchPositionDictionary objectForKey: posArray]) {
         return NO;
     }
     return YES;
 }
 
-- (TrackDirection) normalDirectionForCellX: (int) cellX Y: (int) cellY {
-    char cell = [self.scenario cellAtTileX: cellX Y: cellY];
+- (TrackDirection) normalDirectionForCell: (struct CellPosition) pos {
+    char cell = [self.scenario tileAtCell: pos];
     switch (cell) {
         case 'P':
             return East;
@@ -204,38 +201,36 @@
 }
 
 // Returns the train currently occupying the named cell, or nil if none exists.
-- (Train*) occupyingTrainAtX: (int) cellX Y: (int) cellY {
+- (Train*) occupyingTrainAtCell: (struct CellPosition) pos {
     for (Train *train in self.activeTrains) {
-        int x = train.xPosition;
-        int y = train.yPosition;
-        if ((cellX ==x) && (cellY == y)) {
+        if (pos.x == train.position.x && pos.y == train.position.y) {
             return train;
         }
     }
     return nil;
 }
 
-- (TrackDirection) incomingDirectionWhenMovingFromX: (int) startX Y: (int) startY toX: (int) endX Y: (int) endY {
-    if (startX < endX) {
-        if (startY < endY) {
+- (TrackDirection) incomingDirectionWhenMovingFrom: (struct CellPosition) start to: (struct CellPosition) end {
+    if (start.x < end.x) {
+        if (start.y < end.y) {
             return Northwest;
-        } else if (startY == endY) {
+        } else if (start.y == end.y) {
             return West;
         } else {
             return Southwest;
         }
-    } else if (startX == endX) {
-        if (startY < endY) {
+    } else if (start.x == end.x) {
+        if (start.y < end.y) {
             return North;
-        } else if (startY == endY) {
+        } else if (start.y == end.y) {
             return Center;
         } else {
             return South;
         }
     } else {
-        if (startY < endY) {
+        if (start.y < end.y) {
             return Northeast;
-        } else if (startY == endY) {
+        } else if (start.y == end.y) {
             return East;
         } else {
             return Southeast;
@@ -246,11 +241,11 @@
 
 // Returns true if the cell at (cellX, cellY) is a switch icon and routes the
 // train in multiple directions.
-- (BOOL) cellIsSwitchX: (int) cellX Y: (int) cellY {
-    if (cellX < 0 || cellX >= self.scenario.tileColumns || cellY < 0 || cellY >= self.scenario.tileRows) {
+- (BOOL) cellIsSwitch: (struct CellPosition) pos {
+    if (pos.x < 0 || pos.x >= self.scenario.tileColumns || pos.y < 0 || pos.y >= self.scenario.tileRows) {
         return NO;
     }
-    char cell = [self.scenario cellAtTileX: cellX Y: cellY];
+    char cell = [self.scenario tileAtCell: pos];
     switch (cell) {
         case 'P':
         case 'p':
@@ -269,82 +264,81 @@
 
 
 // Changes the switch's memorized location.
-- (BOOL) setSwitchPositionX: (int) cellX Y: (int) cellY isNormal: (BOOL) isNormal {
-    if (routeSelection[cellX][cellY] != 0) {
+- (BOOL) setSwitchPosition: (struct CellPosition) pos isNormal: (BOOL) isNormal {
+    if (routeSelection[pos.x][pos.y] != 0) {
         return NO;
     }
-    NSArray *pos = [NSArray arrayWithObjects: [NSNumber numberWithInt: cellX],
-                    [NSNumber numberWithInt: cellY], nil];
+    NSArray *posArray = [NSArray arrayWithObjects: [NSNumber numberWithInt: pos.x],
+                    [NSNumber numberWithInt: pos.y], nil];
     if (isNormal) {
-        [self.switchPositionDictionary removeObjectForKey: pos];
+        [self.switchPositionDictionary removeObjectForKey: posArray];
     } else {
-        [self.switchPositionDictionary setObject: [NSNumber numberWithInt: 0] forKey: pos];
+        [self.switchPositionDictionary setObject: [NSNumber numberWithInt: 0] forKey: posArray];
     }
     return YES;
 }
 
 
-- (BOOL) allowedToTravelFromX: (int) fromX Y: (int) fromY toX: (int) toX Y: (int) toY {
+- (BOOL) allowedToTravelFrom: (struct CellPosition) fromPos to: (struct CellPosition) toPos {
     
-    TrackDirection incoming = [self incomingDirectionWhenMovingFromX: fromX Y: fromY toX: toX Y: toY];
-    if ([self pointsDirectionForCellX: toX Y: toY] == incoming) {
+    TrackDirection incoming = [self incomingDirectionWhenMovingFrom: fromPos to: toPos];
+    if ([self pointsDirectionForCell: toPos] == incoming) {
         return YES;
-    } else if ([self normalDirectionForCellX: toX Y: toY] == incoming) {
-        return [self isSwitchNormalX: toX Y: toY];
+    } else if ([self normalDirectionForCell: toPos] == incoming) {
+        return [self isSwitchNormal: toPos];
     } else {
-        return ![self isSwitchNormalX: toX Y: toY];
+        return ![self isSwitchNormal: toPos];
     }
     return NO;
 }
 
 
-- (BOOL) nextCellWestX: (int) cellX Y: (int) cellY returnsX: (int*) newCellX Y: (int*) newCellY {
-    int oldCellX = cellX;
-    int oldCellY = cellY;
+- (BOOL) nextCellWest: (struct CellPosition) fromPos returns: (struct CellPosition*) toPos {
+    struct CellPosition oldPos = fromPos;
 
-    Signal *theSignal = [self signalAtX: cellX Y: cellY direction: WestDirection];
+    Signal *theSignal = [self signalAtCell: fromPos direction: WestDirection];
     if (theSignal && theSignal.trafficDirection == WestDirection && !theSignal.isGreen) return NO;
     
-    switch ([self.scenario cellAtTileX: cellX Y: cellY]) {
+    switch ([self.scenario tileAtCell: fromPos]) {
         case 'q':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX--;
+            if ([self isSwitchNormal: fromPos]) {
+                fromPos.x--;
             } else {
-                cellX--;
-                cellY++;
+                fromPos.x--;
+                fromPos.y++;
             }
             break;
         case 'p':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX--;
+            if ([self isSwitchNormal: fromPos]) {
+                fromPos.x--;
             } else {
-                cellX--;
-                cellY--;
+                fromPos.x--;
+                fromPos.y--;
             }
             break;
         case 'y':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX--;
-                cellY--;
+            if ([self isSwitchNormal: fromPos]) {
+                fromPos.x--;
+                fromPos.y--;
             } else {
-                cellX--;
-                cellY++;
+                fromPos.x--;
+                fromPos.y++;
             }
             break;
         case 'v':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX--;
-                cellY++;
+            if ([self isSwitchNormal: fromPos]) {
+                fromPos.x--;
+                fromPos.y++;
             } else {
-                cellX--;
+                fromPos.x--;
             }
             break;
         case 'r':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX--;
-                cellY--;
+            if ([self isSwitchNormal: fromPos]) {
+                fromPos.x--;
+                fromPos.y--;
             } else {
-                cellX--;
+                fromPos.x--;
             }
             break;
         case '-':
@@ -356,18 +350,18 @@
         case 'Q':
         case 't':
         case 'Y':
-            cellX --;
+            fromPos.x--;
             break;
         case '/':
         case 'Z':
         case 'R':
-            cellX--;
-            cellY++;
+            fromPos.x--;
+            fromPos.y++;
             break;
         case '\\':
         case 'W':
-            cellX--;
-            cellY--;
+            fromPos.x--;
+            fromPos.y--;
             break;
         case ' ':
             // NSLog(@"Eeek: unknown location!");
@@ -378,112 +372,94 @@
             break;
     }
     
-    if ([self cellIsSwitchX: cellX Y: cellY]) {
+    if ([self cellIsSwitch: fromPos]) {
         // is it against us?
-        if ([self allowedToTravelFromX: oldCellX Y: oldCellY
-                                   toX: cellX Y: cellY] == NO) {
+        if ([self allowedToTravelFrom: oldPos
+                                   to: fromPos] == NO) {
             // Don't allow the move.
             return NO;
         }
     }
     
-    if ([self occupyingTrainAtX: cellX Y: cellY]) {
+    if ([self occupyingTrainAtCell: fromPos]) {
         // Something's there.
         return NO;
     }
     
     // Validate the new cell is in the game board.
-    if ((cellX < 0 || cellX >= self.scenario.tileColumns) || (cellY < 0 || cellY >= self.scenario.tileRows)) {
+    if ((fromPos.x < 0 || fromPos.x >= self.scenario.tileColumns) || (fromPos.y < 0 || fromPos.y >= self.scenario.tileRows)) {
         return NO;
     }
 
-    *newCellX = cellX;
-    *newCellY = cellY;
+    *toPos = fromPos;
     return YES;
 }
 // Advances the specified train one step west (left).
 - (BOOL) moveTrainWest: (Train*) train {
-    int cellX = train.xPosition;
-    int cellY = train.yPosition;
-    
+    struct CellPosition pos = train.position;
+    struct CellPosition newPos = pos;
    
-    // For 4th Street only, I think.
-    if (cellX == 0 && cellY == 9) {
-        [train setXPosition: 23];
-        [train setYPosition: 1];
-        return YES;
-    }
-    if (cellX == 0 && cellY == 11) {
-        [train setXPosition: 23];
-        [train setYPosition: 3];
-        return YES;
-    }
-    
-    int newCellX = cellX, newCellY = cellY;
-    
-    if ([self nextCellWestX: cellX Y:cellY returnsX:&newCellX Y:&newCellY] == NO) return NO;
+    if ([self nextCellWest: pos returns: &newPos] == NO) return NO;
 
     // Passing signal? Invalidate.
-    Signal *theSignal = [self signalAtX: cellX Y: cellY direction: WestDirection];
+    Signal *theSignal = [self signalAtCell: pos direction: WestDirection];
     if (theSignal && !theSignal.isGreen) return NO;
     
     theSignal.isGreen = NO;
     
-    routeSelection[newCellX][newCellY] = 0;
-    train.xPosition = newCellX;
-    train.yPosition = newCellY;
+    routeSelection[pos.x][pos.y] = 0;
+    train.position = newPos;
     return YES;
 }
 
-- (BOOL) nextCellEastX: (int) cellX Y: (int) cellY returnsX: (int*) newCellX Y: (int*) newCellY {
-    int oldCellX = cellX;
-    int oldCellY = cellY;
+- (BOOL) nextCellEast: (struct CellPosition) pos returns: (struct CellPosition*) newPos {
+    struct CellPosition oldPos = pos;
 
     // Signal?  Don't pass.
-    Signal *theSignal = [self signalAtX: cellX Y: cellY direction: EastDirection];
+    Signal *theSignal = [self signalAtCell: pos direction: EastDirection];
     if (theSignal && !theSignal.isGreen) return NO;
     
 
-    switch ([self.scenario cellAtTileX: cellX Y: cellY]) {
+    switch ([self.scenario tileAtCell: pos]) {
         case 'Q':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX++;
+            if ([self isSwitchNormal: pos]) {
+                pos.x++;
             } else {
-                cellX++;
-                cellY++;
+                pos.x++;
+                pos.y++;
             }
             break;
         case 'P':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX++;
+            if ([self isSwitchNormal: pos]) {
+                pos.x++;
             } else {
-                cellX++;
-                cellY--;
+                pos.x++;
+                pos.y--;
             }
             break;
         case 'Y':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX++;
-                cellY--;
+            if ([self isSwitchNormal: pos]) {
+                pos.x++;
+                pos.y--;
             } else {
-                cellX++;
-                cellY++;
+                pos.x++;
+                pos.y++;
             }
             break;
         case 'V':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX++;
-                cellY++;
+            if ([self isSwitchNormal: pos]) {
+                pos.x++;
+                pos.y++;
             } else {
-                cellX++;
+                pos.y++;
             }
             break;
         case 'R':
-            if ([self isSwitchNormalX:cellX Y: cellY]) {
-                cellX++;
-                cellY--;
+            if ([self isSwitchNormal: pos]) {
+                pos.x++;
+                pos.y--;
             } else {
-                cellX++;
+                pos.x++;
             }
             break;
         case '-':
@@ -495,19 +471,19 @@
         case 'q':
         case 'T':
         case 'y':
-            cellX ++;
+            pos.x++;
             break;
         case '\\':
         case 'z':
         case 'r':
-            cellX++;
-            cellY++;
+            pos.x++;
+            pos.y++;
             break;
         case '/':
         case 'v':
         case 'w':
-            cellX++;
-            cellY--;
+            pos.x++;
+            pos.y--;
             break;
         case ' ':
         case 't':
@@ -517,44 +493,41 @@
             break;
     }
     
-    if ([self cellIsSwitchX: cellX Y: cellY]) {
+    if ([self cellIsSwitch: pos]) {
         // is it against us?
-        if ([self allowedToTravelFromX: oldCellX Y: oldCellY
-                                   toX: cellX Y: cellY] == NO) {
+        if ([self allowedToTravelFrom: oldPos
+                                   to: pos] == NO) {
             // Don't allow the move.
             return NO;
         }
     }
     
-    if ([self occupyingTrainAtX: cellX Y: cellY]) {
+    if ([self occupyingTrainAtCell: pos]) {
         // Something's there.
         return NO;
     }
     
     // Validate the new cell is in the game board.
-    if ((cellX < 0 || cellX >= self.scenario.tileColumns) || (cellY < 0 || cellY >= self.scenario.tileRows)) {
+    if ((pos.x < 0 || pos.x >= self.scenario.tileColumns) || (pos.y < 0 || pos.y >= self.scenario.tileRows)) {
         return NO;
     }
-    *newCellX = cellX;
-    *newCellY = cellY;
+    *newPos = pos;
     return YES;
 }
 
 // Advances the specified train one step west (left).
 - (BOOL) moveTrainEast: (Train*) train {
-    int cellX = train.xPosition;
-    int cellY = train.yPosition;
+    struct CellPosition pos = train.position;
+    struct CellPosition newPos = pos;
+
+    if ([self nextCellEast: pos returns: &newPos] == NO) return NO;
     
-    int newCellX=cellX, newCellY=cellY;;
-    if ([self nextCellEastX: cellX Y: cellY returnsX:&newCellX Y:&newCellY] == NO) return NO;
-    
-    Signal *theSignal = [self signalAtX: cellX Y: cellY direction: EastDirection];
+    Signal *theSignal = [self signalAtCell: pos direction: EastDirection];
     if (theSignal && theSignal.trafficDirection == EastDirection && !theSignal.isGreen) return NO;
     theSignal.isGreen = NO;
   
-    routeSelection[newCellX][newCellY] = 0;
-    train.xPosition = newCellX;
-    train.yPosition = newCellY;
+    routeSelection[newPos.x][newPos.y] = 0;
+    train.position = newPos;
     return YES;
 }
 

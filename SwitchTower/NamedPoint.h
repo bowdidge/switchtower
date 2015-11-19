@@ -34,11 +34,10 @@
 
 // Place where a train starts or ends.
 @interface NamedPoint : NSObject
-- (id) initWithName: (NSString*) name position: (struct CellPosition) pos;
-+ (id) namedPointWithName: (NSString*) name position: (struct CellPosition) pos;
+- (id) initWithName: (NSString*) name cell: (struct CellPosition) pos;
++ (id) namedPointWithName: (NSString*) name cell: (struct CellPosition) pos;
 
 @property(nonatomic, retain) NSString *name;
-@property(nonatomic) int xPosition;
-@property(nonatomic) int yPosition;
+@property(nonatomic) struct CellPosition position;
 
 @end

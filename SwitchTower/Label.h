@@ -30,10 +30,12 @@
 
 #import <Foundation/Foundation.h>
 
-// Represents a label on the track diagram.
+#import "Cell.h"
+
+// Label represents a text string on the track diagram, used for informational purposes.
 @interface Label : NSObject
-+ (id) labelWithString: (NSString*) label X: (int) xCell Y: (int) yCell;
++ (id) labelWithString: (NSString*) label cell: (struct CellPosition) pos;
 @property(nonatomic,retain) NSString *labelString;
-@property(nonatomic) int xCenter;
-@property(nonatomic) int yCenter;
+// Position represents cell at the center of the label.
+@property(nonatomic) struct CellPosition position;
 @end

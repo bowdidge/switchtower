@@ -21,9 +21,9 @@
     struct CellPosition left = {0,0};
     struct CellPosition right = {4,0};
     struct CellPosition left_bot = {1,0};
-    [eps addObject: [NamedPoint namedPointWithName: @"LeftTop" position: left]];
-    [eps addObject: [NamedPoint namedPointWithName: @"LeftBottom" position: left_bot]];
-    [eps addObject: [NamedPoint namedPointWithName: @"Right" position: right]];
+    [eps addObject: [NamedPoint namedPointWithName: @"LeftTop" cell: left]];
+    [eps addObject: [NamedPoint namedPointWithName: @"LeftBottom" cell: left_bot]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Right" cell: right]];
     self.all_endpoints = eps;
     return self;
 }
@@ -39,8 +39,8 @@
     struct CellPosition left = {0,0};
     struct CellPosition right = {4,0};
    NSMutableArray *eps = [NSMutableArray array];
-    [eps addObject: [NamedPoint namedPointWithName: @"Left" position: left]];
-    [eps addObject: [NamedPoint namedPointWithName: @"Right" position: right]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Left" cell: left]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Right" cell: right]];
     self.all_endpoints = eps;
     return self;
 }
@@ -55,8 +55,8 @@
     struct CellPosition left = {0,0};
     struct CellPosition right = {4,0};
     NSMutableArray *eps = [NSMutableArray array];
-    [eps addObject: [NamedPoint namedPointWithName: @"Left" position: left]];
-    [eps addObject: [NamedPoint namedPointWithName: @"Right" position: right]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Left" cell: left]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Right" cell: right]];
     self.all_endpoints = eps;
     return self;
 }

@@ -72,32 +72,32 @@ typedef enum {
 - (void) addActiveTrain: (Train*) train;
 
 // Returns true if the cell is a known starting or ending space for trains.
-- (BOOL) isEndPointX: (int) x Y: (int) y;
+- (BOOL) isEndPoint: (struct CellPosition) pos;
 
 // Returns named point object if location is named.
-- (NamedPoint*) isNamedPointX: (int) x Y: (int) y;
+- (NamedPoint*) isNamedPoint: (struct CellPosition) pos;
 
 // Returns the signal at the specified cell, or nil if none exists.
-- (Signal*)signalAtX: (int)x Y: (int)y direction: (enum TimetableDirection) dir;
-- (BOOL) cellIsSwitchX: (int) cellX Y: (int) cellY;
+- (Signal*)signalAtCell: (struct CellPosition) pos direction: (enum TimetableDirection) dir;
+- (BOOL) cellIsSwitch: (struct CellPosition) pos;
 
 
 // Returns the train at the named cell, or nil if none exists.
-- (Train*)occupyingTrainAtX: (int)cellX Y: (int)cellY;
+- (Train*)occupyingTrainAtCell: (struct CellPosition) pos;
 
 // Returns the direction for one end of the track at the specified cell.
 // For switches, returns the points-end (not the diverging end.
 // TODO(bowdidge): Why do signal objects have state, but switches have state stored here?
-- (BOOL)isSwitchNormalX: (int)cellX Y: (int)cellY;
-- (TrackDirection)pointsDirectionForCellX: (int)cellX Y: (int)cellY;
-- (TrackDirection)normalDirectionForCellX: (int)cellX Y: (int)cellY;
+- (BOOL)isSwitchNormal: (struct CellPosition) pos;
+- (TrackDirection)pointsDirectionForCell: (struct CellPosition) pos;
+- (TrackDirection)normalDirectionForCell: (struct CellPosition) pos;
 
 // False if switch can't be changed.
-- (BOOL) setSwitchPositionX: (int) cellX Y: (int) cellY isNormal: (BOOL) isNormal;
+- (BOOL) setSwitchPosition: (struct CellPosition) pos isNormal: (BOOL) isNormal;
 
 - (void)clearRoute;
-- (BOOL)selectRouteAtX: (int)x Y: (int)y direction: (enum TimetableDirection)direction;
-- (int) routeForCellX: (int) x Y: (int) y;
+- (BOOL)selectRouteAtCell: (struct CellPosition) pos direction: (enum TimetableDirection)direction;
+- (int) routeForCell: (struct CellPosition) pos;
 
 // Returns false if train couldn't move.
 - (BOOL) moveTrainWest: (Train*) name;

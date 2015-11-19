@@ -31,6 +31,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <UIKit/UIKit.h>
 
+#import "Cell.h"
 #import "PopoverController.h"
 
 @class LayoutModel;
@@ -51,13 +52,11 @@
 - (void) setGame: (Scenario*) s;
 
 - (BOOL) signalTouched: (Signal*) signal;
-- (BOOL) switchTouchedX: (int) cellX Y: (int) cellY;
+- (BOOL) switchTouchedAtCell: (struct CellPosition) pos;
 - (void) showDetailMessage: (NSString*) msg atLayoutViewX: (float) x Y: (float) y;
 
 - (IBAction) quitGame;
 
-@property(nonatomic, retain) Train *train31;
-@property(nonatomic, retain) Train *train98;
 @property(nonatomic, retain) NSMutableArray *activeTrains;
 @property(nonatomic, retain) Scenario *scenario;
 @property(nonatomic, assign) IBOutlet UIScrollView *scrollView;

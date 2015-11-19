@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
+#import "Cell.h"
 #import "LayoutModel.h"
 #import "Scenario.h"
 #import "Signal.h"
@@ -39,39 +40,38 @@
                               start: [s endpointWithName: @"LeftBottom"]
                                 end: [s endpointWithName: @"Right"]];
     [m addActiveTrain: t];
-    t.xPosition = 0;
-    t.yPosition = 1;
+    t.position = MakeCellPosition(0, 1);
 
-    XCTAssertEqual(0, t.xPosition, @"");
-    XCTAssertEqual(1, t.yPosition, @"");
+    XCTAssertEqual(0, t.position.x, @"");
+    XCTAssertEqual(1, t.position.y, @"");
 
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
 
-    XCTAssertEqual(1, t.xPosition, @"");
-    XCTAssertEqual(1, t.yPosition, @"");
+    XCTAssertEqual(1, t.position.x, @"");
+    XCTAssertEqual(1, t.position.y, @"");
     
-    XCTAssertTrue([m isSwitchNormalX: 2 Y: 0], @"Switch not normal.");
+    XCTAssertTrue([m isSwitchNormal: MakeCellPosition(2,0)], @"Switch not normal.");
     
     XCTAssertFalse([m moveTrainEast: t], @"should not have moved.");
 
-    XCTAssertTrue([m setSwitchPositionX: 2 Y: 0 isNormal: false], @"couldn't throw switch.");
+    XCTAssertTrue([m setSwitchPosition: MakeCellPosition(2,0) isNormal: false], @"couldn't throw switch.");
 
     XCTAssertTrue([m moveTrainEast: t], @"didn't move.");
     
-    XCTAssertEqual(2, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(2, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
 
     XCTAssertTrue([m moveTrainEast: t], @"didn't move.");
-    XCTAssertEqual(3, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(3, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
 
     XCTAssertTrue([m moveTrainEast: t], @"didn't move.");
-    XCTAssertEqual(4, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(4, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
     // TODO(bowdidge): Avoid moving outside the game board.
     XCTAssertFalse([m moveTrainEast: t], @"should not have moved.");
-    XCTAssertEqual(4, t.xPosition, @"Should have stayed at last cell.");
-    XCTAssertEqual(0, t.yPosition, @"Should have stayed at last cell.");
+    XCTAssertEqual(4, t.position.x, @"Should have stayed at last cell.");
+    XCTAssertEqual(0, t.position.y, @"Should have stayed at last cell.");
 }
 
 - (void)testSwitchNormal {
@@ -83,27 +83,26 @@
                               start: [s endpointWithName: @"Right"]
                                 end: [s endpointWithName: @"LeftBottom"]];
     [m addActiveTrain: t];
-    t.xPosition = 4;
-    t.yPosition = 0;
+    t.position = MakeCellPosition(4,0);
     
-    XCTAssertEqual(4, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
-    
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
-    
-    XCTAssertEqual(3, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
-    
-    XCTAssertTrue([m isSwitchNormalX: 2 Y: 0], @"Switch not normal.");
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
-    
-    XCTAssertEqual(2, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(4, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
     
-    XCTAssertEqual(1, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(3, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+    
+    XCTAssertTrue([m isSwitchNormal: MakeCellPosition(2,0)], @"Switch not normal.");
+    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    
+    XCTAssertEqual(2, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+    
+    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    
+    XCTAssertEqual(1, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
 }
 
 - (void)testSwitchReversed {
@@ -115,28 +114,27 @@
                               start: [s endpointWithName: @"Right"]
                                 end: [s endpointWithName: @"LeftBottom"]];
     [m addActiveTrain: t];
-    t.xPosition = 4;
-    t.yPosition = 0;
+    t.position = MakeCellPosition(4,0);
     
-    XCTAssertEqual(4, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
-    
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
-    
-    XCTAssertEqual(3, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
-    
-    XCTAssertTrue([m isSwitchNormalX: 2 Y: 0], @"Switch not normal.");
-    [m setSwitchPositionX: 2 Y: 0 isNormal: false];
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
-    
-    XCTAssertEqual(2, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(4, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
     
-    XCTAssertEqual(1, t.xPosition, @"");
-    XCTAssertEqual(1, t.yPosition, @"");
+    XCTAssertEqual(3, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+    
+    XCTAssertTrue([m isSwitchNormal: MakeCellPosition(2,0)], @"Switch not normal.");
+    [m setSwitchPosition: MakeCellPosition(2,0) isNormal: false];
+    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    
+    XCTAssertEqual(2, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+    
+    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    
+    XCTAssertEqual(1, t.position.x, @"");
+    XCTAssertEqual(1, t.position.y, @"");
 
 }
 
@@ -149,27 +147,26 @@
                               start: [s endpointWithName: @"Left"]
                                 end: [s endpointWithName: @"Right"]];
     [m addActiveTrain: t];
-    t.xPosition = 0;
-    t.yPosition = 0;
+    t.position = MakeCellPosition(0,0);
     
-    XCTAssertEqual(0, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
-    
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
-    
-    XCTAssertEqual(1, t.xPosition, @"Shouldn't have moved off board.");
-    XCTAssertEqual(0, t.yPosition, @"Shouldn't have moved off board.");
+    XCTAssertEqual(0, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
     
-    XCTAssertEqual(2, t.xPosition, @"Shouldn't have moved off board.");
-    XCTAssertEqual(0, t.yPosition, @"Shouldn't have moved off board.");
+    XCTAssertEqual(1, t.position.x, @"Shouldn't have moved off board.");
+    XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
+    
+    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    
+    XCTAssertEqual(2, t.position.x, @"Shouldn't have moved off board.");
+    XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
 
     // Shouldn't move - goes off game board.
     XCTAssertFalse([m moveTrainEast: t], @"Couldn't move.");
     
-    XCTAssertEqual(2, t.xPosition, @"Shouldn't have moved off board.");
-    XCTAssertEqual(0, t.yPosition, @"Shouldn't have moved off board.");
+    XCTAssertEqual(2, t.position.x, @"Shouldn't have moved off board.");
+    XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
  }
 
 - (void)testNoMoveOffBottomOfGame {
@@ -181,21 +178,20 @@
                               start: [s endpointWithName: @"Right"]
                                 end: [s endpointWithName: @"Left"]];
     [m addActiveTrain: t];
-    t.xPosition = 4;
-    t.yPosition = 0;
+    t.position = MakeCellPosition(4,0);
     
-    XCTAssertEqual(4, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(4, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
     
-    XCTAssertEqual(3, t.xPosition, @"Shouldn't have moved off board.");
-    XCTAssertEqual(0, t.yPosition, @"Shouldn't have moved off board.");
+    XCTAssertEqual(3, t.position.x, @"Shouldn't have moved off board.");
+    XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
     
     XCTAssertFalse([m moveTrainWest: t], @"Couldn't move.");
     
-    XCTAssertEqual(3, t.xPosition, @"Shouldn't have moved off board.");
-    XCTAssertEqual(0, t.yPosition, @"Shouldn't have moved off board.");
+    XCTAssertEqual(3, t.position.x, @"Shouldn't have moved off board.");
+    XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
     
 }
 
@@ -208,23 +204,21 @@
                               start: [s endpointWithName: @"Left"]
                                 end: [s endpointWithName: @"Right"]];
     [m addActiveTrain: t];
-    t.xPosition = 0;
-    t.yPosition = 0;
+    t.position = MakeCellPosition(0,0);
     
-    struct CellPosition p = {2,0};
-    Signal *sig = [Signal signalControlling: EastDirection position: p];
+    Signal *sig = [Signal signalControlling: EastDirection position: MakeCellPosition(2,0)];
     NSArray *signals = [NSArray arrayWithObject: sig];
     s.all_signals = signals;
-    XCTAssertEqual(0, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(0, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
     XCTAssertFalse([m moveTrainEast: t], @"Couldn't move.");
     sig.isGreen = true;
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
-    XCTAssertEqual(3, t.xPosition, @"Didn't move correctly.");
-    XCTAssertEqual(0, t.yPosition, @"Didn't move correctly.");
+    XCTAssertEqual(3, t.position.x, @"Didn't move correctly.");
+    XCTAssertEqual(0, t.position.y, @"Didn't move correctly.");
 }
 
 - (void)testSignalDoesntAffectOtherDirection {
@@ -236,21 +230,19 @@
                               start: [s endpointWithName: @"Left"]
                                 end: [s endpointWithName: @"Right"]];
     [m addActiveTrain: t];
-    t.xPosition = 0;
-    t.yPosition = 0;
+    t.position = MakeCellPosition(0,0);
     
-    struct CellPosition p = {2, 0};
-    Signal *sig = [Signal signalControlling: WestDirection position: p];
+    Signal *sig = [Signal signalControlling: WestDirection position: MakeCellPosition(2,0)];
     NSArray *signals = [NSArray arrayWithObject: sig];
     s.all_signals = signals;
-    XCTAssertEqual(0, t.xPosition, @"");
-    XCTAssertEqual(0, t.yPosition, @"");
+    XCTAssertEqual(0, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
     XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
-    XCTAssertEqual(3, t.xPosition, @"Didn't move correctly.");
-    XCTAssertEqual(0, t.yPosition, @"Didn't move correctly.");
+    XCTAssertEqual(3, t.position.x, @"Didn't move correctly.");
+    XCTAssertEqual(0, t.position.y, @"Didn't move correctly.");
 }
 
 

@@ -148,7 +148,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         if (!ParsePosition(posString, &pos)) {
                 // Parsing problem.
         }
-        [allLabels addObject: [Label labelWithString: labelName X: pos.x Y: pos.y]];
+        [allLabels addObject: [Label labelWithString: labelName cell: pos]];
     }
     s.all_labels = allLabels;
     
@@ -178,7 +178,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         if (!ParsePosition(endpointLocationStr, &pos)) {
             // Parsing problem.
         }
-        [allEndpoints addObject: [NamedPoint namedPointWithName: endpointName position: pos]];
+        [allEndpoints addObject: [NamedPoint namedPointWithName: endpointName cell: pos]];
     }
     s.all_endpoints = allEndpoints;
     
@@ -238,13 +238,13 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
 
     return ok;
 }
-- (char) cellAtTileX: (int) x Y: (int) y {
+- (char) tileAtCell: (struct CellPosition) pos {
     char ch;
-    if ((y >= self.tileRows) || (x >= self.tileColumns) || (y < 0) || (x < 0)) {
+    if ((pos.y >= self.tileRows) || (pos.x >= self.tileColumns) || (pos.y < 0) || (pos.x < 0)) {
         return ' ';
     }
     @try {
-        ch = [[self.tileStrings objectAtIndex: y] characterAtIndex: x];
+        ch = [[self.tileStrings objectAtIndex: pos.y] characterAtIndex: pos.x];
     } @catch(NSException* e){
         NSLog(@"Eeek!");
     }
@@ -262,9 +262,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     
 }
 
-- (NamedPoint*) endpointAtTileX: (int) x Y: (int) y {
+- (NamedPoint*) endpointAtCell: (struct CellPosition) pos {
     for (NamedPoint *ep in self.all_endpoints) {
-        if (ep.xPosition == x && ep.yPosition == y) {
+        if (ep.position.x == pos.x && ep.position.y == pos.y) {
             return ep;
         }
     }

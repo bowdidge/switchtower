@@ -28,16 +28,16 @@
     XCTAssertEqual(5, s.tileColumns , @"Wrong number for columns.");
     XCTAssertEqualObjects(nil, [s endpointWithName: @"Foo"], @"wrong answer for non-existent name.");
     XCTAssertEqualObjects(@"LeftTop", [s endpointWithName: @"LeftTop"].name, @"Wrong name");
-    XCTAssertEqual('-', [s cellAtTileX:0 Y:0], @"Wrong");
-    XCTAssertEqual('q', [s cellAtTileX: 2 Y:0], @"");
-    XCTAssertEqual('/', [s cellAtTileX: 1 Y: 1], @"");
+    XCTAssertEqual('-', [s tileAtCell: MakeCellPosition(0,0)], @"Wrong");
+    XCTAssertEqual('q', [s tileAtCell: MakeCellPosition(2,0)], @"");
+    XCTAssertEqual('/', [s tileAtCell: MakeCellPosition(1,1)], @"");
     // TODO(bowdidge): Expected?
-    XCTAssertEqual(' ', [s cellAtTileX: 9 Y: 3], @"");
+    XCTAssertEqual(' ', [s tileAtCell: MakeCellPosition(9,3)], @"");
     
     
-    XCTAssertEqualObjects(@"Right", [s endpointAtTileX: 4 Y: 0].name, @"");
-    XCTAssertEqualObjects(nil, [s endpointAtTileX: 3 Y: 0], @"");
-    XCTAssertEqualObjects(nil, [s endpointAtTileX: 12 Y: 5], @"");
+    XCTAssertEqualObjects(@"Right", [s endpointAtCell: MakeCellPosition(4,0)].name, @"");
+    XCTAssertEqualObjects(nil, [s endpointAtCell: MakeCellPosition(3,0)], @"");
+    XCTAssertEqualObjects(nil, [s endpointAtCell: MakeCellPosition(5,12)], @"");
 }
 
 - (void) testFindInvalidCharactersInCellString {

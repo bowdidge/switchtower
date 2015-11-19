@@ -31,6 +31,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Signal.h"
+#import "Cell.h"
 
 @class NamedPoint;
 @class LayoutView;
@@ -62,8 +63,7 @@ enum TrainState {
 @property(nonatomic, retain) NSString *trainDescription;
 // Not retained.
 @property(nonatomic,assign) LayoutView *currentLayout;
-@property(nonatomic) int xPosition;
-@property(nonatomic) int yPosition;
+@property(nonatomic) struct CellPosition position;
 @property(nonatomic, retain) NamedPoint *startPoint;
 // TODO(bowdidge): Could also have separate "not great, but OK exits".
 // Or could have a "if I'm here, then dock me points and change dest to this / remove me.

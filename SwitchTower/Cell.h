@@ -14,5 +14,6 @@ struct CellPosition {
     int y;
 };
 
+struct CellPosition MakeCellPosition(int x, int y);
 
 #endif /* Cell_h */

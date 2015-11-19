@@ -167,33 +167,33 @@ static char* cells =
     NSMutableArray *array = [NSMutableArray array];
     
     self.all_endpoints = [NSArray arrayWithObjects:
-                          [NamedPoint namedPointWithName: @"From SF" X: 0 Y: 3],
-                          [NamedPoint namedPointWithName: @"To SF" X: 0 Y: 2],
-                          [NamedPoint namedPointWithName: @"Oakland" X: 21 Y: 1],
-                          [NamedPoint namedPointWithName: @"LA" X: 21 Y: 5],
-                          [NamedPoint namedPointWithName: @"Coach Yard" X: 2 Y: 1],
-                          [NamedPoint namedPointWithName: @"Freight Yard" X: 3 Y: 0],
-                          [NamedPoint namedPointWithName: @"Santa Cruz" X: 8 Y: 5],
-                          [NamedPoint namedPointWithName: @"Market-1" X: 15 Y: 2],
-                          [NamedPoint namedPointWithName: @"Market-2" X: 15 Y: 3],
-                          [NamedPoint namedPointWithName: @"Market-3" X: 15 Y: 4],
+                          [NamedPoint namedPointWithName: @"From SF" position: [MakeCellPosition(0, 3)];
+                          [NamedPoint namedPointWithName: @"To SF" position: [MakeCellPosition(0, 2)],
+                          [NamedPoint namedPointWithName: @"Oakland" position: [MakeCellPosition(21, 1)],
+                          [NamedPoint namedPointWithName: @"LA" position: [MakeCellPosition(21, 5)],
+                          [NamedPoint namedPointWithName: @"Coach Yard" position: [MakeCellPosition(2, 1)],
+                          [NamedPoint namedPointWithName: @"Freight Yard" position: [MakeCellPosition(3, 0)],
+                          [NamedPoint namedPointWithName: @"Santa Cruz" position: [MakeCellPosition(8, 5)],
+                          [NamedPoint namedPointWithName: @"Market-1" position: [MakeCellPosition(15, 2)],
+                          [NamedPoint namedPointWithName: @"Market-2" position: [MakeCellPosition(15, 3)],
+                          [NamedPoint namedPointWithName: @"Market-3" position: [MakeCellPosition(15, 4)],
                           nil];
     self.all_signals = [NSArray arrayWithObjects:
-                        [Signal signalControlling: WestDirection X: 21 Y: 5],
-                        [Signal signalControlling: WestDirection X: 21 Y: 1],
+                        [Signal signalControlling: WestDirection position: [MakeCellPosition(21, 5)],
+                        [Signal signalControlling: WestDirection position: [MakeCellPosition(21, 1)],
 
-                        [Signal signalControlling: WestDirection X: 15 Y: 2],
-                        [Signal signalControlling: WestDirection X: 15 Y: 3],
-                        [Signal signalControlling: WestDirection X: 15 Y: 4],
-                        [Signal signalControlling: EastDirection X: 15 Y: 2],
-                        [Signal signalControlling: EastDirection X: 15 Y: 3],
-                        [Signal signalControlling: EastDirection X: 15 Y: 4],
+                        [Signal signalControlling: WestDirection position: [MakeCellPosition(15, 2)],
+                        [Signal signalControlling: WestDirection position: [MakeCellPosition(15, 3)],
+                        [Signal signalControlling: WestDirection position: [MakeCellPosition(15, 4)],
+                        [Signal signalControlling: EastDirection position: [MakeCellPosition(15, 2)],
+                        [Signal signalControlling: EastDirection position: [MakeCellPosition(15, 3)],
+                        [Signal signalControlling: EastDirection position: [MakeCellPosition(15, 4)],
 
-                        [Signal signalControlling: EastDirection X: 0 Y: 3],
-                        [Signal signalControlling: WestDirection X: 8 Y: 5],
+                        [Signal signalControlling: EastDirection position: [MakeCellPosition(0, 3)],
+                        [Signal signalControlling: WestDirection position: [MakeCellPosition(8, 5)],
 
-                        [Signal signalControlling: EastDirection X: 2 Y: 1],
-                        [Signal signalControlling: EastDirection X: 3 Y: 0],
+                        [Signal signalControlling: EastDirection position: [MakeCellPosition(2, 1)],
+                        [Signal signalControlling: EastDirection position: [MakeCellPosition(3, 0)],
                        nil];
 
     array = [NSMutableArray array];
