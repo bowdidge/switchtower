@@ -174,7 +174,9 @@
 			<key>DepartureTime</key>
 			<string>07:20</string>
 			<key>Arrives</key>
-			<string>To SF</string>
+			<array>
+			  <string>To SF</string>
+			</array>
 			<key>ArrivalTime</key>
 			<string>07:50</string>
 			<key>OnTimetable</key>
@@ -198,7 +200,9 @@
 			<key>DepartureTime</key>
 			<string>09:00</string>
 			<key>Arrives</key>
-			<string>LA</string>
+			<array>
+			  <string>LA</string>
+</array>
 			<key>ArrivalTime</key>
 			<string>9:20</string>
 			<key>OnTimetable</key>
@@ -221,7 +225,9 @@
 			<key>DepartureTime</key>
 			<string>07:20</string>
 			<key>Arrives</key>
-			<string>To SF</string>
+			<array>
+			  <string>To SF</string>
+			</array>
 			<key>ArrivalTime</key>
 			<string>7:40</string>
 			<key>OnTimetable</key>
@@ -244,7 +250,9 @@
 			<key>DepartureTime</key>
 			<string>07:10</string>
 			<key>Arrives</key>
-			<string>LA</string>
+			<array>
+			  <string>LA</string>
+			  </array>
 			<key>ArrivalTime</key>
 			<string>9:00</string>
 			<key>OnTimetable</key>

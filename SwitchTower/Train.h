@@ -53,11 +53,15 @@ enum TrainState {
 
 + (id) train;
 + (id) trainWithName: (NSString*) name description: (NSString*) description direction: (enum TimetableDirection) dir
-               start: (NamedPoint*) start end: (NamedPoint*) end;
+               start: (NamedPoint*) start ends: (NSArray*) end;
 - (void) setDepartureTime: (NSDate*) departureTime arrivalTime: (NSDate*) arrivalTime;
 
 // Returns YES if train is at its starting location, which means the train hasn't moved.
 - (BOOL) isAtStartPosition;
+- (BOOL) isAtEndPosition;
+
+// Helper routine for nicely printing out all the possible exit points for train.
+- (NSString*) endPointsAsText;
 
 @property(nonatomic, retain) NSString *trainName;
 @property(nonatomic, retain) NSString *trainDescription;
@@ -66,8 +70,8 @@ enum TrainState {
 @property(nonatomic) struct CellPosition position;
 @property(nonatomic, retain) NamedPoint *startPoint;
 // TODO(bowdidge): Could also have separate "not great, but OK exits".
-// Or could have a "if I'm here, then dock me points and change dest to this / remove me.
-@property(nonatomic, retain) NamedPoint *expectedEndPoint;
+// Array of NamedPoints naming places where train could exit.
+@property(nonatomic, retain) NSArray *expectedEndPoints;
 @property(nonatomic) enum TimetableDirection direction;
 @property(nonatomic) enum TrainState currentState;
 // Empty if train is started by another.

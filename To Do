@@ -12,6 +12,7 @@ Polish / Bugs
 [x] Train reaching end isn't disappearing.
 [x] don't arrange new train at entry til old one goes.
 [x] Use table view for selecting initial game.
+[ ] Implement AlertView.
 
 Game play
 [ ] Handle multiple step switching moves better.
@@ -45,6 +46,11 @@ Scenarios:
 [ ] Oakland 16th Street
 [ ] Oakland Pier.
 [ ] Bakersfield tower.
+
+Scenario editor:
+[ ] Implement sooner to make easier to improve playability?
+[ ] Gear on main screen goes to scenario editor screen - identical except for label changes.
+[ ] Scenario editor should have tabbed view for different aspects, layout view allows dragging tiles one by one from palette (drag of existing tile on screen makes line.)
 
 Timetable
 [x] Timetable should be based on all trains in scenario, not active trains.

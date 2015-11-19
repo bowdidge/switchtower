@@ -45,20 +45,20 @@
     self.position = MakeCellPosition(-1, -1);
     self.currentLayout = nil;
     self.direction = WestDirection;
-    self.expectedEndPoint = nil;
+    self.expectedEndPoints = nil;
     self.currentState = Inactive;
     return self;
 }
 
 + (id) trainWithName: (NSString*) name description: (NSString*) description
            direction: (enum TimetableDirection) dir
-               start: (NamedPoint*) start end: (NamedPoint*) end {
+               start: (NamedPoint*) start ends: (NSArray*) ends {
     Train *train = [[[Train alloc] init] autorelease];
     train.trainName = name;
     train.trainDescription = description;
     train.direction = dir;
     train.startPoint = start;
-    train.expectedEndPoint = end;
+    train.expectedEndPoints = ends;
     return train;
 }
 
@@ -72,8 +72,26 @@
     return self.position.x == self.startPoint.position.x && self.position.y == self.startPoint.position.y;
 }
 
+- (BOOL) isAtEndPosition {
+    for (NamedPoint *end in self.expectedEndPoints) {
+        if (self.position.x == end.position.x && self.position.y == end.position.y) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Helper routine for nicely printing out all the possible exit points for train.
+- (NSString*) endPointsAsText {
+    NSMutableArray *endNames = [NSMutableArray array];
+    for (NamedPoint* end in self.expectedEndPoints) {
+        [endNames addObject: end.name];
+    }
+    return [endNames componentsJoinedByString: @", "];
+}
+
 - (NSString*) description {
-    return [NSString stringWithFormat: @"<Train: %@ %@ end=%@ state=%d>", self.trainName, self.trainDescription, [self.expectedEndPoint name], self.currentState];
+    return [NSString stringWithFormat: @"<Train: %@ %@ first end=%@ state=%d>", self.trainName, self.trainDescription, [[self.expectedEndPoints objectAtIndex: 0] name], self.currentState];
 }
 
 
@@ -81,7 +99,7 @@
 @synthesize trainDescription;
 @synthesize position;
 @synthesize direction;
-@synthesize expectedEndPoint;
+@synthesize expectedEndPoints;
 @synthesize onTimetable;
 @synthesize startPoint;
 @end

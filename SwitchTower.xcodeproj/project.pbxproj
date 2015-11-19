@@ -138,7 +138,7 @@
 		3E89F5161BFD32F600A27B64 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		3E89F5171BFD32F600A27B64 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		3E89F5191BFD35DF00A27B64 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cell.m; path = ../Cell.m; sourceTree = "<group>"; };
-		3E89F51B1BFD564500A27B64 /* Cahill.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cahill.plist; path = SwitchTower/Cahill.plist; sourceTree = "<group>"; };
+		3E89F51B1BFD564500A27B64 /* Cahill.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cahill.plist; sourceTree = "<group>"; };
 		3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioTableCell.h; sourceTree = "<group>"; };
 		3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTableCell.m; sourceTree = "<group>"; };
 		3E96C4CC1BFA833400AF795F /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
@@ -183,7 +183,6 @@
 		3E81D48F18BA8429001989A3 = {
 			isa = PBXGroup;
 			children = (
-				3E89F51B1BFD564500A27B64 /* Cahill.plist */,
 				3E2A73391BF70B7B00E3A886 /* To Do */,
 				3E81D50818BA8A2C001989A3 /* Scenarios */,
 				3E81D4A118BA8429001989A3 /* SwitchTower */,
@@ -301,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				3E81D4D618BA84F9001989A3 /* DiridonScenario.h */,
+				3E89F51B1BFD564500A27B64 /* Cahill.plist */,
 				3E81D4DF18BA853B001989A3 /* FourthStreetScenario.h */,
 				3E81D4E018BA853B001989A3 /* FourthStreetScenario.m */,
 				3E89F5141BFC5F4800A27B64 /* FourthStreet.plist */,

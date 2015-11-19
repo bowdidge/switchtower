@@ -419,8 +419,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 - (NSString*) popoverDescriptionForTrain: (Train*) tr{
     NSMutableString *str = [NSMutableString string];
     [str appendFormat: @"%@ %@\n", tr.trainName, tr.trainDescription];
-    [str appendFormat: @"Leaving %@ at %@ for %@", tr.startPoint.name, formattedDate(tr.departureTime),
-     tr.expectedEndPoint.name];
+    [str appendFormat: @"Leaving %@ at %@ for %@", tr.startPoint.name, formattedDate(tr.departureTime), [tr endPointsAsText]];
     return str;
 }
 
@@ -428,7 +427,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 - (NSString*) detailForTrain: (Train*) tr {
     NSMutableString *result = [NSMutableString string];
     [result appendFormat: @"%@: %@\n", tr.trainName, tr.trainDescription];
-    [result appendFormat: @"From '%@' to '%@'\n", tr.startPoint.name, tr.expectedEndPoint.name];
+    [result appendFormat: @"From '%@' to '%@'\n", tr.startPoint.name, [tr endPointsAsText]];
     [result appendFormat: @"Train should be at destination by %@\n", formattedDate(tr.arrivalTime)];
     [result appendFormat: @"\nDeeper text here.\n"];
     return result;

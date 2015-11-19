@@ -274,7 +274,9 @@
 			<key>DepartureTime</key>
 			<string>07:05</string>
 			<key>Arrives</key>
-			<string>Mulford</string>
+			<array>
+   			  <string>Mulford</string>
+			</array>
 			<key>ArrivalTime</key>
 			<string>10:00</string>
 			<key>OnTimetable</key>
@@ -294,9 +296,14 @@
 			<key>Departs</key>
 			<string>Eng Service</string>
 			<key>DepartureTime</key>
-            <string>05:30</string>
+			<string>05:30</string>
 			<key>Arrives</key>
-			<string>Cahill #3</string>
+			<array>
+			  <string>Cahill #1</string>
+			  <string>Cahill #2</string>
+			  <string>Cahill #3</string>
+			  <string>Cahill #4</string>
+			</array>
 			<key>ArrivalTime</key>
             <string>05:54</string>
 			<key>OnTimetable</key>
@@ -320,7 +327,9 @@
             <key>DepartureTime</key>
             <string>06:04</string>
             <key>Arrives</key>
-            <string>To SF</string>
+	    <array>
+              <string>To SF</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>06:14</string>
             <key>OnTimetable</key>
@@ -342,7 +351,12 @@
             <key>DepartureTime</key>
             <string>05:50</string>
             <key>Arrives</key>
-            <string>Cahill #3</string>
+	    <array>
+              <string>Cahill #1</string>
+              <string>Cahill #2</string>
+              <string>Cahill #3</string>
+              <string>Cahill #4</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>06:05</string>
             <key>OnTimetable</key>
@@ -366,7 +380,9 @@
             <key>DepartureTime</key>
             <string>06:25</string>
             <key>Arrives</key>
-            <string>To SF</string>
+	    <array>
+              <string>To SF</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>6:35</string>
             <key>OnTimetable</key>
@@ -388,7 +404,12 @@
             <key>DepartureTime</key>
             <string>05:55</string>
             <key>Arrives</key>
-            <string>Cahill #3</string>
+	    <array>
+              <string>Cahill #1</string>
+              <string>Cahill #2</string>
+              <string>Cahill #3</string>
+              <string>Cahill #4</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>06:20</string>
             <key>OnTimetable</key>
@@ -412,7 +433,9 @@
             <key>DepartureTime</key>
             <string>06:30</string>
             <key>Arrives</key>
-            <string>To SF</string>
+	    <array>
+              <string>To SF</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>6:40</string>
             <key>OnTimetable</key>
@@ -434,7 +457,12 @@
             <key>DepartureTime</key>
             <string>06:00</string>
             <key>Arrives</key>
+	    <array>
+            <string>Cahill #1</string>
+            <string>Cahill #2</string>
             <string>Cahill #3</string>
+            <string>Cahill #4</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>06:25</string>
             <key>OnTimetable</key>
@@ -458,7 +486,9 @@
             <key>DepartureTime</key>
             <string>06:35</string>
             <key>Arrives</key>
-            <string>To SF</string>
+	    <array>
+              <string>To SF</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>6:45</string>
             <key>OnTimetable</key>
@@ -480,7 +510,12 @@
             <key>DepartureTime</key>
             <string>06:30</string>
             <key>Arrives</key>
-            <string>Cahill</string>
+	    <array>
+              <string>Cahill #1</string>
+              <string>Cahill #2</string>
+              <string>Cahill #3</string>
+              <string>Cahill #4</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>6:40</string>
             <key>OnTimetable</key>
@@ -503,7 +538,9 @@
             <key>DepartureTime</key>
             <string>06:50</string>
             <key>Arrives</key>
-            <string>Eng Service</string>
+	    <array>
+              <string>Eng Service</string>
+	    </array>
             <key>ArrivalTime</key>
             <string>07:30</string>
             <key>OnTimetable</key>

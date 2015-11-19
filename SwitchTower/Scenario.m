@@ -190,17 +190,33 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         NSString *trainDescription = [trainDict objectForKey: @"Description"];
         NSString *directionStr = [trainDict objectForKey: @"Direction"];
         NSString *departureEndpoint = [trainDict objectForKey: @"Departs"];
-        NSString *arrivalEndpoint = [trainDict objectForKey: @"Arrives"];
         NSString *departureTimeStr = [trainDict objectForKey: @"DepartureTime"];
         NSString *arrivalTimeStr = [trainDict objectForKey: @"ArrivalTime"];
         NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];
         NSArray *becomes = [trainDict objectForKey: @"Becomes"];
+        NSArray *arrivalEndpoints = [trainDict objectForKey: @"Arrives"];
         enum TimetableDirection dir;
         if (ParseDirection(directionStr, &dir)) {
             // bad.
         }
 
-        Train *tr = [Train trainWithName: trainIdentifier description: trainName direction: dir start: [s endpointWithName: departureEndpoint] end: [s endpointWithName: arrivalEndpoint]];
+        NSMutableArray *endpoints = [NSMutableArray array];
+        for (NSString *end in arrivalEndpoints) {
+            NamedPoint *pt = [s endpointWithName: end];
+            if (!pt) {
+                NSLog(@"Unknown endpoint %@ in train %@", end, trainName);
+                continue;
+            }
+            [endpoints addObject: pt];
+        }
+        NamedPoint *startPoint = nil;
+        if (departureEndpoint != nil && departureEndpoint.length > 0) {
+            startPoint = [s endpointWithName: departureEndpoint];
+            if (!startPoint) {
+                NSLog(@"Unknown start point %@ in train %@", departureEndpoint, trainName);
+            }
+        }
+        Train *tr = [Train trainWithName: trainIdentifier description: trainName direction: dir start: startPoint ends: endpoints];
         tr.departureTime = [s scenarioTime: departureTimeStr];
         tr.arrivalTime = [s scenarioTime: arrivalTimeStr];
         tr.onTimetable = [onTimetable boolValue];

@@ -140,7 +140,9 @@
 			<key>DepartureTime</key>
 			<string>07:20</string>
 			<key>Arrives</key>
-			<string>Santa Cruz</string>
+			<array>
+			  <string>Santa Cruz</string>
+			  </array>
 			<key>ArrivalTime</key>
 			<string>09:10</string>
 			<key>OnTimetable</key>
@@ -175,7 +177,9 @@
 			<key>DepartureTime</key>
 			<string>07:10</string>
 			<key>Arrives</key>
-			<string>Santa Cruz</string>
+			<array>
+			  <string>Santa Cruz</string>
+			  </array>
 			<key>ArrivalTime</key>
 			<string>15:00</string>
 			<key>OnTimetable</key>

@@ -129,7 +129,10 @@
 			<key>Direction</key> <string>East</string>
 			<key>Departs</key> <string>Oak Pier EB</string>
 			<key>DepartureTime</key> <string>07:56</string>
-			<key>Arrives</key> <string>Port Costa EB</string>
+			<key>Arrives</key>
+			<array>
+			  <string>Port Costa EB</string>
+			</array>
 			<key>ArrivalTime</key> <string>08:08</string>
 			<key>Timetable</key>
 			<dict>
@@ -148,7 +151,10 @@
             <key>Direction</key> <string>West</string>
             <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>07:30</string>
-            <key>Arrives</key> <string>Oak Pier WB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Oak Pier WB</string>
+	    </array>
             <key>ArrivalTime</key> <string>07:45</string>
             <key>Timetable</key>
             <dict>
@@ -167,7 +173,10 @@
             <key>Direction</key> <string>East</string>
             <key>Departs</key> <string>Oak Pier EB</string>
             <key>DepartureTime</key> <string>08:25</string>
-            <key>Arrives</key> <string>Port Costa EB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Port Costa EB</string>
+	    </array>
             <key>ArrivalTime</key> <string>08:40</string>
             <key>Timetable</key>
             <dict>
@@ -186,7 +195,10 @@
             <key>Direction</key> <string>East</string>
             <key>Departs</key> <string>Oak Pier EB</string>
             <key>DepartureTime</key> <string>08:25</string>
-            <key>Arrives</key> <string>Port Costa EB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Port Costa EB</string>
+	    </array>
             <key>ArrivalTime</key> <string>08:40</string>
             <key>Timetable</key>
             <dict>
@@ -205,7 +217,10 @@
             <key>Direction</key> <string>West</string>
             <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>07:35</string>
-            <key>Arrives</key> <string>Oak Pier WB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Oak Pier WB</string>
+	    </array>
             <key>ArrivalTime</key> <string>07:48</string>
             <key>Timetable</key>
             <dict>
@@ -224,7 +239,10 @@
             <key>Direction</key> <string>West</string>
             <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>07:40</string>
-            <key>Arrives</key> <string>Oak Pier WB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Oak Pier WB</string>
+	    </array>
             <key>ArrivalTime</key> <string>07:55</string>
             <key>Timetable</key>
             <dict>
@@ -243,7 +261,10 @@
             <key>Direction</key> <string>West</string>
             <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>08:15</string>
-            <key>Arrives</key> <string>Oak Pier WB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Oak Pier WB</string>
+	    </array>
             <key>ArrivalTime</key> <string>08:35</string>
             <key>Timetable</key>
             <dict>
@@ -262,7 +283,10 @@
             <key>Direction</key> <string>West</string>
             <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>08:40</string>
-            <key>Arrives</key> <string>Oak Pier WB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Oak Pier WB</string>
+	    </array>
             <key>ArrivalTime</key> <string>09:00</string>
             <key>Timetable</key>
             <dict>
@@ -281,7 +305,10 @@
             <key>Direction</key> <string>West</string>
             <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>09:23</string>
-            <key>Arrives</key> <string>Oak Pier WB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Oak Pier WB</string>
+	    </array>
             <key>ArrivalTime</key> <string>09:38</string>
             <key>Timetable</key>
             <dict>
@@ -300,7 +327,10 @@
             <key>Direction</key> <string>East</string>
             <key>Departs</key> <string>Port Costa WB</string>
             <key>DepartureTime</key> <string>11:45</string>
-            <key>Arrives</key> <string>Oak Pier WB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Oak Pier WB</string>
+	    </array>
             <key>ArrivalTime</key> <string>12:01</string>
             <key>Timetable</key>
             <dict>
@@ -319,7 +349,10 @@
             <key>Direction</key> <string>East</string>
             <key>Departs</key> <string>Oak Pier EB</string>
             <key>DepartureTime</key> <string>13:40</string>
-            <key>Arrives</key> <string>Port Costa EB</string>
+            <key>Arrives</key>
+	    <array>
+	      <string>Port Costa EB</string>
+	    </array>
             <key>ArrivalTime</key> <string>14:00</string>
             <key>Timetable</key>
             <dict>
@@ -338,7 +371,10 @@
                 <key>Direction</key> <string>West</string>
                 <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>10:30</string>
-                <key>Arrives</key> <string>Oak Pier WB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Oak Pier WB</string>
+		</array>
                 <key>ArrivalTime</key> <string>10:50</string>
                 <key>Timetable</key>
                 <dict>
@@ -357,7 +393,10 @@
                 <key>Direction</key> <string>West</string>
                 <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>10:50</string>
-                <key>Arrives</key> <string>Oak Pier WB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Oak Pier WB</string>
+		</array>
                 <key>ArrivalTime</key> <string>11:10</string>
                 <key>Timetable</key>
                 <dict>
@@ -376,7 +415,10 @@
                 <key>Direction</key> <string>West</string>
                 <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>14:00</string>
-                <key>Arrives</key> <string>Oak Pier WB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Oak Pier WB</string>
+		</array>
                 <key>ArrivalTime</key> <string>14:20</string>
                 <key>Timetable</key>
                 <dict>
@@ -395,7 +437,10 @@
                 <key>Direction</key> <string>West</string>
                 <key>Departs</key> <string>Santa Fe</string>
                 <key>DepartureTime</key> <string>08:45</string>
-                <key>Arrives</key> <string>Oak Pier WB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Oak Pier WB</string>
+		</array>
                 <key>ArrivalTime</key> <string>09:00</string>
                 <key>OnTimetable</key><integer>1</integer>
                 <key>TimetableClass</key><integer>1</integer>
@@ -409,7 +454,10 @@
                 <key>Direction</key> <string>West</string>
                 <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>13:40</string>
-                <key>Arrives</key> <string>Oak Pier WB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Oak Pier WB</string>
+		</array>
                 <key>ArrivalTime</key> <string>14:00</string>
                 <key>OnTimetable</key><integer>1</integer>
                 <key>TimetableClass</key><integer>3</integer>
@@ -423,7 +471,10 @@
                 <key>Direction</key> <string>East</string>
                 <key>Departs</key> <string>Cedar Frt</string>
                 <key>DepartureTime</key> <string>09:00</string>
-                <key>Arrives</key> <string>Port Costa EB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Port Costa EB</string>
+		</array>
                 <key>ArrivalTime</key> <string>11:00</string>
                 <key>OnTimetable</key><integer>1</integer>
                 <key>TimetableClass</key><integer>3</integer>
@@ -437,7 +488,10 @@
                 <key>Direction</key> <string>West</string>
                 <key>Departs</key> <string>Port Costa WB</string>
                 <key>DepartureTime</key> <string>07:40</string>
-                <key>Arrives</key> <string>Cedar Frt</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Cedar Frt</string>
+		</array>
                 <key>ArrivalTime</key> <string>10:00</string>
                 <key>OnTimetable</key><integer>0</integer>
                 <key>Becomes</key>
@@ -450,7 +504,10 @@
                 <key>Direction</key> <string>East</string>
                 <key>Departs</key> <string>Cedar Frt</string>
                 <key>DepartureTime</key> <string>08:55</string>
-                <key>Arrives</key> <string>Port Costa EB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Port Costa EB</string>
+		</array>
                 <key>ArrivalTime</key> <string>09:50</string>
                 <key>OnTimetable</key><integer>0</integer>
                 <key>Becomes</key>
@@ -463,7 +520,10 @@
                 <key>Direction</key> <string>East</string>
                 <key>Departs</key> <string>Cedar Frt</string>
                 <key>DepartureTime</key> <string>09:15</string>
-                <key>Arrives</key> <string>Port Costa EB</string>
+                <key>Arrives</key>
+		<array>
+		  <string>Port Costa EB</string>
+		</array>
                 <key>ArrivalTime</key> <string>10:15</string>
                 <key>OnTimetable</key><integer>0</integer>
                 <key>Becomes</key>
@@ -476,7 +536,10 @@
                     <key>Direction</key> <string>East</string>
                     <key>Departs</key> <string>Cedar Frt</string>
                     <key>DepartureTime</key> <string>09:30</string>
-                    <key>Arrives</key> <string>Santa Fe</string>
+                    <key>Arrives</key>
+		    <array>
+		      <string>Santa Fe</string>
+		    </array>
                     <key>ArrivalTime</key> <string>10:50</string>
                     <key>OnTimetable</key><integer>0</integer>
                     <key>Becomes</key>
@@ -489,7 +552,10 @@
                     <key>Direction</key> <string>West</string>
                     <key>Departs</key> <string>Port Costa WB</string>
                     <key>DepartureTime</key> <string>09:50</string>
-                    <key>Arrives</key> <string>Cedar Frt</string>
+                    <key>Arrives</key>
+		    <array>
+		      <string>Cedar Frt</string>
+		    </array>
                     <key>ArrivalTime</key> <string>11:30</string>
                     <key>OnTimetable</key><integer>0</integer>
                     <key>Becomes</key>

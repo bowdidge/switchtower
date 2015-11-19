@@ -100,7 +100,7 @@
         NamedPoint *currentNamedPoint = [self.layoutModel isNamedPoint: train.position];
         // If this is either the destination for the train, or if we're on an endpoint, then we stop.
         // Assume all ends have names.
-        if (currentNamedPoint && [self.scenario isNamedPoint: currentNamedPoint sameAs: [train expectedEndPoint]]) {
+        if (currentNamedPoint && [train isAtEndPosition]) {
             NSString* msg;
             if ([currentTime compare: train.arrivalTime] == NSOrderedAscending) {
                 msg = [NSString stringWithFormat: @"%@ arrived on time.\n", train.trainName];
@@ -113,10 +113,10 @@
             [self.statusMessages addObject: msg];
             [completedTrains addObject: train];
         } else if ([self.layoutModel isEndPoint: train.position] &&
-                   [train isAtStartPosition] == NO) {
+                   [train isAtEndPosition] == NO) {
             NSString* message = [NSString stringWithFormat: @"Train %@ exited at %@, not at %@\n",
                                  train.trainName, currentNamedPoint.name,
-                                 train.expectedEndPoint.name];
+                                 [[train.expectedEndPoints objectAtIndex: 0] name] ];
             self.layoutView.score -= 5;
             [self.statusMessages addObject: message];
             [completedTrains addObject: train];
@@ -184,15 +184,11 @@
     for (Train* train in self.activeTrains) {
         if (train.currentState == Running) {
             NSString *trainName = train.trainName;
-            NamedPoint *ep = train.expectedEndPoint;
-            NSString *endPointName = (ep ? ep.name : @"???");
-            [trainDestinations appendFormat: @"%@: bound for:%@  due: %@\n", trainName, endPointName, formattedDate(train.arrivalTime)];
+            [trainDestinations appendFormat: @"%@: bound for:%@  due: %@\n", trainName, [train endPointsAsText], formattedDate(train.arrivalTime)];
         } else if (train.currentState == Waiting) {
             NSString *trainName = train.trainName;
-            NamedPoint *ep = train.expectedEndPoint;
-            NSString *endPointName = (ep ? ep.name : @"???");
            [trainDestinations appendFormat: @"%@: ready in %@.  bound for:%@  due: %@\n",
-            trainName, formattedTimeInterval([train.departureTime timeIntervalSinceDate: currentTime]), endPointName, formattedDate(train.arrivalTime)];
+            trainName, formattedTimeInterval([train.departureTime timeIntervalSinceDate: currentTime]), [train endPointsAsText], formattedDate(train.arrivalTime)];
             
         }
     }
