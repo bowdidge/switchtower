@@ -52,7 +52,7 @@ enum TrainState {
 @interface Train : NSObject
 
 + (id) train;
-+ (id) trainWithNumber: (NSString*) number description: (NSString*) description direction: (enum TimetableDirection) dir
++ (id) trainWithNumber: (NSString*) trainNumber name: (NSString*) trainName direction: (enum TimetableDirection) dir
                start: (NamedPoint*) start ends: (NSArray*) end;
 - (void) setDepartureTime: (NSDate*) departureTime arrivalTime: (NSDate*) arrivalTime;
 
@@ -64,7 +64,7 @@ enum TrainState {
 - (NSString*) endPointsAsText;
 
 @property(nonatomic, retain) NSString *trainNumber;
-@property(nonatomic, retain) NSString *trainDescription;
+@property(nonatomic, retain) NSString *trainName;
 @property(nonatomic, retain) NSString *longDescription;
 // Not retained.
 @property(nonatomic,assign) LayoutView *currentLayout;
