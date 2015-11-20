@@ -69,7 +69,6 @@
 		3E2A73361BF6D70400E3A886 /* PopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverController.h; sourceTree = "<group>"; };
 		3E2A73371BF6D70400E3A886 /* PopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverController.m; sourceTree = "<group>"; };
 		3E2A73391BF70B7B00E3A886 /* To Do */ = {isa = PBXFileReference; lastKnownFileType = text; path = "To Do"; sourceTree = "<group>"; };
-		3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShellmoundScenario.m; path = ../ShellmoundScenario.m; sourceTree = "<group>"; };
 		3E2A733C1BF7DC9B00E3A886 /* ShellmoundScenario.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShellmoundScenario.h; sourceTree = "<group>"; };
 		3E2A733D1BF90E1400E3A886 /* SantaCruzScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaCruzScenario.h; sourceTree = "<group>"; };
 		3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutModelTest.m; sourceTree = "<group>"; };
@@ -137,7 +136,7 @@
 		3E89F5141BFC5F4800A27B64 /* FourthStreet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FourthStreet.plist; sourceTree = "<group>"; };
 		3E89F5161BFD32F600A27B64 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		3E89F5171BFD32F600A27B64 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
-		3E89F5191BFD35DF00A27B64 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cell.m; path = ../Cell.m; sourceTree = "<group>"; };
+		3E89F5191BFD35DF00A27B64 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		3E89F51B1BFD564500A27B64 /* Cahill.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cahill.plist; sourceTree = "<group>"; };
 		3E96C4C91BFA6F5900AF795F /* ScenarioTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioTableCell.h; sourceTree = "<group>"; };
 		3E96C4CA1BFA6F5900AF795F /* ScenarioTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTableCell.m; sourceTree = "<group>"; };
@@ -307,7 +306,6 @@
 				3E81D4F618BA855A001989A3 /* PenzanceScenario.h */,
 				3E81D4F718BA855A001989A3 /* PenzanceScenario.m */,
 				3E2A733C1BF7DC9B00E3A886 /* ShellmoundScenario.h */,
-				3E2A733A1BF7DC7D00E3A886 /* ShellmoundScenario.m */,
 				3E89F50D1BFC0F8D00A27B64 /* Shellmound.plist */,
 				3E2A733D1BF90E1400E3A886 /* SantaCruzScenario.h */,
 				3E89F5121BFC564800A27B64 /* SantaCruz.plist */,
