@@ -18,7 +18,7 @@
     [self.alertLocations removeAllIndexes];
 }
 
-- (void) addAlertAtLocation: (int) loc max: (int) max {
+- (void) addAlertAtLocation: (NSUInteger) loc max: (NSUInteger) max {
     [self.alertLocations addIndex: loc * self.bucketCount / max];
 }
 

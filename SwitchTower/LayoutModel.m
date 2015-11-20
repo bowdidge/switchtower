@@ -52,8 +52,8 @@
 
 - (void) clearRoute {
     routeCount = 0;
-    int rows = self.scenario.tileRows;
-    int columns = self.scenario.tileColumns;
+    NSUInteger rows = self.scenario.tileRows;
+    NSUInteger columns = self.scenario.tileColumns;
     for (int x=0; x<columns; x++) {
         for (int y = 0; y < rows; y++) {
             routeSelection[x][y] = 0;

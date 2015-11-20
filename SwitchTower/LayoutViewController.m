@@ -143,7 +143,7 @@
                     [self.layoutModel addActiveTrain: newTrain];
                     train.currentState = Complete;
                     [self.layoutModel.activeTrains removeObject: train];
-                    [self.statusMessages addObject: [NSString stringWithFormat: @"Train %@ becomes %@", train.trainNumber, newTrain.trainNumber]];
+                    [self.statusMessages addObject: [NSString stringWithFormat: @"Train %@ becomes %@\n", train.trainNumber, newTrain.trainNumber]];
                     break;
                 }
             }
@@ -176,7 +176,8 @@
         } else if (train.currentState == Waiting) {
             if ([train.departureTime compare: currentTime] == NSOrderedAscending) {
                 train.currentState = Running;
-                NSString *message = [NSString stringWithFormat: @"Train %@ is ready to leave %@.\n", train.trainNumber, train.startPoint.name];
+                NamedPoint *currentPoint = [self.scenario endpointAtCell: train.position];
+                NSString *message = [NSString stringWithFormat: @"Train %@ is ready to leave %@.\n", train.trainNumber, currentPoint.name];
                 [self.statusMessages addObject: message];
             }
         }
@@ -200,7 +201,7 @@
         }
     }
     
-    int ct = [self.statusMessages count];
+    NSUInteger ct = [self.statusMessages count];
     if (ct > 4) {
         [self.statusMessages removeObjectsAtIndexes: [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(0, ct-4-1)]];
     }

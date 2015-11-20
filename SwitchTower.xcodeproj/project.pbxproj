@@ -103,7 +103,6 @@
 		3E81D4D318BA84F9001989A3 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3E81D4D418BA84F9001989A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3E81D4D518BA84F9001989A3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		3E81D4D618BA84F9001989A3 /* DiridonScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiridonScenario.h; sourceTree = "<group>"; };
 		3E81D4DF18BA853B001989A3 /* FourthStreetScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthStreetScenario.h; sourceTree = "<group>"; };
 		3E81D4E018BA853B001989A3 /* FourthStreetScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthStreetScenario.m; sourceTree = "<group>"; };
 		3E81D4E218BA8544001989A3 /* Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
@@ -298,7 +297,6 @@
 		3E81D50818BA8A2C001989A3 /* Scenarios */ = {
 			isa = PBXGroup;
 			children = (
-				3E81D4D618BA84F9001989A3 /* DiridonScenario.h */,
 				3E89F51B1BFD564500A27B64 /* Cahill.plist */,
 				3E81D4DF18BA853B001989A3 /* FourthStreetScenario.h */,
 				3E81D4E018BA853B001989A3 /* FourthStreetScenario.m */,

@@ -65,8 +65,8 @@
 @property (nonatomic, retain) NSArray *all_signals;
 @property (nonatomic, retain) NSArray *all_labels;
 @property (nonatomic, retain) NSArray *all_trains;
-@property (nonatomic) int tileColumns;
-@property (nonatomic) int tileRows;
+@property (nonatomic) NSUInteger tileColumns;
+@property (nonatomic) NSUInteger tileRows;
 // TODO(bowdidge): Make more structured and validated.
 @property (nonatomic, retain) NSArray *tileStrings;
 @end

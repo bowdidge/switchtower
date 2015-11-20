@@ -10,7 +10,7 @@
 // AlertView draws a narrow bar above the layout view to highlight where alerts are needed.
 @interface AlertView : UIView
 - (void) clearAlerts;
-- (void) addAlertAtLocation: (int) loc max: (int) max;
+- (void) addAlertAtLocation: (NSUInteger) loc max: (NSUInteger) max;
 
 // NSIndexSet should contain some subset of integers between 0 and bucketCount-1,
 // each representing a portion of the playing grid where alerts might happen.  Callers should

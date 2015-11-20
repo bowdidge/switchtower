@@ -238,7 +238,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     NSMutableCharacterSet *invalidChars = [NSMutableCharacterSet characterSetWithCharactersInString: @"PpQqRrVvYyQqZzWwTt/\\.-= "];
     [invalidChars invert];
     if ([self.tileStrings count] != self.tileRows) {
-        NSLog(@"Wrong number of tile strings, expected %d, got %d", self.tileRows, [self.tileStrings count]);
+        NSLog(@"Wrong number of tile strings, expected %d, got %d", (int) self.tileRows, [self.tileStrings count]);
         ok = false;
     }
     for (NSString* str in self.tileStrings) {
