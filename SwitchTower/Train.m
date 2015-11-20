@@ -95,6 +95,11 @@
     return [NSString stringWithFormat: @"<Train: %@ %@ first end=%@ state=%d>", self.trainNumber, self.trainName, [[self.expectedEndPoints objectAtIndex: 0] name], self.currentState];
 }
 
+// Compare two trains by departure time.
+- (NSComparisonResult) compareByTime: (Train*) tr {
+    return [self.departureTime compare: tr.departureTime];
+}
+
 
 @synthesize trainNumber;
 @synthesize trainName;

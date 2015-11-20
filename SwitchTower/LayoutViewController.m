@@ -30,7 +30,6 @@
 
 #import "LayoutViewController.h"
 
-#import "DiridonScenario.h"
 #import "NamedPoint.h"
 #import "FourthStreetScenario.h"
 #import "Scenario.h"

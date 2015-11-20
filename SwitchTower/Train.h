@@ -62,6 +62,8 @@ enum TrainState {
 
 // Helper routine for nicely printing out all the possible exit points for train.
 - (NSString*) endPointsAsText;
+// Compare two trains by departure time.
+- (NSComparisonResult) compareByTime: (Train*) tr;
 
 @property(nonatomic, retain) NSString *trainNumber;
 @property(nonatomic, retain) NSString *trainName;

@@ -33,7 +33,6 @@
 #import "LayoutViewController.h"
 #import "ScenarioTableCell.h"
 
-#import "DiridonScenario.h"
 #import "ShellmoundScenario.h"
 #import "SantaCruzScenario.h"
 #import "FourthStreetScenario.h"

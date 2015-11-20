@@ -332,22 +332,55 @@ NSString* formattedDate(NSDate* date) {
     return dateString;
 }
 
+const char *TIMETABLE_HEADER =
+    "<html>\n"
+    "<head>\n"
+    "<style>\n"
+    "td {\n"
+    "  padding: 5px;\n"
+    "}\n"
+    ".trainno {\n"
+    "  weight: bold;\n"
+    "  font-size: 16pt;\n"
+    "}\n"
+    ".trainname {\n"
+    "weight: normal;\n"
+    "  font-size: 9pt;\n"
+    "}\n"
+    ".stationname {\n"
+    "  font-weight: bold;\n"
+    "  text-transform: uppercase;\n"
+    "  text-align:center;\n"
+    "  font-family: @'Helvetica';\n"
+    "}\n"
+    ".rules {\n"
+    "  width: 80%;\n"
+    "  border: solid 1px;\n"
+    "  padding: 5px;\n"
+    "}\n"
+    "</style>\n"
+    "</head>\n"
+    "<body>\n"
+    "<div style='width: 60%;'>\n"
+    "<center>Timetable No. 1, April 26, 1964</center>\n"
+    "<center>WESTERN DIVISION</center>\n"
+    "<table border='1'>\n";
+
 // timetableHTML creates the timetable display for the current scenario.
 - (NSString*) timetableHTML {
-    NSMutableString *result = [NSMutableString string];
-    [result appendString: @"<html>\n<head>\n<style>\n td {\n  padding: 5px;\n }\n .trainno {\n weight: bold;\n font-size: 16pt;\n }\n  .trainname {\n weight: normal;\n font-size: 9pt;\n}\n .stationname {\n font-weight: bold;\n text-transform: uppercase;\n text-align:center;\n font-family: @'Helvetica';\n }\n .rules {\n  width: 80%;\n border: solid 1px;\n padding: 5px;\n }\
-     </style>\n</head>\n<body>\n<div style='width: 60%;'>\n<center>Timetable No. 1, April 26, 1964</center>\n<center>WESTERN DIVISION</center>\n<table border='1'>\n"];
+    NSMutableString *result = [NSMutableString stringWithUTF8String: TIMETABLE_HEADER];
     [result appendString: @"<tr>\n"];
     NSMutableArray *eastTrains = [NSMutableArray array];
     NSMutableArray *westTrains = [NSMutableArray array];
-    for (Train *tr in self.all_trains) {
+    NSArray *allTrains = [self.all_trains sortedArrayUsingSelector: @selector(compareByTime:)];
+    for (Train *tr in allTrains) {
         if (tr.onTimetable && tr.direction == EastDirection) {
             [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainNumber, tr.trainName];
             [eastTrains addObject: tr];
         }
     }
     [result appendFormat: @"<td class='stationname'></td>" ];
-    for (Train *tr in self.all_trains) {
+    for (Train *tr in allTrains) {
         if (tr.onTimetable && tr.direction == WestDirection) {
             [result appendFormat: @"<td class='trainno'>%@<br><span class='trainname'>%@</span></td>", tr.trainNumber, tr.trainName];
             [westTrains addObject: tr];
