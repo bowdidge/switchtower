@@ -12,7 +12,7 @@ Polish / Bugs
 [x] Train reaching end isn't disappearing.
 [x] don't arrange new train at entry til old one goes.
 [x] Use table view for selecting initial game.
-[ ] Implement AlertView.
+[x] Implement AlertView.
 
 Game play
 [ ] Handle multiple step switching moves better.
@@ -26,8 +26,7 @@ Game play
 [ ] Correctly time how long through blocks.
 [ ] How to make slow parts of game interesting?
 [ ] Be able to mark which locs aren't allowed for freights.  Perhaps have idea of classes of trains to make logic easier?'
-
-[ ] Need speedup to skip ahead to next action.
+[ ] Fast forward button to skip ahead to next action.
 
 [ ] Allow wraparound paths.
 [ ] Allow prompting for taking stretch of track for an interval (think yard switching)

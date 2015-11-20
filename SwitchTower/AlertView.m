@@ -9,6 +9,18 @@
 #import "AlertView.h"
 
 @implementation AlertView
+- (void) awakeFromNib {
+    self.alertLocations = [[NSMutableIndexSet alloc] init];
+    self.bucketCount = 10;
+}
+
+- (void) clearAlerts {
+    [self.alertLocations removeAllIndexes];
+}
+
+- (void) addAlertAtLocation: (int) loc max: (int) max {
+    [self.alertLocations addIndex: loc * self.bucketCount / max];
+}
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
@@ -16,11 +28,19 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextFillRect(context, rect);
     
-    // TODO(bowdidge): Allow clients to set a vector locating which part of screen needs attention.
-    // TODO(bowdidge): Consider animation: have light flash at same time as chirp.
-    [[UIColor colorWithRed:0.4 green:0.0 blue:0.0 alpha:1.0] setFill];
-    CGRect fakeAlertRect = CGRectMake(rect.size.width * 0.9, rect.origin.y, rect.size.width * 0.1, rect.size.height);
-    CGContextFillRect(context, fakeAlertRect);
+    float bucketFraction = 1.0 / self.bucketCount;
+
+    for (int i=0; i < self.bucketCount; i++) {
+        if ([self.alertLocations containsIndex: i]) {
+            // TODO(bowdidge): Animate.
+            CGRect fakeAlertRect = CGRectMake(rect.size.width *  i * bucketFraction, rect.origin.y, rect.size.width * bucketFraction, rect.size.    height);
+
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            [[UIColor colorWithRed:0.4 green:0.0 blue:0.0 alpha:1.0] setFill];
+            CGContextFillRect(context, fakeAlertRect);
+        }
+    }
+        
 }
 
 @end

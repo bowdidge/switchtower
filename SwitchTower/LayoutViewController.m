@@ -70,6 +70,7 @@
 // TODO(bowdidge): Some of the basic motion code here should really go to LayoutModel, with only the
 // code needed for triggering events (redraw, beeps, etc) staying.
 - (void) nextTick: (id) sender {
+    [self.alertView clearAlerts];
     BOOL someTrainIsBlocked = NO;
     LayoutView *myLayoutView = (LayoutView*) self.layoutView;
      myLayoutView.currentTime = [myLayoutView.currentTime dateByAddingTimeInterval: scenario.tickIntervalInSeconds];
@@ -82,6 +83,7 @@
             if (![self.layoutModel moveTrainWest: train]) {
                 //blocked.
                 if (train.onTimetable) {
+                    [self.alertView addAlertAtLocation: train.position.x max: self.scenario.tileColumns];
                     someTrainIsBlocked = YES;
                 }
            }
@@ -90,7 +92,8 @@
             if (![self.layoutModel moveTrainEast: train]) {
                 //blocked.
                 if (train.onTimetable) {
-                    someTrainIsBlocked = YES;
+                   [self.alertView addAlertAtLocation: train.position.x max: self.scenario.tileColumns];
+                   someTrainIsBlocked = YES;
                 }
             }
             [self.layoutView setNeedsDisplay];
@@ -113,6 +116,9 @@
             [self.statusMessages addObject: msg];
             [completedTrains addObject: train];
         } else if ([self.layoutModel isEndPoint: train.position] &&
+                    // Not quite correct.  This needs to distinguish between named spots
+                    // passing through, and named spots that were the wrong direction.
+                   [train isAtStartPosition] == NO &&
                    [train isAtEndPosition] == NO) {
             NSString* message = [NSString stringWithFormat: @"Train %@ exited at %@, not at %@\n",
                                  train.trainNumber, currentNamedPoint.name,
@@ -163,6 +169,7 @@
                 // "waiting" for intermediate endpoints.
                 NSString* message = [NSString stringWithFormat: @"Train %@ approaching %@.\n", train.trainNumber, train.startPoint.name];
                 [self.statusMessages addObject: message];
+                [self.alertView addAlertAtLocation: train.position.x max: self.scenario.tileColumns];
                 AudioServicesPlaySystemSound(chimeStartingSound);
 
             }
@@ -205,6 +212,7 @@
     self.trainField.text = trainDestinations;
     // TODO(bowdidge): Be more cautious about what's redrawn?
     [self.layoutView setNeedsDisplay];
+    [self.alertView setNeedsDisplay];
 }
 
 // Handles a press on a signal.

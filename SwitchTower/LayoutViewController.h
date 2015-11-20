@@ -31,6 +31,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <UIKit/UIKit.h>
 
+#import "AlertView.h"
 #import "Cell.h"
 #import "PopoverController.h"
 
@@ -61,6 +62,7 @@
 @property(nonatomic, retain) Scenario *scenario;
 @property(nonatomic, assign) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, retain) IBOutlet LayoutView *layoutView;
+@property(nonatomic, retain) IBOutlet AlertView *alertView;
 @property(nonatomic, retain) LayoutModel *layoutModel;
 @property(nonatomic, retain) NSTimer *myTimer_;
 // TODO(bowdidge): Instead do as array with fixed number of elements.

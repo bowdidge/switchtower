@@ -159,6 +159,7 @@
                     <navigationItem key="navigationItem" id="qmM-jf-4CX"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="alertView" destination="c4m-zJ-VIA" id="wW7-MX-9oO"/>
                         <outlet property="scoreLabel" destination="UqK-0e-1AA" id="Wfv-Hi-XMp"/>
                         <outlet property="scrollView" destination="cc3-hD-qvV" id="lqa-hP-rR1"/>
                         <outlet property="statusField" destination="duJ-1a-HcB" id="r5a-3J-rc1"/>
