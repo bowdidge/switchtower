@@ -429,7 +429,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     [result appendFormat: @"%@: %@\n", tr.trainNumber, tr.trainName];
     [result appendFormat: @"From '%@' to '%@'\n", tr.startPoint.name, [tr endPointsAsText]];
     [result appendFormat: @"Train should be at destination by %@\n", formattedDate(tr.arrivalTime)];
-    [result appendString: [tr longDescription]];
+    [result appendString: tr.trainDescription];
     return result;
 }
 

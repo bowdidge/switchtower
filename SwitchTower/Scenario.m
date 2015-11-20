@@ -218,7 +218,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         }
         Train *tr = [Train trainWithNumber: trainIdentifier name: trainName direction: dir start: startPoint ends: endpoints];
         tr.departureTime = [s scenarioTime: departureTimeStr];
-        tr.longDescription = trainDescription;
+        tr.trainDescription = trainDescription;
         tr.arrivalTime = [s scenarioTime: arrivalTimeStr];
         tr.onTimetable = [onTimetable boolValue];
         tr.currentState = Inactive;

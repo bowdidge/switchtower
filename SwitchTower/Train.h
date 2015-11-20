@@ -65,7 +65,7 @@ enum TrainState {
 
 @property(nonatomic, retain) NSString *trainNumber;
 @property(nonatomic, retain) NSString *trainName;
-@property(nonatomic, retain) NSString *longDescription;
+@property(nonatomic, retain) NSString *trainDescription;
 // Not retained.
 @property(nonatomic,assign) LayoutView *currentLayout;
 @property(nonatomic) struct CellPosition position;

@@ -56,6 +56,7 @@
     Train *train = [[[Train alloc] init] autorelease];
     train.trainNumber = trainNumber;
     train.trainName = trainName;
+    train.trainDescription = @"";
     train.direction = dir;
     train.startPoint = start;
     train.expectedEndPoints = ends;
