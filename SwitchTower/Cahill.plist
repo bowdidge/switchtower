@@ -521,7 +521,9 @@
             <key>OnTimetable</key>
             <integer>1</integer>
             <key>Becomes</key>
-            <array/>
+            <array>
+                <string>Eng 108</string>
+            </array>
         </dict>
         
         <dict>
@@ -547,7 +549,7 @@
             <integer>0</integer>
             <key>Becomes</key>
             <array>
-                <string>133</string>
+                <string></string>
             </array>
         </dict>
 
