@@ -34,11 +34,11 @@
 - (void)testExample {
     TestScenario *s = [[TestScenario alloc] init];
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
-    Train *t = [Train trainWithName: @"101"
-                        description: @"streamliner"
-                          direction: EastDirection
-                              start: [s endpointWithName: @"LeftBottom"]
-                                end: [s endpointWithName: @"Right"]];
+    Train *t = [Train trainWithNumber: @"101"
+                                 name: @"streamliner"
+                            direction: EastDirection
+                                start: [s endpointWithName: @"LeftBottom"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
     [m addActiveTrain: t];
     t.position = MakeCellPosition(0, 1);
 
@@ -77,11 +77,11 @@
 - (void)testSwitchNormal {
     TestScenario *s = [[TestScenario alloc] init];
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
-    Train *t = [Train trainWithName: @"100"
-                        description: @"streamliner"
-                          direction: EastDirection
-                              start: [s endpointWithName: @"Right"]
-                                end: [s endpointWithName: @"LeftBottom"]];
+    Train *t = [Train trainWithNumber: @"100"
+                                 name: @"streamliner"
+                            direction: EastDirection
+                                start: [s endpointWithName: @"Right"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"LeftBottom"]]];
     [m addActiveTrain: t];
     t.position = MakeCellPosition(4,0);
     
@@ -108,11 +108,11 @@
 - (void)testSwitchReversed {
     TestScenario *s = [[TestScenario alloc] init];
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
-    Train *t = [Train trainWithName: @"100"
-                        description: @"streamliner"
-                          direction: EastDirection
-                              start: [s endpointWithName: @"Right"]
-                                end: [s endpointWithName: @"LeftBottom"]];
+    Train *t = [Train trainWithNumber: @"100"
+                                 name: @"streamliner"
+                            direction: EastDirection
+                                start: [s endpointWithName: @"Right"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"LeftBottom"]]];
     [m addActiveTrain: t];
     t.position = MakeCellPosition(4,0);
     
@@ -141,11 +141,11 @@
 - (void)testNoMoveOffTopOfGame {
     InvalidScenario *s = [[InvalidScenario alloc] init];
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
-    Train *t = [Train trainWithName: @"101"
-                        description: @"streamliner"
-                          direction: EastDirection
-                              start: [s endpointWithName: @"Left"]
-                                end: [s endpointWithName: @"Right"]];
+    Train *t = [Train trainWithNumber: @"101"
+                                 name: @"streamliner"
+                            direction: EastDirection
+                                start: [s endpointWithName: @"Left"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
     [m addActiveTrain: t];
     t.position = MakeCellPosition(0,0);
     
@@ -172,11 +172,11 @@
 - (void)testNoMoveOffBottomOfGame {
     InvalidScenario *s = [[InvalidScenario alloc] init];
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
-    Train *t = [Train trainWithName: @"100"
-                        description: @"streamliner"
-                          direction: WestDirection
-                              start: [s endpointWithName: @"Right"]
-                                end: [s endpointWithName: @"Left"]];
+    Train *t = [Train trainWithNumber: @"100"
+                                 name: @"streamliner"
+                            direction: WestDirection
+                                start: [s endpointWithName: @"Right"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"Left"]]];
     [m addActiveTrain: t];
     t.position = MakeCellPosition(4,0);
     
@@ -198,11 +198,11 @@
 - (void)testSignal {
     StraightScenario *s = [[StraightScenario alloc] init];
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
-    Train *t = [Train trainWithName: @"101"
-                        description: @"streamliner"
-                          direction: EastDirection
-                              start: [s endpointWithName: @"Left"]
-                                end: [s endpointWithName: @"Right"]];
+    Train *t = [Train trainWithNumber: @"101"
+                                 name: @"streamliner"
+                            direction: EastDirection
+                                start: [s endpointWithName: @"Left"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
     [m addActiveTrain: t];
     t.position = MakeCellPosition(0,0);
     
@@ -224,11 +224,11 @@
 - (void)testSignalDoesntAffectOtherDirection {
     StraightScenario *s = [[StraightScenario alloc] init];
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
-    Train *t = [Train trainWithName: @"101"
-                        description: @"streamliner"
-                          direction: EastDirection
-                              start: [s endpointWithName: @"Left"]
-                                end: [s endpointWithName: @"Right"]];
+    Train *t = [Train trainWithNumber: @"101"
+                                 name: @"streamliner"
+                            direction: EastDirection
+                                start: [s endpointWithName: @"Left"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
     [m addActiveTrain: t];
     t.position = MakeCellPosition(0,0);
     
