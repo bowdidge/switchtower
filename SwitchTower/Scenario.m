@@ -299,15 +299,17 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
 - (NSDate*) scenarioTime: (NSString*) timeString {
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormatter setDateFormat: @"HH:mm"];
+    // Find the time we get for 00:00 and for the requested time.  This gives us an offset from the beginning of the day.
     NSDate* zeroDate = [dateFormatter dateFromString: @"00:00"];
-    NSDate* date = [dateFormatter dateFromString: timeString];
-    NSTimeInterval offset = [date timeIntervalSinceDate: zeroDate];
+    NSDate* requestedDate = [dateFormatter dateFromString: timeString];
+    NSTimeInterval offsetFromZero = [requestedDate timeIntervalSinceDate: zeroDate];
+    
     NSDate *startOfDay =[[NSCalendar currentCalendar] startOfDayForDate: self.startingTime];
-    NSDate *result = [startOfDay dateByAddingTimeInterval: offset];
-    if ([result earlierDate: self.startingTime]) {
+    NSDate *result = [startOfDay dateByAddingTimeInterval: offsetFromZero];
+    if ([result compare: self.startingTime] == NSOrderedDescending) {
         return result;
     }
-    // Add an extra day - things wrapped.
+    // Add an extra day - things wrapped, and the result was smaller than starting time.
     return [result dateByAddingTimeInterval: 24 * 60 * 60];
 }
 
