@@ -78,8 +78,9 @@
 
 @property(nonatomic, retain) NSDate *currentTime;
 @property(nonatomic, retain) NSArray *routeColors;
-// TODO(bowdidge): Why both a layoutModel and a scenario?
+// LayoutModel contains the running data.
 @property(nonatomic, retain) LayoutModel *layoutModel;
+// Scenario contains the static data.
 @property(nonatomic, retain) Scenario *scenario;
 @property(nonatomic, assign) IBOutlet LayoutViewController *controller;
 @property(nonatomic, assign) IBOutlet UIScrollView *containingScrollView;

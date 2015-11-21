@@ -233,7 +233,6 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
 
 // Processes rawTileString, and sets self.tileStrings.  Returns false if raw tile string is invalid. 
 - (BOOL) validateTileString {
-    // TODO(bowdidge): Read from text file, or
     BOOL ok = true;
     NSMutableCharacterSet *invalidChars = [NSMutableCharacterSet characterSetWithCharactersInString: @"PpQqRrVvYyQqZzWwTt/\\.-= "];
     [invalidChars invert];

@@ -310,7 +310,7 @@ float CellYPosOffset(TrackDirection dir) {
     // Turn down shadow for text.
     CGContextSetShadow(context, CGSizeMake(2.0, 2.0), 2.0);
     
-    // TODO(bowdidge): Better label.
+    // TODO(bowdidge): Better label appearance.
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *fontAttrs = @{NSFontAttributeName: [UIFont boldSystemFontOfSize: 12.0],

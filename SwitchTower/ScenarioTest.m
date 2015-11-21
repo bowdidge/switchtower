@@ -76,7 +76,6 @@
     XCTAssertEqualObjects(@"1935-01-15 20:00", [f stringFromDate: eightPM], @"");
 }
 
-// TODO(bowdidge): Fix wrapping, make sure time zones aren't messing things up.
 - (void) testWrapDate {
     NSDateFormatter* f = [[NSDateFormatter alloc] init];
     [f setDateFormat: @"yyyy-MM-dd HH:mm"];

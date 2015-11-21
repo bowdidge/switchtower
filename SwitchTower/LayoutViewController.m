@@ -134,7 +134,7 @@
 
     for (Train *train in completedTrains) {
         if (train.becomesTrains && train.becomesTrains.count > 0) {
-            // TODO(bowdidge): Look up each new train, place in simulation.
+            // Look up each new train, place in simulation.
             for (Train* newTrain in self.activeTrains) {
                 if ([newTrain.trainNumber isEqualToString: [train.becomesTrains objectAtIndex: 0]]) {
                     newTrain.currentState = Waiting;

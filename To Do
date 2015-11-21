@@ -53,6 +53,7 @@ Scenario editor:
 
 Timetable
 [x] Timetable should be based on all trains in scenario, not active trains.
+[x] timetable needs to be in time order.
 
 Programming
 [ ] Improve testing.
