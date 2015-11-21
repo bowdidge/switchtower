@@ -10,5 +10,7 @@
 
 @interface HelpViewController : UIViewController
 @property(nonatomic, retain) IBOutlet UIWebView *helpTextView;
+// HTML text to display in the help pane.
+@property(nonatomic, retain) NSString *helpString;
 @property(nonatomic, retain) IBOutlet UIButton *cancelButton;
 @end

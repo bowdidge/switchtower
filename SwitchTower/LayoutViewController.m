@@ -30,13 +30,11 @@
 
 #import "LayoutViewController.h"
 
-#import "NamedPoint.h"
 #import "FourthStreetScenario.h"
-#import "Scenario.h"
+#import "HelpViewController.h"
 #import "LayoutView.h"
-#import "PenzanceScenario.h"
-#import "ShellmoundScenario.h"
-#import "SantaCruzScenario.h"
+#import "NamedPoint.h"
+#import "Scenario.h"
 #import "TimetableViewController.h"
 #import "Train.h"
 
@@ -323,6 +321,9 @@
     if ([segue.identifier isEqualToString: @"timetable"]) {
       TimetableViewController *tvc = segue.destinationViewController;
       tvc.scenario = self.scenario;
+    } else if ([segue.identifier isEqualToString: @"help"]) {
+        HelpViewController *helpVC = segue.destinationViewController;
+        helpVC.helpString = [self.scenario helpHTML];
     }
 }
 

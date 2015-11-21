@@ -50,6 +50,8 @@
 - (BOOL) isNamedPoint: (NamedPoint*) a sameAs: (NamedPoint*) b;
 
 - (NSString*) timetableHTML;
+// Returns the HTML text for the Help view for this scenario.
+- (NSString*) helpHTML;
 
 // Processes tileStrings. Returns false if raw tile string is invalid.
 // Exposed only for testing.
@@ -69,6 +71,7 @@
 @property (nonatomic) NSUInteger tileRows;
 // TODO(bowdidge): Make more structured and validated.
 @property (nonatomic, retain) NSArray *tileStrings;
+@property (nonatomic, retain) NSString *helpString;
 @end
 
 // Helper routines for formatting times in our preferred format.

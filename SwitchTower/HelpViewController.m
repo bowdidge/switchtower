@@ -10,7 +10,11 @@
 
 @implementation HelpViewController
 - (void)viewDidLoad {
-    [self.helpTextView loadHTMLString: @"Help text here." baseURL: nil];
+    if (self.helpString && [self.helpString length] > 0) {
+        [self.helpTextView loadHTMLString: self.helpString baseURL: nil];
+    } else {
+        [self.helpTextView loadHTMLString: @"No help available." baseURL: nil];
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

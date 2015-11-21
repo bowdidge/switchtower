@@ -152,6 +152,11 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     }
     s.all_labels = allLabels;
     
+    NSString *helpString = [dict objectForKey: @"Help"];
+    if (helpString) {
+        s.helpString = helpString;
+    }
+    
     NSMutableArray *allSignals = [NSMutableArray array];
     NSArray *signals = [dict objectForKey: @"Signals"];
     for (NSDictionary* signalDict in signals) {
@@ -419,6 +424,10 @@ const char *TIMETABLE_HEADER =
     [result appendString: @"</tr>\n"];
     [result appendString: @"</table>\n </div>\n <br>\n <div class='rules'>\n<b>RULE 5.</b> Time applies at the location of station sign at stations between San Francisco and San Jose and on Santa Clara-Newark line will apply at junction switch, Santa Clara.\n<br>\n<B>RULE S-72.</b> Exception: No. 98 is superior to Nos. 371, 373, 75, and 141.\n </div> </body>\n"];
     return result;
+}
+
+- (NSString*) helpHTML {
+    return self.helpString;
 }
 
 

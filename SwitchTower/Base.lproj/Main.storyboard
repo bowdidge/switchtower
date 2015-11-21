@@ -145,7 +145,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dme-9w-CBK" kind="modal" id="T6G-Wt-A7r"/>
+                                    <segue destination="dme-9w-CBK" kind="modal" identifier="help" id="T6G-Wt-A7r"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4m-zJ-VIA" customClass="AlertView">
@@ -178,7 +178,7 @@
         <!--Help View Controller-->
         <scene sceneID="GqB-mC-jAh">
             <objects>
-                <viewController id="dme-9w-CBK" customClass="HelpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="help" id="dme-9w-CBK" customClass="HelpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uvL-bA-pgo"/>
                         <viewControllerLayoutGuide type="bottom" id="eNT-za-dmG"/>
