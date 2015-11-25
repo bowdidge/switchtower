@@ -399,7 +399,9 @@
     struct CellPosition pos = train.position;
     struct CellPosition newPos = pos;
    
-    if ([self nextCellWest: pos returns: &newPos] == NO) return NO;
+    if ([self nextCellWest: pos returns: &newPos] == NO) {
+        return NO;
+    }
 
     // Passing signal? Invalidate.
     Signal *theSignal = [self signalAtCell: pos direction: WestDirection];
