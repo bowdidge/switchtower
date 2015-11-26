@@ -6,7 +6,6 @@ Polish / Bugs
 [ ] Better sounds.
 [ ] don't allow changing switch along route.'
 [ ] Reversing signal back to red clears all routes.
-[ ] Reverse X,y
 [X] Reverse Diridon for correct west/east.
 [x] Way to quit game.
 [x] Train reaching end isn't disappearing.
@@ -16,17 +15,19 @@ Polish / Bugs
 
 Game play
 [ ] Handle multiple step switching moves better.
-[ ] Improve one game (Diridon?  16th Street?) for playability.
+[x] Improve one game (Diridon?  16th Street?) for playability.
 [ ] Detect illegal moves, and put up popover describing problem ("no freight trains on pass 2-4")
 [ ] Don't allow switch thrown under train.
 [ ] Warn about why signal can't be changed.
 [ ] Turning a signal back to red should clear route only to previous signal.
 [ ] Only allow changing signal in with multi-minute lock.
-[ ] Allow different length blocks.
-[ ] Correctly time how long through blocks.
+[x] Allow different length blocks.
+[x] Correctly time how long through blocks.
+[ ] Allow acceleration and deceleration.
 [ ] How to make slow parts of game interesting?
 [ ] Be able to mark which locs aren't allowed for freights.  Perhaps have idea of classes of trains to make logic easier?'
 [ ] Fast forward button to skip ahead to next action.
+[ ] Set up stops for passenger trains.
 
 [ ] Allow wraparound paths.
 [ ] Allow prompting for taking stretch of track for an interval (think yard switching)
@@ -59,7 +60,8 @@ Programming
 [ ] Improve testing.
 
 Cahill:
-[ ] Cahill's track 4/5 have the longest platform and should be used for longer distance trains.'
+[ ] Cahill's track 4/5 have the longest platform and should be used for longer distance trains.
+[ ] Coast Mail should stop on track 1 for easier unloading.
 
 Notes about development
 
@@ -71,7 +73,7 @@ Don't allow invalid / n
 
 [ ] Points and scoring.
 [ ] Figure out timing.
-[ ] For Diridon, grab a real schedule from late '30's and see how that works.
+[ ] For Diridon, grab a real schedule from late '30's / late '50's' and see how that works.
 [ ] For timing, set lengths of tracks along x axis, calculate speed, do everything based on distance from LHS.
 [ ] Semi-autonomous switchers for handling cars, forcing back and forth movements.
 [ ] More game-like scenarios.

@@ -75,7 +75,8 @@
 
 // Work to be done on instantiating the nib.  Note that the view is pre-generated, so
 // initialization needs to be here.
-- (void) viewDidLoad {
+// TODO(bowdidge): Why not awakeFromNib?
+- (void) didMoveToSuperview {
     self.containingScrollView.contentSize = self.viewSize;
     
     self.routeColors = [NSArray arrayWithObjects: [UIColor blueColor], [UIColor purpleColor],
@@ -83,13 +84,9 @@
 
     // Add long tap for the main tiles
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTap:)];
+    longPressGesture.minimumPressDuration = 1.0;
     [self addGestureRecognizer:longPressGesture];
     [longPressGesture release];
-}
-
-// Handle long hold on a particular cell.
--(void) longTap:(UILongPressGestureRecognizer *)gestureRecognizer{
-    // TODO(bowdidge): Draw information window for the selected train.
 }
 
 // Returns the X coordinate of the end point in the specified direction from the center of the tile.
@@ -470,16 +467,27 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
         [self.controller switchTouchedAtCell: pos];
         [self setNeedsDisplay];
     }
-    
-    // If there's a train there, describe the train.
-    Train* tr;
-    if ((tr = [self.self.layoutModel occupyingTrainAtCell: pos]) != nil) {
-        // TODO(bowdidge): Pop up.
-        NSLog(@"%@", [tr description]);
-        NSString *msg = [self detailForTrain: tr];
-        float x = LEFT_MARGIN + cellX * TILE_WIDTH - TILE_WIDTH/2;
-        float y = TOP_MARGIN + cellY * TILE_HEIGHT - TILE_HEIGHT / 2;
-        [self.controller showDetailMessage: msg atLayoutViewX: x Y: y];
+    }
+
+// Handle long hold on a particular cell.
+-(void) longTap:(UILongPressGestureRecognizer *)gesture{
+    // TODO(bowdidge): Draw information window for the selected train.
+    if(UIGestureRecognizerStateBegan == gesture.state) {
+        CGPoint touchLoc = [gesture locationInView: self];
+        int cellX = (touchLoc.x - LEFT_MARGIN) / TILE_WIDTH;
+        int cellY = (touchLoc.y - TOP_MARGIN) / TILE_HEIGHT;
+        struct CellPosition pos = MakeCellPosition(cellX, cellY);
+       
+        // If there's a train there, describe the train.
+        Train* tr;
+        if ((tr = [self.self.layoutModel occupyingTrainAtCell: pos]) != nil) {
+            // TODO(bowdidge): Pop up.
+            NSLog(@"%@", [tr description]);
+            NSString *msg = [self detailForTrain: tr];
+            float x = LEFT_MARGIN + cellX * TILE_WIDTH - TILE_WIDTH/2;
+            float y = TOP_MARGIN + cellY * TILE_HEIGHT - TILE_HEIGHT / 2;
+            [self.controller showDetailMessage: msg atLayoutViewX: x Y: y];
+        }
     }
 }
 
