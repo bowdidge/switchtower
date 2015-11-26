@@ -23,7 +23,7 @@ Game play
 [ ] Only allow changing signal in with multi-minute lock.
 [x] Allow different length blocks.
 [x] Correctly time how long through blocks.
-[ ] Allow acceleration and deceleration.
+[ ] Allow acceleration and deceleration.  (3ft/sec/sec accel)
 [ ] How to make slow parts of game interesting?
 [ ] Be able to mark which locs aren't allowed for freights.  Perhaps have idea of classes of trains to make logic easier?'
 [ ] Fast forward button to skip ahead to next action.
