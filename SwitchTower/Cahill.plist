@@ -12,8 +12,11 @@ San Francisco (railroad “west”) is to the left on the track diagram.  Los An
 &lt;h3&gt;Usual Practices&lt;/h3&gt;
 Cahill St.’s platform #4 and #5 were the longest in the station, and used for the longest, inter-city trains.  Commute trains would use any platforms.  Platform #1, reachable from the station without going through the subway tunnel, was used for long-distance trains.  Platform #1 would also be used for freights heading for the Mulford line.
 &lt;p&gt;
-Most freight trains bypassed the station using the track on the far west (bottom) of the station.  These freights switched to the topmost “Freight Lead” track soon after leaving Santa Clara.
+Most freight trains bypassed the station using the track on the far west (bottom) of the station.  Umbrella sheds at the station are too near the tracks on platforms #2, #3, and #4.  Instead, freights switched to the bottom-most “Freight Lead” track soon after leaving Santa Clara.  Freight trains headed for the Mulford line must use track #1 to reach the junction.
 &lt;p&gt;
+&lt;h3&gt;For More Information&lt;/h3&gt;
+Read the Dome of Foam's article on Cahill Station and the planned 1965 rearrangement for
+more background.
 </string>
 	<key>Endpoints</key>
 	<array>
@@ -22,12 +25,6 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>0,4</string>
 			<key>Name</key>
 			<string>From SF</string>
-		</dict>
-		<dict>
-			<key>Location</key>
-			<string>0,5</string>
-			<key>Name</key>
-			<string>From SF Frt</string>
 		</dict>
 		<dict>
 			<key>Location</key>
@@ -109,10 +106,140 @@ Most freight trains bypassed the station using the track on the far west (bottom
 		</dict>
 	</array>
 	<key>StartTime</key>
-	<date>1935-05-12T05:30:00Z</date>
+    <date>1935-05-12T04:00:00Z</date>
 	<key>Trains</key>
 	<array>
 		<dict>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Departs</key>
+            <string>From LA</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Becomes</key>
+            <array/>
+            <key>ArrivalTime</key>
+            <string>4:10</string>
+            <key>Name</key>
+            <string>Adv. CMW</string>
+            <key>Identifier</key>
+            <string>371</string>
+            <key>Description</key>
+            <string>Coast Merchandise West (Advance)</string>
+            <key>DepartureTime</key>
+            <string>04:01</string>
+            <key>Speed</key>
+            <integer>20</integer>
+        </dict>
+        <dict>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Departs</key>
+            <string>From LA</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Becomes</key>
+            <array/>
+            <key>ArrivalTime</key>
+            <string>4:45</string>
+            <key>Name</key>
+            <string>CMW</string>
+            <key>Identifier</key>
+            <string>373</string>
+            <key>Description</key>
+            <string>Coast Merchandise West</string>
+            <key>DepartureTime</key>
+            <string>4:45</string>
+            <key>Speed</key>
+            <integer>20</integer>
+        </dict>
+        <dict>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Departs</key>
+            <string>From SF</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Arrives</key>
+            <array>
+                <string>To LA</string>
+            </array>
+            <key>Becomes</key>
+            <array/>
+            <key>ArrivalTime</key>
+            <string>4:30</string>
+            <key>Name</key>
+            <string>CMW</string>
+            <key>Identifier</key>
+            <string>X3794</string>
+            <key>Description</key>
+            <string>Watsonville Hauler</string>
+            <key>DepartureTime</key>
+            <string>4:20</string>
+            <key>Speed</key>
+            <integer>20</integer>
+        </dict>
+        <dict>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Departs</key>
+            <string>From LA</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Becomes</key>
+            <array/>
+            <key>ArrivalTime</key>
+            <string>4:40</string>
+            <key>Name</key>
+            <string>Coast Mail</string>
+            <key>Identifier</key>
+            <string>107</string>
+            <key>Description</key>
+            <string>Coast Mail, overnight between Los Angeles and San Francisco</string>
+            <key>DepartureTime</key>
+            <string>4:30</string>
+            <key>Speed</key>
+            <integer>20</integer>
+        </dict>
+        <dict>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Departs</key>
+            <string>From SF</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Arrives</key>
+            <array>
+                <string>To LA</string>
+            </array>
+            <key>Becomes</key>
+            <array/>
+            <key>ArrivalTime</key>
+            <string>5:25</string>
+            <key>Name</key>
+            <string>Coast Mail</string>
+            <key>Identifier</key>
+            <string>104</string>
+            <key>Description</key>
+            <string>Coast Mail</string>
+            <key>DepartureTime</key>
+            <string>5:15</string>
+            <key>Speed</key>
+            <integer>20</integer>
+        </dict>
+        <dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Departs</key>
@@ -859,9 +986,9 @@ Most freight trains bypassed the station using the track on the far west (bottom
 		<string>     -z                             </string>
 		<string>     -z\                            </string>
 		<string>       \\    Z---z          Z-z   Z.</string>
-		<string>.------QppqQP-----pQ-----q-P---pQP-.</string>
-		<string>.--Q----pPQ-pQ-----qpQQ-w        \  </string>
-		<string>.---pQ-----pz W---v   \W-t        W.</string>
+		<string>.Q-----QppqQP-----pQ-----q-P---pQP-.</string>
+		<string>.-pQ----pPQ-pQ-----qpQQ-w        \  </string>
+		<string>    WQ-----pz W---v   \W-t        W.</string>
 		<string>      \      W---v     W-           </string>
 		<string>              --w                   </string>
 	</array>
@@ -982,12 +1109,6 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>0,5</string>
-		</dict>
-		<dict>
-			<key>Direction</key>
-			<string>East</string>
-			<key>Location</key>
 			<string>0,4</string>
 		</dict>
 		<dict>
@@ -1035,13 +1156,31 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>East</string>
 			<key>Location</key>
 			<string>10,5</string>
+            <key>comment</key>
+            <string>Freight lead</string>
 		</dict>
+        <dict>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Location</key>
+            <string>12,5</string>
+            <key>comment</key>
+            <string>Freight lead</string>
+        </dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
 			<string>5,1</string>
 		</dict>
+        <dict>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Location</key>
+            <string>5,0</string>
+            <key>comment</key>
+            <string>Mulford Line entrance</string>
+        </dict>
 	</array>
 	<key>Description</key>
 	<string>Handle the comings and goings of the Southern Pacific&apos;s San Francisco-&gt;San Jose commute fleet in the early 1950&apos;s.  In this simulation, you&apos;ll need to prepare trains for commute runs while leaving space to get long-distance passenger trains and freights through.</string>
