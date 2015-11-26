@@ -103,7 +103,7 @@ static char* cells = "";
     self.scenarioName = @"Unset scenario name";
     self.scenarioDescription = @"Unset scenario description";
     self.tickIntervalInSeconds = 30;
-
+    self.cellLengths = nil;
     return self;
 }
 
