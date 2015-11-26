@@ -63,7 +63,7 @@
     // Aim for CTC green.
     self.backgroundColor = [UIColor colorWithRed:32.0/256 green: 48.0/256 blue: 30.0/256 alpha: 1.0];
     
-    self.displayForEditing = true;
+    self.displayForEditing = false;
     return self;
 }
 
