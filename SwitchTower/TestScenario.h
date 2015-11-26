@@ -17,3 +17,6 @@
 
 @interface StraightScenario : Scenario
 @end
+
+@interface TestScenarioWithDistances : Scenario
+@end

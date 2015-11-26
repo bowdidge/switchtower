@@ -36,6 +36,15 @@
 
 @implementation LayoutModel
 
+float HOURS_PER_MINUTE = 1.0/60;
+float MINUTES_PER_SEC = 1.0 / 60;
+float FEET_PER_MILE = 5280.0;
+
+//HOURS_PER_MINUTE * MINUTES_PER_SEC * FEET_PER_MILE;
+float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
+
+
+
 - (id) initWithScenario: (Scenario*) s{
     [super init];
     self.activeTrains = [NSMutableArray array];
@@ -46,8 +55,14 @@
 }
 
 // Register a new train to display.
-- (void) addActiveTrain: (Train*) train {
+- (void) addActiveTrain: (Train*) train  position: (struct CellPosition) pos{
     [self.activeTrains addObject: train];
+    train.position = pos;
+    if (train.direction == WestDirection) {
+        train.distanceFromWestEndCurrentCell = [self.scenario lengthOfCellInFeet: pos];
+    } else {
+        train.distanceFromWestEndCurrentCell = 0;
+    }
 }
 
 - (void) clearRoute {
@@ -399,18 +414,51 @@
     struct CellPosition pos = train.position;
     struct CellPosition newPos = pos;
    
-    if ([self nextCellWest: pos returns: &newPos] == NO) {
-        return NO;
-    }
-
-    // Passing signal? Invalidate.
+    // Check if we're stuck at current location first so we can report back whether train is stalled.
+    struct CellPosition dontCare;
+    if ([self nextCellWest: pos returns: &dontCare] == NO) return NO;
     Signal *theSignal = [self signalAtCell: pos direction: WestDirection];
-    if (theSignal && !theSignal.isGreen) return NO;
+    if (theSignal) {
+        if (theSignal.trafficDirection == EastDirection && !theSignal.isGreen) {
+            return NO;
+        }
+    }
     
-    theSignal.isGreen = NO;
+    // Calculate train's current position in block, speed, and decide whether it
+    // reaches a new block.
+    float feetTravelled = train.speedMPH * MPH_TO_FEET_PER_SEC * self.scenario.  tickIntervalInSeconds;
     
-    routeSelection[pos.x][pos.y] = 0;
-    train.position = newPos;
+    while (1) {   
+        // Made it partially through block.
+        if (feetTravelled < train.distanceFromWestEndCurrentCell) {
+            train.distanceFromWestEndCurrentCell -= feetTravelled;
+            NSLog(@"Train %@ travelled %f feet.", train.trainNumber, feetTravelled);
+            return YES;
+        }
+        // Otherwise, reached end of block.
+        NSLog(@"Train %@ travelled %f feet to end of block", train.trainNumber, (train.distanceFromWestEndCurrentCell));
+        feetTravelled = feetTravelled - train.distanceFromWestEndCurrentCell;
+        train.distanceFromWestEndCurrentCell = 0;
+        
+        if ([self nextCellWest: pos returns: &newPos] == NO) return YES;
+        
+        Signal *theSignal = [self signalAtCell: pos direction: WestDirection];
+        if (theSignal) {
+            if (theSignal.trafficDirection == WestDirection && !theSignal.isGreen) {
+                // Return YES because we were able to move.
+                return YES;
+            }
+            theSignal.isGreen = NO;
+        }
+        
+        // Otherwise, proceed to next block.
+        routeSelection[newPos.x][newPos.y] = 0;
+        train.position = newPos;
+        pos = newPos;
+        float nextCellLength = [self.scenario lengthOfCellInFeet: newPos];
+        train.distanceFromWestEndCurrentCell = nextCellLength;
+        NSLog(@"Train %@ moved to new block", train.trainNumber);
+    }
     return YES;
 }
 
@@ -522,14 +570,52 @@
     struct CellPosition pos = train.position;
     struct CellPosition newPos = pos;
 
-    if ([self nextCellEast: pos returns: &newPos] == NO) return NO;
-    
+    // Check if we're stuck at current location first so we can report back whether train is stalled.
+    struct CellPosition dontCare;
+    if ([self nextCellEast: pos returns: &dontCare] == NO) return NO;
     Signal *theSignal = [self signalAtCell: pos direction: EastDirection];
-    if (theSignal && theSignal.trafficDirection == EastDirection && !theSignal.isGreen) return NO;
-    theSignal.isGreen = NO;
+    if (theSignal) {
+        if (theSignal.trafficDirection == EastDirection && !theSignal.isGreen) {
+            return NO;
+        }
+    }
+
+    // Calculate train's current position in block, speed, and decide whether it
+    // reaches a new block.
+    float feetTravelled = train.speedMPH * MPH_TO_FEET_PER_SEC * self.scenario.  tickIntervalInSeconds;
+
+    while (1) {
+        float cellLength = [self.scenario lengthOfCellInFeet: pos];
+
+        // Made it partially through block.
+        if (feetTravelled < cellLength - train.distanceFromWestEndCurrentCell) {
+            train.distanceFromWestEndCurrentCell += feetTravelled;
+            NSLog(@"Train %@ travelled %f feet.", train.trainNumber, feetTravelled);
+            return YES;
+        }
+        // Otherwise, reached end of block.
+        NSLog(@"Train %@ travelled %f feet to end of block", train.trainNumber, (cellLength - train.distanceFromWestEndCurrentCell));
+        feetTravelled = feetTravelled - (cellLength - train.distanceFromWestEndCurrentCell);
+        train.distanceFromWestEndCurrentCell = cellLength;
+
+        if ([self nextCellEast: pos returns: &newPos] == NO) return YES;
+    
+        Signal *theSignal = [self signalAtCell: pos direction: EastDirection];
+        if (theSignal) {
+            if (theSignal.trafficDirection == EastDirection && !theSignal.isGreen) {
+                // Return YES because we were able to move.
+                return YES;
+            }
+            theSignal.isGreen = NO;
+        }
   
-    routeSelection[newPos.x][newPos.y] = 0;
-    train.position = newPos;
+        // Otherwise, proceed to next block.
+        routeSelection[newPos.x][newPos.y] = 0;
+        train.position = newPos;
+        pos = newPos;
+        train.distanceFromWestEndCurrentCell = 0;
+        NSLog(@"Train %@ moved to new block", train.trainNumber);
+    }
     return YES;
 }
 

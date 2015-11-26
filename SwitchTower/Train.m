@@ -47,6 +47,7 @@
     self.direction = WestDirection;
     self.expectedEndPoints = nil;
     self.currentState = Inactive;
+    self.speedMPH = 30;  // Default.
     return self;
 }
 

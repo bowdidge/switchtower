@@ -135,6 +135,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Campbell Switcher</string>
 			<key>DepartureTime</key>
 			<string>07:05</string>
+            <key>Speed</key>
+            <integer>20</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -164,6 +166,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #129</string>
 			<key>DepartureTime</key>
 			<string>05:31</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -188,6 +192,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #129</string>
 			<key>DepartureTime</key>
 			<string>06:04</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -217,6 +223,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #131</string>
 			<key>DepartureTime</key>
 			<string>05:50</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -241,6 +249,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #131</string>
 			<key>DepartureTime</key>
 			<string>06:25</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -270,6 +280,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #133</string>
 			<key>DepartureTime</key>
 			<string>05:55</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -294,6 +306,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #133</string>
 			<key>DepartureTime</key>
 			<string>06:30</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -323,6 +337,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #135</string>
 			<key>DepartureTime</key>
 			<string>06:00</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -347,6 +363,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #135</string>
 			<key>DepartureTime</key>
 			<string>06:35</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -376,6 +394,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #137</string>
 			<key>DepartureTime</key>
 			<string>06:30</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -400,6 +420,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #137</string>
 			<key>DepartureTime</key>
 			<string>7:00</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -429,6 +451,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #139</string>
 			<key>DepartureTime</key>
 			<string>07:30</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -453,6 +477,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #139</string>
 			<key>DepartureTime</key>
 			<string>7:55</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -506,6 +532,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #139</string>
 			<key>DepartureTime</key>
 			<string>10:00</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -530,6 +558,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #143</string>
 			<key>DepartureTime</key>
 			<string>10:30</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -559,6 +589,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #108</string>
 			<key>DepartureTime</key>
 			<string>06:30</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -585,6 +617,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #108</string>
 			<key>DepartureTime</key>
 			<string>06:50</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -614,6 +648,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #110</string>
 			<key>DepartureTime</key>
 			<string>07:35</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -640,6 +676,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #110</string>
 			<key>DepartureTime</key>
 			<string>07:50</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -669,6 +707,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Commute train #112</string>
 			<key>DepartureTime</key>
 			<string>08:50</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -695,6 +735,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>engine for #112</string>
 			<key>DepartureTime</key>
 			<string>9:05</string>
+            <key>Speed</key>
+            <integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -721,6 +763,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Morning Daylight from San Francisco to San Jose</string>
 			<key>DepartureTime</key>
 			<string>07:50</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -745,6 +789,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Night train from Los Angeles to San Francisco</string>
 			<key>DepartureTime</key>
 			<string>05:35</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -769,6 +815,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Morning train from Santa Cruz to San Francisco.</string>
 			<key>DepartureTime</key>
 			<string>9:30</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -793,6 +841,8 @@ Most freight trains bypassed the station using the track on the far west (bottom
 			<string>Morning train from San Francisco to Santa Cruz.</string>
 			<key>DepartureTime</key>
 			<string>10:20</string>
+            <key>Speed</key>
+            <integer>30</integer>
 		</dict>
 	</array>
 	<key>Labels</key>
@@ -815,6 +865,45 @@ Most freight trains bypassed the station using the track on the far west (bottom
 		<string>      \      W---v     W-           </string>
 		<string>              --w                   </string>
 	</array>
+    <key>CellLengths</key>
+    <array>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>500</integer>
+        <integer>200</integer>
+        <integer>200</integer>
+        <integer>200</integer>
+        <integer>300</integer>
+        <integer>300</integer>
+        <integer>300</integer>
+        <integer>300</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>10000</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>2000</integer>
+        <integer>100</integer>
+        <integer>1000</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>100</integer>
+        <integer>1000</integer>
+    </array>
 	<key>Name</key>
 	<string>San Jose Cahill Street</string>
 	<key>Signals</key>

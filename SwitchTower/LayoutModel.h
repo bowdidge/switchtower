@@ -69,7 +69,7 @@ typedef enum {
 - (id) initWithScenario: (Scenario*) s;
 
 // Register a new train to display that will be active on the layout.
-- (void) addActiveTrain: (Train*) train;
+- (void) addActiveTrain: (Train*) train position: (struct CellPosition) pos;
 
 // Returns true if the cell is a known starting or ending space for trains.
 - (BOOL) isEndPoint: (struct CellPosition) pos;
@@ -99,8 +99,11 @@ typedef enum {
 - (BOOL)selectRouteAtCell: (struct CellPosition) pos direction: (enum TimetableDirection)direction;
 - (int) routeForCell: (struct CellPosition) pos;
 
-// Returns false if train couldn't move.
+// moveTrainWest: moves the train one time unit towards the west along the
+// current route.   Returns false if train couldn't move.
 - (BOOL) moveTrainWest: (Train*) name;
+// moveTrainEast: moves the train one time unit towards the east along the
+// current route.   Returns false if train couldn't move.
 - (BOOL) moveTrainEast: (Train*) name;
 
 

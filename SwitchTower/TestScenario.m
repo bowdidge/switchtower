@@ -61,3 +61,20 @@
     return self;
 }
 @end
+
+@implementation TestScenarioWithDistances
+- (id) init {
+    self = [super init];
+    self.tileStrings = [NSArray arrayWithObjects: @"-----", @"-/   ", nil];
+    self.tileRows = 1;
+    self.tileColumns = 5;
+    NSMutableArray *eps = [NSMutableArray array];
+    struct CellPosition left = {0,0};
+    struct CellPosition right = {4,0};
+    [eps addObject: [NamedPoint namedPointWithName: @"Left" cell: left]];
+    [eps addObject: [NamedPoint namedPointWithName: @"Right" cell: right]];
+    self.cellLengths = [NSArray arrayWithObjects: [NSNumber numberWithInt: 500], [NSNumber numberWithInt: 1000], [NSNumber numberWithInt: 500], [NSNumber numberWithInt: 2500], [NSNumber numberWithInt: 500], nil];
+    self.all_endpoints = eps;
+    return self;
+}
+@end

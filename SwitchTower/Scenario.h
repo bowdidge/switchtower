@@ -42,6 +42,7 @@
 - (char) tileAtCell: (struct CellPosition) pos;
 - (NamedPoint*) endpointWithName: (NSString*) name;
 - (NamedPoint*) endpointAtCell: (struct CellPosition) pos;
+- (NSUInteger) lengthOfCellInFeet: (struct CellPosition) pos;
 
 // Returns an NSDate for the time provided in HH:mm:ss form.
 - (NSDate*) scenarioTime: (NSString*) timeString;
@@ -67,6 +68,7 @@
 @property (nonatomic, retain) NSArray *all_signals;
 @property (nonatomic, retain) NSArray *all_labels;
 @property (nonatomic, retain) NSArray *all_trains;
+@property (nonatomic, retain) NSArray *cellLengths;
 @property (nonatomic) NSUInteger tileColumns;
 @property (nonatomic) NSUInteger tileRows;
 // TODO(bowdidge): Make more structured and validated.

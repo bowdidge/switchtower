@@ -103,4 +103,6 @@
 @property(nonatomic, retain) UIColor* platformColor;
 
 @property(nonatomic, retain) UIColor* backgroundColor;
+// True if layout view should include additional information for an editable view.
+@property (nonatomic) BOOL displayForEditing;
 @end

@@ -136,8 +136,7 @@
             for (Train* newTrain in self.activeTrains) {
                 if ([newTrain.trainNumber isEqualToString: [train.becomesTrains objectAtIndex: 0]]) {
                     newTrain.currentState = Waiting;
-                    newTrain.position = train.position;
-                    [self.layoutModel addActiveTrain: newTrain];
+                    [self.layoutModel addActiveTrain: newTrain position: train.position];
                     train.currentState = Complete;
                     [self.layoutModel.activeTrains removeObject: train];
                     [self.statusMessages addObject: [NSString stringWithFormat: @"Train %@ becomes %@\n", train.trainNumber, newTrain.trainNumber]];
@@ -160,8 +159,7 @@
                 [self.layoutModel occupyingTrainAtCell: train.startPoint.position] == nil) {
 
                 train.currentState = Waiting;
-                train.position = train.startPoint.position;
-                [self.layoutModel addActiveTrain: train];
+                [self.layoutModel addActiveTrain: train position: train.startPoint.position];
                 // TODO(bowdidge): Text should be "approaching" for endpoints beyond railroad,
                 // "waiting" for intermediate endpoints.
                 NSString* message = [NSString stringWithFormat: @"Train %@ approaching %@.\n", train.trainNumber, train.startPoint.name];

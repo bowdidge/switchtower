@@ -45,7 +45,7 @@
     NSLog(@"Initing layout view");
     self.containingScrollView.contentSize = self.viewSize;
     self.routeColors = [NSArray arrayWithObjects: [UIColor blueColor], [UIColor purpleColor],
-                        [UIColor greenColor], [UIColor orangeColor], nil];
+                        [UIColor greenColor], [UIColor colorWithRed: 0.25 green: 0.25 blue: 1.0 alpha: 1.0], nil];
     self.score = 0;
     self.targetColor = [UIColor colorWithWhite: 0.5 alpha: 1.0];
     self.greenSignalColor = [UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1.0];
@@ -63,6 +63,7 @@
     // Aim for CTC green.
     self.backgroundColor = [UIColor colorWithRed:32.0/256 green: 48.0/256 blue: 30.0/256 alpha: 1.0];
     
+    self.displayForEditing = true;
     return self;
 }
 
@@ -414,6 +415,20 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     NSString *timeString = [format stringFromDate: self.currentTime];
     self.controller.timeLabel.text = timeString;
     self.controller.scoreLabel.text = [NSString stringWithFormat: @"Score: %d", self.score];
+    
+    if (self.displayForEditing) {
+        // TODO(bowdidge): Draw grid as place to edit.
+        for (int x = 0; x < self.scenario.tileColumns; x++) {
+            float centerX = LEFT_MARGIN + x * TILE_WIDTH;
+            float lengthY = TOP_MARGIN  + (self.scenario.tileRows + 2) * TILE_HEIGHT;
+            float indexY = TOP_MARGIN  + (self.scenario.tileRows + 1) * TILE_HEIGHT;
+            
+            [self drawTrainLabelInContext:context center: CGPointMake(centerX, lengthY)
+                                  message: [NSString stringWithFormat: @"%d feet", [self.scenario lengthOfCellInFeet:MakeCellPosition(x, 0)]]];
+            [self drawTrainLabelInContext:context center: CGPointMake(centerX, indexY)
+                                  message: [NSString stringWithFormat: @"%d", x]];
+        }
+    }
 }
 
 - (NSString*) popoverDescriptionForTrain: (Train*) tr{
@@ -427,6 +442,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
 - (NSString*) detailForTrain: (Train*) tr {
     NSMutableString *result = [NSMutableString string];
     [result appendFormat: @"%@: %@\n", tr.trainNumber, tr.trainName];
+    [result appendFormat: @"%.1f feet from west end of block.", (float) tr.distanceFromWestEndCurrentCell];
     [result appendFormat: @"From '%@' to '%@'\n", tr.startPoint.name, [tr endPointsAsText]];
     [result appendFormat: @"Train should be at destination by %@\n", formattedDate(tr.arrivalTime)];
     [result appendString: tr.trainDescription];

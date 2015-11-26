@@ -102,6 +102,8 @@ static char* cells = "";
     self = [super init];
     self.scenarioName = @"Unset scenario name";
     self.scenarioDescription = @"Unset scenario description";
+    self.tickIntervalInSeconds = 30;
+
     return self;
 }
 
@@ -139,7 +141,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     NSDate *startingTime = [dict objectForKey: @"StartTime"];
     s.startingTime = startingTime;
     NSNumber *tickInterval = [dict objectForKey: @"TickIntervalSecs"];
-    s.tickIntervalInSeconds = [tickInterval intValue];
+    if (tickInterval) {
+        s.tickIntervalInSeconds = [tickInterval intValue];
+    }
     NSMutableArray *allLabels = [NSMutableArray array];
     NSDictionary *labelDict = [dict objectForKey: @"Labels"];
     for (NSString* labelName in [labelDict allKeys]) {
@@ -186,6 +190,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         [allEndpoints addObject: [NamedPoint namedPointWithName: endpointName cell: pos]];
     }
     s.all_endpoints = allEndpoints;
+    NSArray *cellLengths = [dict objectForKey: @"CellLengths"];
+    // TODO(bowdidge): Check all are numbers.
+    s.cellLengths = cellLengths;
     
     NSMutableArray *allTrains = [NSMutableArray array];
     NSArray *trains = [dict objectForKey: @"Trains"];
@@ -200,6 +207,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];
         NSArray *becomes = [trainDict objectForKey: @"Becomes"];
         NSArray *arrivalEndpoints = [trainDict objectForKey: @"Arrives"];
+        NSNumber *speedMPH = [trainDict objectForKey: @"Speed"];
         enum TimetableDirection dir;
         if (ParseDirection(directionStr, &dir)) {
             // bad.
@@ -228,6 +236,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         tr.onTimetable = [onTimetable boolValue];
         tr.currentState = Inactive;
         tr.becomesTrains = becomes;
+        if (speedMPH) {
+            tr.speedMPH = [speedMPH intValue];
+        }
         [allTrains addObject: tr];
     }
     s.all_trains = allTrains;
@@ -242,7 +253,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     NSMutableCharacterSet *invalidChars = [NSMutableCharacterSet characterSetWithCharactersInString: @"PpQqRrVvYyQqZzWwTt/\\.-= "];
     [invalidChars invert];
     if ([self.tileStrings count] != self.tileRows) {
-        NSLog(@"Wrong number of tile strings, expected %d, got %d", (int) self.tileRows, [self.tileStrings count]);
+        NSLog(@"Wrong number of tile strings, expected %d, got %d", (int) self.tileRows, (int) [self.tileStrings count]);
         ok = false;
     }
     for (NSString* str in self.tileStrings) {
@@ -291,6 +302,14 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     }
     return nil;
     
+}
+
+- (NSUInteger) lengthOfCellInFeet: (struct CellPosition) pos {
+    if (!self.cellLengths) {
+        // Trains go 1320 feet per 30 sec tick at 30 mph.
+        return 1300;
+    }
+    return [[self.cellLengths objectAtIndex: pos.x] intValue];
 }
 
 - (NSDate*) zeroDate {

@@ -39,8 +39,7 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"LeftBottom"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
-    [m addActiveTrain: t];
-    t.position = MakeCellPosition(0, 1);
+    [m addActiveTrain: t position: MakeCellPosition(0, 1)];
 
     XCTAssertEqual(0, t.position.x, @"");
     XCTAssertEqual(1, t.position.y, @"");
@@ -79,14 +78,14 @@
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
     Train *t = [Train trainWithNumber: @"100"
                                  name: @"streamliner"
-                            direction: EastDirection
+                            direction: WestDirection
                                 start: [s endpointWithName: @"Right"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"LeftBottom"]]];
-    [m addActiveTrain: t];
-    t.position = MakeCellPosition(4,0);
+    [m addActiveTrain: t position: MakeCellPosition(4,0)];
     
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
+    XCTAssertEqual(1300, t.distanceFromWestEndCurrentCell, @"");
     
     XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
     
@@ -110,12 +109,12 @@
     LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
     Train *t = [Train trainWithNumber: @"100"
                                  name: @"streamliner"
-                            direction: EastDirection
+                            direction: WestDirection
                                 start: [s endpointWithName: @"Right"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"LeftBottom"]]];
-    [m addActiveTrain: t];
-    t.position = MakeCellPosition(4,0);
-    
+    [m addActiveTrain: t position: MakeCellPosition(4, 0)];
+    XCTAssertEqual(1300, t.distanceFromWestEndCurrentCell, @"");
+   
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
@@ -146,8 +145,7 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"Left"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
-    [m addActiveTrain: t];
-    t.position = MakeCellPosition(0,0);
+    [m addActiveTrain: t position: MakeCellPosition(0, 0)];
     
     XCTAssertEqual(0, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
@@ -177,8 +175,7 @@
                             direction: WestDirection
                                 start: [s endpointWithName: @"Right"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Left"]]];
-    [m addActiveTrain: t];
-    t.position = MakeCellPosition(4,0);
+    [m addActiveTrain: t position: MakeCellPosition(4, 0)];
     
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
@@ -203,8 +200,7 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"Left"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
-    [m addActiveTrain: t];
-    t.position = MakeCellPosition(0,0);
+    [m addActiveTrain: t position: MakeCellPosition(0, 0)];
     
     Signal *sig = [Signal signalControlling: EastDirection position: MakeCellPosition(2,0)];
     NSArray *signals = [NSArray arrayWithObject: sig];
@@ -229,8 +225,7 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"Left"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
-    [m addActiveTrain: t];
-    t.position = MakeCellPosition(0,0);
+    [m addActiveTrain: t position: MakeCellPosition(0, 0)];
     
     Signal *sig = [Signal signalControlling: WestDirection position: MakeCellPosition(2,0)];
     NSArray *signals = [NSArray arrayWithObject: sig];
@@ -245,7 +240,51 @@
     XCTAssertEqual(0, t.position.y, @"Didn't move correctly.");
 }
 
+- (void) testDistanceEast {
+    TestScenarioWithDistances *s = [[TestScenarioWithDistances alloc] init];
+    LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
+    Train *t = [Train trainWithNumber: @"101"
+                                 name: @"streamliner"
+                            direction: WestDirection
+                                start: [s endpointWithName: @"Right"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"Left"]]];
+    [m addActiveTrain: t position: MakeCellPosition(4, 0)];
+    t.speedMPH = 10;
+    XCTAssertEqual(4, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+    // Starts at far right.
+    XCTAssertEqual(500, t.distanceFromWestEndCurrentCell, @"");
+    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    // 10mph is 440 feet per tick.
+    XCTAssertEqual(4, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+   XCTAssertEqualWithAccuracy(60.0, t.distanceFromWestEndCurrentCell, 10, @"Wrong distance.");
+    
+    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    // 10mph is 440 feet per tick.
+    XCTAssertEqual(3, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+    // 2500 - 380.  (380 is 440 * 2 - 500).
+    XCTAssertEqualWithAccuracy(2120.0, t.distanceFromWestEndCurrentCell, 10, @"Wrong distance.");
+}
 
+- (void) testDistancesWest {
+    TestScenarioWithDistances *s = [[TestScenarioWithDistances alloc] init];
+    LayoutModel *m = [[LayoutModel alloc] initWithScenario: s];
+    Train *t = [Train trainWithNumber: @"101"
+                                 name: @"streamliner"
+                            direction: EastDirection
+                                start: [s endpointWithName: @"Left"]
+                                 ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
+    [m addActiveTrain: t position: MakeCellPosition(0, 0)];
+    t.speedMPH = 10;
+    XCTAssertEqual(0, t.position.x, @"");
+    XCTAssertEqual(0, t.position.y, @"");
+    XCTAssertEqual(0, t.distanceFromWestEndCurrentCell, @"");
+    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    // 10mph is 440 feet per tick.
+    XCTAssertEqualWithAccuracy(440.0, t.distanceFromWestEndCurrentCell, 10, @"Wrong distance.");
+}
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.

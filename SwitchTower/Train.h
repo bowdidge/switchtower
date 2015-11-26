@@ -89,5 +89,7 @@ enum TrainState {
 // TODO(bowdidge): Add schedule for passing particular stations.
 // True if train should appear in timetables.
 @property(nonatomic) BOOL onTimetable;
+@property(nonatomic) float distanceFromWestEndCurrentCell;
+@property(nonatomic) NSUInteger speedMPH;
 @end
 
