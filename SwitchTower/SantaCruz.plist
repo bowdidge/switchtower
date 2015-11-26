@@ -5,7 +5,7 @@
 	<key>Name</key>
 	<string>SP Santa Cruz branch</string>
 	<key>StartTime</key>
-	<date>1935-05-12T07:20:00Z</date>
+	<date>1935-05-12T07:00:00Z</date>
 	<key>TickIntervalSecs</key>
 	<integer>30</integer>
 	<key>Description</key>
@@ -15,6 +15,56 @@
 		<string>                                               </string>
 		<string> --q-Q---q-Q-----q-Q---q-Q---q-Q---q--Q---q--- </string>
 		<string> -w   W-w   W- -w   W-w   W-w   W-w    W-w     </string>
+	</array>
+	<key>CellLengths</key>
+	<array>
+		<integer>100</integer>
+		<integer>500</integer>
+		<integer>100</integer>
+		<string>100</string>
+		<real>25000</real>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>1500</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>12000</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>500</integer>
+		<string>500</string>
+		<string>500</string>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>12000</integer>
+		<integer>100</integer>
+		<integer>500</integer>
+		<integer>2000</integer>
+		<integer>500</integer>
+		<integer>100</integer>
+		<integer>15000</integer>
+		<integer>100</integer>
+		<integer>500</integer>
+		<integer>1500</integer>
+		<integer>500</integer>
+		<integer>100</integer>
+		<integer>32000</integer>
+		<integer>100</integer>
+		<integer>500</integer>
+		<integer>1500</integer>
+		<integer>500</integer>
+		<integer>100</integer>
+		<integer>18000</integer>
+		<integer>5000</integer>
+		<integer>100</integer>
+		<integer>500</integer>
+		<integer>1500</integer>
+		<integer>500</integer>
+		<integer>100</integer>
+		<integer>10000</integer>
+		<integer>10000</integer>
+		<integer>10000</integer>
+		<integer>100</integer>
 	</array>
 	<key>Endpoints</key>
 	<array>
@@ -141,8 +191,8 @@
 			<string>07:20</string>
 			<key>Arrives</key>
 			<array>
-			  <string>Santa Cruz</string>
-			  </array>
+				<string>Santa Cruz</string>
+			</array>
 			<key>ArrivalTime</key>
 			<string>09:10</string>
 			<key>OnTimetable</key>
@@ -178,8 +228,8 @@
 			<string>07:10</string>
 			<key>Arrives</key>
 			<array>
-			  <string>Santa Cruz</string>
-			  </array>
+				<string>Santa Cruz</string>
+			</array>
 			<key>ArrivalTime</key>
 			<string>15:00</string>
 			<key>OnTimetable</key>
