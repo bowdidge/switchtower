@@ -24,6 +24,7 @@ Game play
 [x] Allow different length blocks.
 [x] Correctly time how long through blocks.
 [ ] Allow acceleration and deceleration.  (3ft/sec/sec accel)
+[ ] Switch position to be distance from the left hand side.  Makes calculating distance to stop much easier.
 [ ] How to make slow parts of game interesting?
 [ ] Be able to mark which locs aren't allowed for freights.  Perhaps have idea of classes of trains to make logic easier?'
 [ ] Fast forward button to skip ahead to next action.
@@ -39,6 +40,8 @@ Game play
 [x] Drum beat only when scheduled train delayed.
 [x] Generate timetable from schedule.
 [x] Make timetable part of scenario.
+
+[ ] Finish list of banned points.  Requires being notified by LayoutModel of named points passed through.
 
 
 Scenarios:

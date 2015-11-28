@@ -134,7 +134,22 @@ more background.
             <string>04:01</string>
             <key>Speed</key>
             <integer>20</integer>
-        </dict>
+            <key>BannedRules</key>
+            <array>
+                <dict>
+                    <key>NamedPoints</key>
+                    <array>
+                        <string>Cahill #2</string>
+                        <string>Cahill #3</string>
+                        <string>Cahill #4</string>
+                    </array>
+                    <key>PointsLost</key>
+                    <integer>5</integer>
+                    <key>Explanation</key>
+                    <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+                </dict>
+            </array>
+       </dict>
         <dict>
             <key>Direction</key>
             <string>West</string>
@@ -160,6 +175,21 @@ more background.
             <string>4:45</string>
             <key>Speed</key>
             <integer>20</integer>
+            <key>BannedRules</key>
+            <array>
+                <dict>
+                    <key>NamedPoints</key>
+                    <array>
+                        <string>Cahill #2</string>
+                        <string>Cahill #3</string>
+                        <string>Cahill #4</string>
+                    </array>
+                    <key>PointsLost</key>
+                    <integer>5</integer>
+                    <key>Explanation</key>
+                    <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+                </dict>
+            </array>
         </dict>
         <dict>
             <key>Direction</key>
@@ -186,6 +216,21 @@ more background.
             <string>4:20</string>
             <key>Speed</key>
             <integer>20</integer>
+            <key>BannedRules</key>
+            <array>
+                <dict>
+                    <key>NamedPoints</key>
+                    <array>
+                        <string>Cahill #2</string>
+                        <string>Cahill #3</string>
+                        <string>Cahill #4</string>
+                    </array>
+                    <key>PointsLost</key>
+                    <integer>5</integer>
+                    <key>Explanation</key>
+                    <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+                </dict>
+            </array>
         </dict>
         <dict>
             <key>Direction</key>
@@ -261,10 +306,25 @@ more background.
 			<key>Description</key>
 			<string>Campbell Switcher</string>
 			<key>DepartureTime</key>
-			<string>07:05</string>
+            <string>04:01</string>
             <key>Speed</key>
             <integer>20</integer>
-		</dict>
+            <key>BannedRules</key>
+                <array>
+                    <dict>
+                        <key>NamedPoints</key>
+                        <array>
+                            <string>Cahill #2</string>
+                            <string>Cahill #3</string>
+                            <string>Cahill #4</string>
+                        </array>
+                        <key>PointsLost</key>
+                        <integer>5</integer>
+                        <key>Explanation</key>
+                        <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+                    </dict>
+                </array>
+            </dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>

@@ -63,7 +63,7 @@
     // Aim for CTC green.
     self.backgroundColor = [UIColor colorWithRed:32.0/256 green: 48.0/256 blue: 30.0/256 alpha: 1.0];
     
-    self.displayForEditing = false;
+    self.displayForEditing = true;
     return self;
 }
 
@@ -469,6 +469,12 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
     }
     }
 
+- (CGPoint) centerOfPosition: (struct CellPosition) p {
+    float x = LEFT_MARGIN + p.x * TILE_WIDTH - TILE_WIDTH/2;
+    float y = TOP_MARGIN + p.y * TILE_HEIGHT - TILE_HEIGHT / 2;
+    return CGPointMake(x,y);
+}
+
 // Handle long hold on a particular cell.
 -(void) longTap:(UILongPressGestureRecognizer *)gesture{
     // TODO(bowdidge): Draw information window for the selected train.
@@ -484,9 +490,8 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
             // TODO(bowdidge): Pop up.
             NSLog(@"%@", [tr description]);
             NSString *msg = [self detailForTrain: tr];
-            float x = LEFT_MARGIN + cellX * TILE_WIDTH - TILE_WIDTH/2;
-            float y = TOP_MARGIN + cellY * TILE_HEIGHT - TILE_HEIGHT / 2;
-            [self.controller showDetailMessage: msg atLayoutViewX: x Y: y];
+            CGPoint pt = [self centerOfPosition: tr.position];
+            [self.controller showDetailMessage: msg atPoint: pt];
         }
     }
 }

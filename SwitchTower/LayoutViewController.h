@@ -54,7 +54,8 @@
 
 - (BOOL) signalTouched: (Signal*) signal;
 - (BOOL) switchTouchedAtCell: (struct CellPosition) pos;
-- (void) showDetailMessage: (NSString*) msg atLayoutViewX: (float) x Y: (float) y;
+// Show a message in a popup at the given location in the LayoutView coordinate system.
+- (void) showDetailMessage: (NSString*) msg atPoint: (CGPoint) pt;
 
 - (IBAction) quitGame;
 

@@ -37,6 +37,13 @@
 @class LayoutView;
 @class Train;
 
+@interface BannedRule : NSObject {
+}
+@property (atomic, retain) NSArray *bannedPoints;
+@property (atomic, retain) NSString *message;
+@property (atomic) NSInteger pointsLost;
+@end    
+
 // TODO(bowdidge): Also need scripts for splitting a train into two (engine, cars), and another
 // for allowing something to sit for a very long time.
 enum TrainState {
@@ -91,5 +98,6 @@ enum TrainState {
 @property(nonatomic) BOOL onTimetable;
 @property(nonatomic) float distanceFromWestEndCurrentCell;
 @property(nonatomic) NSUInteger speedMPH;
+@property(nonatomic, retain) NSArray *bannedRules;
 @end
 

@@ -33,6 +33,9 @@
 #import "Cell.h"
 #import "NamedPoint.h"
 
+@implementation BannedRule
+@end
+
 @implementation Train
 + (id) train {
     return [[[Train alloc] init] autorelease];

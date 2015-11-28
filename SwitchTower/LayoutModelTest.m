@@ -39,36 +39,37 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"LeftBottom"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(0, 1)];
 
     XCTAssertEqual(0, t.position.x, @"");
     XCTAssertEqual(1, t.position.y, @"");
 
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
 
     XCTAssertEqual(1, t.position.x, @"");
     XCTAssertEqual(1, t.position.y, @"");
     
     XCTAssertTrue([m isSwitchNormal: MakeCellPosition(2,0)], @"Switch not normal.");
     
-    XCTAssertFalse([m moveTrainEast: t], @"should not have moved.");
+    XCTAssertFalse([m moveTrainEast: t brokeRule: &rule], @"should not have moved.");
 
     XCTAssertTrue([m setSwitchPosition: MakeCellPosition(2,0) isNormal: false], @"couldn't throw switch.");
 
-    XCTAssertTrue([m moveTrainEast: t], @"didn't move.");
+    XCTAssertTrue([m moveTrainEast: t  brokeRule: &rule], @"didn't move.");
     
     XCTAssertEqual(2, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
 
-    XCTAssertTrue([m moveTrainEast: t], @"didn't move.");
+    XCTAssertTrue([m moveTrainEast: t  brokeRule: &rule], @"didn't move.");
     XCTAssertEqual(3, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
 
-    XCTAssertTrue([m moveTrainEast: t], @"didn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"didn't move.");
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     // TODO(bowdidge): Avoid moving outside the game board.
-    XCTAssertFalse([m moveTrainEast: t], @"should not have moved.");
+    XCTAssertFalse([m moveTrainEast: t brokeRule: &rule], @"should not have moved.");
     XCTAssertEqual(4, t.position.x, @"Should have stayed at last cell.");
     XCTAssertEqual(0, t.position.y, @"Should have stayed at last cell.");
 }
@@ -81,24 +82,25 @@
                             direction: WestDirection
                                 start: [s endpointWithName: @"Right"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"LeftBottom"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(4,0)];
     
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     XCTAssertEqual(1300, t.distanceFromWestEndCurrentCell, @"");
     
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(3, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m isSwitchNormal: MakeCellPosition(2,0)], @"Switch not normal.");
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(2, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(1, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
@@ -112,25 +114,26 @@
                             direction: WestDirection
                                 start: [s endpointWithName: @"Right"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"LeftBottom"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(4, 0)];
     XCTAssertEqual(1300, t.distanceFromWestEndCurrentCell, @"");
    
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(3, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
     XCTAssertTrue([m isSwitchNormal: MakeCellPosition(2,0)], @"Switch not normal.");
     [m setSwitchPosition: MakeCellPosition(2,0) isNormal: false];
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(2, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(1, t.position.x, @"");
     XCTAssertEqual(1, t.position.y, @"");
@@ -145,23 +148,24 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"Left"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(0, 0)];
     
     XCTAssertEqual(0, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(1, t.position.x, @"Shouldn't have moved off board.");
     XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
     
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(2, t.position.x, @"Shouldn't have moved off board.");
     XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
 
     // Shouldn't move - goes off game board.
-    XCTAssertFalse([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertFalse([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(2, t.position.x, @"Shouldn't have moved off board.");
     XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
@@ -175,17 +179,18 @@
                             direction: WestDirection
                                 start: [s endpointWithName: @"Right"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Left"]]];
-    [m addActiveTrain: t position: MakeCellPosition(4, 0)];
+    BannedRule *rule = nil;
+   [m addActiveTrain: t position: MakeCellPosition(4, 0)];
     
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(3, t.position.x, @"Shouldn't have moved off board.");
     XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
     
-    XCTAssertFalse([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertFalse([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     
     XCTAssertEqual(3, t.position.x, @"Shouldn't have moved off board.");
     XCTAssertEqual(0, t.position.y, @"Shouldn't have moved off board.");
@@ -200,6 +205,7 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"Left"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(0, 0)];
     
     Signal *sig = [Signal signalControlling: EastDirection position: MakeCellPosition(2,0)];
@@ -208,11 +214,11 @@
     XCTAssertEqual(0, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
-    XCTAssertFalse([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
+    XCTAssertFalse([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
     sig.isGreen = true;
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
     XCTAssertEqual(3, t.position.x, @"Didn't move correctly.");
     XCTAssertEqual(0, t.position.y, @"Didn't move correctly.");
 }
@@ -225,6 +231,7 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"Left"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(0, 0)];
     
     Signal *sig = [Signal signalControlling: WestDirection position: MakeCellPosition(2,0)];
@@ -233,9 +240,9 @@
     XCTAssertEqual(0, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
     XCTAssertEqual(3, t.position.x, @"Didn't move correctly.");
     XCTAssertEqual(0, t.position.y, @"Didn't move correctly.");
 }
@@ -248,19 +255,20 @@
                             direction: WestDirection
                                 start: [s endpointWithName: @"Right"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Left"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(4, 0)];
     t.speedMPH = 10;
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     // Starts at far right.
     XCTAssertEqual(500, t.distanceFromWestEndCurrentCell, @"");
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     // 10mph is 440 feet per tick.
     XCTAssertEqual(4, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
    XCTAssertEqualWithAccuracy(60.0, t.distanceFromWestEndCurrentCell, 10, @"Wrong distance.");
     
-    XCTAssertTrue([m moveTrainWest: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainWest: t brokeRule: &rule], @"Couldn't move.");
     // 10mph is 440 feet per tick.
     XCTAssertEqual(3, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
@@ -276,12 +284,13 @@
                             direction: EastDirection
                                 start: [s endpointWithName: @"Left"]
                                  ends: [NSArray arrayWithObject: [s endpointWithName: @"Right"]]];
+    BannedRule *rule = nil;
     [m addActiveTrain: t position: MakeCellPosition(0, 0)];
     t.speedMPH = 10;
     XCTAssertEqual(0, t.position.x, @"");
     XCTAssertEqual(0, t.position.y, @"");
     XCTAssertEqual(0, t.distanceFromWestEndCurrentCell, @"");
-    XCTAssertTrue([m moveTrainEast: t], @"Couldn't move.");
+    XCTAssertTrue([m moveTrainEast: t brokeRule: &rule], @"Couldn't move.");
     // 10mph is 440 feet per tick.
     XCTAssertEqualWithAccuracy(440.0, t.distanceFromWestEndCurrentCell, 10, @"Wrong distance.");
 }

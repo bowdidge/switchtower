@@ -76,24 +76,32 @@
     
     for (Train *train in self.activeTrains) {
         if (train.currentState != Running) continue;
+        BannedRule *bannedRule = nil;
+        
         if (train.direction == WestDirection) {
-            if (![self.layoutModel moveTrainWest: train]) {
+            if (![self.layoutModel moveTrainWest: train brokeRule: &bannedRule]) {
                 //blocked.
                 if (train.onTimetable) {
                     [self.alertView addAlertAtLocation: train.position.x max: self.scenario.tileColumns];
                     someTrainIsBlocked = YES;
                 }
-           }
+            }
             [self.layoutView setNeedsDisplay];
         } else if (train.direction == EastDirection) {
-            if (![self.layoutModel moveTrainEast: train]) {
+            if (![self.layoutModel moveTrainEast: train brokeRule: &bannedRule]) {
                 //blocked.
                 if (train.onTimetable) {
-                   [self.alertView addAlertAtLocation: train.position.x max: self.scenario.tileColumns];
-                   someTrainIsBlocked = YES;
+                    [self.alertView addAlertAtLocation: train.position.x max: self.scenario.tileColumns];
+                    someTrainIsBlocked = YES;
                 }
             }
             [self.layoutView setNeedsDisplay];
+        }
+        // Check if that movement violated any rules.
+        if (bannedRule != nil) {
+            CGPoint trainPoint = [self.layoutView centerOfPosition: train.position];
+            [self showDetailMessage: bannedRule.message atPoint: trainPoint];
+            self.layoutView.score -= bannedRule.pointsLost;
         }
         
         // Check if train reached a named point where it's supposed to end.
@@ -289,16 +297,17 @@
 }
 
 // Handles a request to show details about a particular location on the track grid.
-- (void) showDetailMessage: (NSString*) msg atLayoutViewX: (float) x Y: (float) y {
+- (void) showDetailMessage: (NSString*) msg atPoint: (CGPoint) pt {
+    // TODO(bowdidge): Scroll to show message.
     UIScrollView *layoutScrollView = self.scrollView;
     CGPoint upperLeft = layoutScrollView.contentOffset;
     DetailPopoverController *popover = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
-    x -= upperLeft.x;
-    y -= upperLeft.y;
+    pt.x -= upperLeft.x;
+    pt.y -= upperLeft.y;
     UINavigationController *modalNavigationController = [[UINavigationController alloc] initWithRootViewController:popover];
     UIPopoverController *popoverControllerTemp = [[UIPopoverController alloc] initWithContentViewController:modalNavigationController];
     self.popoverController = popoverControllerTemp;
-    [self.popoverController presentPopoverFromRect:CGRectMake(x, y, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [self.popoverController presentPopoverFromRect:CGRectMake(pt.x, pt.y, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     popover.message = msg;
 }
 

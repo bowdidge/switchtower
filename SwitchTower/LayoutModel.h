@@ -37,6 +37,7 @@
 @class NamedPoint;
 @class Scenario;
 @class Train;
+@class BannedRule;
 
 typedef enum {
     North,
@@ -101,10 +102,10 @@ typedef enum {
 
 // moveTrainWest: moves the train one time unit towards the west along the
 // current route.   Returns false if train couldn't move.
-- (BOOL) moveTrainWest: (Train*) name;
+- (BOOL) moveTrainWest: (Train*) name brokeRule: (BannedRule**) bannedRule;
 // moveTrainEast: moves the train one time unit towards the east along the
 // current route.   Returns false if train couldn't move.
-- (BOOL) moveTrainEast: (Train*) name;
+- (BOOL) moveTrainEast: (Train*) name brokeRule: (BannedRule**) bannedRule;
 
 
 @end

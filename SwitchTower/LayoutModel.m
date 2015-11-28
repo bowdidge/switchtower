@@ -410,7 +410,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
     return YES;
 }
 // Advances the specified train one step west (left).
-- (BOOL) moveTrainWest: (Train*) train {
+- (BOOL) moveTrainWest: (Train*) train brokeRule: (BannedRule**) bannedRule {
     struct CellPosition pos = train.position;
     struct CellPosition newPos = pos;
    
@@ -458,6 +458,16 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
         float nextCellLength = [self.scenario lengthOfCellInFeet: newPos];
         train.distanceFromWestEndCurrentCell = nextCellLength;
         NSLog(@"Train %@ moved to new block", train.trainNumber);
+
+        NamedPoint *np = [self.scenario endpointAtCell: newPos];
+        if (np) {
+            for (BannedRule *br in train.bannedRules) {
+                if ([[br bannedPoints] containsObject: np]) {
+                    *bannedRule = br;
+                    break;
+                }
+            }
+        }
     }
     return YES;
 }
@@ -566,7 +576,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
 }
 
 // Advances the specified train one step west (left).
-- (BOOL) moveTrainEast: (Train*) train {
+- (BOOL) moveTrainEast: (Train*) train brokeRule: (BannedRule**) bannedRule {
     struct CellPosition pos = train.position;
     struct CellPosition newPos = pos;
 
@@ -615,6 +625,15 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
         pos = newPos;
         train.distanceFromWestEndCurrentCell = 0;
         NSLog(@"Train %@ moved to new block", train.trainNumber);
+        NamedPoint *np = [self.scenario endpointAtCell: newPos];
+        if (np) {
+            for (BannedRule *br in train.bannedRules) {
+                if ([[br bannedPoints] containsObject: np]) {
+                    *bannedRule = br;
+                    break;
+                }
+            }
+        }
     }
     return YES;
 }

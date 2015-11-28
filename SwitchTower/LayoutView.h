@@ -30,7 +30,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Cell.h"
 #import "LayoutModel.h"
+
 @class Train;
 @class Scenario;
 @class LayoutViewController;
@@ -75,6 +77,9 @@
 
 }
 - (void) setSizeInTilesX: (int) x Y: (int) y;
+
+// Returns x,y coordinates for named cell.  Intended for showing alerts.
+- (CGPoint) centerOfPosition: (struct CellPosition) p;
 
 @property(nonatomic, retain) NSDate *currentTime;
 @property(nonatomic, retain) NSArray *routeColors;

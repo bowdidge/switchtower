@@ -240,6 +240,32 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
             tr.speedMPH = [speedMPH intValue];
         }
         [allTrains addObject: tr];
+        
+        NSMutableArray *bannedResults = [NSMutableArray array];
+        NSArray *bannedRules = [trainDict objectForKey: @"BannedRules"];
+        if (bannedRules) {
+            for (NSDictionary *dict in bannedRules) {
+                BannedRule *br = [[BannedRule alloc] init];
+                NSMutableArray *bannedPoints = [NSMutableArray array];
+                for (NSString* namedPoint in [dict objectForKey: @"NamedPoints"]) {
+                    NamedPoint *pt = [s endpointWithName: namedPoint];
+                    if (!pt) {
+                        NSLog(@"Couldn't find endpoint named %@", namedPoint);
+                    } else {
+                        [bannedPoints addObject: pt];
+                    }
+                }
+                br.bannedPoints = bannedPoints;
+                NSNumber *pts = [dict objectForKey: @"PointsLost"];
+                
+                NSString *explanation = [dict objectForKey: @"Explanation"];
+                br.pointsLost = [pts intValue];
+                br.message = explanation;
+                [bannedResults addObject: br];
+            }
+            tr.bannedRules = bannedResults;
+        }
+        
     }
     s.all_trains = allTrains;
     return s;
