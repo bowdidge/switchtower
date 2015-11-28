@@ -1,0 +1,9 @@
+SwitchTower is an iOS game for directing trains through a set of track.
+
+The game is intended to be partially realistic.  The game uses
+real track arrangements and traffic levels.  However, the task being done
+is often a mix of what real (American) railroads would do in a switch tower
+at a junction, at a CTC machine when dispatching over long distances, or on
+the ground throwing switches in a yard or station.
+
+Switch Tower is still under development; please <a href="https://github.com/bowdidge">contact me</a> if you're interested in working on the game.
