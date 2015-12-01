@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Scenario Editor.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>SwitchTower.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,51 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3E5CEF7A1C0CE28200CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CEF8F1C0CE28200CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CEF9A1C0CE28300CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CEFAE1C0CE2D100CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CEFC31C0CE2D100CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CEFCE1C0CE2D100CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CEFE51C0CE5EB00CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CEFFD1C0CE5EB00CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E5CF0081C0CE5EB00CC9773</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3E81D49718BA8429001989A3</key>
 		<dict>
 			<key>primary</key>

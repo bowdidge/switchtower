@@ -13,6 +13,23 @@
 		3E2A73471BF99F9600E3A886 /* TestScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73461BF99F9600E3A886 /* TestScenario.m */; };
 		3E41F4E618BC8BB30059B96B /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E41F4E518BC8BB30059B96B /* TimetableViewController.m */; };
 		3E41F4E818BC9AAC0059B96B /* timetable.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E41F4E718BC9AAC0059B96B /* timetable.html */; };
+		3E5CEFEA1C0CE5EB00CC9773 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CEFE91C0CE5EB00CC9773 /* AppDelegate.m */; };
+		3E5CEFED1C0CE5EB00CC9773 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CEFEC1C0CE5EB00CC9773 /* main.m */; };
+		3E5CEFF01C0CE5EB00CC9773 /* ScenarioDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CEFEF1C0CE5EB00CC9773 /* ScenarioDocument.m */; };
+		3E5CEFF31C0CE5EB00CC9773 /* ScenarioDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5CEFF11C0CE5EB00CC9773 /* ScenarioDocument.xib */; };
+		3E5CEFF51C0CE5EB00CC9773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E5CEFF41C0CE5EB00CC9773 /* Assets.xcassets */; };
+		3E5CEFF81C0CE5EB00CC9773 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5CEFF61C0CE5EB00CC9773 /* MainMenu.xib */; };
+		3E5CF0031C0CE5EB00CC9773 /* Scenario_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CF0021C0CE5EB00CC9773 /* Scenario_EditorTests.m */; };
+		3E5CF00E1C0CE5EB00CC9773 /* Scenario_EditorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CF00D1C0CE5EB00CC9773 /* Scenario_EditorUITests.m */; };
+		3E5CF0191C0CE8D400CC9773 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E89F5191BFD35DF00A27B64 /* Cell.m */; };
+		3E5CF01A1C0CE8D400CC9773 /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4E318BA8544001989A3 /* Label.m */; };
+		3E5CF01B1C0CE8D400CC9773 /* LayoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4E518BA8544001989A3 /* LayoutModel.m */; };
+		3E5CF01C1C0CE8D400CC9773 /* NamedPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4F118BA854B001989A3 /* NamedPoint.m */; };
+		3E5CF01D1C0CE8D400CC9773 /* Scenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4F918BA855A001989A3 /* Scenario.m */; };
+		3E5CF01E1C0CE8D400CC9773 /* Signal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D4FB18BA855A001989A3 /* Signal.m */; };
+		3E5CF01F1C0CE8D400CC9773 /* Train.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D50218BA8560001989A3 /* Train.m */; };
+		3E5CF0271C0CEB5800CC9773 /* CocoaLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CF0261C0CEB5800CC9773 /* CocoaLayoutView.m */; };
+		3E5CF02D1C0E15B000CC9773 /* EditableScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */; };
 		3E81D49C18BA8429001989A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E81D49B18BA8429001989A3 /* Foundation.framework */; };
 		3E81D49E18BA8429001989A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E81D49D18BA8429001989A3 /* CoreGraphics.framework */; };
 		3E81D4A018BA8429001989A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E81D49F18BA8429001989A3 /* UIKit.framework */; };
@@ -56,6 +73,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3E5CEFFF1C0CE5EB00CC9773 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E81D49018BA8429001989A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E5CEFE51C0CE5EB00CC9773;
+			remoteInfo = "Scenario Editor";
+		};
+		3E5CF00A1C0CE5EB00CC9773 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E81D49018BA8429001989A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E5CEFE51C0CE5EB00CC9773;
+			remoteInfo = "Scenario Editor";
+		};
 		3E81D4BE18BA8429001989A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E81D49018BA8429001989A3 /* Project object */;
@@ -80,6 +111,26 @@
 		3E41F4E418BC8BB30059B96B /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableViewController.h; sourceTree = "<group>"; };
 		3E41F4E518BC8BB30059B96B /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableViewController.m; sourceTree = "<group>"; };
 		3E41F4E718BC9AAC0059B96B /* timetable.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = timetable.html; sourceTree = "<group>"; };
+		3E5CEFE61C0CE5EB00CC9773 /* Scenario Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scenario Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5CEFE81C0CE5EB00CC9773 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3E5CEFE91C0CE5EB00CC9773 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3E5CEFEC1C0CE5EB00CC9773 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3E5CEFEE1C0CE5EB00CC9773 /* ScenarioDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScenarioDocument.h; sourceTree = "<group>"; };
+		3E5CEFEF1C0CE5EB00CC9773 /* ScenarioDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScenarioDocument.m; sourceTree = "<group>"; };
+		3E5CEFF21C0CE5EB00CC9773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ScenarioDocument.xib; sourceTree = "<group>"; };
+		3E5CEFF41C0CE5EB00CC9773 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E5CEFF71C0CE5EB00CC9773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3E5CEFF91C0CE5EB00CC9773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E5CEFFE1C0CE5EB00CC9773 /* Scenario EditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Scenario EditorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5CF0021C0CE5EB00CC9773 /* Scenario_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Scenario_EditorTests.m; sourceTree = "<group>"; };
+		3E5CF0041C0CE5EB00CC9773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E5CF0091C0CE5EB00CC9773 /* Scenario EditorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Scenario EditorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5CF00D1C0CE5EB00CC9773 /* Scenario_EditorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Scenario_EditorUITests.m; sourceTree = "<group>"; };
+		3E5CF00F1C0CE5EB00CC9773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E5CF0251C0CEB5800CC9773 /* CocoaLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaLayoutView.h; sourceTree = "<group>"; };
+		3E5CF0261C0CEB5800CC9773 /* CocoaLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaLayoutView.m; sourceTree = "<group>"; };
+		3E5CF02B1C0E15B000CC9773 /* EditableScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableScenario.h; sourceTree = "<group>"; };
+		3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableScenario.m; sourceTree = "<group>"; };
 		3E81D49818BA8429001989A3 /* SwitchTower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchTower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E81D49B18BA8429001989A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E81D49D18BA8429001989A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -144,6 +195,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3E5CEFE31C0CE5EB00CC9773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CEFFB1C0CE5EB00CC9773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CF0061C0CE5EB00CC9773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E81D49518BA8429001989A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -178,6 +250,52 @@
 			name = Test;
 			sourceTree = "<group>";
 		};
+		3E5CEFE71C0CE5EB00CC9773 /* Scenario Editor */ = {
+			isa = PBXGroup;
+			children = (
+				3E5CEFE81C0CE5EB00CC9773 /* AppDelegate.h */,
+				3E5CEFE91C0CE5EB00CC9773 /* AppDelegate.m */,
+				3E5CF0251C0CEB5800CC9773 /* CocoaLayoutView.h */,
+				3E5CF0261C0CEB5800CC9773 /* CocoaLayoutView.m */,
+				3E5CF02B1C0E15B000CC9773 /* EditableScenario.h */,
+				3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */,
+				3E5CEFEE1C0CE5EB00CC9773 /* ScenarioDocument.h */,
+				3E5CEFEF1C0CE5EB00CC9773 /* ScenarioDocument.m */,
+				3E5CEFF11C0CE5EB00CC9773 /* ScenarioDocument.xib */,
+				3E5CEFF41C0CE5EB00CC9773 /* Assets.xcassets */,
+				3E5CEFF61C0CE5EB00CC9773 /* MainMenu.xib */,
+				3E5CEFF91C0CE5EB00CC9773 /* Info.plist */,
+				3E5CEFEB1C0CE5EB00CC9773 /* Supporting Files */,
+			);
+			path = "Scenario Editor";
+			sourceTree = "<group>";
+		};
+		3E5CEFEB1C0CE5EB00CC9773 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3E5CEFEC1C0CE5EB00CC9773 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3E5CF0011C0CE5EB00CC9773 /* Scenario EditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E5CF0021C0CE5EB00CC9773 /* Scenario_EditorTests.m */,
+				3E5CF0041C0CE5EB00CC9773 /* Info.plist */,
+			);
+			path = "Scenario EditorTests";
+			sourceTree = "<group>";
+		};
+		3E5CF00C1C0CE5EB00CC9773 /* Scenario EditorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3E5CF00D1C0CE5EB00CC9773 /* Scenario_EditorUITests.m */,
+				3E5CF00F1C0CE5EB00CC9773 /* Info.plist */,
+			);
+			path = "Scenario EditorUITests";
+			sourceTree = "<group>";
+		};
 		3E81D48F18BA8429001989A3 = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +303,9 @@
 				3E81D50818BA8A2C001989A3 /* Scenarios */,
 				3E81D4A118BA8429001989A3 /* SwitchTower */,
 				3E81D4C018BA8429001989A3 /* SwitchTowerTests */,
+				3E5CEFE71C0CE5EB00CC9773 /* Scenario Editor */,
+				3E5CF0011C0CE5EB00CC9773 /* Scenario EditorTests */,
+				3E5CF00C1C0CE5EB00CC9773 /* Scenario EditorUITests */,
 				3E81D49A18BA8429001989A3 /* Frameworks */,
 				3E81D49918BA8429001989A3 /* Products */,
 			);
@@ -195,6 +316,9 @@
 			children = (
 				3E81D49818BA8429001989A3 /* SwitchTower.app */,
 				3E81D4B918BA8429001989A3 /* SwitchTowerTests.xctest */,
+				3E5CEFE61C0CE5EB00CC9773 /* Scenario Editor.app */,
+				3E5CEFFE1C0CE5EB00CC9773 /* Scenario EditorTests.xctest */,
+				3E5CF0091C0CE5EB00CC9773 /* Scenario EditorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,6 +439,59 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3E5CEFE51C0CE5EB00CC9773 /* Scenario Editor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E5CF0101C0CE5EB00CC9773 /* Build configuration list for PBXNativeTarget "Scenario Editor" */;
+			buildPhases = (
+				3E5CEFE21C0CE5EB00CC9773 /* Sources */,
+				3E5CEFE31C0CE5EB00CC9773 /* Frameworks */,
+				3E5CEFE41C0CE5EB00CC9773 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Scenario Editor";
+			productName = "Scenario Editor";
+			productReference = 3E5CEFE61C0CE5EB00CC9773 /* Scenario Editor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3E5CEFFD1C0CE5EB00CC9773 /* Scenario EditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E5CF0131C0CE5EB00CC9773 /* Build configuration list for PBXNativeTarget "Scenario EditorTests" */;
+			buildPhases = (
+				3E5CEFFA1C0CE5EB00CC9773 /* Sources */,
+				3E5CEFFB1C0CE5EB00CC9773 /* Frameworks */,
+				3E5CEFFC1C0CE5EB00CC9773 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E5CF0001C0CE5EB00CC9773 /* PBXTargetDependency */,
+			);
+			name = "Scenario EditorTests";
+			productName = "Scenario EditorTests";
+			productReference = 3E5CEFFE1C0CE5EB00CC9773 /* Scenario EditorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3E5CF0081C0CE5EB00CC9773 /* Scenario EditorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E5CF0161C0CE5EB00CC9773 /* Build configuration list for PBXNativeTarget "Scenario EditorUITests" */;
+			buildPhases = (
+				3E5CF0051C0CE5EB00CC9773 /* Sources */,
+				3E5CF0061C0CE5EB00CC9773 /* Frameworks */,
+				3E5CF0071C0CE5EB00CC9773 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E5CF00B1C0CE5EB00CC9773 /* PBXTargetDependency */,
+			);
+			name = "Scenario EditorUITests";
+			productName = "Scenario EditorUITests";
+			productReference = 3E5CF0091C0CE5EB00CC9773 /* Scenario EditorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		3E81D49718BA8429001989A3 /* SwitchTower */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E81D4CA18BA842A001989A3 /* Build configuration list for PBXNativeTarget "SwitchTower" */;
@@ -359,6 +536,17 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = bowdidge;
 				TargetAttributes = {
+					3E5CEFE51C0CE5EB00CC9773 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					3E5CEFFD1C0CE5EB00CC9773 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 3E5CEFE51C0CE5EB00CC9773;
+					};
+					3E5CF0081C0CE5EB00CC9773 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 3E5CEFE51C0CE5EB00CC9773;
+					};
 					3E81D49718BA8429001989A3 = {
 						DevelopmentTeam = PRKJWD6X23;
 					};
@@ -382,11 +570,38 @@
 			targets = (
 				3E81D49718BA8429001989A3 /* SwitchTower */,
 				3E81D4B818BA8429001989A3 /* SwitchTowerTests */,
+				3E5CEFE51C0CE5EB00CC9773 /* Scenario Editor */,
+				3E5CEFFD1C0CE5EB00CC9773 /* Scenario EditorTests */,
+				3E5CF0081C0CE5EB00CC9773 /* Scenario EditorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3E5CEFE41C0CE5EB00CC9773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E5CEFF51C0CE5EB00CC9773 /* Assets.xcassets in Resources */,
+				3E5CEFF31C0CE5EB00CC9773 /* ScenarioDocument.xib in Resources */,
+				3E5CEFF81C0CE5EB00CC9773 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CEFFC1C0CE5EB00CC9773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CF0071C0CE5EB00CC9773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E81D49618BA8429001989A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,6 +638,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3E5CEFE21C0CE5EB00CC9773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E5CF0191C0CE8D400CC9773 /* Cell.m in Sources */,
+				3E5CF01A1C0CE8D400CC9773 /* Label.m in Sources */,
+				3E5CF0271C0CEB5800CC9773 /* CocoaLayoutView.m in Sources */,
+				3E5CF01B1C0CE8D400CC9773 /* LayoutModel.m in Sources */,
+				3E5CF01C1C0CE8D400CC9773 /* NamedPoint.m in Sources */,
+				3E5CF01D1C0CE8D400CC9773 /* Scenario.m in Sources */,
+				3E5CF01E1C0CE8D400CC9773 /* Signal.m in Sources */,
+				3E5CF02D1C0E15B000CC9773 /* EditableScenario.m in Sources */,
+				3E5CF01F1C0CE8D400CC9773 /* Train.m in Sources */,
+				3E5CEFF01C0CE5EB00CC9773 /* ScenarioDocument.m in Sources */,
+				3E5CEFED1C0CE5EB00CC9773 /* main.m in Sources */,
+				3E5CEFEA1C0CE5EB00CC9773 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CEFFA1C0CE5EB00CC9773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E5CF0031C0CE5EB00CC9773 /* Scenario_EditorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CF0051C0CE5EB00CC9773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E5CF00E1C0CE5EB00CC9773 /* Scenario_EditorUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E81D49418BA8429001989A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,6 +711,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3E5CF0001C0CE5EB00CC9773 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E5CEFE51C0CE5EB00CC9773 /* Scenario Editor */;
+			targetProxy = 3E5CEFFF1C0CE5EB00CC9773 /* PBXContainerItemProxy */;
+		};
+		3E5CF00B1C0CE5EB00CC9773 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E5CEFE51C0CE5EB00CC9773 /* Scenario Editor */;
+			targetProxy = 3E5CF00A1C0CE5EB00CC9773 /* PBXContainerItemProxy */;
+		};
 		3E81D4BF18BA8429001989A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3E81D49718BA8429001989A3 /* SwitchTower */;
@@ -469,6 +729,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3E5CEFF11C0CE5EB00CC9773 /* ScenarioDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E5CEFF21C0CE5EB00CC9773 /* Base */,
+			);
+			name = ScenarioDocument.xib;
+			sourceTree = "<group>";
+		};
+		3E5CEFF61C0CE5EB00CC9773 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E5CEFF71C0CE5EB00CC9773 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		3E81D4A418BA8429001989A3 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -497,6 +773,139 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3E5CF0111C0CE5EB00CC9773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Scenario Editor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blogspot.vasonabranch.Scenario-Editor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3E5CF0121C0CE5EB00CC9773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Scenario Editor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blogspot.vasonabranch.Scenario-Editor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3E5CF0141C0CE5EB00CC9773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Scenario EditorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blogspot.vasonabranch.Scenario-EditorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scenario Editor.app/Contents/MacOS/Scenario Editor";
+			};
+			name = Debug;
+		};
+		3E5CF0151C0CE5EB00CC9773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Scenario EditorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blogspot.vasonabranch.Scenario-EditorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scenario Editor.app/Contents/MacOS/Scenario Editor";
+			};
+			name = Release;
+		};
+		3E5CF0171C0CE5EB00CC9773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Scenario EditorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blogspot.vasonabranch.Scenario-EditorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = "Scenario Editor";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		3E5CF0181C0CE5EB00CC9773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Scenario EditorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blogspot.vasonabranch.Scenario-EditorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = "Scenario Editor";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		3E81D4C818BA842A001989A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -651,6 +1060,30 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3E5CF0101C0CE5EB00CC9773 /* Build configuration list for PBXNativeTarget "Scenario Editor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E5CF0111C0CE5EB00CC9773 /* Debug */,
+				3E5CF0121C0CE5EB00CC9773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3E5CF0131C0CE5EB00CC9773 /* Build configuration list for PBXNativeTarget "Scenario EditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E5CF0141C0CE5EB00CC9773 /* Debug */,
+				3E5CF0151C0CE5EB00CC9773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3E5CF0161C0CE5EB00CC9773 /* Build configuration list for PBXNativeTarget "Scenario EditorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E5CF0171C0CE5EB00CC9773 /* Debug */,
+				3E5CF0181C0CE5EB00CC9773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3E81D49318BA8429001989A3 /* Build configuration list for PBXProject "SwitchTower" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
