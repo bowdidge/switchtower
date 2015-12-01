@@ -35,7 +35,7 @@
 @synthesize position;
 
 + (id) labelWithString: (NSString*) label cell: (struct CellPosition) pos {
-    Label *myself = [[[Label alloc] init] autorelease];
+    Label *myself = [[Label alloc] init];
     myself.labelString = label;
     myself.position = pos;
     return myself;
