@@ -41,7 +41,8 @@ Game play
 [x] Generate timetable from schedule.
 [x] Make timetable part of scenario.
 
-[ ] Finish list of banned points.  Requires being notified by LayoutModel of named points passed through.
+[x] Finish list of banned points.  Requires being notified by LayoutModel of named points passed through.
+[ ] Consider inheritance  - let train specify another train to use as a base.
 
 
 Scenarios:
