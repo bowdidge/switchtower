@@ -15,3 +15,7 @@ struct CellPosition MakeCellPosition(int x, int y) {
     p.x = x; p.y = y;
     return p;
 }
+
+NSString* CellPositionAsString(struct CellPosition pos) {
+    return [NSString stringWithFormat: @"%d, %d", pos.x, pos.y];
+}

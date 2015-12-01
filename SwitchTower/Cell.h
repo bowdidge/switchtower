@@ -14,6 +14,10 @@ struct CellPosition {
     int y;
 };
 
+// Returns a CellPosition based on x,y values.
 struct CellPosition MakeCellPosition(int x, int y);
+
+// Returns a CellPosition as expected in scenario plists.
+NSString* CellPositionAsString(struct CellPosition pos);
 
 #endif /* Cell_h */
