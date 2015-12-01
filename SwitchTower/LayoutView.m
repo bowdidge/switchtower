@@ -467,7 +467,7 @@ CGRect GetSignalRect(Signal* signal, BOOL isTarget) {
         [self.controller switchTouchedAtCell: pos];
         [self setNeedsDisplay];
     }
-    }
+ }
 
 - (CGPoint) centerOfPosition: (struct CellPosition) p {
     float x = LEFT_MARGIN + p.x * TILE_WIDTH - TILE_WIDTH/2;
