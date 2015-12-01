@@ -45,6 +45,6 @@
     NamedPoint *other = [[NamedPoint alloc] init];
     other.name = name;
     other.position = pos;
-    return [other autorelease];
+    return other;
 }
 @end
