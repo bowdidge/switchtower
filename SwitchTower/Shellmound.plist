@@ -57,10 +57,19 @@
         <integer>400</integer>
         <integer>400</integer>
     </array>
+    <key>TimetableNames</key>
+    <array>
+        <string>Oakland Pier</string>
+        <string>West Oakland Yard</string>
+        <string>Oakland 16th Street</string>
+        <string>SF Interchange</string>
+        <string>Shellmound</string>
+    </array>
+
 	<key>Name</key>
 	<string>Oakland 16th Street Station</string>
 	<key>StartTime</key>
-	<date>1935-05-12T07:00:00Z</date>
+	<date>1935-05-12T07:20:00Z</date>
 	<key>TickIntervalSecs</key>
 	<integer>30</integer>
 	<key>Description</key>
@@ -246,17 +255,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>08:08</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>08:02</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>7:56</string>
+                <key>Oakland 16th Street</key>
+                <string>8:02</string>
+                <key>Shellmound</key>
+                <string>8:08</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -277,17 +288,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>07:45</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>07:35</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>7:45</string>
+                <key>Oakland 16th Street</key>
+                <string>7:35</string>
+                <key>Shellmound</key>
+                <string>7:30</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -308,17 +321,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>08:40</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>08:32</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>8:25</string>
+                <key>Oakland 16th Street</key>
+                <string>8:32</string>
+                <key>Shellmound</key>
+                <string>8:40</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -339,17 +354,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>08:40</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>08:35</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>8:25</string>
+                <key>Oakland 16th Street</key>
+                <string>8:35</string>
+                <key>Shellmound</key>
+                <string>8:40</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -370,17 +387,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>07:48</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>07:46</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>7:55</string>
+                <key>Oakland 16th Street</key>
+                <string>7:46</string>
+                <key>Shellmound</key>
+                <string>7:35</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -401,17 +420,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>07:55</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>07:46</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>7:55</string>
+                <key>Oakland 16th Street</key>
+                <string>7:48</string>
+                <key>Shellmound</key>
+                <string>7:40</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -439,10 +460,17 @@
 			</dict>
 			<key>OnTimetable</key>
 			<integer>1</integer>
-			<key>TimetableClass</key>
-			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>8:35</string>
+                <key>Oakland 16th Street</key>
+                <string>8:25</string>
+                <key>Shellmound</key>
+                <string>8:15</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -463,17 +491,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>09:00</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>08:50</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>9:00</string>
+                <key>Oakland 16th Street</key>
+                <string>8:50</string>
+                <key>Shellmound</key>
+                <string>8:40</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -494,17 +524,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>09:38</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>09:30</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>9:38</string>
+                <key>Oakland 16th Street</key>
+                <string>9:30</string>
+                <key>Shellmound</key>
+                <string>9:23</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -512,30 +544,32 @@
 			<key>Name</key>
 			<string>Overland Limited</string>
 			<key>Description</key>
-			<string>Streamliner from Chicago</string>
+			<string>Streamliner to Chicago</string>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Departs</key>
-			<string>Port Costa WB</string>
+			<string>Oakland Pier</string>
 			<key>DepartureTime</key>
 			<string>11:45</string>
 			<key>Arrives</key>
 			<array>
-				<string>Oak Pier WB</string>
+				<string>Port Costa EB</string>
 			</array>
 			<key>ArrivalTime</key>
 			<string>12:01</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>11:52</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>11:45</string>
+                <key>Oakland 16th Street</key>
+                <string>11:52</string>
+                <key>Shellmound</key>
+                <string>12:01</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -556,17 +590,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>14:00</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>13:50</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>13:40</string>
+                <key>Oakland 16th Street</key>
+                <string>13:50</string>
+                <key>Shellmound</key>
+                <string>14:00</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -587,17 +623,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>10:50</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>10:40</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>10:50</string>
+                <key>Oakland 16th Street</key>
+                <string>10:40</string>
+                <key>Shellmound</key>
+                <string>10:30</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -618,17 +656,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>11:10</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>11:00</string>
-			</dict>
-			<key>TimetableClass</key>
-			<integer>1</integer>
 			<key>OnTimetable</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>11:10</string>
+                <key>Oakland 16th Street</key>
+                <string>11:00</string>
+                <key>Shellmound</key>
+                <string>10:50</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -649,17 +689,19 @@
 			</array>
 			<key>ArrivalTime</key>
 			<string>14:20</string>
-			<key>Timetable</key>
-			<dict>
-				<key>Oak 16th</key>
-				<string>14:10</string>
-			</dict>
 			<key>OnTimetable</key>
-			<integer>1</integer>
-			<key>TimetableClass</key>
 			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>14:20</string>
+                <key>Oakland 16th Street</key>
+                <string>14:10</string>
+                <key>Shellmound</key>
+                <string>14:00</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -682,10 +724,15 @@
 			<string>09:00</string>
 			<key>OnTimetable</key>
 			<integer>1</integer>
-			<key>TimetableClass</key>
-			<integer>1</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>9:00</string>
+                <key>SF Interchange</key>
+                <string>8:45</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -708,10 +755,15 @@
 			<string>14:00</string>
 			<key>OnTimetable</key>
 			<integer>1</integer>
-			<key>TimetableClass</key>
-			<integer>3</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>West Oakland Yard</key>
+                <string>14:00</string>
+                <key>Shellmound</key>
+                <string>13:40</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -731,13 +783,18 @@
 				<string>Port Costa EB</string>
 			</array>
 			<key>ArrivalTime</key>
-			<string>11:00</string>
+            <string>9:25</string>
 			<key>OnTimetable</key>
 			<integer>1</integer>
-			<key>TimetableClass</key>
-			<integer>3</integer>
 			<key>Becomes</key>
 			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>West Oakland Yard</key>
+                <string>9:00</string>
+                <key>Shellmound</key>
+                <string>9:25</string>
+            </dict>
 		</dict>
 		<dict>
 			<key>Identifier</key>

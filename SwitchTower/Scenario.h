@@ -39,6 +39,10 @@
 @interface Scenario : NSObject
 // Load scenario from plist.
 + (Scenario*) scenarioFromDict: (NSDictionary*) dict;
+
+// Write scenario out.
+- (NSDictionary*) scenarioAsDict;
+
 - (char) tileAtCell: (struct CellPosition) pos;
 - (NamedPoint*) endpointWithName: (NSString*) name;
 - (NamedPoint*) endpointAtCell: (struct CellPosition) pos;
@@ -69,6 +73,7 @@
 @property (nonatomic, retain) NSArray *all_labels;
 @property (nonatomic, retain) NSArray *all_trains;
 @property (nonatomic, retain) NSArray *cellLengths;
+@property (nonatomic, retain) NSArray *timetableNames;
 @property (nonatomic) NSUInteger tileColumns;
 @property (nonatomic) NSUInteger tileRows;
 // TODO(bowdidge): Make more structured and validated.

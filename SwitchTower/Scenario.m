@@ -117,6 +117,22 @@ BOOL ParsePosition(NSString* posString, struct CellPosition* pos) {
     return TRUE;
 }
 
+NSString *DirectionString(enum TimetableDirection dir) {
+    if (dir == WestDirection) {
+        return @"West";
+    } else {
+        return @"East";
+    }
+}
+
+NSArray *NamedPointNames(NSArray* points) {
+    NSMutableArray *names = [NSMutableArray array];
+    for (NamedPoint *pt in points) {
+        [names addObject: pt.name];
+    }
+    return names;
+}
+
 BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     if ([directionStr isEqualToString: @"West"]) {
         *dir = WestDirection;
@@ -128,18 +144,107 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     return true;
 }
 
+- (NSDictionary*) scenarioAsDict {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject: self.tileStrings forKey: @"Schematic"];
+    
+    [dict setObject: self.timetableNames forKey: @"TimetableNames"];
+    [dict setObject: self.cellLengths forKey: @"CellLengths"];
+
+    [dict setObject: self.scenarioName forKey: @"Name"];
+    [dict setObject: self.scenarioDescription forKey: @"Description"];
+    [dict setObject: self.startingTime forKey: @"StartTime"];
+    [dict setObject: [NSNumber numberWithInt: self.tickIntervalInSeconds] forKey: @"TickIntervalSecs"];
+    
+    NSMutableArray *labels = [NSMutableArray array];
+    for (Label *l in self.all_labels) {
+        NSMutableDictionary *labelDict = [NSMutableDictionary dictionary];
+        [labelDict setObject: CellPositionAsString(l.position) forKey: l.labelString];
+        [labels addObject: labelDict];
+    }
+    [dict setObject: labels forKey: @"Labels"];
+
+    NSMutableArray *signals = [NSMutableArray array];
+    for (Signal *sig in self.all_signals) {
+        NSMutableDictionary *signalDict = [NSMutableDictionary dictionary];
+        [signalDict setObject: CellPositionAsString(sig.position) forKey: @"Location"];
+        [signalDict setObject: DirectionString(sig.trafficDirection) forKey: @"Direction"];
+        [signals addObject: signalDict];
+    }
+    [dict setObject: signals forKey: @"Signals"];
+
+    NSMutableArray *endpoints = [NSMutableArray array];
+    for (NamedPoint *namedPoint in self.all_endpoints) {
+        NSMutableDictionary *endpointDict = [NSMutableDictionary dictionary];
+        [endpointDict setObject: CellPositionAsString(namedPoint.position) forKey: @"Location"];
+        [endpointDict setObject: namedPoint.name forKey: @"Name"];
+        [endpoints addObject: endpointDict];
+    }
+    [dict setObject: endpoints forKey: @"EndPoints"];
+
+    NSMutableArray *trains = [NSMutableArray array];
+    for (Train *tr in self.all_trains) {
+        NSMutableDictionary *trainDict = [NSMutableDictionary dictionary];
+        [trainDict setObject: tr.trainNumber forKey: @"Identifier"];
+        [trainDict setObject: tr.trainName forKey: @"Name"];
+        [trainDict setObject: tr.trainDescription forKey: @"Description"];
+        [trainDict setObject: DirectionString(tr.direction) forKey: @"Direction"];
+        if (tr.startPoint.name) {
+            [trainDict setObject: tr.startPoint.name forKey: @"Departs"];
+        }
+        [trainDict setObject: @"00:00" forKey: @"DepartureTime"];
+        [trainDict setObject: tr.endPointsAsText forKey: @"Arrives"];
+        [trainDict setObject: @"00:00" forKey: @"ArrivalTime"];
+        [trainDict setObject: @"" forKey: @"Becomes"];
+        [trainDict setObject: [NSNumber numberWithInt: (int) tr.speedMPH] forKey: @"Speed"];
+        
+        if (tr.timetableEntry) {
+            [trainDict setObject: tr.timetableEntry forKey: @"TimetableEntry"];
+        }
+        
+        if (tr.bannedRules.count > 0) {
+            NSMutableArray *bannedRules = [NSMutableArray array];
+            for (BannedRule *br in tr.bannedRules) {
+                NSMutableDictionary *ruleDict = [NSMutableDictionary dictionary];
+                [ruleDict setObject: NamedPointNames(br.bannedPoints) forKey: @"NamedPoints"];
+                [ruleDict setObject: [NSNumber numberWithInt: (int) br.pointsLost] forKey: @"PointsLost"];
+                [ruleDict setObject: br.message forKey: @"Explanation"];
+                [bannedRules addObject: ruleDict];
+            }
+            [trainDict setObject: bannedRules forKey: @"BannedRules"];
+        }
+        [trains addObject: trainDict];
+    }
+    [dict setObject: trains forKey: @"Trains"];
+    
+    return dict;
+}
+    
 + (Scenario*) scenarioFromDict: (NSDictionary*) dict {
-    Scenario *s = [[[Scenario alloc] init] autorelease];
+    Scenario *s = [[Scenario alloc] init];
     s.tileStrings = [dict objectForKey: @"Schematic"];
     s.tileRows = [s.tileStrings count];
     NSString *firstRow = [s.tileStrings objectAtIndex: 0];
     s.tileColumns = [firstRow length];
     [s validateTileString];
     
+    // Process the timetable information.  The TimetableNames is a list
+    // of the station names for the timetable, in order they should be
+    // drawn.
+    // Each train has as TimetableEntry mapping a name to a time.
+    s.timetableNames = [dict objectForKey: @"TimetableNames"];
+    
+    
+    NSArray *cellLengths = [dict objectForKey: @"CellLengths"];
+    // TODO(bowdidge): Check all are numbers.
+    s.cellLengths = cellLengths;
+    
     s.scenarioName = [dict objectForKey: @"Name"];
     s.scenarioDescription = [dict objectForKey: @"Description"];
+
     NSDate *startingTime = [dict objectForKey: @"StartTime"];
     s.startingTime = startingTime;
+    
     NSNumber *tickInterval = [dict objectForKey: @"TickIntervalSecs"];
     if (tickInterval) {
         s.tickIntervalInSeconds = [tickInterval intValue];
@@ -190,10 +295,8 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         [allEndpoints addObject: [NamedPoint namedPointWithName: endpointName cell: pos]];
     }
     s.all_endpoints = allEndpoints;
-    NSArray *cellLengths = [dict objectForKey: @"CellLengths"];
-    // TODO(bowdidge): Check all are numbers.
-    s.cellLengths = cellLengths;
     
+
     NSMutableArray *allTrains = [NSMutableArray array];
     NSArray *trains = [dict objectForKey: @"Trains"];
     for (NSDictionary *trainDict in trains) {
@@ -239,6 +342,8 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         if (speedMPH) {
             tr.speedMPH = [speedMPH intValue];
         }
+        NSDictionary *timetableEntry = [trainDict objectForKey: @"TimetableEntry"];
+        tr.timetableEntry = timetableEntry;
         [allTrains addObject: tr];
         
         NSMutableArray *bannedResults = [NSMutableArray array];
@@ -284,7 +389,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     }
     for (NSString* str in self.tileStrings) {
         if ([str length] != self.tileColumns) {
-            NSLog(@"Wrong number of characters in tile string '%@'.  Expected %d, got %d", str, self.tileColumns, [str length]);
+            NSLog(@"Wrong number of characters in tile string '%@'.  Expected %lu, got %lu", str, (unsigned long)self.tileColumns, (unsigned long)[str length]);
             ok = false;
         }
         if ([str rangeOfCharacterFromSet: invalidChars options: 0].location != NSNotFound) {
@@ -339,14 +444,14 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
 }
 
 - (NSDate*) zeroDate {
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
     return [dateFormatter dateFromString: @"00:00"];
 }
 
 // Calculates the NSDate for the time listed that is after the starting time for the session.  May wrap to next day.
 - (NSDate*) scenarioTime: (NSString*) timeString {
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat: @"HH:mm"];
     // Find the time we get for 00:00 and for the requested time.  This gives us an offset from the beginning of the day.
     NSDate* zeroDate = [dateFormatter dateFromString: @"00:00"];
@@ -394,6 +499,11 @@ const char *TIMETABLE_HEADER =
     "  weight: bold;\n"
     "  font-size: 16pt;\n"
     "}\n"
+    "table,th,td {\n"
+    "border 1px solid black\n"
+    "}\n"
+    "table {\n"
+    "  border-collapse: collapse;}\n"
     ".trainname {\n"
     "weight: normal;\n"
     "  font-size: 9pt;\n"
@@ -438,35 +548,28 @@ const char *TIMETABLE_HEADER =
         }
     }
     [result appendString: @"</tr>"];
-    [result appendString: @"<tr>"];
-    for (Train *tr in eastTrains) {
-        [result appendFormat: @"<td>%@</td>", formattedDate([tr departureTime])];
+    for (NSString *stationName in self.timetableNames) {
+        [result appendString: @"<tr>"];
+
+        for (Train *tr in eastTrains) {
+            NSString *departureTime = [tr.timetableEntry objectForKey: stationName];
+            if (!departureTime) {
+                [result appendString: @"<td> </td>"];
+            } else {
+                [result appendFormat: @"<td>%@</td>", departureTime];
+            }
+        }
+        [result appendFormat: @"<td class='stationname'>%@</td>", stationName];
+        for (Train *tr in westTrains) {
+            NSString *departureTime = [tr.timetableEntry objectForKey: stationName];
+            if (!departureTime) {
+                [result appendString: @"<td> </td>"];
+            } else {
+                [result appendFormat: @"<td>%@</td>", departureTime];
+            }
+        }
+        [result appendString: @"</tr>\n"];
     }
-    [result appendString: @"<td class='stationname'>Oakland Pier</td>"];
-    for (Train *tr in westTrains) {
-        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 5 * 60])];
-    }
-    [result appendString: @"</tr>\n"];
-    
-    [result appendString: @"<tr bgcolor='LightYellow'>"];
-    for (Train *tr in eastTrains) {
-        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 3 * 60] )];
-    }
-    [result appendString: @"<td class='stationname'>Oakland 16th St. </td>"];
-    for (Train *tr in westTrains) {
-        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 3 * 60])];
-    }
-    [result appendString: @"</tr>\n"];
-    
-    [result appendString: @"<tr>"];
-    for (Train *tr in eastTrains) {
-        [result appendFormat: @"<td>%@</td>", formattedDate([[tr departureTime] dateByAddingTimeInterval: 5 * 60])];
-    }
-    [result appendString: @"<td class='stationname'>Shellmound</td>"];
-    for (Train *tr in westTrains) {
-        [result appendFormat: @"<td>%@</td>", formattedDate([tr departureTime])];
-    }
-    [result appendString: @"</tr>\n"];
     [result appendString: @"</table>\n </div>\n <br>\n <div class='rules'>\n<b>RULE 5.</b> Time applies at the location of station sign at stations between San Francisco and San Jose and on Santa Clara-Newark line will apply at junction switch, Santa Clara.\n<br>\n<B>RULE S-72.</b> Exception: No. 98 is superior to Nos. 371, 373, 75, and 141.\n </div> </body>\n"];
     return result;
 }

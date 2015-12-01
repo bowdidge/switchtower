@@ -38,7 +38,7 @@
 
 @implementation Train
 + (id) train {
-    return [[[Train alloc] init] autorelease];
+    return [[Train alloc] init];
 }
 
 - (id) init {
@@ -57,7 +57,7 @@
 + (id) trainWithNumber: (NSString*) trainNumber name: (NSString*) trainName
            direction: (enum TimetableDirection) dir
                start: (NamedPoint*) start ends: (NSArray*) ends {
-    Train *train = [[[Train alloc] init] autorelease];
+    Train *train = [[Train alloc] init];
     train.trainNumber = trainNumber;
     train.trainName = trainName;
     train.trainDescription = @"";

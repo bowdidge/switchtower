@@ -99,5 +99,7 @@ enum TrainState {
 @property(nonatomic) float distanceFromWestEndCurrentCell;
 @property(nonatomic) NSUInteger speedMPH;
 @property(nonatomic, retain) NSArray *bannedRules;
+// Maps station names to times.
+@property(nonatomic, retain) NSDictionary *timetableEntry;
 @end
 

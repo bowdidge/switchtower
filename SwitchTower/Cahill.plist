@@ -15,9 +15,17 @@ Cahill St.’s platform #4 and #5 were the longest in the station, and used for 
 Most freight trains bypassed the station using the track on the far west (bottom) of the station.  Umbrella sheds at the station are too near the tracks on platforms #2, #3, and #4.  Instead, freights switched to the bottom-most “Freight Lead” track soon after leaving Santa Clara.  Freight trains headed for the Mulford line must use track #1 to reach the junction.
 &lt;p&gt;
 &lt;h3&gt;For More Information&lt;/h3&gt;
-Read the Dome of Foam's article on Cahill Station and the planned 1965 rearrangement for
+Read the Dome of Foam&apos;s article on Cahill Station and the planned 1965 rearrangement for
 more background.
 </string>
+	<key>TimetableNames</key>
+	<array>
+		<string>Santa Clara</string>
+		<string>Milpitas</string>
+		<string>San Jose</string>
+		<string>Edenvale</string>
+		<string>Foyle</string>
+	</array>
 	<key>Endpoints</key>
 	<array>
 		<dict>
@@ -106,185 +114,234 @@ more background.
 		</dict>
 	</array>
 	<key>StartTime</key>
-    <date>1935-05-12T04:00:00Z</date>
+	<date>1935-05-12T04:00:00Z</date>
 	<key>Trains</key>
 	<array>
 		<dict>
-            <key>Direction</key>
-            <string>West</string>
-            <key>Departs</key>
-            <string>From LA</string>
-            <key>OnTimetable</key>
-            <integer>1</integer>
-            <key>Arrives</key>
-            <array>
-                <string>To SF</string>
-            </array>
-            <key>Becomes</key>
-            <array/>
-            <key>ArrivalTime</key>
-            <string>4:10</string>
-            <key>Name</key>
-            <string>Adv. CMW</string>
-            <key>Identifier</key>
-            <string>371</string>
-            <key>Description</key>
-            <string>Coast Merchandise West (Advance)</string>
-            <key>DepartureTime</key>
-            <string>04:01</string>
-            <key>Speed</key>
-            <integer>20</integer>
-            <key>BannedRules</key>
-            <array>
-                <dict>
-                    <key>NamedPoints</key>
-                    <array>
-                        <string>Cahill #2</string>
-                        <string>Cahill #3</string>
-                        <string>Cahill #4</string>
-                    </array>
-                    <key>PointsLost</key>
-                    <integer>5</integer>
-                    <key>Explanation</key>
-                    <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
-                </dict>
-            </array>
-       </dict>
-        <dict>
-            <key>Direction</key>
-            <string>West</string>
-            <key>Departs</key>
-            <string>From LA</string>
-            <key>OnTimetable</key>
-            <integer>1</integer>
-            <key>Arrives</key>
-            <array>
-                <string>To SF</string>
-            </array>
-            <key>Becomes</key>
-            <array/>
-            <key>ArrivalTime</key>
-            <string>4:45</string>
-            <key>Name</key>
-            <string>CMW</string>
-            <key>Identifier</key>
-            <string>373</string>
-            <key>Description</key>
-            <string>Coast Merchandise West</string>
-            <key>DepartureTime</key>
-            <string>4:45</string>
-            <key>Speed</key>
-            <integer>20</integer>
-            <key>BannedRules</key>
-            <array>
-                <dict>
-                    <key>NamedPoints</key>
-                    <array>
-                        <string>Cahill #2</string>
-                        <string>Cahill #3</string>
-                        <string>Cahill #4</string>
-                    </array>
-                    <key>PointsLost</key>
-                    <integer>5</integer>
-                    <key>Explanation</key>
-                    <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
-                </dict>
-            </array>
-        </dict>
-        <dict>
-            <key>Direction</key>
-            <string>East</string>
-            <key>Departs</key>
-            <string>From SF</string>
-            <key>OnTimetable</key>
-            <integer>0</integer>
-            <key>Arrives</key>
-            <array>
-                <string>To LA</string>
-            </array>
-            <key>Becomes</key>
-            <array/>
-            <key>ArrivalTime</key>
-            <string>4:30</string>
-            <key>Name</key>
-            <string>CMW</string>
-            <key>Identifier</key>
-            <string>X3794</string>
-            <key>Description</key>
-            <string>Watsonville Hauler</string>
-            <key>DepartureTime</key>
-            <string>4:20</string>
-            <key>Speed</key>
-            <integer>20</integer>
-            <key>BannedRules</key>
-            <array>
-                <dict>
-                    <key>NamedPoints</key>
-                    <array>
-                        <string>Cahill #2</string>
-                        <string>Cahill #3</string>
-                        <string>Cahill #4</string>
-                    </array>
-                    <key>PointsLost</key>
-                    <integer>5</integer>
-                    <key>Explanation</key>
-                    <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
-                </dict>
-            </array>
-        </dict>
-        <dict>
-            <key>Direction</key>
-            <string>West</string>
-            <key>Departs</key>
-            <string>From LA</string>
-            <key>OnTimetable</key>
-            <integer>1</integer>
-            <key>Arrives</key>
-            <array>
-                <string>To SF</string>
-            </array>
-            <key>Becomes</key>
-            <array/>
-            <key>ArrivalTime</key>
-            <string>4:40</string>
-            <key>Name</key>
-            <string>Coast Mail</string>
-            <key>Identifier</key>
-            <string>107</string>
-            <key>Description</key>
-            <string>Coast Mail, overnight between Los Angeles and San Francisco</string>
-            <key>DepartureTime</key>
-            <string>4:30</string>
-            <key>Speed</key>
-            <integer>20</integer>
-        </dict>
-        <dict>
-            <key>Direction</key>
-            <string>East</string>
-            <key>Departs</key>
-            <string>From SF</string>
-            <key>OnTimetable</key>
-            <integer>1</integer>
-            <key>Arrives</key>
-            <array>
-                <string>To LA</string>
-            </array>
-            <key>Becomes</key>
-            <array/>
-            <key>ArrivalTime</key>
-            <string>5:25</string>
-            <key>Name</key>
-            <string>Coast Mail</string>
-            <key>Identifier</key>
-            <string>104</string>
-            <key>Description</key>
-            <string>Coast Mail</string>
-            <key>DepartureTime</key>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Departs</key>
+			<string>From LA</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Arrives</key>
+			<array>
+				<string>To SF</string>
+			</array>
+			<key>Becomes</key>
+			<array/>
+			<key>ArrivalTime</key>
+			<string>4:30</string>
+			<key>Name</key>
+			<string>Adv. CMW</string>
+			<key>Identifier</key>
+			<string>371</string>
+			<key>Description</key>
+			<string>Coast Merchandise West (Advance)</string>
+			<key>DepartureTime</key>
+			<string>04:01</string>
+			<key>Speed</key>
+			<integer>20</integer>
+			<key>BannedRules</key>
+			<array>
+				<dict>
+					<key>NamedPoints</key>
+					<array>
+						<string>Cahill #2</string>
+						<string>Cahill #3</string>
+						<string>Cahill #4</string>
+					</array>
+					<key>PointsLost</key>
+					<integer>5</integer>
+					<key>Explanation</key>
+					<string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+				</dict>
+			</array>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string>4:00</string>
+				<key>San Jose</key>
+				<string>4:10</string>
+				<key>Santa Clara</key>
+				<string>4:30</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Departs</key>
+			<string>From LA</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Arrives</key>
+			<array>
+				<string>To SF</string>
+			</array>
+			<key>Becomes</key>
+			<array/>
+			<key>ArrivalTime</key>
             <string>5:15</string>
-            <key>Speed</key>
-            <integer>20</integer>
-        </dict>
-        <dict>
+			<key>Name</key>
+			<string>CMW</string>
+			<key>Identifier</key>
+			<string>373</string>
+			<key>Description</key>
+			<string>Coast Merchandise West</string>
+			<key>DepartureTime</key>
+			<string>4:45</string>
+			<key>Speed</key>
+			<integer>20</integer>
+			<key>BannedRules</key>
+			<array>
+				<dict>
+					<key>NamedPoints</key>
+					<array>
+						<string>Cahill #2</string>
+						<string>Cahill #3</string>
+						<string>Cahill #4</string>
+					</array>
+					<key>PointsLost</key>
+					<integer>5</integer>
+					<key>Explanation</key>
+					<string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+				</dict>
+			</array>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string>4:45</string>
+				<key>San Jose</key>
+				<string>4:55</string>
+				<key>Santa Clara</key>
+				<string>5:05</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Departs</key>
+			<string>From SF</string>
+			<key>OnTimetable</key>
+			<integer>0</integer>
+			<key>Arrives</key>
+			<array>
+				<string>To LA</string>
+			</array>
+			<key>Becomes</key>
+			<array/>
+			<key>ArrivalTime</key>
+			<string>4:50</string>
+			<key>Name</key>
+			<string>CMW</string>
+			<key>Identifier</key>
+			<string>X3794</string>
+			<key>Description</key>
+			<string>Watsonville Hauler</string>
+			<key>DepartureTime</key>
+			<string>4:20</string>
+			<key>Speed</key>
+			<integer>20</integer>
+			<key>BannedRules</key>
+			<array>
+				<dict>
+					<key>NamedPoints</key>
+					<array>
+						<string>Cahill #2</string>
+						<string>Cahill #3</string>
+						<string>Cahill #4</string>
+					</array>
+					<key>PointsLost</key>
+					<integer>5</integer>
+					<key>Explanation</key>
+					<string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Departs</key>
+			<string>From LA</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Arrives</key>
+			<array>
+				<string>To SF</string>
+			</array>
+			<key>Becomes</key>
+			<array/>
+			<key>ArrivalTime</key>
+            <string>5:00</string>
+			<key>Name</key>
+			<string>Coast Mail</string>
+			<key>Identifier</key>
+			<string>107</string>
+			<key>Description</key>
+			<string>Coast Mail, overnight between Los Angeles and San Francisco</string>
+			<key>DepartureTime</key>
+			<string>4:30</string>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string>4:30</string>
+				<key>San Jose</key>
+				<string>4:40</string>
+				<key>Santa Clara</key>
+				<string>5:00</string>
+			</dict>
+			<key>Speed</key>
+			<integer>20</integer>
+			<key>BannedRules</key>
+			<array>
+			  <dict>
+			    <key>NamedPoints</key>
+			    <array>
+                              <string>Cahill #2</string>
+                              <string>Cahill #3</string>
+                              <string>Cahill #4</string>
+			    </array>
+			    <key>PointsLost</key>
+			    <integer>5</integer>
+			    <key>Explanation</key>
+			    <string>Lose five points for placing train far from baggage room on track #1.</string>
+			  </dict>
+                        </array>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Departs</key>
+			<string>From SF</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Arrives</key>
+			<array>
+				<string>To LA</string>
+			</array>
+			<key>Becomes</key>
+			<array/>
+			<key>ArrivalTime</key>
+			<string>5:25</string>
+			<key>Name</key>
+			<string>Coast Mail</string>
+			<key>Identifier</key>
+			<string>104</string>
+			<key>Description</key>
+			<string>Coast Mail</string>
+			<key>DepartureTime</key>
+			<string>5:15</string>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string>5:25</string>
+				<key>San Jose</key>
+				<string>5:20</string>
+				<key>Santa Clara</key>
+				<string>5:15</string>
+			</dict>
+			<key>Speed</key>
+			<integer>20</integer>
+		</dict>
+		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Departs</key>
@@ -306,25 +363,25 @@ more background.
 			<key>Description</key>
 			<string>Campbell Switcher</string>
 			<key>DepartureTime</key>
-            <string>04:01</string>
-            <key>Speed</key>
-            <integer>20</integer>
-            <key>BannedRules</key>
-                <array>
-                    <dict>
-                        <key>NamedPoints</key>
-                        <array>
-                            <string>Cahill #2</string>
-                            <string>Cahill #3</string>
-                            <string>Cahill #4</string>
-                        </array>
-                        <key>PointsLost</key>
-                        <integer>5</integer>
-                        <key>Explanation</key>
-                        <string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
-                    </dict>
-                </array>
-            </dict>
+			<string>04:01</string>
+			<key>Speed</key>
+			<integer>20</integer>
+			<key>BannedRules</key>
+			<array>
+				<dict>
+					<key>NamedPoints</key>
+					<array>
+						<string>Cahill #2</string>
+						<string>Cahill #3</string>
+						<string>Cahill #4</string>
+					</array>
+					<key>PointsLost</key>
+					<integer>5</integer>
+					<key>Explanation</key>
+					<string>Lose five points for routing freight train past umbrella sheds.  Insufficient clearance.</string>
+				</dict>
+			</array>
+		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
@@ -353,8 +410,8 @@ more background.
 			<string>engine for #129</string>
 			<key>DepartureTime</key>
 			<string>05:31</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -379,8 +436,15 @@ more background.
 			<string>Commute train #129</string>
 			<key>DepartureTime</key>
 			<string>06:04</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>6:04</string>
+				<key>Santa Clara</key>
+				<string>6:14</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -410,8 +474,8 @@ more background.
 			<string>engine for #131</string>
 			<key>DepartureTime</key>
 			<string>05:50</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -436,8 +500,17 @@ more background.
 			<string>Commute train #131</string>
 			<key>DepartureTime</key>
 			<string>06:25</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string></string>
+				<key>San Jose</key>
+				<string>6:25</string>
+				<key>Santa Clara</key>
+				<string>6:35</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -467,8 +540,8 @@ more background.
 			<string>engine for #133</string>
 			<key>DepartureTime</key>
 			<string>05:55</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -493,8 +566,15 @@ more background.
 			<string>Commute train #133</string>
 			<key>DepartureTime</key>
 			<string>06:30</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>6:30</string>
+				<key>Santa Clara</key>
+				<string>6:40</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -524,8 +604,8 @@ more background.
 			<string>engine for #135</string>
 			<key>DepartureTime</key>
 			<string>06:00</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -550,8 +630,15 @@ more background.
 			<string>Commute train #135</string>
 			<key>DepartureTime</key>
 			<string>06:35</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>6:35</string>
+				<key>Santa Clara</key>
+				<string>6:45</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -581,8 +668,8 @@ more background.
 			<string>engine for #137</string>
 			<key>DepartureTime</key>
 			<string>06:30</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -607,8 +694,15 @@ more background.
 			<string>Commute train #137</string>
 			<key>DepartureTime</key>
 			<string>7:00</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>7:00</string>
+				<key>Santa Clara</key>
+				<string>7:05</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -638,8 +732,8 @@ more background.
 			<string>engine for #139</string>
 			<key>DepartureTime</key>
 			<string>07:30</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -664,8 +758,15 @@ more background.
 			<string>Commute train #139</string>
 			<key>DepartureTime</key>
 			<string>7:55</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>7:55</string>
+				<key>Santa Clara</key>
+				<string>8:00</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -690,6 +791,15 @@ more background.
 			<string>Train from Monterey.</string>
 			<key>DepartureTime</key>
 			<string>8:50</string>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string>8:00</string>
+				<key>San Jose</key>
+				<string>8:20</string>
+				<key>Santa Clara</key>
+				<string>8:50</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -719,8 +829,8 @@ more background.
 			<string>engine for #139</string>
 			<key>DepartureTime</key>
 			<string>10:00</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -745,8 +855,15 @@ more background.
 			<string>Commute train #143</string>
 			<key>DepartureTime</key>
 			<string>10:30</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>10:30</string>
+				<key>Santa Clara</key>
+				<string>10:35</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -776,8 +893,15 @@ more background.
 			<string>Commute train #108</string>
 			<key>DepartureTime</key>
 			<string>06:30</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>6:40</string>
+				<key>Santa Clara</key>
+				<string>6:30</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -804,8 +928,8 @@ more background.
 			<string>engine for #108</string>
 			<key>DepartureTime</key>
 			<string>06:50</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -835,8 +959,15 @@ more background.
 			<string>Commute train #110</string>
 			<key>DepartureTime</key>
 			<string>07:35</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>7:35</string>
+				<key>Santa Clara</key>
+				<string>7:40</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -863,8 +994,8 @@ more background.
 			<string>engine for #110</string>
 			<key>DepartureTime</key>
 			<string>07:50</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -894,8 +1025,15 @@ more background.
 			<string>Commute train #112</string>
 			<key>DepartureTime</key>
 			<string>08:50</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose</key>
+				<string>8:55</string>
+				<key>Santa Clara</key>
+				<string>8:50</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -922,8 +1060,8 @@ more background.
 			<string>engine for #112</string>
 			<key>DepartureTime</key>
 			<string>9:05</string>
-            <key>Speed</key>
-            <integer>10</integer>
+			<key>Speed</key>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -950,8 +1088,17 @@ more background.
 			<string>Morning Daylight from San Francisco to San Jose</string>
 			<key>DepartureTime</key>
 			<string>07:50</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string>8:15</string>
+				<key>San Jose</key>
+				<string>8:10</string>
+				<key>Santa Clara</key>
+				<string>7:50</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -974,10 +1121,19 @@ more background.
 			<string>75</string>
 			<key>Description</key>
 			<string>Night train from Los Angeles to San Francisco</string>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Edenvale</key>
+				<string>5:35</string>
+				<key>San Jose</key>
+				<string>5:45</string>
+				<key>Santa Clara</key>
+				<string>5:50</string>
+			</dict>
 			<key>DepartureTime</key>
 			<string>05:35</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>Speed</key>
+			<integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -1002,8 +1158,17 @@ more background.
 			<string>Morning train from Santa Cruz to San Francisco.</string>
 			<key>DepartureTime</key>
 			<string>9:30</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Foyle</key>
+				<string>9:30</string>
+				<key>San Jose</key>
+				<string>9:50</string>
+				<key>Santa Clara</key>
+				<string>10:00</string>
+			</dict>
+			<key>Speed</key>
+			<integer>30</integer>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -1028,8 +1193,17 @@ more background.
 			<string>Morning train from San Francisco to Santa Cruz.</string>
 			<key>DepartureTime</key>
 			<string>10:20</string>
-            <key>Speed</key>
-            <integer>30</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>Foyle</key>
+				<string>10:35</string>
+				<key>San Jose</key>
+				<string>10:30</string>
+				<key>Santa Clara</key>
+				<string>10:20</string>
+			</dict>
+			<key>Speed</key>
+			<integer>30</integer>
 		</dict>
 	</array>
 	<key>Labels</key>
@@ -1037,7 +1211,9 @@ more background.
 		<key>College Park Tower</key>
 		<string>1, 7</string>
 		<key>Valbrick</key>
-		<string>24,7</string>
+		<string>29,7</string>
+		<key>Hillsdale</key>
+		<string>34,7</string>
 		<key>Cahill St. Station</key>
 		<string>15, 1</string>
 	</dict>
@@ -1052,45 +1228,45 @@ more background.
 		<string>      \      W---v     W-           </string>
 		<string>              --w                   </string>
 	</array>
-    <key>CellLengths</key>
-    <array>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>500</integer>
-        <integer>200</integer>
-        <integer>200</integer>
-        <integer>200</integer>
-        <integer>300</integer>
-        <integer>300</integer>
-        <integer>300</integer>
-        <integer>300</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>10000</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>2000</integer>
-        <integer>100</integer>
-        <integer>1000</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>100</integer>
-        <integer>1000</integer>
-    </array>
+	<key>CellLengths</key>
+	<array>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>500</integer>
+		<integer>200</integer>
+		<integer>200</integer>
+		<integer>200</integer>
+		<integer>300</integer>
+		<integer>300</integer>
+		<integer>300</integer>
+		<integer>300</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>10000</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>2000</integer>
+		<integer>100</integer>
+		<integer>1000</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>1000</integer>
+	</array>
 	<key>Name</key>
 	<string>San Jose Cahill Street</string>
 	<key>Signals</key>
@@ -1216,35 +1392,35 @@ more background.
 			<string>East</string>
 			<key>Location</key>
 			<string>10,5</string>
-            <key>comment</key>
-            <string>Freight lead</string>
+			<key>comment</key>
+			<string>Freight lead</string>
 		</dict>
-        <dict>
-            <key>Direction</key>
-            <string>West</string>
-            <key>Location</key>
-            <string>12,5</string>
-            <key>comment</key>
-            <string>Freight lead</string>
-        </dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>12,5</string>
+			<key>comment</key>
+			<string>Freight lead</string>
+		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
 			<string>5,1</string>
 		</dict>
-        <dict>
-            <key>Direction</key>
-            <string>East</string>
-            <key>Location</key>
-            <string>5,0</string>
-            <key>comment</key>
-            <string>Mulford Line entrance</string>
-        </dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>5,0</string>
+			<key>comment</key>
+			<string>Mulford Line entrance</string>
+		</dict>
 	</array>
 	<key>Description</key>
 	<string>Handle the comings and goings of the Southern Pacific&apos;s San Francisco-&gt;San Jose commute fleet in the early 1950&apos;s.  In this simulation, you&apos;ll need to prepare trains for commute runs while leaving space to get long-distance passenger trains and freights through.</string>
 	<key>TickIntervalSecs</key>
-	<integer>30</integer>
+	<integer>20</integer>
 </dict>
 </plist>
