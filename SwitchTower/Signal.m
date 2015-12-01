@@ -38,7 +38,7 @@
     theSignal.trafficDirection = trafficDirection;
     theSignal.position = pos;
     theSignal.isGreen = FALSE; 
-    return [theSignal autorelease];
+    return theSignal;
 }
 
 // Sets the current state of the signal.
