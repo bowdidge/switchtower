@@ -46,7 +46,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
 
 
 - (id) initWithScenario: (Scenario*) s{
-    [super init];
+    self = [super init];
     self.activeTrains = [NSMutableArray array];
     self.switchPositionDictionary = [NSMutableDictionary dictionary];
     routeCount = 0;
