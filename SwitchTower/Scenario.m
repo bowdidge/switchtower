@@ -93,20 +93,6 @@
 static char* cells = "";
 
 
-- (const char*) rawTileString {
-    return cells;
-}
-
-
-- (id) init {
-    self = [super init];
-    self.scenarioName = @"Unset scenario name";
-    self.scenarioDescription = @"Unset scenario description";
-    self.tickIntervalInSeconds = 30;
-    self.cellLengths = nil;
-    return self;
-}
-
 BOOL ParsePosition(NSString* posString, struct CellPosition* pos) {
     NSArray *components = [posString componentsSeparatedByString: @","];
     if ([components count] != 2) {
@@ -144,6 +130,186 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     return true;
 }
 
+- (const char*) rawTileString {
+    return cells;
+}
+
+- (id) init {
+    self = [super init];
+    self.scenarioName = @"Unset scenario name";
+    self.scenarioDescription = @"Unset scenario description";
+    self.tickIntervalInSeconds = 30;
+    self.cellLengths = nil;
+    return self;
+}
+
+- (id) initWithDict: (NSDictionary*) dict {
+    self = [super init];
+    self.tileStrings = [dict objectForKey: @"Schematic"];
+    self.tileRows = [self.tileStrings count];
+    NSString *firstRow = [self.tileStrings objectAtIndex: 0];
+    self.tileColumns = [firstRow length];
+    [self validateTileString];
+    
+    // Process the timetable information.  The TimetableNames is a list
+    // of the station names for the timetable, in order they should be
+    // drawn.
+    // Each train has as TimetableEntry mapping a name to a time.
+    self.timetableNames = [dict objectForKey: @"TimetableNames"];
+    
+    
+    NSMutableArray *cellLengths = [NSMutableArray arrayWithArray: [dict objectForKey: @"CellLengths"]];
+    // TODO(bowdidge): Check all are numberself.
+    self.cellLengths = cellLengths;
+    
+    self.scenarioName = [dict objectForKey: @"Name"];
+    self.scenarioDescription = [dict objectForKey: @"Description"];
+    
+    NSDate *startTime = [dict objectForKey: @"StartTime"];
+    self.startingTime = startTime;
+    
+    NSNumber *tickInterval = [dict objectForKey: @"TickIntervalSecs"];
+    if (tickInterval) {
+        self.tickIntervalInSeconds = [tickInterval intValue];
+    }
+    NSMutableArray *allLabels = [NSMutableArray array];
+    NSDictionary *labelDict = [dict objectForKey: @"Labels"];
+    for (NSString* labelName in [labelDict allKeys]) {
+        NSString* posString = [labelDict objectForKey: labelName];
+        struct CellPosition pos;
+        if (!ParsePosition(posString, &pos)) {
+            // Parsing problem.
+        }
+        [allLabels addObject: [Label labelWithString: labelName cell: pos]];
+    }
+    self.all_labels = allLabels;
+    
+    NSString *helpString = [dict objectForKey: @"Help"];
+    if (helpString) {
+        self.helpString = helpString;
+    }
+    
+    NSMutableArray *allSignals = [NSMutableArray array];
+    NSArray *signals = [dict objectForKey: @"Signals"];
+    if (signals.count == 0) {
+        NSLog(@"No signals?!");
+    }
+    
+    for (NSDictionary* signalDict in signals) {
+        NSString *dirString = [signalDict objectForKey: @"Direction"];
+        enum TimetableDirection dir;
+        if (ParseDirection(dirString, &dir)) {
+            // bad.
+        }
+        NSString *posString = [signalDict objectForKey: @"Location"];
+        struct CellPosition pos;
+        if (!ParsePosition(posString, &pos)) {
+        }
+        Signal *s = [Signal signalControlling:dir position: pos];
+        [allSignals addObject: s];
+    }
+    self.all_signals = allSignals;
+    
+    NSMutableArray *allEndpoints = [NSMutableArray array];
+    NSArray *endpoints = [dict objectForKey: @"Endpoints"];
+    if (endpoints.count == 0) {
+        NSLog(@"No endpoints?!");
+    }
+    for (NSDictionary *endpoint in endpoints) {
+        NSString* endpointName = [endpoint objectForKey: @"Name"];
+        NSString *endpointLocationStr = [endpoint objectForKey: @"Location"];
+        struct CellPosition pos;
+        if (!ParsePosition(endpointLocationStr, &pos)) {
+            // Parsing problem.
+        }
+        [allEndpoints addObject: [NamedPoint namedPointWithName: endpointName cell: pos]];
+    }
+    self.all_endpoints = allEndpoints;
+    
+    
+    NSMutableArray *allTrains = [NSMutableArray array];
+    NSArray *trains = [dict objectForKey: @"Trains"];
+    if (!trains || trains.count == 0) {
+        NSLog(@"No trains?!");
+    } else {
+        for (NSDictionary *trainDict in trains) {
+            NSString* trainIdentifier = [trainDict objectForKey: @"Identifier"];
+            NSString *trainName = [trainDict objectForKey: @"Name"];
+            NSString *trainDescription = [trainDict objectForKey: @"Description"];
+            NSString *directionStr = [trainDict objectForKey: @"Direction"];
+            NSString *departureEndpoint = [trainDict objectForKey: @"Departs"];
+            NSString *departureTimeStr = [trainDict objectForKey: @"DepartureTime"];
+            NSString *arrivalTimeStr = [trainDict objectForKey: @"ArrivalTime"];
+            NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];
+            NSArray *becomes = [trainDict objectForKey: @"Becomes"];
+            NSArray *arrivalEndpoints = [trainDict objectForKey: @"Arrives"];
+            NSNumber *speedMPH = [trainDict objectForKey: @"Speed"];
+            enum TimetableDirection dir;
+            if (ParseDirection(directionStr, &dir)) {
+                // bad.
+            }
+            
+            NSMutableArray *endpoints = [NSMutableArray array];
+            for (NSString *end in arrivalEndpoints) {
+                NamedPoint *pt = [self endpointWithName: end];
+                if (!pt) {
+                    NSLog(@"Unknown endpoint %@ in train %@", end, trainName);
+                    continue;
+                }
+                [endpoints addObject: pt];
+            }
+            NamedPoint *startPoint = nil;
+            if (departureEndpoint != nil && departureEndpoint.length > 0) {
+                startPoint = [self endpointWithName: departureEndpoint];
+                if (!startPoint) {
+                    NSLog(@"Unknown start point %@ in train %@", departureEndpoint, trainName);
+                }
+            }
+            Train *tr = [Train trainWithNumber: trainIdentifier name: trainName direction: dir start: startPoint ends: endpoints];
+            tr.departureTime = [self scenarioTime: departureTimeStr];
+            tr.trainDescription = trainDescription;
+            tr.arrivalTime = [self scenarioTime: arrivalTimeStr];
+            tr.onTimetable = [onTimetable boolValue];
+            tr.currentState = Inactive;
+            tr.becomesTrains = becomes;
+            if (speedMPH) {
+                tr.speedMPH = [speedMPH intValue];
+            }
+            NSDictionary *timetableEntry = [trainDict objectForKey: @"TimetableEntry"];
+            tr.timetableEntry = timetableEntry;
+            [allTrains addObject: tr];
+            
+            NSMutableArray *bannedResults = [NSMutableArray array];
+            NSArray *bannedRules = [trainDict objectForKey: @"BannedRules"];
+            if (bannedRules && bannedRules.count > 0) {
+                for (NSDictionary *dict in bannedRules) {
+                    BannedRule *br = [[BannedRule alloc] init];
+                    NSMutableArray *bannedPoints = [NSMutableArray array];
+                    for (NSString* namedPoint in [dict objectForKey: @"NamedPoints"]) {
+                        NamedPoint *pt = [self endpointWithName: namedPoint];
+                        if (!pt) {
+                            NSLog(@"Couldn't find endpoint named %@", namedPoint);
+                        } else {
+                            [bannedPoints addObject: pt];
+                        }
+                    }
+                    br.bannedPoints = bannedPoints;
+                    NSNumber *pts = [dict objectForKey: @"PointsLost"];
+                    
+                    NSString *explanation = [dict objectForKey: @"Explanation"];
+                    br.pointsLost = [pts intValue];
+                    br.message = explanation;
+                    [bannedResults addObject: br];
+                }
+                tr.bannedRules = bannedResults;
+            }
+            
+        }
+    }
+    self.all_trains = allTrains;
+    return self;
+}
+
 - (NSDictionary*) scenarioAsDict {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject: self.tileStrings forKey: @"Schematic"];
@@ -156,11 +322,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     [dict setObject: self.startingTime forKey: @"StartTime"];
     [dict setObject: [NSNumber numberWithInt: self.tickIntervalInSeconds] forKey: @"TickIntervalSecs"];
     
-    NSMutableArray *labels = [NSMutableArray array];
+    NSMutableDictionary *labels = [NSMutableDictionary dictionary];
     for (Label *l in self.all_labels) {
-        NSMutableDictionary *labelDict = [NSMutableDictionary dictionary];
-        [labelDict setObject: CellPositionAsString(l.position) forKey: l.labelString];
-        [labels addObject: labelDict];
+        [labels setObject: CellPositionAsString(l.position) forKey: l.labelString];
     }
     [dict setObject: labels forKey: @"Labels"];
 
@@ -180,7 +344,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         [endpointDict setObject: namedPoint.name forKey: @"Name"];
         [endpoints addObject: endpointDict];
     }
-    [dict setObject: endpoints forKey: @"EndPoints"];
+    [dict setObject: endpoints forKey: @"Endpoints"];
 
     NSMutableArray *trains = [NSMutableArray array];
     for (Train *tr in self.all_trains) {
@@ -192,9 +356,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         if (tr.startPoint.name) {
             [trainDict setObject: tr.startPoint.name forKey: @"Departs"];
         }
-        [trainDict setObject: @"00:00" forKey: @"DepartureTime"];
-        [trainDict setObject: tr.endPointsAsText forKey: @"Arrives"];
-        [trainDict setObject: @"00:00" forKey: @"ArrivalTime"];
+        [trainDict setObject: formattedDate(tr.departureTime) forKey: @"DepartureTime"];
+        [trainDict setObject: NamedPointNames(tr.expectedEndPoints) forKey: @"Arrives"];
+        [trainDict setObject: formattedDate(tr.arrivalTime) forKey: @"ArrivalTime"];
         [trainDict setObject: @"" forKey: @"Becomes"];
         [trainDict setObject: [NSNumber numberWithInt: (int) tr.speedMPH] forKey: @"Speed"];
         
@@ -218,162 +382,6 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     [dict setObject: trains forKey: @"Trains"];
     
     return dict;
-}
-    
-+ (Scenario*) scenarioFromDict: (NSDictionary*) dict {
-    Scenario *s = [[Scenario alloc] init];
-    s.tileStrings = [dict objectForKey: @"Schematic"];
-    s.tileRows = [s.tileStrings count];
-    NSString *firstRow = [s.tileStrings objectAtIndex: 0];
-    s.tileColumns = [firstRow length];
-    [s validateTileString];
-    
-    // Process the timetable information.  The TimetableNames is a list
-    // of the station names for the timetable, in order they should be
-    // drawn.
-    // Each train has as TimetableEntry mapping a name to a time.
-    s.timetableNames = [dict objectForKey: @"TimetableNames"];
-    
-    
-    NSArray *cellLengths = [dict objectForKey: @"CellLengths"];
-    // TODO(bowdidge): Check all are numbers.
-    s.cellLengths = cellLengths;
-    
-    s.scenarioName = [dict objectForKey: @"Name"];
-    s.scenarioDescription = [dict objectForKey: @"Description"];
-
-    NSDate *startingTime = [dict objectForKey: @"StartTime"];
-    s.startingTime = startingTime;
-    
-    NSNumber *tickInterval = [dict objectForKey: @"TickIntervalSecs"];
-    if (tickInterval) {
-        s.tickIntervalInSeconds = [tickInterval intValue];
-    }
-    NSMutableArray *allLabels = [NSMutableArray array];
-    NSDictionary *labelDict = [dict objectForKey: @"Labels"];
-    for (NSString* labelName in [labelDict allKeys]) {
-        NSString* posString = [labelDict objectForKey: labelName];
-        struct CellPosition pos;
-        if (!ParsePosition(posString, &pos)) {
-                // Parsing problem.
-        }
-        [allLabels addObject: [Label labelWithString: labelName cell: pos]];
-    }
-    s.all_labels = allLabels;
-    
-    NSString *helpString = [dict objectForKey: @"Help"];
-    if (helpString) {
-        s.helpString = helpString;
-    }
-    
-    NSMutableArray *allSignals = [NSMutableArray array];
-    NSArray *signals = [dict objectForKey: @"Signals"];
-    for (NSDictionary* signalDict in signals) {
-        NSString *dirString = [signalDict objectForKey: @"Direction"];
-        enum TimetableDirection dir;
-        if (ParseDirection(dirString, &dir)) {
-            // bad.
-        }
-        NSString *posString = [signalDict objectForKey: @"Location"];
-        struct CellPosition pos;
-        if (!ParsePosition(posString, &pos)) {
-        }
-        Signal *s = [Signal signalControlling:dir position: pos];
-        [allSignals addObject: s];
-    }
-    s.all_signals = allSignals;
-
-    NSMutableArray *allEndpoints = [NSMutableArray array];
-    NSArray *endpoints = [dict objectForKey: @"Endpoints"];
-    for (NSDictionary *endpoint in endpoints) {
-        NSString* endpointName = [endpoint objectForKey: @"Name"];
-        NSString *endpointLocationStr = [endpoint objectForKey: @"Location"];
-        struct CellPosition pos;
-        if (!ParsePosition(endpointLocationStr, &pos)) {
-            // Parsing problem.
-        }
-        [allEndpoints addObject: [NamedPoint namedPointWithName: endpointName cell: pos]];
-    }
-    s.all_endpoints = allEndpoints;
-    
-
-    NSMutableArray *allTrains = [NSMutableArray array];
-    NSArray *trains = [dict objectForKey: @"Trains"];
-    for (NSDictionary *trainDict in trains) {
-        NSString* trainIdentifier = [trainDict objectForKey: @"Identifier"];
-        NSString *trainName = [trainDict objectForKey: @"Name"];
-        NSString *trainDescription = [trainDict objectForKey: @"Description"];
-        NSString *directionStr = [trainDict objectForKey: @"Direction"];
-        NSString *departureEndpoint = [trainDict objectForKey: @"Departs"];
-        NSString *departureTimeStr = [trainDict objectForKey: @"DepartureTime"];
-        NSString *arrivalTimeStr = [trainDict objectForKey: @"ArrivalTime"];
-        NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];
-        NSArray *becomes = [trainDict objectForKey: @"Becomes"];
-        NSArray *arrivalEndpoints = [trainDict objectForKey: @"Arrives"];
-        NSNumber *speedMPH = [trainDict objectForKey: @"Speed"];
-        enum TimetableDirection dir;
-        if (ParseDirection(directionStr, &dir)) {
-            // bad.
-        }
-
-        NSMutableArray *endpoints = [NSMutableArray array];
-        for (NSString *end in arrivalEndpoints) {
-            NamedPoint *pt = [s endpointWithName: end];
-            if (!pt) {
-                NSLog(@"Unknown endpoint %@ in train %@", end, trainName);
-                continue;
-            }
-            [endpoints addObject: pt];
-        }
-        NamedPoint *startPoint = nil;
-        if (departureEndpoint != nil && departureEndpoint.length > 0) {
-            startPoint = [s endpointWithName: departureEndpoint];
-            if (!startPoint) {
-                NSLog(@"Unknown start point %@ in train %@", departureEndpoint, trainName);
-            }
-        }
-        Train *tr = [Train trainWithNumber: trainIdentifier name: trainName direction: dir start: startPoint ends: endpoints];
-        tr.departureTime = [s scenarioTime: departureTimeStr];
-        tr.trainDescription = trainDescription;
-        tr.arrivalTime = [s scenarioTime: arrivalTimeStr];
-        tr.onTimetable = [onTimetable boolValue];
-        tr.currentState = Inactive;
-        tr.becomesTrains = becomes;
-        if (speedMPH) {
-            tr.speedMPH = [speedMPH intValue];
-        }
-        NSDictionary *timetableEntry = [trainDict objectForKey: @"TimetableEntry"];
-        tr.timetableEntry = timetableEntry;
-        [allTrains addObject: tr];
-        
-        NSMutableArray *bannedResults = [NSMutableArray array];
-        NSArray *bannedRules = [trainDict objectForKey: @"BannedRules"];
-        if (bannedRules) {
-            for (NSDictionary *dict in bannedRules) {
-                BannedRule *br = [[BannedRule alloc] init];
-                NSMutableArray *bannedPoints = [NSMutableArray array];
-                for (NSString* namedPoint in [dict objectForKey: @"NamedPoints"]) {
-                    NamedPoint *pt = [s endpointWithName: namedPoint];
-                    if (!pt) {
-                        NSLog(@"Couldn't find endpoint named %@", namedPoint);
-                    } else {
-                        [bannedPoints addObject: pt];
-                    }
-                }
-                br.bannedPoints = bannedPoints;
-                NSNumber *pts = [dict objectForKey: @"PointsLost"];
-                
-                NSString *explanation = [dict objectForKey: @"Explanation"];
-                br.pointsLost = [pts intValue];
-                br.message = explanation;
-                [bannedResults addObject: br];
-            }
-            tr.bannedRules = bannedResults;
-        }
-        
-    }
-    s.all_trains = allTrains;
-    return s;
 }
 
 
@@ -479,7 +487,6 @@ NSString* formattedTimeInterval(NSTimeInterval interval) {
     }
     return [NSString stringWithFormat: @"%d minutes", (int) interval / 60];
 }
-
 
 NSString* formattedDate(NSDate* date) {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];

@@ -86,7 +86,7 @@ NSArray* FindScenarioFiles(NSString* bundleRoot) {
     if ([selectedScenarioRow indexAtPosition: 0] != 0) return;
     NSDictionary *scenario = [self.availableScenarios objectAtIndex: [selectedScenarioRow indexAtPosition: 1]];
     NSDictionary *scenarioDict = [NSDictionary dictionaryWithContentsOfFile: [scenario objectForKey: @"Filename"]];
-    Scenario *s = [Scenario scenarioFromDict: scenarioDict];
+    Scenario *s = [[Scenario alloc] initWithDict: scenarioDict];
     [vc setGame: s];
 }
 

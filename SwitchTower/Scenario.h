@@ -38,7 +38,7 @@
 // Scenario hides all the details related to a particular switching game: track arrangement, signals, and trains.
 @interface Scenario : NSObject
 // Load scenario from plist.
-+ (Scenario*) scenarioFromDict: (NSDictionary*) dict;
+- (id) initWithDict: (NSDictionary*) dict;
 
 // Write scenario out.
 - (NSDictionary*) scenarioAsDict;
@@ -72,7 +72,7 @@
 @property (nonatomic, retain) NSArray *all_signals;
 @property (nonatomic, retain) NSArray *all_labels;
 @property (nonatomic, retain) NSArray *all_trains;
-@property (nonatomic, retain) NSArray *cellLengths;
+@property (nonatomic, retain) NSMutableArray *cellLengths;
 @property (nonatomic, retain) NSArray *timetableNames;
 @property (nonatomic) NSUInteger tileColumns;
 @property (nonatomic) NSUInteger tileRows;
