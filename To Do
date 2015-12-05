@@ -51,6 +51,10 @@ Scenarios:
 [ ] Oakland Pier.
 [ ] Bakersfield tower.
 
+Sharing scenarios:
+[ ] Way to download new scenarios from cloud
+[ ] Way to upload scenarios for sharing.
+
 Scenario editor:
 [ ] Implement sooner to make easier to improve playability?
 [ ] Gear on main screen goes to scenario editor screen - identical except for label changes.
