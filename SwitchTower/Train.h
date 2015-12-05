@@ -91,7 +91,7 @@ enum TrainState {
 
 // Next steps.
 // List of trains that this should become when complete.
-@property(nonatomic, retain) NSArray *becomesTrains;
+@property(nonatomic, retain) NSMutableArray *becomesTrains;
 @property(nonatomic, retain) NSArray *timetable;
 // TODO(bowdidge): Add schedule for passing particular stations.
 // True if train should appear in timetables.

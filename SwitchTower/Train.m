@@ -51,6 +51,7 @@
     self.expectedEndPoints = nil;
     self.currentState = Inactive;
     self.speedMPH = 30;  // Default.
+    self.becomesTrains = [NSMutableArray array];
     return self;
 }
 

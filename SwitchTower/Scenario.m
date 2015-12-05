@@ -241,7 +241,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
             NSString *departureTimeStr = [trainDict objectForKey: @"DepartureTime"];
             NSString *arrivalTimeStr = [trainDict objectForKey: @"ArrivalTime"];
             NSNumber *onTimetable = [trainDict objectForKey: @"OnTimetable"];
-            NSArray *becomes = [trainDict objectForKey: @"Becomes"];
+            NSMutableArray *becomes = [NSMutableArray arrayWithArray: [trainDict objectForKey: @"Becomes"]];
             NSArray *arrivalEndpoints = [trainDict objectForKey: @"Arrives"];
             NSNumber *speedMPH = [trainDict objectForKey: @"Speed"];
             enum TimetableDirection dir;
@@ -314,6 +314,7 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject: self.tileStrings forKey: @"Schematic"];
     
+    [dict setObject: self.helpString forKey: @"Help"];
     [dict setObject: self.timetableNames forKey: @"TimetableNames"];
     [dict setObject: self.cellLengths forKey: @"CellLengths"];
 
@@ -359,7 +360,12 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
         [trainDict setObject: formattedDate(tr.departureTime) forKey: @"DepartureTime"];
         [trainDict setObject: NamedPointNames(tr.expectedEndPoints) forKey: @"Arrives"];
         [trainDict setObject: formattedDate(tr.arrivalTime) forKey: @"ArrivalTime"];
-        [trainDict setObject: @"" forKey: @"Becomes"];
+        if (tr.onTimetable) {
+            [trainDict setObject: [NSNumber numberWithInt: 1] forKey: @"OnTimetable"];
+        }
+        if (tr.becomesTrains.count > 0) {
+            [trainDict setObject: tr.becomesTrains forKey: @"Becomes"];
+        }
         [trainDict setObject: [NSNumber numberWithInt: (int) tr.speedMPH] forKey: @"Speed"];
         
         if (tr.timetableEntry) {
