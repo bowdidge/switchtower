@@ -32,10 +32,11 @@ Game play
 
 [ ] Allow wraparound paths.
 [ ] Allow prompting for taking stretch of track for an interval (think yard switching)
-[ ] Draw timetable directly in Cocoa, add human touches like circling / crossing out trains, using highlighter to mark current station, etc.
+[x] Draw timetable directly in Cocoa.
+[ ] On  timetable, add human touches like circling / crossing out trains, using highlighter to mark current station, etc.
 
 [ ] Infer possible exits, and warn when a direction would send a train the wrong way.
-[ ] Add bar at the top of the screen that can change color when alerts happen - to show longer distance.
+[x] Add bar at the top of the screen that can change color when alerts happen - to show longer distance.
 [x] Handle timetable for trains changing names.
 [x] Drum beat only when scheduled train delayed.
 [x] Generate timetable from schedule.
@@ -68,8 +69,8 @@ Programming
 [ ] Improve testing.
 
 Cahill:
-[ ] Cahill's track 4/5 have the longest platform and should be used for longer distance trains.
-[ ] Coast Mail should stop on track 1 for easier unloading.
+[x] Cahill's track 4/5 have the longest platform and should be used for longer distance trains.
+[x] Coast Mail should stop on track 1 for easier unloading.
 
 Notes about development
 
