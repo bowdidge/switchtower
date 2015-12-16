@@ -597,7 +597,7 @@
             </array>
             <key>Becomes</key>
             <array>
-                <string>121</string>
+                <string>129</string>
             </array>
             <key>Departs</key>
             <string>Coach Yard</string>
@@ -746,6 +746,30 @@
             <string>Fourth St. Switcher</string>
             <key>Direction</key>
             <string>West</string>
+            <key>Identifier</key>
+            <string>X2512</string>
+            <key>Name</key>
+            <string>Freight</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>06:15</string>
+            <key>Arrives</key>
+            <array>
+                <string>Oakland</string>
+            </array>
+            <key>Departs</key>
+            <string>Freight Yard</string>
+            <key>DepartureTime</key>
+            <string>5:55</string>
+            <key>Description</key>
+            <string>Berryessa Switcher</string>
+            <key>Direction</key>
+            <string>East</string>
             <key>Identifier</key>
             <string>X2512</string>
             <key>Name</key>
