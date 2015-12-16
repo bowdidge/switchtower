@@ -314,8 +314,12 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject: self.tileStrings forKey: @"Schematic"];
     
-    [dict setObject: self.helpString forKey: @"Help"];
-    [dict setObject: self.timetableNames forKey: @"TimetableNames"];
+    if (self.helpString) {
+        [dict setObject: self.helpString forKey: @"Help"];
+    }
+    if (self.timetableNames) {
+        [dict setObject: self.timetableNames forKey: @"TimetableNames"];
+    }
     [dict setObject: self.cellLengths forKey: @"CellLengths"];
 
     [dict setObject: self.scenarioName forKey: @"Name"];
