@@ -209,7 +209,6 @@ float CellYPosOffset(TrackDirection dir) {
     
     char cell = [self.layoutModel.scenario tileAtCell: pos];
     [self setTrackColorForCell: pos isActive: YES withContext: context];
-    float dashes[2] = {DASH_WIDTH, DASH_WIDTH};
     switch (cell) {
         case ' ':
             // do nothing.
@@ -409,10 +408,6 @@ float CellYPosOffset(TrackDirection dir) {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"HH:mm:ss"];
     
-    NSString *timeString = [format stringFromDate: self.currentTime];
-    //self.controller.timeLabel.text = timeString;
-    //self.controller.scoreLabel.text = [NSString stringWithFormat: @"Score: %d", self.score];
-    
     if (self.displayForEditing) {
         // TODO(bowdidge): Draw grid as place to edit.
         for (int x = 0; x < self.scenario.tileColumns; x++) {
@@ -421,7 +416,7 @@ float CellYPosOffset(TrackDirection dir) {
             float indexY = self.bounds.size.height - (TOP_MARGIN  + (self.scenario.tileRows + 1) * TILE_HEIGHT);
             
             [self drawTrainLabelInContext:context center: CGPointMake(centerX, lengthY)
-                                  message: [NSString stringWithFormat: @"%d feet", [self.scenario lengthOfCellInFeet:MakeCellPosition(x, 0)]]];
+                                  message: [NSString stringWithFormat: @"%d feet", (int) [self.scenario lengthOfCellInFeet:MakeCellPosition(x, 0)]]];
             [self drawTrainLabelInContext:context center: CGPointMake(centerX, indexY)
                                   message: [NSString stringWithFormat: @"%d", x]];
         }
@@ -469,10 +464,18 @@ float CellYPosOffset(TrackDirection dir) {
     self.lastRightClick = pos;
     
     NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@"Contextual Menu"];
-    [theMenu insertItemWithTitle:@"Add row to right" action:@selector(addRowToRight:) keyEquivalent:@"" atIndex:0];
-    [NSMenu popUpContextMenu:theMenu withEvent:theEvent forView:self];
+    [theMenu insertItemWithTitle:@"Add column to right" action:@selector(addColumnToRight:) keyEquivalent:@"" atIndex:0];
+    [theMenu insertItemWithTitle:@"Remove column" action:@selector(removeColumn:) keyEquivalent:@"" atIndex:1];
+    [theMenu insertItemWithTitle:@"Add row below" action:@selector(addRowBelow:) keyEquivalent:@"" atIndex:2];
+    [theMenu insertItemWithTitle:@"Remove row" action:@selector(removeRow:) keyEquivalent:@"" atIndex:3];
+   [NSMenu popUpContextMenu:theMenu withEvent:theEvent forView:self];
 }
 
+- (CGPoint) centerOfPosition: (struct CellPosition) p {
+    float x = LEFT_MARGIN + p.x * TILE_WIDTH - TILE_WIDTH/2;
+    float y = self.bounds.size.height - (TOP_MARGIN + p.y * TILE_HEIGHT - TILE_HEIGHT / 2);
+    return CGPointMake(x,y);
+}
 
 @synthesize currentTime;
 @synthesize score;

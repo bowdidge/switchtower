@@ -11,6 +11,8 @@
 		3E2A73411BF99A7D00E3A886 /* LayoutModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */; };
 		3E2A73441BF99ACE00E3A886 /* ScenarioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73431BF99ACE00E3A886 /* ScenarioTest.m */; };
 		3E2A73471BF99F9600E3A886 /* TestScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73461BF99F9600E3A886 /* TestScenario.m */; };
+		3E2BB6451C20C5AC0083A758 /* EditableScenarioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BB6441C20C5AC0083A758 /* EditableScenarioTest.m */; };
+		3E2BB6461C20C6260083A758 /* EditableScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */; };
 		3E41F4E618BC8BB30059B96B /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E41F4E518BC8BB30059B96B /* TimetableViewController.m */; };
 		3E41F4E818BC9AAC0059B96B /* timetable.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E41F4E718BC9AAC0059B96B /* timetable.html */; };
 		3E5CEFEA1C0CE5EB00CC9773 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CEFE91C0CE5EB00CC9773 /* AppDelegate.m */; };
@@ -100,6 +102,7 @@
 		3E2A73461BF99F9600E3A886 /* TestScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestScenario.m; sourceTree = "<group>"; };
 		3E2A73481BF9C1B400E3A886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E2A73491BF9C1E200E3A886 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		3E2BB6441C20C5AC0083A758 /* EditableScenarioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableScenarioTest.m; sourceTree = "<group>"; };
 		3E41F4E418BC8BB30059B96B /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableViewController.h; sourceTree = "<group>"; };
 		3E41F4E518BC8BB30059B96B /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableViewController.m; sourceTree = "<group>"; };
 		3E41F4E718BC9AAC0059B96B /* timetable.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = timetable.html; sourceTree = "<group>"; };
@@ -118,8 +121,8 @@
 		3E5CF0041C0CE5EB00CC9773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E5CF0251C0CEB5800CC9773 /* CocoaLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaLayoutView.h; sourceTree = "<group>"; };
 		3E5CF0261C0CEB5800CC9773 /* CocoaLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaLayoutView.m; sourceTree = "<group>"; };
-		3E5CF02B1C0E15B000CC9773 /* EditableScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableScenario.h; sourceTree = "<group>"; };
-		3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableScenario.m; sourceTree = "<group>"; };
+		3E5CF02B1C0E15B000CC9773 /* EditableScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditableScenario.h; path = "../Scenario Editor/EditableScenario.h"; sourceTree = "<group>"; };
+		3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditableScenario.m; path = "../Scenario Editor/EditableScenario.m"; sourceTree = "<group>"; };
 		3E81D49818BA8429001989A3 /* SwitchTower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchTower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E81D49B18BA8429001989A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E81D49D18BA8429001989A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -226,6 +229,7 @@
 			children = (
 				3E2A73401BF99A7D00E3A886 /* LayoutModelTest.m */,
 				3E2A73431BF99ACE00E3A886 /* ScenarioTest.m */,
+				3E2BB6441C20C5AC0083A758 /* EditableScenarioTest.m */,
 				3E2A73451BF99F9500E3A886 /* TestScenario.h */,
 				3E2A73461BF99F9600E3A886 /* TestScenario.m */,
 			);
@@ -239,8 +243,6 @@
 				3E5CEFE91C0CE5EB00CC9773 /* AppDelegate.m */,
 				3E5CF0251C0CEB5800CC9773 /* CocoaLayoutView.h */,
 				3E5CF0261C0CEB5800CC9773 /* CocoaLayoutView.m */,
-				3E5CF02B1C0E15B000CC9773 /* EditableScenario.h */,
-				3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */,
 				3E5CEFEE1C0CE5EB00CC9773 /* ScenarioDocument.h */,
 				3E5CEFEF1C0CE5EB00CC9773 /* ScenarioDocument.m */,
 				3E5CEFF11C0CE5EB00CC9773 /* ScenarioDocument.xib */,
@@ -314,6 +316,8 @@
 				3E81D4AB18BA8429001989A3 /* AppDelegate.m */,
 				3E89F50F1BFC1DA900A27B64 /* Cell.h */,
 				3E89F5191BFD35DF00A27B64 /* Cell.m */,
+				3E5CF02B1C0E15B000CC9773 /* EditableScenario.h */,
+				3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */,
 				3E96C4CC1BFA833400AF795F /* HelpViewController.h */,
 				3E96C4CD1BFA833400AF795F /* HelpViewController.m */,
 				3E81D4E218BA8544001989A3 /* Label.h */,
@@ -626,6 +630,7 @@
 				3E81D4A818BA8429001989A3 /* main.m in Sources */,
 				3E81D4EB18BA8544001989A3 /* LayoutModel.m in Sources */,
 				3E81D4ED18BA8544001989A3 /* LayoutViewController.m in Sources */,
+				3E2BB6461C20C6260083A758 /* EditableScenario.m in Sources */,
 				3E81D4F218BA854B001989A3 /* MainWindowViewController.m in Sources */,
 				3E89F51A1BFD35DF00A27B64 /* Cell.m in Sources */,
 			);
@@ -638,6 +643,7 @@
 				3E2A73441BF99ACE00E3A886 /* ScenarioTest.m in Sources */,
 				3E2A73471BF99F9600E3A886 /* TestScenario.m in Sources */,
 				3E2A73411BF99A7D00E3A886 /* LayoutModelTest.m in Sources */,
+				3E2BB6451C20C5AC0083A758 /* EditableScenarioTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +956,7 @@
 				3E5CF0121C0CE5EB00CC9773 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E5CF0131C0CE5EB00CC9773 /* Build configuration list for PBXNativeTarget "Scenario EditorTests" */ = {
 			isa = XCConfigurationList;
@@ -958,6 +965,7 @@
 				3E5CF0151C0CE5EB00CC9773 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E81D49318BA8429001989A3 /* Build configuration list for PBXProject "SwitchTower" */ = {
 			isa = XCConfigurationList;

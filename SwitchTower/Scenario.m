@@ -449,6 +449,15 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     
 }
 
+- (Signal*) signalAtCell: (struct CellPosition) pos direction: (enum TimetableDirection) dir{
+    for (Signal* signal in self.all_signals) {
+        if (signal.position.x == pos.x && signal.position.y == pos.y && signal.trafficDirection == dir) {
+            return signal;
+        }
+    }
+    return NULL;
+}
+
 - (NSUInteger) lengthOfCellInFeet: (struct CellPosition) pos {
     if (!self.cellLengths) {
         // Trains go 1320 feet per 30 sec tick at 30 mph.

@@ -31,9 +31,9 @@
 #import <Foundation/Foundation.h>
 
 #import "Cell.h"
+#import "Signal.h"
 
 @class NamedPoint;
-@class Signal;
 
 // Scenario hides all the details related to a particular switching game: track arrangement, signals, and trains.
 @interface Scenario : NSObject
@@ -46,6 +46,10 @@
 - (char) tileAtCell: (struct CellPosition) pos;
 - (NamedPoint*) endpointWithName: (NSString*) name;
 - (NamedPoint*) endpointAtCell: (struct CellPosition) pos;
+
+// Returns the signal at the specified cell, or nil if none exists.
+- (Signal*)signalAtCell: (struct CellPosition) pos direction: (enum TimetableDirection) dir;
+
 - (NSUInteger) lengthOfCellInFeet: (struct CellPosition) pos;
 
 // Returns an NSDate for the time provided in HH:mm:ss form.

@@ -27,17 +27,16 @@
 // SUCH DAMAGE.
 //
 
-#import "Scenario.h"
+#import "EditableScenario.h"
 
-@interface TestScenario : Scenario
-
+@interface TestScenario : EditableScenario
 @end
 
-@interface InvalidScenario : Scenario
+@interface InvalidScenario : EditableScenario
 @end
 
-@interface StraightScenario : Scenario
+@interface StraightScenario : EditableScenario
 @end
 
-@interface TestScenarioWithDistances : Scenario
+@interface TestScenarioWithDistances : EditableScenario
 @end

@@ -78,8 +78,6 @@ typedef enum {
 // Returns named point object if location is named.
 - (NamedPoint*) isNamedPoint: (struct CellPosition) pos;
 
-// Returns the signal at the specified cell, or nil if none exists.
-- (Signal*)signalAtCell: (struct CellPosition) pos direction: (enum TimetableDirection) dir;
 - (BOOL) cellIsSwitch: (struct CellPosition) pos;
 
 

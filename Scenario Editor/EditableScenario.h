@@ -10,6 +10,14 @@
 
 // Scenario object, but with handy editing actions.
 @interface EditableScenario : Scenario
-// Add a blank column, and move all positions.
+// Adds a new blank column in the playing field, and updates all positions accordingly.
 - (void) addColumnAfter: (int) column;
+// Removes the specified column, and removes all signals, endpoints, and labels on that column.
+- (void) removeColumn: (int) column;
+
+// Adds a new blank row in the playing field, and updates all positions accordingly.
+- (void) addRowBelow: (int) row;
+// Remove the specified row, and removes all signals, endpoints, and labels on that row.
+- (void) removeRow: (int) row;
 @end
+

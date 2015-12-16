@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "Scenario.h"
+#import "EditableScenario.h"
 #import "LayoutModel.h"
 @class CocoaLayoutView;
 
@@ -27,7 +27,7 @@
 - (IBAction) addRowToRight: (id) sender;
 
 
-@property (nonatomic, retain) Scenario *scenario;
+@property (nonatomic, retain) EditableScenario *scenario;
 @property (nonatomic, retain) LayoutModel *layoutModel;
 
 // Main window / layout view.

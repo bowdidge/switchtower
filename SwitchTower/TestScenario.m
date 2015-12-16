@@ -31,6 +31,7 @@
 
 #import "Cell.h"
 #import "NamedPoint.h"
+#import "Signal.h"
 
 @implementation TestScenario
 - (id) init {
@@ -94,7 +95,7 @@
     struct CellPosition right = {4,0};
     [eps addObject: [NamedPoint namedPointWithName: @"Left" cell: left]];
     [eps addObject: [NamedPoint namedPointWithName: @"Right" cell: right]];
-    self.cellLengths = [NSArray arrayWithObjects: [NSNumber numberWithInt: 500], [NSNumber numberWithInt: 1000], [NSNumber numberWithInt: 500], [NSNumber numberWithInt: 2500], [NSNumber numberWithInt: 500], nil];
+    self.cellLengths = [NSMutableArray arrayWithObjects: [NSNumber numberWithInt: 500], [NSNumber numberWithInt: 1000], [NSNumber numberWithInt: 500], [NSNumber numberWithInt: 2500], [NSNumber numberWithInt: 500], nil];
     self.all_endpoints = eps;
     return self;
 }

@@ -88,7 +88,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
     struct CellPosition origPos = pos;
     
     while (1) {
-        Signal *theSignal = [self signalAtCell: pos direction: direction];
+        Signal *theSignal = [self.scenario signalAtCell: pos direction: direction];
         if (theSignal && theSignal.trafficDirection == direction && !theSignal.isGreen) break;
 
         struct CellPosition newPos = pos;
@@ -107,7 +107,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
 
     // TODO(bowdidge): Remove duplicated code.
     while (1) {
-        Signal *theSignal = [self signalAtCell: pos direction: direction];
+        Signal *theSignal = [self.scenario signalAtCell: pos direction: direction];
         if (theSignal && theSignal.trafficDirection == direction && !theSignal.isGreen) break;
         
         struct CellPosition newPos = pos;
@@ -121,15 +121,6 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
         pos = newPos;
     }
     return YES;
-}
-
-- (Signal*) signalAtCell: (struct CellPosition) pos direction: (enum TimetableDirection) dir{
-    for (Signal* signal in self.scenario.all_signals) {
-        if (signal.position.x == pos.x && signal.position.y == pos.y && signal.trafficDirection == dir) {
-            return signal;
-        }
-    }
-    return NULL;
 }
 
 - (TrackDirection) pointsDirectionForCell: (struct CellPosition) pos {
@@ -311,7 +302,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
 - (BOOL) nextCellWest: (struct CellPosition) fromPos returns: (struct CellPosition*) toPos {
     struct CellPosition oldPos = fromPos;
 
-    Signal *theSignal = [self signalAtCell: fromPos direction: WestDirection];
+    Signal *theSignal = [self.scenario signalAtCell: fromPos direction: WestDirection];
     if (theSignal && theSignal.trafficDirection == WestDirection && !theSignal.isGreen) return NO;
     
     switch ([self.scenario tileAtCell: fromPos]) {
@@ -417,7 +408,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
     // Check if we're stuck at current location first so we can report back whether train is stalled.
     struct CellPosition dontCare;
     if ([self nextCellWest: pos returns: &dontCare] == NO) return NO;
-    Signal *theSignal = [self signalAtCell: pos direction: WestDirection];
+    Signal *theSignal = [self.scenario signalAtCell: pos direction: WestDirection];
     if (theSignal) {
         if (theSignal.trafficDirection == EastDirection && !theSignal.isGreen) {
             return NO;
@@ -442,7 +433,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
         
         if ([self nextCellWest: pos returns: &newPos] == NO) return YES;
         
-        Signal *theSignal = [self signalAtCell: pos direction: WestDirection];
+        Signal *theSignal = [self.scenario signalAtCell: pos direction: WestDirection];
         if (theSignal) {
             if (theSignal.trafficDirection == WestDirection && !theSignal.isGreen) {
                 // Return YES because we were able to move.
@@ -476,7 +467,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
     struct CellPosition oldPos = pos;
 
     // Signal?  Don't pass.
-    Signal *theSignal = [self signalAtCell: pos direction: EastDirection];
+    Signal *theSignal = [self.scenario signalAtCell: pos direction: EastDirection];
     if (theSignal && !theSignal.isGreen) return NO;
     
 
@@ -583,7 +574,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
     // Check if we're stuck at current location first so we can report back whether train is stalled.
     struct CellPosition dontCare;
     if ([self nextCellEast: pos returns: &dontCare] == NO) return NO;
-    Signal *theSignal = [self signalAtCell: pos direction: EastDirection];
+    Signal *theSignal = [self.scenario signalAtCell: pos direction: EastDirection];
     if (theSignal) {
         if (theSignal.trafficDirection == EastDirection && !theSignal.isGreen) {
             return NO;
@@ -610,7 +601,7 @@ float MPH_TO_FEET_PER_SEC = 5280.0 / 60.0 / 60.0;
 
         if ([self nextCellEast: pos returns: &newPos] == NO) return YES;
     
-        Signal *theSignal = [self signalAtCell: pos direction: EastDirection];
+        Signal *theSignal = [self.scenario signalAtCell: pos direction: EastDirection];
         if (theSignal) {
             if (theSignal.trafficDirection == EastDirection && !theSignal.isGreen) {
                 // Return YES because we were able to move.

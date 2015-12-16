@@ -73,7 +73,7 @@
     NSError *error;
     NSPropertyListReadOptions opts = 0;
     NSDictionary *plist = [NSPropertyListSerialization propertyListWithData:data options: opts format: &format error: &error];
-    self.scenario = [Scenario scenarioFromDict: plist];
+    self.scenario = [[EditableScenario alloc] initWithDict: plist];
     // Only for animating the view.
     self.layoutModel = [[LayoutModel alloc] initWithScenario: self.scenario];
     self.sortedTrains = [NSMutableArray arrayWithArray: self.scenario.all_trains];
@@ -166,8 +166,39 @@
 }
 
 // Handle actions on right click menu on LayoutView.
-- (IBAction) addRowToRight: (id) sender {
+- (IBAction) addRowBelow: (id) sender {
     NSLog(@"Add row to right at %d,%d.", self.layoutView.lastRightClick.x, self.layoutView.lastRightClick.y);
+    struct CellPosition pos = [self.layoutView lastRightClick];
+    [self.scenario addRowBelow: pos.y];
+    [self.layoutView setNeedsDisplay: YES];
+    
+}
+
+// Handle actions on right click menu on LayoutView.
+- (IBAction) removeRow: (id) sender {
+    NSLog(@"Remove row at %d,%d.", self.layoutView.lastRightClick.x, self.layoutView.lastRightClick.y);
+    struct CellPosition pos = [self.layoutView lastRightClick];
+    [self.scenario removeRow: pos.y];
+    [self.layoutView setNeedsDisplay: YES];
+    
+}
+
+// Handle actions on right click menu on LayoutView.
+- (IBAction) addColumnToRight: (id) sender {
+    NSLog(@"Add row to right at %d,%d.", self.layoutView.lastRightClick.x, self.layoutView.lastRightClick.y);
+    struct CellPosition pos = [self.layoutView lastRightClick];
+    [self.scenario addColumnAfter: pos.x];
+    [self.layoutView setNeedsDisplay: YES];
+    
+}
+
+// Handle actions on right click menu on LayoutView.
+- (IBAction) removeColumn: (id) sender {
+    NSLog(@"Remove column at %d,%d.", self.layoutView.lastRightClick.x, self.layoutView.lastRightClick.y);
+    struct CellPosition pos = [self.layoutView lastRightClick];
+    [self.scenario removeColumn: pos.x];
+    [self.layoutView setNeedsDisplay: YES];
+    
 }
 
 // Train table data source and delegates.
