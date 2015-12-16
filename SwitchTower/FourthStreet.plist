@@ -16,6 +16,7 @@
 		<integer>100</integer>
 		<integer>100</integer>
 		<integer>100</integer>
+		<integer>100</integer>
 		<integer>1000</integer>
 		<real>1000</real>
 		<integer>100</integer>
@@ -44,13 +45,13 @@
 		</dict>
 		<dict>
 			<key>Location</key>
-			<string>19, 1</string>
+			<string>20, 1</string>
 			<key>Name</key>
 			<string>Oakland</string>
 		</dict>
 		<dict>
 			<key>Location</key>
-			<string>19, 5</string>
+			<string>20, 5</string>
 			<key>Name</key>
 			<string>LA</string>
 		</dict>
@@ -62,47 +63,47 @@
 		</dict>
 		<dict>
 			<key>Location</key>
-			<string>3, 0</string>
+			<string>4, 0</string>
 			<key>Name</key>
 			<string>Freight Yard</string>
 		</dict>
+        <dict>
+            <key>Location</key>
+            <string>1, 4</string>
+            <key>Name</key>
+            <string>Eng Terminal</string>
+        </dict>
 		<dict>
 			<key>Location</key>
-			<string>13, 2</string>
+			<string>14, 3</string>
 			<key>Name</key>
-			<string>Market St. #1</string>
+			<string>San Jose Market St. #2</string>
 		</dict>
 		<dict>
 			<key>Location</key>
-			<string>13, 3</string>
+			<string>14, 4</string>
 			<key>Name</key>
-			<string>Market St. #2</string>
-		</dict>
-		<dict>
-			<key>Location</key>
-			<string>13, 4</string>
-			<key>Name</key>
-			<string>Market St. #3</string>
+			<string>San Jose Market St. #1</string>
 		</dict>
 	</array>
 	<key>Labels</key>
 	<dict>
 		<key>College Park Yard</key>
-		<string>6, 6</string>
+		<string>7, 6</string>
 		<key>Market Street Station</key>
-		<string>13, 6</string>
+		<string>14, 6</string>
 	</dict>
 	<key>Name</key>
 	<string>San Jose Market Street Station</string>
 	<key>Schematic</key>
 	<array>
-		<string>   --z               </string>
-		<string>  --z \        Z---. </string>
-		<string>.Q--qp-pQ-----Y      </string>
-		<string>.-pPQ----pQ----r     </string>
-		<string>     \     W----r    </string>
-		<string>      W-         W-. </string>
-		<string>                     </string>
+		<string>    --z               </string>
+		<string>  ---z \        Z---. </string>
+		<string>.Q---qp-pQ-----Y      </string>
+		<string>.-pqPQ----pQ----r     </string>
+		<string> -w   \     W----r    </string>
+		<string>       W-         W-. </string>
+		<string>                      </string>
 	</array>
 	<key>Signals</key>
 	<array>
@@ -110,49 +111,49 @@
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>19, 5</string>
+			<string>20, 5</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>19, 1</string>
+			<string>20, 1</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>13, 2</string>
+			<string>14, 2</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>13, 3</string>
+			<string>14, 3</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>West</string>
 			<key>Location</key>
-			<string>13, 4</string>
+			<string>14, 4</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>13, 2</string>
+			<string>14, 2</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>13, 3</string>
+			<string>14, 3</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>13, 4</string>
+			<string>14, 4</string>
 		</dict>
 		<dict>
 			<key>Direction</key>
@@ -170,13 +171,20 @@
 			<key>Direction</key>
 			<string>East</string>
 			<key>Location</key>
-			<string>3, 0</string>
+			<string>4, 0</string>
 		</dict>
 	</array>
 	<key>StartTime</key>
-	<date>1921-05-12T07:19:00Z</date>
+	<date>1921-05-12T06:39:00Z</date>
 	<key>TickIntervalSecs</key>
 	<integer>15</integer>
+	<key>TimetableNames</key>
+	<array>
+		<string>Santa Clara</string>
+		<string>San Jose Market St.</string>
+		<string>Valbrick</string>
+		<string>Milpitas</string>
+	</array>
 	<key>Trains</key>
 	<array>
 		<dict>
@@ -202,10 +210,15 @@
 			<integer>1</integer>
 			<key>Speed</key>
 			<integer>20</integer>
-            <key>TimetableEntry</key>
-            <dict><key>San Jose Market St.</key><string>7:35</string><key>Santa Clara</key><string>7:50</string><key>Valbrick</key><string>7:20</string></dict>
-            <key>Becomes</key>
-            <array/>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose Market St.</key>
+				<string>7:35</string>
+				<key>Santa Clara</key>
+				<string>7:50</string>
+				<key>Valbrick</key>
+				<string>7:20</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>ArrivalTime</key>
@@ -230,13 +243,51 @@
 			<integer>1</integer>
 			<key>Speed</key>
 			<integer>20</integer>
-            <key>TimetableEntry</key>
-            <dict>
-                <key>San Jose Market St.</key><string>9:00</string>
-                <key>Santa Clara</key>
-                <string>9:10</string><key>Valbrick</key><string>9:20</string></dict>
-            <key>Becomes</key>
-            <array/>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose Market St.</key>
+				<string>9:00</string>
+				<key>Santa Clara</key>
+				<string>9:10</string>
+				<key>Valbrick</key>
+				<string>9:20</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>ArrivalTime</key>
+			<string>07:00</string>
+			<key>Arrives</key>
+            <array>
+                <string>San Jose Market St. #1</string>
+                <string>San Jose Market St. #2</string>
+            </array>
+			<key>Becomes</key>
+			<array>
+				<string>111</string>
+			</array>
+			<key>Departs</key>
+			<string>Coach Yard</string>
+			<key>DepartureTime</key>
+			<string>06:40</string>
+			<key>Description</key>
+			<string>Empty Coaches</string>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Identifier</key>
+			<string>Cars for 111</string>
+			<key>Name</key>
+			<string>Commute</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Speed</key>
+			<integer>15</integer>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose Market St.</key>
+				<string>7:20</string>
+				<key>Santa Clara</key>
+				<string>7:40</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>ArrivalTime</key>
@@ -246,9 +297,9 @@
 				<string>To SF</string>
 			</array>
 			<key>Departs</key>
-			<string>Market St. #2</string>
+			<string></string>
 			<key>DepartureTime</key>
-			<string>07:20</string>
+			<string>00:00</string>
 			<key>Description</key>
 			<string>Commute train to San Francisco</string>
 			<key>Direction</key>
@@ -261,11 +312,13 @@
 			<integer>1</integer>
 			<key>Speed</key>
 			<integer>15</integer>
-            <key>TimetableEntry</key>
-            <dict><key>San Jose Market St.</key><string>7:20</string><key>Santa Clara</key><string>7:40</string>
-                </dict>
-            <key>Becomes</key>
-            <array/>
+			<key>TimetableEntry</key>
+			<dict>
+				<key>San Jose Market St.</key>
+				<string>7:20</string>
+				<key>Santa Clara</key>
+				<string>7:40</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>ArrivalTime</key>
@@ -292,12 +345,5 @@
 			<integer>10</integer>
 		</dict>
 	</array>
-    <key>TimetableNames</key>
-    <array>
-        <string>Santa Clara</string>
-        <string>San Jose Market St.</string>
-        <string>Valbrick</string>
-        <string>Milpitas</string>
-        </array>
 </dict>
 </plist>
