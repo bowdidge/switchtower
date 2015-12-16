@@ -175,9 +175,9 @@
 		</dict>
 	</array>
 	<key>StartTime</key>
-	<date>1921-05-12T06:39:00Z</date>
+    <date>1921-05-12T05:40:00Z</date>
 	<key>TickIntervalSecs</key>
-	<integer>15</integer>
+	<integer>30</integer>
 	<key>TimetableNames</key>
 	<array>
 		<string>Santa Clara</string>
@@ -220,6 +220,40 @@
 				<string>7:20</string>
 			</dict>
 		</dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>07:10</string>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Departs</key>
+            <string>LA</string>
+            <key>DepartureTime</key>
+            <string>06:50</string>
+            <key>Description</key>
+            <string>Long distance train from New Orleans.</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>75</string>
+            <key>Name</key>
+            <string>Lark</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Speed</key>
+            <integer>20</integer>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>San Jose Market St.</key>
+                <string>7:00</string>
+                <key>Santa Clara</key>
+                <string>7:10</string>
+                <key>Valbrick</key>
+                <string>6:50
+                </string>
+            </dict>
+        </dict>
 		<dict>
 			<key>ArrivalTime</key>
 			<string>09:20</string>
@@ -255,7 +289,7 @@
 		</dict>
 		<dict>
 			<key>ArrivalTime</key>
-			<string>07:00</string>
+            <string>06:00</string>
 			<key>Arrives</key>
             <array>
                 <string>San Jose Market St. #1</string>
@@ -268,7 +302,7 @@
 			<key>Departs</key>
 			<string>Coach Yard</string>
 			<key>DepartureTime</key>
-			<string>06:40</string>
+            <string>05:45</string>
 			<key>Description</key>
 			<string>Empty Coaches</string>
 			<key>Direction</key>
@@ -278,20 +312,13 @@
 			<key>Name</key>
 			<string>Commute</string>
 			<key>OnTimetable</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>Speed</key>
-			<integer>15</integer>
-			<key>TimetableEntry</key>
-			<dict>
-				<key>San Jose Market St.</key>
-				<string>7:20</string>
-				<key>Santa Clara</key>
-				<string>7:40</string>
-			</dict>
+			<integer>10</integer>
 		</dict>
 		<dict>
 			<key>ArrivalTime</key>
-			<string>07:40</string>
+            <string>06:25</string>
 			<key>Arrives</key>
 			<array>
 				<string>To SF</string>
@@ -299,7 +326,7 @@
 			<key>Departs</key>
 			<string></string>
 			<key>DepartureTime</key>
-			<string>00:00</string>
+            <string>06:15</string>
 			<key>Description</key>
 			<string>Commute train to San Francisco</string>
 			<key>Direction</key>
@@ -315,11 +342,371 @@
 			<key>TimetableEntry</key>
 			<dict>
 				<key>San Jose Market St.</key>
-				<string>7:20</string>
+                <string>6:15</string>
 				<key>Santa Clara</key>
-				<string>7:40</string>
+                <string>6:25</string>
 			</dict>
 		</dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>06:15</string>
+            <key>Arrives</key>
+            <array>
+                <string>San Jose Market St. #1</string>
+                <string>San Jose Market St. #2</string>
+            </array>
+            <key>Becomes</key>
+            <array>
+                <string>115</string>
+            </array>
+            <key>Departs</key>
+            <string>Coach Yard</string>
+            <key>DepartureTime</key>
+            <string>06:00</string>
+            <key>Description</key>
+            <string>Empty Coaches</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Identifier</key>
+            <string>Cars for 115</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>06:40</string>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Departs</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:30</string>
+            <key>Description</key>
+            <string>Commute train to San Francisco</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>115</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Speed</key>
+            <integer>15</integer>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>San Jose Market St.</key>
+                <string>6:30</string>
+                <key>Santa Clara</key>
+                <string>6:40</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>06:25</string>
+            <key>Arrives</key>
+            <array>
+                <string>San Jose Market St. #1</string>
+                <string>San Jose Market St. #2</string>
+            </array>
+            <key>Becomes</key>
+            <array>
+                <string>117</string>
+            </array>
+            <key>Departs</key>
+            <string>Coach Yard</string>
+            <key>DepartureTime</key>
+            <string>06:10</string>
+            <key>Description</key>
+            <string>Empty Coaches</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Identifier</key>
+            <string>Cars for 117</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>06:50</string>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Departs</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:40</string>
+            <key>Description</key>
+            <string>Commute train to San Francisco</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>117</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Speed</key>
+            <integer>15</integer>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>San Jose Market St.</key>
+                <string>6:40</string>
+                <key>Santa Clara</key>
+                <string>6:50</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>06:35</string>
+            <key>Arrives</key>
+            <array>
+                <string>San Jose Market St. #1</string>
+                <string>San Jose Market St. #2</string>
+            </array>
+            <key>Becomes</key>
+            <array>
+                <string>119</string>
+            </array>
+            <key>Departs</key>
+            <string>Coach Yard</string>
+            <key>DepartureTime</key>
+            <string>06:20</string>
+            <key>Description</key>
+            <string>Empty Coaches</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Identifier</key>
+            <string>Cars for 119</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>07:00</string>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Departs</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>06:50</string>
+            <key>Description</key>
+            <string>Commute train to San Francisco</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>119</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Speed</key>
+            <integer>15</integer>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>San Jose Market St.</key>
+                <string>6:50</string>
+                <key>Santa Clara</key>
+                <string>7:00</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>07:05</string>
+            <key>Arrives</key>
+            <array>
+                <string>San Jose Market St. #1</string>
+                <string>San Jose Market St. #2</string>
+            </array>
+            <key>Becomes</key>
+            <array>
+                <string>121</string>
+            </array>
+            <key>Departs</key>
+            <string>Coach Yard</string>
+            <key>DepartureTime</key>
+            <string>06:50</string>
+            <key>Description</key>
+            <string>Empty Coaches</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Identifier</key>
+            <string>Cars for 121</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>07:30</string>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Departs</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>07:20</string>
+            <key>Description</key>
+            <string>Commute train to San Francisco</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>121</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Speed</key>
+            <integer>15</integer>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>San Jose Market St.</key>
+                <string>7:20</string>
+                <key>Santa Clara</key>
+                <string>7:30</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>07:15</string>
+            <key>Arrives</key>
+            <array>
+                <string>San Jose Market St. #1</string>
+                <string>San Jose Market St. #2</string>
+            </array>
+            <key>Becomes</key>
+            <array>
+                <string>121</string>
+            </array>
+            <key>Departs</key>
+            <string>Coach Yard</string>
+            <key>DepartureTime</key>
+            <string>07:00</string>
+            <key>Description</key>
+            <string>Empty Coaches</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Identifier</key>
+            <string>Cars for 129</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>07:40</string>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Departs</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>07:30</string>
+            <key>Description</key>
+            <string>Commute train to San Francisco</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>129</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Speed</key>
+            <integer>15</integer>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>San Jose Market St.</key>
+                <string>7:30</string>
+                <key>Santa Clara</key>
+                <string>7:40</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>07:40</string>
+            <key>Arrives</key>
+            <array>
+                <string>San Jose Market St. #1</string>
+                <string>San Jose Market St. #2</string>
+            </array>
+            <key>Becomes</key>
+            <array>
+                <string>133</string>
+            </array>
+            <key>Departs</key>
+            <string>Coach Yard</string>
+            <key>DepartureTime</key>
+            <string>07:30</string>
+            <key>Description</key>
+            <string>Empty Coaches</string>
+            <key>Direction</key>
+            <string>East</string>
+            <key>Identifier</key>
+            <string>Cars for 133</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>08:10</string>
+            <key>Arrives</key>
+            <array>
+                <string>To SF</string>
+            </array>
+            <key>Departs</key>
+            <string></string>
+            <key>DepartureTime</key>
+            <string>08:00</string>
+            <key>Description</key>
+            <string>Commute train to San Francisco</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>133</string>
+            <key>Name</key>
+            <string>Commute</string>
+            <key>OnTimetable</key>
+            <integer>1</integer>
+            <key>Speed</key>
+            <integer>15</integer>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>San Jose Market St.</key>
+                <string>8:00</string>
+                <key>Santa Clara</key>
+                <string>8:10</string>
+            </dict>
+        </dict>
 		<dict>
 			<key>ArrivalTime</key>
 			<string>09:00</string>
@@ -344,6 +731,30 @@
 			<key>Speed</key>
 			<integer>10</integer>
 		</dict>
+        <dict>
+            <key>ArrivalTime</key>
+            <string>06:30</string>
+            <key>Arrives</key>
+            <array>
+                <string>Freight Yard</string>
+            </array>
+            <key>Departs</key>
+            <string>LA</string>
+            <key>DepartureTime</key>
+            <string>06:00</string>
+            <key>Description</key>
+            <string>Fourth St. Switcher</string>
+            <key>Direction</key>
+            <string>West</string>
+            <key>Identifier</key>
+            <string>X2512</string>
+            <key>Name</key>
+            <string>Freight</string>
+            <key>OnTimetable</key>
+            <integer>0</integer>
+            <key>Speed</key>
+            <integer>10</integer>
+        </dict>
 	</array>
 </dict>
 </plist>
