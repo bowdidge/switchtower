@@ -13,7 +13,6 @@
 		3E2A73471BF99F9600E3A886 /* TestScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A73461BF99F9600E3A886 /* TestScenario.m */; };
 		3E2BB6451C20C5AC0083A758 /* EditableScenarioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BB6441C20C5AC0083A758 /* EditableScenarioTest.m */; };
 		3E2BB6461C20C6260083A758 /* EditableScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CF02C1C0E15B000CC9773 /* EditableScenario.m */; };
-		3E325B1B1C61CDEE00D7B2AB /* SwitchTower in Resources */ = {isa = PBXBuildFile; fileRef = 3E325B1A1C61CDEE00D7B2AB /* SwitchTower */; };
 		3E325B211C61CFCA00D7B2AB /* Oakland Pier.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E325B1F1C61CF0E00D7B2AB /* Oakland Pier.plist */; };
 		3E41F4E618BC8BB30059B96B /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E41F4E518BC8BB30059B96B /* TimetableViewController.m */; };
 		3E41F4E818BC9AAC0059B96B /* timetable.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E41F4E718BC9AAC0059B96B /* timetable.html */; };
@@ -106,7 +105,6 @@
 		3E2A73481BF9C1B400E3A886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E2A73491BF9C1E200E3A886 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3E2BB6441C20C5AC0083A758 /* EditableScenarioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableScenarioTest.m; sourceTree = "<group>"; };
-		3E325B1A1C61CDEE00D7B2AB /* SwitchTower */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwitchTower; sourceTree = "<group>"; };
 		3E325B1F1C61CF0E00D7B2AB /* Oakland Pier.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Oakland Pier.plist"; sourceTree = "<group>"; };
 		3E41F4E418BC8BB30059B96B /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableViewController.h; sourceTree = "<group>"; };
 		3E41F4E518BC8BB30059B96B /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableViewController.m; sourceTree = "<group>"; };
@@ -250,7 +248,6 @@
 				3E5CEFE91C0CE5EB00CC9773 /* AppDelegate.m */,
 				3ECC599F1C56AD9000D5F6FA /* DragDropToolbarView.h */,
 				3ECC59A01C56AD9000D5F6FA /* DragDropToolbarView.m */,
-				3E325B1A1C61CDEE00D7B2AB /* SwitchTower */,
 				3E5CF0251C0CEB5800CC9773 /* CocoaLayoutView.h */,
 				3E5CF0261C0CEB5800CC9773 /* CocoaLayoutView.m */,
 				3E5CEFEE1C0CE5EB00CC9773 /* ScenarioDocument.h */,
@@ -547,7 +544,6 @@
 			files = (
 				3E5CEFF51C0CE5EB00CC9773 /* Assets.xcassets in Resources */,
 				3E5CEFF31C0CE5EB00CC9773 /* ScenarioDocument.xib in Resources */,
-				3E325B1B1C61CDEE00D7B2AB /* SwitchTower in Resources */,
 				3E5CEFF81C0CE5EB00CC9773 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
