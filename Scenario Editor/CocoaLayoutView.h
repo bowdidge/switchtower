@@ -15,7 +15,7 @@
 #import "LayoutModel.h"
 
 @class Train;
-@class Scenario;
+@class EditableScenario;
 @class ScenarioDocument;
 
 #define TILE_WIDTH 40.0
@@ -52,28 +52,21 @@
 #define SIGNAL_DIAMETER 8.0
 #define SIGNAL_OFFSET ((SIGNAL_TARGET_DIAMETER - SIGNAL_DIAMETER) / 2)
 
-// Draws the layout schematic.
-// TODO(bowdidge): Consider using SpriteKit.
-@interface CocoaLayoutView : NSView {
-    
+// TrackContext carries color information about how to draw a particular cell.  It allows gathering the
+// state of a switch or contents of the track long before drawing.
+@interface TrackContext : NSObject {
 }
-- (void) setSizeInTilesX: (int) x Y: (int) y;
+@property (nonatomic, retain) NSColor *normalTrackColor;
+@property (nonatomic, retain) NSColor *reversedTrackColor;
 
-// Returns x,y coordinates for named cell.  Intended for showing alerts.
-- (CGPoint) centerOfPosition: (struct CellPosition) p;
+@end
 
-@property(nonatomic) ScenarioDocument *controller;
+// TrackDrawer ("TrackDrawingThingy") hides the logic used for drawing the track tiles in the LayoutView.
+// It is a separate class so the same code can draw tiles outside the view (such as for dragging.)
+@interface TrackDrawer : NSObject {
+}
+- (void) drawTile: (char) tile withContext: (CGContextRef) context trackContext: (TrackContext*) tc isReversed: (BOOL) isReversed;
 
-@property(nonatomic, retain) NSDate *currentTime;
-@property(nonatomic, retain) NSArray *routeColors;
-// LayoutModel contains the running data.
-@property(nonatomic, retain) LayoutModel *layoutModel;
-// Scenario contains the static data.
-@property(nonatomic, retain) Scenario *scenario;
-//@property(nonatomic, assign) IBOutlet NSScrollView *containingScrollView;
-@property(nonatomic, assign) CGSize viewSize;
-// TODO(bowdidge): Move score out?
-@property(nonatomic, assign) int score;
 // Color for the target surrounding the signal.
 @property(nonatomic, retain) NSColor* targetColor;
 @property(nonatomic, retain) NSColor* redSignalColor;
@@ -88,11 +81,45 @@
 @property(nonatomic, retain) NSColor* activeTrackColor;
 @property(nonatomic, retain) NSColor* inactiveTrackColor;
 @property(nonatomic, retain) NSColor* platformColor;
+@end
+
+
+// Draws the layout schematic.
+// TODO(bowdidge): Consider using SpriteKit.
+@interface CocoaLayoutView : NSView<NSDraggingDestination> {
+    
+}
+- (void) setSizeInTilesX: (int) x Y: (int) y;
+
+// Returns x,y coordinates for named cell.  Intended for showing alerts.
+- (CGPoint) centerOfPosition: (struct CellPosition) p;
+
+@property(nonatomic) ScenarioDocument *controller;
+
+// Class hiding details of drawing track cells.
+@property (nonatomic, retain) TrackDrawer *trackDrawer;
+
+@property(nonatomic, retain) NSDate *currentTime;
+@property(nonatomic, retain) NSArray *routeColors;
+// LayoutModel contains the running data.
+@property(nonatomic, retain) LayoutModel *layoutModel;
+// Scenario contains the static data.
+@property(nonatomic, retain) EditableScenario *scenario;
+//@property(nonatomic, assign) IBOutlet NSScrollView *containingScrollView;
+@property(nonatomic, assign) CGSize viewSize;
+// TODO(bowdidge): Move score out?
+@property(nonatomic, assign) int score;
+
 
 @property(nonatomic, retain) NSColor* backgroundColor;
+
 // True if layout view should include additional information for an editable view.
 @property (nonatomic) BOOL displayForEditing;
 
 // Location of right click, for controller.
 @property (nonatomic) struct CellPosition lastRightClick;
+
+// True if we're dragging a tile onto the schematic.  This causes drawRect to show grid for dropping tile.
+@property (nonatomic) BOOL draggingTile;
+
 @end

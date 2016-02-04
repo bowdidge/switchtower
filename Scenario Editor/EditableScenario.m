@@ -99,6 +99,9 @@
     // Add space in appropriate column.
     NSMutableArray *newTileStrings = [NSMutableArray arrayWithArray: self.tileStrings];
     NSString *blankRow = [@"" stringByPaddingToLength: self.tileColumns withString: @" " startingAtIndex: 0];
+    if (row > newTileStrings.count) {
+        row = (int) newTileStrings.count;
+    }
     [newTileStrings insertObject: blankRow atIndex: row];
     self.tileStrings = newTileStrings;
     self.tileRows += 1;
@@ -128,6 +131,16 @@
 
 - (void) removeRow: (int) row {
     // TODO(bowdidge): Implement.
+}
+
+// Change the tile in the game board.
+- (void) changeTile: (char) tile atCell: (struct CellPosition) pos {
+    NSLog(@"Changing tile %c at %d, %d", tile, pos.x, pos.y);
+    NSMutableArray *newTileStrings = [NSMutableArray arrayWithArray: self.tileStrings];
+    NSMutableString *row = [[NSMutableString alloc] initWithString: [newTileStrings objectAtIndex: pos.y]];
+    [row replaceCharactersInRange: NSMakeRange(pos.x, 1) withString: [NSString stringWithFormat: @"%c", tile]];
+    [newTileStrings replaceObjectAtIndex:pos.y withObject:row];
+    self.tileStrings = newTileStrings;
 }
 
 @end

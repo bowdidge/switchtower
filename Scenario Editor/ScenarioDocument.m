@@ -28,6 +28,47 @@
     return self;
 }
 
+- (NSImage*) makeTile: (char) tile {
+    TrackDrawer *drawer = [[TrackDrawer alloc] init];
+    NSRect imgRect = NSMakeRect(0.0, 0.0, 40.0, 40.0);
+    NSSize imgSize = imgRect.size;
+    
+    NSBitmapImageRep *offscreenRep = [[NSBitmapImageRep alloc]
+                                       initWithBitmapDataPlanes:NULL
+                                       pixelsWide:imgSize.width
+                                       pixelsHigh:imgSize.height
+                                       bitsPerSample:8
+                                       samplesPerPixel:4
+                                       hasAlpha:YES
+                                       isPlanar:NO
+                                       colorSpaceName:NSDeviceRGBColorSpace
+                                       bitmapFormat:NSAlphaFirstBitmapFormat
+                                       bytesPerRow:0
+                                       bitsPerPixel:0];
+    
+    // set offscreen context
+    NSGraphicsContext *g = [NSGraphicsContext graphicsContextWithBitmapImageRep:offscreenRep];
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext: g];
+    
+    CGContextRef ctx = [g graphicsPort];
+    
+    NSColor *backgroundColor = [NSColor colorWithRed:32.0/256 green: 48.0/256 blue: 30.0/256 alpha: 1.0];
+    [backgroundColor setFill];
+    CGContextFillRect(ctx, imgRect);
+
+    TrackContext *tc = [[TrackContext alloc] init];
+    tc.normalTrackColor = drawer.activeTrackColor;
+    tc.reversedTrackColor = drawer.inactiveTrackColor;
+    // draw first stroke with Cocoa. this works!
+    [drawer drawTile: tile withContext:ctx trackContext:tc isReversed: false];
+    
+    [NSGraphicsContext restoreGraphicsState];
+    NSImage *img = [[NSImage alloc] initWithSize:imgSize];
+    [img addRepresentation: offscreenRep];
+    return img;
+}
+
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
@@ -45,6 +86,35 @@
     self.layoutView.layoutModel = self.layoutModel;
     [self.layoutView setNeedsDisplay: YES];
     self.layoutView.controller = self;
+    
+    // TODO(bowdidge): Need to pull tile drawing code out of CocoaLayoutView so that bounds can be checked separately.
+    NSImage *blueSwatch = [NSImage swatchWithColor: [NSColor blueColor] size: NSMakeSize(TILE_WIDTH, TILE_HEIGHT)];
+
+    [self.toolbarImageView registerTile: blueSwatch value: @" " toolTip: @"blank"];
+    [self.toolbarImageView registerTile: [self makeTile: '-'] value: @"-" toolTip: @"straight"];
+    [self.toolbarImageView registerTile: [self makeTile: '='] value: @"'='" toolTip: @"straight"];
+    [self.toolbarImageView registerTile: [self makeTile: '.'] value: @"." toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'P']  value: @"P" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'p'] value: @"p" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'Q'] value: @"Q" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'q'] value: @"q" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'R'] value: @"R" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'r'] value: @"r" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'V'] value: @"V" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'v'] value: @"v" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'Y'] value: @"Y" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'y'] value: @"y" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'Q'] value: @"Q" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'q'] value: @"q" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'Z'] value: @"Z" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'z'] value: @"z" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'W'] value: @"W" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'w'] value: @"w" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: '/'] value: @"/" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: '\\'] value: @"\\" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 'T'] value: @"T" toolTip: @""];
+    [self.toolbarImageView registerTile: [self makeTile: 't'] value: @"t" toolTip: @""];
+
 }
 
 + (BOOL)autosavesInPlace {
@@ -124,10 +194,10 @@
         NSLog(@"Train number changed to %@", self.trainDetail.trainDescription);
     } else if (control == self.becomesField) {
         if (control.stringValue.length == 0) {
-            self.trainDetail.becomesTrains = [NSArray array];
+            self.trainDetail.becomesTrains = [NSMutableArray array];
             NSLog(@"Clearing becomes");
         } else {
-            self.trainDetail.becomesTrains = [NSArray arrayWithObject: control.stringValue];
+            self.trainDetail.becomesTrains = [NSMutableArray arrayWithObject: control.stringValue];
         }
         NSLog(@"becomes changed to %@", [self.trainDetail.becomesTrains objectAtIndex: 0]);
     } else if (control == self.speedField) {

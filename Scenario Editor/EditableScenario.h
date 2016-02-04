@@ -19,5 +19,8 @@
 - (void) addRowBelow: (int) row;
 // Remove the specified row, and removes all signals, endpoints, and labels on that row.
 - (void) removeRow: (int) row;
+
+// Change the tile in the game board.
+- (void) changeTile: (char) tile atCell: (struct CellPosition) pos;
 @end
 

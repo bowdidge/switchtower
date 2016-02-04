@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CellLengths</key>
+	<array>
+		<integer>500</integer>
+		<integer>2000</integer>
+		<integer>1</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>1000</integer>
+		<real>1000</real>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>100</integer>
+		<integer>3000</integer>
+		<integer>100</integer>
+		<integer>1</integer>
+	</array>
+	<key>Description</key>
+	<string>Handle the comings and goings of the Southern Pacific's San Francisco-&gt;San Jose commute fleet in the early 1920's.  The setting here is SP's long-lost Market Street station, just north of downtown San Jose.  In this simulation, you'll need to thread long-distance trains past the two-track 1880's station.</string>
+	<key>Endpoints</key>
+	<array>
+		<dict>
+			<key>Location</key>
+			<string>20, 0</string>
+			<key>Name</key>
+			<string>CalP West</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>20, 1</string>
+			<key>Name</key>
+			<string>CalP East</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>20, 2</string>
+			<key>Name</key>
+			<string>Berkeley West</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>20, 3</string>
+			<key>Name</key>
+			<string>Berkeley East</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>20, 5</string>
+			<key>Name</key>
+			<string>Niles West</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>20, 6</string>
+			<key>Name</key>
+			<string>Niles East</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>20, 8</string>
+			<key>Name</key>
+			<string>Yard</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 0</string>
+			<key>Name</key>
+			<string>Oakland Pier #2</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 1</string>
+			<key>Name</key>
+			<string>Oakland Pier #3</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 2</string>
+			<key>Name</key>
+			<string>Oakland Pier #4</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 3</string>
+			<key>Name</key>
+			<string>Oakland Pier #5</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 4</string>
+			<key>Name</key>
+			<string>Oakland Pier #6</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 5</string>
+			<key>Name</key>
+			<string>Oakland Pier #7</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 6</string>
+			<key>Name</key>
+			<string>Oakland Pier #8</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 7</string>
+			<key>Name</key>
+			<string>Oakland Pier #9</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 8</string>
+			<key>Name</key>
+			<string>Oakland Pier #10</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 9</string>
+			<key>Name</key>
+			<string>Oakland Pier #11</string>
+		</dict>
+		<dict>
+			<key>Location</key>
+			<string>0, 10</string>
+			<key>Name</key>
+			<string>Oakland Pier #12</string>
+		</dict>
+	</array>
+	<key>Labels</key>
+	<dict/>
+	<key>Name</key>
+	<string>Unknown</string>
+	<key>Schematic</key>
+	<array>
+		<string>----z           Z----- </string>
+		<string>-----r         /Z----- </string>
+		<string>------pQ..-q--Pv Z---- </string>
+		<string>------q.pQP--qw / Z--- </string>
+		<string>-----v  ZqpQP--PqY     </string>
+		<string>----v  /R---p-QP.zW--- </string>
+		<string>---P--v/       \  W--- </string>
+		<string>----qPv         \      </string>
+		<string>--qPqw           W---- </string>
+		<string>-w /                   </string>
+		<string> -w                    </string>
+	</array>
+	<key>Signals</key>
+	<array>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>20, 0</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>20, 2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>20, 5</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>West</string>
+			<key>Location</key>
+			<string>20, 8</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0, 0</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0, 1</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0, 2</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0, 3</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0, 4</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0, 5</string>
+		</dict>
+		<dict>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Location</key>
+			<string>0, 6</string>
+		</dict>
+	</array>
+	<key>StartTime</key>
+	<date>1921-05-12T05:40:00Z</date>
+	<key>TickIntervalSecs</key>
+	<integer>30</integer>
+	<key>TimetableNames</key>
+	<array>
+		<string>Santa Clara</string>
+		<string>San Jose Market St.</string>
+		<string>Valbrick</string>
+		<string>Milpitas</string>
+	</array>
+	<key>Trains</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>224</string>
+			<key>Name</key>
+			<string>Senator</string>
+			<key>Description</key>
+			<string>To Sacramento</string>
+			<key>Direction</key>
+			<string>East</string>
+			<key>Departs</key>
+			<string>Oakland Pier #2</string>
+			<key>DepartureTime</key>
+			<string>05:45</string>
+			<key>Arrives</key>
+			<array>
+				<string>CapP East</string>
+			</array>
+			<key>ArrivalTime</key>
+			<string>05:55</string>
+			<key>OnTimetable</key>
+			<integer>1</integer>
+			<key>Becomes</key>
+			<array/>
+            <key>TimetableEntry</key>
+            <dict>
+                <key>Oakland Pier</key>
+                <string>7:56</string>
+                <key>Oakland 16th Street</key>
+                <string>8:02</string>
+                <key>Shellmound</key>
+                <string>8:08</string>
+	    </dict>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "DragDropToolbarView.h"
 #import "EditableScenario.h"
 #import "LayoutModel.h"
 @class CocoaLayoutView;
@@ -24,8 +25,10 @@
 - (IBAction) endingPointChanged: (id) sender;
 
 // Actions related to Cocoa LayoutView.
-- (IBAction) addRowToRight: (id) sender;
-
+- (IBAction) addRowBelow: (id) sender;
+- (IBAction) removeRow: (id) sender;
+- (IBAction) addColumnToRight: (id) sender;
+- (IBAction) removeColumn: (id) sender;
 
 @property (nonatomic, retain) EditableScenario *scenario;
 @property (nonatomic, retain) LayoutModel *layoutModel;
@@ -54,6 +57,7 @@
 @property (nonatomic) IBOutlet NSTextField *becomesField;
 @property (nonatomic) IBOutlet NSTextField *timetableField;
 @property (nonatomic) IBOutlet NSTextField *speedField;
+@property (nonatomic) IBOutlet DragDropToolbarView *toolbarImageView;
 
 @end
 

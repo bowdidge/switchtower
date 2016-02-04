@@ -39,53 +39,35 @@
 //
 
 #import "ScenarioDocument.h"
+
+#import "DragDropToolbarView.h"
 #import "Label.h"
 #import "NamedPoint.h"
 #import "Scenario.h"
 #import "Signal.h"
 #import "Train.h"
 
-@implementation CocoaLayoutView
+@implementation TrackContext
+@end
 
-- (id) initWithFrame:(CGRect)frame {
-    self = [super initWithFrame: frame];
-    self.viewSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
-    self.frame = CGRectMake(0, 0, self.viewSize.width, self.viewSize.height);;
-    NSLog(@"Initing layout view");
-   // self.containingScrollView.contentSize = self.viewSize;
-    self.displayForEditing = true;
-    self.score = 0;
+@implementation TrackDrawer
+- (id) init {
+    self = [super init];
+    if (self) {
+        self.targetColor = [NSColor colorWithWhite: 0.5 alpha: 1.0];
+        self.greenSignalColor = [NSColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1.0];
+        self.redSignalColor = [NSColor colorWithRed: 1.0 green: 0.0 blue: 0.0 alpha: 1.0];
+        self.labelColor = [NSColor whiteColor];
+        self.trainLabelColor = [NSColor whiteColor];
+        self.entryLabelColor = [NSColor whiteColor];
+        
+        self.approachingColor = [NSColor orangeColor];
+        self.occupiedColor = [NSColor yellowColor];
+        self.activeTrackColor = [NSColor lightGrayColor];
+        self.inactiveTrackColor = [NSColor darkGrayColor];
+        self.platformColor = [NSColor greenColor];
+    }
     return self;
-}
-
-// Set the size of the game view to match the scenario.
-- (void) setSizeInTilesX: (int) x Y: (int) y {
-    self.viewSize = CGSizeMake(TILE_WIDTH * x + 160.0, SCREEN_HEIGHT);
-    self.frame = CGRectMake(0, 0, self.viewSize.width, self.viewSize.height);
-}
-
-// Work to be done on instantiating the nib.  Note that the view is pre-generated, so
-// initialization needs to be here.
-// TODO(bowdidge): Why not awakeFromNib?
-- (void) awakeFromNib {
-    self.routeColors = [NSArray arrayWithObjects: [NSColor blueColor], [NSColor purpleColor],
-                        [NSColor greenColor], [NSColor colorWithRed: 0.25 green: 0.25 blue: 1.0 alpha: 1.0], nil];
-    self.targetColor = [NSColor colorWithWhite: 0.5 alpha: 1.0];
-    self.greenSignalColor = [NSColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1.0];
-    self.redSignalColor = [NSColor colorWithRed: 1.0 green: 0.0 blue: 0.0 alpha: 1.0];
-    self.labelColor = [NSColor whiteColor];
-    self.trainLabelColor = [NSColor whiteColor];
-    self.entryLabelColor = [NSColor whiteColor];
-    
-    self.approachingColor = [NSColor orangeColor];
-    self.occupiedColor = [NSColor yellowColor];
-    self.activeTrackColor = [NSColor lightGrayColor];
-    self.inactiveTrackColor = [NSColor darkGrayColor];
-    self.platformColor = [NSColor greenColor];
-    
-    // Aim for CTC green.
-    self.backgroundColor = [NSColor colorWithRed:32.0/256 green: 48.0/256 blue: 30.0/256 alpha: 1.0];
-    self.displayForEditing = true;
 }
 
 // Returns the X coordinate of the end point in the specified direction from the center of the tile.
@@ -134,173 +116,223 @@ float CellYPosOffset(TrackDirection dir) {
 
 // Draws a single track line from startDir's edge of the tile through the middle, and out the endDir.
 // Use the stroke color already set.
-- (void)drawLine:(CGContextRef)context cell: (struct CellPosition) pos
+- (void)drawLine:(CGContextRef)cellContext
         startDir: (TrackDirection) startDir
           endDir: (TrackDirection) endDir
 {
-    float posX = LEFT_MARGIN + pos.x * TILE_WIDTH;
-    float posY = self.bounds.size.height - (TOP_MARGIN  + pos.y * TILE_HEIGHT);
-    
-    CGContextMoveToPoint(context, posX + CellXPosOffset(startDir), posY + CellYPosOffset(startDir));
-    CGContextAddLineToPoint(context, posX + TILE_HALF_WIDTH, posY + TILE_HALF_HEIGHT);
-    CGContextAddLineToPoint(context, posX + CellXPosOffset(endDir), posY + CellYPosOffset(endDir));
-    CGContextStrokePath(context);
-}
-
-// Sets the appropriate color for the track on the cell based on whether the track is active,
-// occupied, etc.
-- (void) setTrackColorForCell: (struct CellPosition) pos isActive: (BOOL) isActive
-                  withContext: (CGContextRef) context{
-    
-    Train *occupyingTrain = [self.layoutModel occupyingTrainAtCell: pos];
-    BOOL isPath = isActive && [self.layoutModel routeForCell: pos] != 0;
-    
-    if (isActive && occupyingTrain && occupyingTrain.currentState == Waiting) {
-        [self.approachingColor setStroke];
-    } else if (isActive && occupyingTrain) {
-        [self.occupiedColor setStroke];
-    } else if (isPath) {
-        int routeNumber = ([self.layoutModel routeForCell: pos]);
-        NSColor *routeColor = [self.routeColors objectAtIndex: (routeNumber-1) % [self.routeColors count]];
-        [routeColor setStroke];
-    } else if (isActive) {
-        [self.activeTrackColor setStroke];
-    } else {
-        [self.inactiveTrackColor setStroke];
-    }
+    CGContextMoveToPoint(cellContext, CellXPosOffset(startDir), CellYPosOffset(startDir));
+    CGContextAddLineToPoint(cellContext, TILE_HALF_WIDTH, TILE_HALF_HEIGHT);
+    CGContextAddLineToPoint(cellContext, CellXPosOffset(endDir), CellYPosOffset(endDir));
+    CGContextStrokePath(cellContext);
 }
 
 // Draw a switch with multiple possible routings.
 - (void) drawSwitchWithContext: (CGContextRef) context
-                          cell: (struct CellPosition) pos
+                  trackContext: (TrackContext*) tc
                      pointsDir: (TrackDirection) pointsDirection
                      normalDir: (TrackDirection) normalDirection
-                    reverseDir: (TrackDirection) reverseDirection {
-    if (![self.layoutModel isSwitchNormal: pos]) {
+                    reverseDir: (TrackDirection) reverseDirection
+                    isReversed: (BOOL) isReversed {
+    if (isReversed) {
         TrackDirection temp = normalDirection;
         normalDirection = reverseDirection;
         reverseDirection = temp;
     }
     
     // Draw reversed first.
-    [self setTrackColorForCell: pos isActive: 0 withContext: context];
-    [self drawLine: context cell: pos startDir: reverseDirection endDir: Center];
+    [tc.reversedTrackColor setStroke];
+    [self drawLine: context startDir: reverseDirection endDir: Center];
     
-    [self setTrackColorForCell: pos isActive: 1 withContext: context];
-    [self drawLine: context cell: pos startDir: pointsDirection endDir: normalDirection];
+    [tc.normalTrackColor setStroke];
+    [self drawLine: context startDir: pointsDirection endDir: normalDirection];
 }
 
-// Draw a train label at the specified position.
-- (void)drawTrainLabelInContext:(CGContextRef)context center: (CGPoint) center  message:(NSString *)message {
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    NSDictionary *fontAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize: 12.0],
-                                NSParagraphStyleAttributeName: paragraphStyle,
-                                NSForegroundColorAttributeName: self.trainLabelColor};
-    [message drawInRect: CGRectMake(center.x, center.y - TRAIN_LABEL_OFFSET_Y, TILE_WIDTH, TRAIN_LABEL_HEIGHT)
-         withAttributes: fontAttrs];
-}
-
-- (void)drawTileAtCell: (struct CellPosition) pos withContext:(CGContextRef)context
-{
-    int posX = LEFT_MARGIN + pos.x * TILE_WIDTH;
-    int posY = self.bounds.size.height - (TOP_MARGIN  + pos.y * TILE_HEIGHT);
+// Draw a specified tile at 0,0 with the provided context.
+- (void) drawTile: (char) tile withContext: (CGContextRef) context trackContext: (TrackContext*) tc isReversed: (BOOL) isReversed {
+    [tc.normalTrackColor setStroke];
+    CGContextSetLineWidth(context, 10.0);
     
-    
-    char cell = [self.layoutModel.scenario tileAtCell: pos];
-    [self setTrackColorForCell: pos isActive: YES withContext: context];
-    switch (cell) {
+    switch (tile) {
         case ' ':
             // do nothing.
             break;
         case '.':
             // Dotted line for continuation of layout off.
             CGContextSaveGState(context);
-            // CGContextSetLineDash(context, 0.0, dashes, 2);
-            [self drawLine: context cell: pos startDir: West endDir: East];
+            //CGContextSetLineDash(context, 0.0, dashes, 2);
+            [self drawLine: context startDir: West endDir: East];
             CGContextRestoreGState(context);
             break;
         case '-':
-            [self drawLine: context cell: pos startDir: West endDir: East];
+            [self drawLine: context startDir: West endDir: East];
             break;
             // Platform.
         case '=':
-            [self drawLine: context cell: pos startDir: West endDir: East];
+            [self drawLine: context  startDir: West endDir: East];
             [self.platformColor setStroke];
-            [self drawLine: context startX: posX startY: posY + 3
-                      endX: posX + TILE_DRAW_WIDTH endY: posY + 3];
+            [self drawLine: context startX: 0 startY: 3
+                      endX: TILE_DRAW_WIDTH endY: 3];
             break;
         case 'Z': // lower left to right
-            [self drawLine: context cell: pos startDir: Southwest endDir: East];
+            [self drawLine: context startDir: Southwest endDir: East];
             break;
         case 'z': // left to lower right
-            [self drawLine: context cell: pos startDir: West endDir: Southeast];
+            [self drawLine: context startDir: West endDir: Southeast];
             break;
         case 'P': // left to right, switch to upper right
-            [self drawSwitchWithContext:context cell: pos pointsDir:West normalDir:East reverseDir:Northeast];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:West normalDir:East reverseDir:Northeast isReversed: isReversed];
             break;
         case 'p': // left to right, switch to upper left
-            [self drawSwitchWithContext:context cell: pos pointsDir:East normalDir:West reverseDir:Northwest];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:East normalDir:West reverseDir:Northwest isReversed: isReversed];
             break;
         case 'Q': // left to right, switch to lower right
-            [self drawSwitchWithContext:context cell: pos pointsDir:West normalDir:East reverseDir:Southeast];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:West normalDir:East reverseDir:Southeast isReversed: isReversed];
             break;
         case 'q': // left to right, switch to lower left
-            [self drawSwitchWithContext:context cell: pos pointsDir:East normalDir:West reverseDir:Southwest];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:East normalDir:West reverseDir:Southwest isReversed: isReversed];
             break;
         case 'R': // lower left to upper right, switch to right
-            [self drawSwitchWithContext:context cell: pos pointsDir:Southwest normalDir:Northeast reverseDir:East];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:Southwest normalDir:Northeast reverseDir:East isReversed: isReversed];
             break;
         case 'r': // upper left to lower right, switch to left
-            [self drawSwitchWithContext:context cell: pos pointsDir:Southeast normalDir:Northwest reverseDir:West];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:Southeast normalDir:Northwest reverseDir:West isReversed: isReversed];
             break;
         case 'W': // upper left to right
-            [self drawLine: context cell: pos  startDir: Northwest endDir: East];
+            [self drawLine: context startDir: Northwest endDir: East];
             break;
         case 'w': // left to upper right
-            [self drawLine: context cell: pos startDir: West endDir: Northeast];
+            [self drawLine: context startDir: West endDir: Northeast];
             break;
         case 'Y': // left to upper and lower right
-            [self drawSwitchWithContext:context cell: pos pointsDir:West normalDir:Northeast reverseDir:Southeast];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:West normalDir:Northeast reverseDir:Southeast isReversed: isReversed];
             break;
         case 'y': // upper and lower left to right
-            [self drawSwitchWithContext:context cell: pos pointsDir:East normalDir:Northwest reverseDir:Southwest];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:East normalDir:Northwest reverseDir:Southwest isReversed: isReversed];
             break;
         case 'V': // upper left to lower right, switch to right
-            [self drawSwitchWithContext:context cell: pos pointsDir:Northwest normalDir:Southeast reverseDir:East];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:Northwest normalDir:Southeast reverseDir:East isReversed: isReversed];
             break;
         case 'v': // upper right to lower left, switch to left.
-            [self drawSwitchWithContext:context cell: pos pointsDir:Northeast normalDir:Southwest reverseDir:West];
+            [self drawSwitchWithContext:context trackContext: tc pointsDir:Northeast normalDir:Southwest reverseDir:West isReversed: isReversed];
             break;
         case '\\':
-            [self drawLine: context cell: pos startDir: Northwest endDir: Southeast];
+            [self drawLine: context  startDir: Northwest endDir: Southeast];
             break;
         case '/':
-            [self drawLine: context cell: pos startDir: Northeast endDir: Southwest];
+            [self drawLine: context startDir: Northeast endDir: Southwest];
             break;
         case 'T': // spur open to right
-            [self drawLine: context startX: posX + TILE_HALF_WIDTH startY: posY + TILE_HALF_HEIGHT
-                      endX: posX + TILE_DRAW_WIDTH endY: posY + TILE_HALF_HEIGHT];
-            [self drawLine: context startX: posX + TILE_HALF_WIDTH startY: posY + 5
-                      endX: posX + TILE_HALF_WIDTH endY: posY + 26];
+            [tc.normalTrackColor setStroke];
+            [self drawLine: context startX: TILE_HALF_WIDTH startY: TILE_HALF_HEIGHT
+                      endX: TILE_DRAW_WIDTH endY: TILE_HALF_HEIGHT];
+            [self drawLine: context startX: TILE_HALF_WIDTH startY: 5
+                      endX: TILE_HALF_WIDTH endY: 26];
             break;
         case 't': // spur open to left.
-            [self drawLine: context startX: posX + TILE_HALF_WIDTH startY: posY + TILE_HALF_HEIGHT
-                      endX: posX endY: posY + TILE_HALF_HEIGHT];
-            [self drawLine: context startX: posX + TILE_HALF_WIDTH startY: posY + 5
-                      endX: posX + TILE_HALF_WIDTH endY: posY + 26];
+            [tc.normalTrackColor setStroke];
+            [self drawLine: context startX: TILE_HALF_WIDTH startY:  TILE_HALF_HEIGHT
+                      endX: 0 endY: TILE_HALF_HEIGHT];
+            [self drawLine: context startX: TILE_HALF_WIDTH startY: 5
+                      endX: TILE_HALF_WIDTH endY: 26];
         default:
             break;
     }
 }
 
+@end
+
+
+@implementation CocoaLayoutView
+
+- (id) initWithCoder: (NSCoder*) coder {
+    self = [super initWithCoder: coder];
+    self.viewSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.frame = CGRectMake(0, 0, self.viewSize.width, self.viewSize.height);;
+    NSLog(@"Initing layout view");
+   // self.containingScrollView.contentSize = self.viewSize;
+    self.displayForEditing = true;
+    self.score = 0;
+    self.trackDrawer = [[TrackDrawer alloc] init];
+    return self;
+}
+
+// Set the size of the game view to match the scenario.
+- (void) setSizeInTilesX: (int) x Y: (int) y {
+    self.viewSize = CGSizeMake(TILE_WIDTH * x + 160.0, SCREEN_HEIGHT);
+    self.frame = CGRectMake(0, 0, self.viewSize.width, self.viewSize.height);
+}
+
+// Work to be done on instantiating the nib.  Note that the view is pre-generated, so
+// initialization needs to be here.
+// TODO(bowdidge): Why not awakeFromNib?
+- (void) awakeFromNib {
+    self.routeColors = [NSArray arrayWithObjects: [NSColor blueColor], [NSColor purpleColor],
+                        [NSColor greenColor], [NSColor colorWithRed: 0.25 green: 0.25 blue: 1.0 alpha: 1.0], nil];
+    // Aim for CTC green.
+    self.backgroundColor = [NSColor colorWithRed:32.0/256 green: 48.0/256 blue: 30.0/256 alpha: 1.0];
+    self.displayForEditing = true;
+    [self registerForDraggedTypes:[NSArray arrayWithObjects:
+                                   NSPasteboardTypeTIFF, kTileDragUTI, nil]];
+}
+
+
+- (TrackContext*) trackContextForCell: (struct CellPosition) pos {
+    TrackContext *ret = [[TrackContext alloc] init];
+    NSColor *trackColor = self.trackDrawer.activeTrackColor;
+    
+    Train *occupyingTrain = [self.layoutModel occupyingTrainAtCell: pos];
+    BOOL isPath = [self.layoutModel routeForCell: pos] != 0;
+    
+    if (occupyingTrain && occupyingTrain.currentState == Waiting) {
+        trackColor = self.trackDrawer.approachingColor;
+    } else if (occupyingTrain) {
+        trackColor = self.trackDrawer.occupiedColor;
+    } else if (isPath) {
+        int routeNumber = ([self.layoutModel routeForCell: pos]);
+        NSColor *routeColor = [self.routeColors objectAtIndex: (routeNumber-1) % [self.routeColors count]];
+        trackColor = routeColor;
+    }
+    ret.normalTrackColor = trackColor;
+    ret.reversedTrackColor = self.trackDrawer.inactiveTrackColor;
+    return ret;
+}
+
+
+- (NSRect) boundsForTile: (struct CellPosition) pos {
+    return NSMakeRect(LEFT_MARGIN + pos.x * TILE_WIDTH, self.bounds.size.height - TOP_MARGIN - (pos.y * TILE_HEIGHT) - TILE_HEIGHT,
+                      TILE_WIDTH, TILE_HEIGHT);
+}
+
+
+// Draw the specified tile at the particular location.
+- (void)drawTile: (char) tile atCell: (struct CellPosition) pos withContext:(CGContextRef)context {
+    TrackContext *tc = [self trackContextForCell: pos];
+
+    BOOL isReversed = false;
+    if ([self.layoutModel cellIsSwitch: pos] && ![self.layoutModel isSwitchNormal: pos]) {
+        isReversed = true;
+    }
+
+    CGContextSaveGState(context);
+    NSRect tileBounds = [self boundsForTile: pos];
+    CGContextTranslateCTM(context, tileBounds.origin.x, tileBounds.origin.y);
+    [self.trackDrawer drawTile: tile withContext: (CGContextRef) context trackContext: (TrackContext*) tc isReversed: isReversed];
+    CGContextRestoreGState(context);
+}
+
+// Draw the specified cell in the current layout model.
+- (void)drawTileAtCell: (struct CellPosition) pos withContext:(CGContextRef)context
+{
+    char tile = [self.layoutModel.scenario tileAtCell: pos];
+    [self drawTile: tile atCell:  pos withContext: context];
+}
+
 // Highlight the point where trains can enter the simulation.
-- (void) drawEntryPoint: (NSString*) entryName X: (int) cellX Y: (int) cellY context: (CGContextRef) context {
-    int posX = LEFT_MARGIN + cellX * TILE_WIDTH;
-    int posY = self.bounds.size.height - (TOP_MARGIN  + cellY * TILE_HEIGHT);
+- (void) drawEntryPoint: (NSString*) entryName cell: (struct CellPosition) pos context: (CGContextRef) context {
+    NSRect tileBounds = [self boundsForTile: pos];
     //CGContextSetShadow(context, CGSizeMake(5.0, 5.0), 3.0);
-    [self.inactiveTrackColor setFill];
-    CGContextFillRect(context, CGRectMake(posX, posY + TILE_HALF_HEIGHT- 7,
+    [self.trackDrawer.inactiveTrackColor setFill];
+    CGContextFillRect(context, CGRectMake(tileBounds.origin.x, tileBounds.origin.y + TILE_HALF_HEIGHT- 7,
                                           TILE_WIDTH, 14));
     
     // Turn down shadow for text.
@@ -311,25 +343,24 @@ float CellYPosOffset(TrackDirection dir) {
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *fontAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize: 12.0],
                                 NSParagraphStyleAttributeName: paragraphStyle,
-                                NSForegroundColorAttributeName: self.entryLabelColor,
+                                NSForegroundColorAttributeName: self.trackDrawer.entryLabelColor,
                                 };
     
-    [entryName drawInRect: CGRectMake(posX-ENTRY_POINT_LABEL_WIDTH/2+TILE_WIDTH/2, posY,
+    [entryName drawInRect: CGRectMake(tileBounds.origin.x-ENTRY_POINT_LABEL_WIDTH/2+TILE_WIDTH/2, tileBounds.origin.y,
                                       ENTRY_POINT_LABEL_WIDTH, ENTRY_POINT_LABEL_HEIGHT)
            withAttributes: fontAttrs];
 }
 
 - (CGRect) rectForSignal: (Signal*) signal isTarget: (BOOL) isTarget {
-    float posX = LEFT_MARGIN + signal.position.x * TILE_WIDTH;
-    float posY = self.bounds.size.height - (TOP_MARGIN  + signal.position.y * TILE_HEIGHT);
+    NSRect tileBounds = [self boundsForTile: signal.position];
     float signalCenterX = 0;
     float signalCenterY = 0;
     if (signal.trafficDirection == EastDirection) {
-        signalCenterX = posX + TILE_WIDTH / 2 + SIGNAL_OFFSET_WIDTH,
-        signalCenterY = posY + TILE_HEIGHT / 2 + SIGNAL_OFFSET_HEIGHT;
+        signalCenterX = tileBounds.origin.x + TILE_WIDTH / 2 + SIGNAL_OFFSET_WIDTH,
+        signalCenterY = tileBounds.origin.y + TILE_HEIGHT / 2 + SIGNAL_OFFSET_HEIGHT;
     } else {
-        signalCenterX = posX + TILE_WIDTH / 2 - SIGNAL_OFFSET_WIDTH;
-        signalCenterY = posY + TILE_HEIGHT / 2 - SIGNAL_OFFSET_HEIGHT;
+        signalCenterX = tileBounds.origin.x + TILE_WIDTH / 2 - SIGNAL_OFFSET_WIDTH;
+        signalCenterY = tileBounds.origin.y + TILE_HEIGHT / 2 - SIGNAL_OFFSET_HEIGHT;
     }
     if (isTarget) {
         return CGRectMake(signalCenterX - SIGNAL_TARGET_DIAMETER / 2,
@@ -344,40 +375,76 @@ float CellYPosOffset(TrackDirection dir) {
 // Highlight the point where trains can enter the simulation.
 - (void) drawSignal: (Signal*) signal context: (CGContextRef) context {
     CGContextSetShadow(context, CGSizeMake(5.0, 5.0), 3.0);
-    [self.targetColor setFill];
+    [self.trackDrawer.targetColor setFill];
     CGContextFillEllipseInRect(context, [self rectForSignal: signal isTarget: true]);
     
     if (signal.isGreen) {
-        [self.greenSignalColor setFill];
+        [self.trackDrawer.greenSignalColor setFill];
     } else {
-        [self.redSignalColor setFill];
+        [self.trackDrawer.redSignalColor setFill];
     }
 
     CGContextFillEllipseInRect(context, [self rectForSignal: signal isTarget: FALSE]);
 }
 
+- (void)drawGrid:(CGContextRef)context
+{
+    // Draw grid for placement.
+    [[NSColor whiteColor] setStroke];
+    for (int x = 0; x <= self.scenario.tileColumns; x++) {
+        CGContextMoveToPoint(context, LEFT_MARGIN + x * TILE_WIDTH, self.bounds.size.height - TOP_MARGIN);
+        CGContextAddLineToPoint(context, LEFT_MARGIN + x * TILE_WIDTH, self.bounds.size.height - (TOP_MARGIN + self.scenario.tileRows * TILE_HEIGHT));
+        CGContextStrokePath(context);
+    }
+    for (int y = 0; y <= self.scenario.tileRows; y++) {
+        CGContextMoveToPoint(context, LEFT_MARGIN, self.bounds.size.height - (TOP_MARGIN + y * TILE_HEIGHT));
+        CGContextAddLineToPoint(context, LEFT_MARGIN + self.scenario.tileColumns * TILE_WIDTH, self.bounds.size.height - (TOP_MARGIN + y * TILE_HEIGHT));
+        CGContextStrokePath(context);
+    }
+}
+
+// Returns the NSPoint describing the center of the rectangle provided.
+CGPoint CenterOfRectangle(CGRect r) {
+    return CGPointMake(r.origin.x + r.size.width / 2, r.origin.y + r.size.height / 2);
+}
+
+// Draw a train label at the specified position.
+- (void)drawTrainLabelInContext:(CGContextRef)context center: (CGPoint) center  message:(NSString *)message {
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary *fontAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize: 12.0],
+                                NSParagraphStyleAttributeName: paragraphStyle,
+                                NSForegroundColorAttributeName: self.trackDrawer.trainLabelColor};
+    [message drawInRect: CGRectMake(center.x, center.y - TRAIN_LABEL_OFFSET_Y, TILE_WIDTH, TRAIN_LABEL_HEIGHT)
+         withAttributes: fontAttrs];
+}
+
 - (void)drawRect:(CGRect)rect
 {
-    // self.containingScrollView.contentSize = self.viewSize;
-    
     CGContextRef context = [NSGraphicsContext currentContext].CGContext;
     [self.backgroundColor setFill];
     CGContextFillRect(context, rect);
     
+    if (self.draggingTile) {
+        [self drawGrid:context];
+    }
+
+    
     // Draw entry points.
     for (NamedPoint *ep in [self.scenario all_endpoints]) {
-        [self drawEntryPoint: ep.name X: ep.position.x Y: ep.position.y context: context];
+        [self drawEntryPoint: ep.name cell: ep.position context: context];
     }
     
     for (Label *label in self.scenario.all_labels) {
         // TILE_WIDTH/2 to center.
-        int labelPosX = LEFT_MARGIN + label.position.x * TILE_WIDTH + TILE_WIDTH/2;
-        int labelPosY = self.bounds.size.height - (TOP_MARGIN  + label.position.y * TILE_HEIGHT);
+        NSRect cellBounds = [self boundsForTile: label.position];
+        int labelPosX = cellBounds.origin.x + TILE_WIDTH / 2;
+        int labelPosY = cellBounds.origin.y + TILE_HEIGHT / 2;
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentCenter;
         NSDictionary *fontAttrs = @{NSFontAttributeName: [NSFont boldSystemFontOfSize: 14],
                                     NSParagraphStyleAttributeName: paragraphStyle,
-                                    NSForegroundColorAttributeName: self.labelColor};
+                                    NSForegroundColorAttributeName: self.trackDrawer.labelColor};
         [label.labelString drawInRect: CGRectMake(labelPosX-LABEL_WIDTH/2,
                                                   labelPosY-LABEL_HEIGHT /2 ,
                                                   LABEL_WIDTH, LABEL_HEIGHT)
@@ -387,8 +454,6 @@ float CellYPosOffset(TrackDirection dir) {
     for (Signal *signal in self.scenario.all_signals) {
         [self drawSignal: signal context: context];
     }
-    
-    CGContextSetLineWidth(context, 10.0);
     
     for (int y = 0; y < self.scenario.tileRows; y++) {
         for (int x = 0; x < self.scenario.tileColumns; x++) {
@@ -404,20 +469,20 @@ float CellYPosOffset(TrackDirection dir) {
             }
         }
     }
-    
+
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"HH:mm:ss"];
     
     if (self.displayForEditing) {
-        // TODO(bowdidge): Draw grid as place to edit.
+        // Draw train lengths and other information not needed during gaming.
         for (int x = 0; x < self.scenario.tileColumns; x++) {
-            float centerX = LEFT_MARGIN + x * TILE_WIDTH;
-            float lengthY = self.bounds.size.height - (TOP_MARGIN  + (self.scenario.tileRows + 2) * TILE_HEIGHT);
-            float indexY = self.bounds.size.height - (TOP_MARGIN  + (self.scenario.tileRows + 1) * TILE_HEIGHT);
+            // Only using for X.
+            NSRect lengthCellBounds = [self boundsForTile: MakeCellPosition(x, self.scenario.tileRows + 1)];
+            NSRect indexCellBounds = [self boundsForTile: MakeCellPosition(x, self.scenario.tileRows + 2)];
             
-            [self drawTrainLabelInContext:context center: CGPointMake(centerX, lengthY)
+            [self drawTrainLabelInContext:context center: CenterOfRectangle(lengthCellBounds)
                                   message: [NSString stringWithFormat: @"%d feet", (int) [self.scenario lengthOfCellInFeet:MakeCellPosition(x, 0)]]];
-            [self drawTrainLabelInContext:context center: CGPointMake(centerX, indexY)
+            [self drawTrainLabelInContext:context center: CenterOfRectangle(indexCellBounds)
                                   message: [NSString stringWithFormat: @"%d", x]];
         }
     }
@@ -476,6 +541,88 @@ float CellYPosOffset(TrackDirection dir) {
     float y = self.bounds.size.height - (TOP_MARGIN + p.y * TILE_HEIGHT - TILE_HEIGHT / 2);
     return CGPointMake(x,y);
 }
+
+#pragma mark - Destination Operations
+
+// Watch for drags of tiles from the DragDropView to the Scenario.
+// Turn on the grid appearance of the view,
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
+{
+    /*------------------------------------------------------
+     method called whenever a drag enters our drop zone
+     --------------------------------------------------------*/
+    
+    // Check if the pasteboard contains image data and source/user wants it copied
+    //highlight our drop zone
+    self.draggingTile = YES;
+    [self setNeedsDisplay: YES];
+    
+    /* When an image from one window is dragged over another, we want to resize the dragging item to
+     * preview the size of the image as it would appear if the user dropped it in. */
+    [sender enumerateDraggingItemsWithOptions:NSDraggingItemEnumerationConcurrent
+                                      forView:self
+                                      classes:[NSArray arrayWithObject:[NSPasteboardItem class]]
+                                searchOptions:nil
+                                   usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop) {
+                                       
+                                       /* Only resize a fragging item if it originated from one of our windows.  To do this,
+                                        * we declare a custom UTI that will only be assigned to dragging items we created.  Here
+                                        * we check if the dragging item can represent our custom UTI.  If it can't we stop. */
+                                       if ( ![[[draggingItem item] types] containsObject:kTileDragUTI] ) {
+                                           
+                                           *stop = YES;
+                                           
+                                       } else {
+                                           /* In order for the dragging item to actually resize, we have to reset its contents.
+                                            * The frame is going to be the destination view's bounds.  (Coordinates are local
+                                            * to the destination view here).
+                                            * For the contents, we'll grab the old contents and use those again.  If you wanted
+                                            * to perform other modifications in addition to the resize you could do that here. */
+                                           [draggingItem setDraggingFrame:self.bounds contents:[[[draggingItem imageComponents] objectAtIndex:0] contents]];
+                                       }
+                                   }];
+    
+    //accept data as a copy operation
+    return NSDragOperationCopy;
+}
+
+// Handle shutting off the grid appearance when the tile drag exits the view.
+- (void)draggingExited:(id <NSDraggingInfo>)sender
+{
+    //remove highlight of the drop zone
+    self.draggingTile = NO;
+    [self setNeedsDisplay: YES];
+}
+
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender
+{
+    return YES;
+}
+
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    NSString *available = [pboard availableTypeFromArray: [NSArray arrayWithObject: kTileDragUTI]];
+    NSLog(@"Available: %@", available);
+    NSString *tileString = [pboard propertyListForType:kTileDragUTI];
+    
+    CGPoint loc = [self convertPoint: [sender draggingLocation] fromView: nil];
+    int x = (loc.x - LEFT_MARGIN) / TILE_WIDTH;
+    int y = ((self.bounds.size.height - loc.y) - TOP_MARGIN) / TILE_HEIGHT;
+    NSLog(@"Dropping tile %@ at %d, %d", tileString, x, y);
+    // TODO(bowdidge): Fix encoding lossiness with backslashes and spaces.
+    if (tileString.length == 0) {
+        tileString = @"\\";
+    }
+    char tile = [tileString characterAtIndex: 0];
+    [self.scenario changeTile: tile atCell: MakeCellPosition(x, y)];
+
+    self.draggingTile = NO;
+    [self setNeedsDisplay: YES];
+
+    return TRUE;
+}
+
 
 @synthesize currentTime;
 @synthesize score;

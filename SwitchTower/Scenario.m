@@ -146,9 +146,9 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
 - (id) initWithDict: (NSDictionary*) dict {
     self = [super init];
     self.tileStrings = [dict objectForKey: @"Schematic"];
-    self.tileRows = [self.tileStrings count];
+    self.tileRows = (int) [self.tileStrings count];
     NSString *firstRow = [self.tileStrings objectAtIndex: 0];
-    self.tileColumns = [firstRow length];
+    self.tileColumns = (int) [firstRow length];
     [self validateTileString];
     
     // Process the timetable information.  The TimetableNames is a list
@@ -322,7 +322,11 @@ BOOL ParseDirection(NSString* directionStr, enum TimetableDirection *dir) {
     }
     [dict setObject: self.cellLengths forKey: @"CellLengths"];
 
-    [dict setObject: self.scenarioName forKey: @"Name"];
+    if (self.scenarioName) {
+        [dict setObject: self.scenarioName forKey: @"Name"];
+    } else {
+        [dict setObject: @"Unknown" forKey: @"Name"];
+    }
     [dict setObject: self.scenarioDescription forKey: @"Description"];
     [dict setObject: self.startingTime forKey: @"StartTime"];
     [dict setObject: [NSNumber numberWithInt: self.tickIntervalInSeconds] forKey: @"TickIntervalSecs"];

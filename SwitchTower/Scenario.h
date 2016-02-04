@@ -78,8 +78,8 @@
 @property (nonatomic, retain) NSArray *all_trains;
 @property (nonatomic, retain) NSMutableArray *cellLengths;
 @property (nonatomic, retain) NSArray *timetableNames;
-@property (nonatomic) NSUInteger tileColumns;
-@property (nonatomic) NSUInteger tileRows;
+@property (nonatomic) int tileColumns;
+@property (nonatomic) int tileRows;
 // TODO(bowdidge): Make more structured and validated.
 @property (nonatomic, retain) NSArray *tileStrings;
 @property (nonatomic, retain) NSString *helpString;

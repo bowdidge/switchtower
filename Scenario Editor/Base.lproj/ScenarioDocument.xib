@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
@@ -14,6 +14,7 @@
                 <outlet property="speedField" destination="uvF-TS-Lu9" id="NoM-Cg-4nc"/>
                 <outlet property="startingPointPopup" destination="XzV-BH-ELB" id="zA6-jv-k48"/>
                 <outlet property="timetableField" destination="PyB-HW-ypS" id="xS5-ow-qEv"/>
+                <outlet property="toolbarImageView" destination="ceB-2o-ohs" id="yFI-Ih-F5V"/>
                 <outlet property="trainDescriptionField" destination="y3G-d9-ex6" id="tKE-bK-su1"/>
                 <outlet property="trainNameField" destination="KTR-sm-fgD" id="GWf-pI-eCo"/>
                 <outlet property="trainNumberField" destination="POY-Xe-6GA" id="afi-l8-AxG"/>
@@ -34,22 +35,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="1390" height="890"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhP-3t-C63">
-                        <rect key="frame" x="290" y="301" width="41" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Trains" id="67L-Fn-fZj">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4A-dA-ohT">
-                        <rect key="frame" x="20" y="35" width="802" height="259"/>
+                        <rect key="frame" x="20" y="35" width="802" height="214"/>
                         <clipView key="contentView" ambiguous="YES" id="dla-4j-PAF">
-                            <rect key="frame" x="1" y="0.0" width="800" height="258"/>
+                            <rect key="frame" x="1" y="0.0" width="800" height="213"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="s8M-Hq-t6u" id="eT0-Mm-KJA">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="235"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="190"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -162,7 +155,18 @@
                         </tableHeaderView>
                     </scrollView>
                     <customView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dAN-aB-ri8" customClass="CocoaLayoutView">
-                        <rect key="frame" x="20" y="331" width="1350" height="545"/>
+                        <rect key="frame" x="20" y="373" width="1350" height="503"/>
+                    </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhP-3t-C63">
+                        <rect key="frame" x="308" y="257" width="41" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Trains" id="67L-Fn-fZj">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ceB-2o-ohs" customClass="DragDropToolbarView">
+                        <rect key="frame" x="20" y="289" width="1350" height="64"/>
                     </customView>
                 </subviews>
                 <constraints>
@@ -540,7 +544,7 @@
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="ir9-VQ-HEN">
-                <rect key="frame" x="167" y="1" width="15" height="94"/>
+                <rect key="frame" x="166" y="1" width="16" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
         </scrollView>
